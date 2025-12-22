@@ -8,7 +8,9 @@ RESTful APi for managing pharmacy inventory.
                   Automatic stock calculation
                   Categorization of Medicines with Types**
 
-**Built WITH:** **BACKEND:** Spring Boot 3.5.9, Java 17
+**Built WITH:** 
+
+            **BACKEND:** Spring Boot 3.5.9, Java 17
 
             **Database:** PostgreSQL
             
@@ -19,7 +21,9 @@ RESTful APi for managing pharmacy inventory.
 All endpoints are secured with Basic Authentication
 
 **For testing a Superadmin will be created automatically.**
-**To test** in bash simply run curl -u "root@example.com:password123" -X POST "http://localhost:8080/Medicine/create" -H "Content-Type: application/json" -d '{ "sku": "MED001",
+**To test** in bash simply run: 
+
+    curl -u "root@example.com:password123" -X POST "http://localhost:8080/Medicine/create" -H "Content-Type: application/json" -d '{ "sku": "MED001",
 
     "medicineName": "Paracetamol",
     
@@ -31,14 +35,11 @@ All endpoints are secured with Basic Authentication
     
 You can also use Postman for tessting, if you dont know about curl or have no access to a trerminal. You can also use it to specify other requests Put, Get.
 
-**Database Schemas**: Staff,
-
+**Database Schemas**: 
+                      Staff,
                       Medicine(medicine_type_name foreign key)
-                      
                       Medicine_type
-                      
-                      Sales
-                      
+                      Sales                      
                       Sales_item
                       
 
