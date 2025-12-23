@@ -1,0 +1,12 @@
+spring.application.name=pharmacy_management
+
+spring.datasource.url="YOUR DB URL"
+spring.datasource.username="YOUR USER"
+spring.datasource.password="USER PASSWORD"
+spring.datasource.driver-class-name=org.postgresql.Driver
+
+spring.jpa.hibernate.ddl-auto=create-drop
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
+spring.jpa.properties.hibernate.format_sql=true
+spring.jpa.show-sql=true
+
