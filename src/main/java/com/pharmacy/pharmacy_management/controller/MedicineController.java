@@ -18,14 +18,15 @@ public class MedicineController {
     @Autowired
     private MedicineService medService;
 
-    @RequestMapping("/hello")
-    public String hello(){
-        return "Saying hello";
-    }
-
-    @PostMapping("create")
+    @PostMapping("/create")
     public ResponseEntity<Medicine> createMedicine(@RequestBody  MedicineAddDto addDto){
         Medicine created = medService.addMedStock(addDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(created);
+    }
+
+    @PostMapping("/update")
+    public ResponseEntity<Medicine> updateMedicine(@RequestBody MedicineAddDto updDto){
+        Medicine updated = medService.updateMedStock(updDto);
+        return ResponseEntity.status(HttpStatus.OK).body(updated);
     }
 }

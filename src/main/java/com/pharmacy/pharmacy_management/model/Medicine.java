@@ -19,7 +19,6 @@ public class Medicine {
     private String medicineName;
 
     @ManyToOne
-    @JoinColumn(name = "name")
     private MedicineType med_type;
 
     private int quantity;
@@ -98,4 +97,13 @@ public class Medicine {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public Integer getLowStockThreshold() {
+        return lowStockThreshold;
+    }
+
+    public void setLowStockThreshold(Integer lowStockThreshold) {
+        this.lowStockThreshold = lowStockThreshold;
+    }
+
 }

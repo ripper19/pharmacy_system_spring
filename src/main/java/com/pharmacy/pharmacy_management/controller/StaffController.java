@@ -23,6 +23,11 @@ public class StaffController {
         this.staffService = staffService;
     }
 
+    @RequestMapping("/hello")
+    public String sayHello(){
+        return "Saying hello";
+    }
+
     @PostMapping("/create")
     public ResponseEntity<Staff> createStaff(@RequestBody StaffCreateDto dto) {
         Staff created = staffService.addUser(dto);
