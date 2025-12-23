@@ -20,6 +20,8 @@ RESTful APi for managing pharmacy inventory.
             
 All endpoints are secured with Basic Authentication
 
+Edit **application.properties.example** with your own db details. Mine uses Postgres so you will have to change it for MYSQl.
+
 **For testing a Superadmin will be created automatically.**
 **To test** in bash simply run: 
 
