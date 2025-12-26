@@ -15,6 +15,6 @@ public interface MedicineRepository extends JpaRepository<Medicine, String> {
 
     Optional<Medicine> findBySku(String sku);
 
-    List<Medicine> findByMed_Type(MedicineType med_type);
+    List<Medicine> findByMedType(MedicineType medType);
 
 }

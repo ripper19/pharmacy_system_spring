@@ -19,7 +19,7 @@ public class Medicine {
     private String medicineName;
 
     @ManyToOne
-    private MedicineType med_type;
+    private MedicineType medType;
 
     private int quantity;
 
@@ -67,11 +67,11 @@ public class Medicine {
     }
 
     public MedicineType getMed_type() {
-        return med_type;
+        return medType;
     }
 
     public void setMed_type(MedicineType med_type) {
-        this.med_type = med_type;
+        this.medType = med_type;
     }
 
     public int getQuantity() {

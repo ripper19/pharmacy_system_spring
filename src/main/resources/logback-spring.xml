@@ -24,15 +24,17 @@
         </rollingPolicy>
     </appender>
 
-    <logger name="com.pharmacy.pharmacy_management" level="INFO"/>
+    <logger name="com.pharmacy.pharmacy_management" level="INFO">
+            <appender-ref ref = "FILE"/>
+        <appender-ref ref = "CONSOLE"/>
+    </logger>
 
     <logger name="org.springframework" level="WARN"/>
     <logger name="org.hibernate" level="WARN"/>
 
     <!-- Root logger -->
-    <root level="WARN">
+    <root level="INFO">
         <appender-ref ref="CONSOLE"/>
-        <appender-ref ref="FILE"/>
     </root>
 
 </configuration>

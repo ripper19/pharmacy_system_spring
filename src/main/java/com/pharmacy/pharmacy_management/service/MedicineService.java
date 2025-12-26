@@ -117,7 +117,7 @@ public class MedicineService {
         if (cleaned.isBlank()) throw new RuntimeException("Cant perform this action. empty input");
         MedicineType type = medicineTypeRepository.findByIgnoreCaseName(cleaned)
                 .orElseThrow(()-> new RuntimeException("Type not found"));
-        List<Medicine> medicines = medicineRepo.findByMed_Type(type);
+        List<Medicine> medicines = medicineRepo.findByMedType(type);
         return medicines.stream()
                 .map(med -> new MedicineStockView(
                   med.getMedicineName(),
