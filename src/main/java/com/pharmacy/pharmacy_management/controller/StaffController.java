@@ -2,6 +2,7 @@ package com.pharmacy.pharmacy_management.controller;
 
 import com.pharmacy.pharmacy_management.dto.StaffCreateDto;
 import com.pharmacy.pharmacy_management.dto.StaffUpdateDto;
+import com.pharmacy.pharmacy_management.exception.RolePermission;
 import com.pharmacy.pharmacy_management.model.Staff;
 import com.pharmacy.pharmacy_management.service.StaffService;
 import org.slf4j.LoggerFactory;
@@ -22,7 +23,7 @@ public class StaffController {
     @Autowired
     private UserDetailsService userDetailsService;
 
-    private final Logger logger = LoggerFactory.getLogger(StaffService.class);
+    private final Logger logger = LoggerFactory.getLogger(StaffController.class);
 
     public StaffController(StaffService staffService) {
         this.staffService = staffService;
@@ -35,9 +36,14 @@ public class StaffController {
 
     @PostMapping("/create")
     public ResponseEntity<Staff> createStaff(@RequestBody StaffCreateDto dto) {
+        try{
         Staff created = staffService.addUser(dto);
-        logger.info("User"+dto.getName()+"added by" + staffService.currentUSer().getName());
+        logger.info("User {}added by {}", dto.getName(), staffService.currentUSer().getName());
         return ResponseEntity.status(HttpStatus.CREATED).body(created);
+        } catch (RolePermission e) {
+            logger.warn("Invalid action by{} has insufficient permission", staffService.currentUSer());
+            throw new RolePermission("You dont have enough permission to perform this action");
+        }
     }
 
     @PostMapping("/update")

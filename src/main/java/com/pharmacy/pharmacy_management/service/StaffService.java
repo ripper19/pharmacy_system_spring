@@ -2,6 +2,7 @@ package com.pharmacy.pharmacy_management.service;
 
 import com.pharmacy.pharmacy_management.dto.StaffCreateDto;
 import com.pharmacy.pharmacy_management.dto.StaffUpdateDto;
+import com.pharmacy.pharmacy_management.exception.RolePermission;
 import com.pharmacy.pharmacy_management.model.Role;
 import com.pharmacy.pharmacy_management.model.Staff;
 import com.pharmacy.pharmacy_management.repository.StaffRepository;
@@ -9,6 +10,7 @@ import com.pharmacy.pharmacy_management.security.RolePolicy;
 import jakarta.annotation.PostConstruct;
 import jakarta.transaction.Transactional;
 import org.apache.catalina.valves.rewrite.InternalRewriteMap;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -17,12 +19,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+import org.slf4j.Logger;
 
 @Service
 public class StaffService {
     @Autowired
     private StaffRepository staffRepo;
     private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+    private final Logger logger = LoggerFactory.getLogger(StaffService.class);
 
 
     public Optional<Staff> getStaffByPhone(String phoneNo) {
@@ -87,7 +91,6 @@ public class StaffService {
     public Staff addUser(StaffCreateDto newStaff){
         try{
             Staff current = currentUSer();
-            System.out.println("Current user" + current.getName() + "Role " + current.getRole());
 
             if(newStaff == null) throw new RuntimeException("Empty input");
 
@@ -97,17 +100,17 @@ public class StaffService {
                 requestedRole = newStaff.getRole();
             }
             if(!RolePolicy.canCreate(current.getRole(), requestedRole)){
-                throw new RuntimeException("You dont have sufficient permissions to perform this action!!");
+                logger.warn("{} attempted an invalid operation of adding {} with role {}", currentUSer().getName(), newStaff.getName(), requestedRole);
+                throw new RolePermission("You dont have sufficient privileges to perform this action");
             }
                 Staff staff = mapToEntity(newStaff);
-                System.out.println("Requested role" + requestedRole + "Current role" + current.getRole());
                 staff.setRole(requestedRole);
 
                 String rawPass = staff.getPassword();
                 staff.setPassword(passwordEncoder.encode(rawPass));
 
                 Staff saved = staffRepo.save(staff);
-                System.out.println("staff created, ID" + saved.getId());
+                logger.info("Staff created " + saved.getName() + "with ID " + saved.getId());
                 return saved;
 
             }catch (Exception e) {
