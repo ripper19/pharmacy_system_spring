@@ -1,17 +1,15 @@
 package com.pharmacy.pharmacy_management.service;
 
-import com.pharmacy.pharmacy_management.dto.MedicineAddDto;
-import com.pharmacy.pharmacy_management.dto.MedicineCheckStockDto;
-import com.pharmacy.pharmacy_management.dto.MedicineDeleteDto;
-import com.pharmacy.pharmacy_management.dto.OneMedicineStockDto;
+import com.pharmacy.pharmacy_management.dto.*;
+import com.pharmacy.pharmacy_management.exception.InvalidResourceRequest;
 import com.pharmacy.pharmacy_management.model.Medicine;
 import com.pharmacy.pharmacy_management.model.MedicineStatus;
 import com.pharmacy.pharmacy_management.model.MedicineType;
+import com.pharmacy.pharmacy_management.model.Staff;
 import com.pharmacy.pharmacy_management.repository.MedicineRepository;
 import com.pharmacy.pharmacy_management.repository.MedicineTypeRepository;
 import com.pharmacy.pharmacy_management.utilities.TransactionRetryUtility;
 
-import jakarta.validation.ValidationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.util.HtmlUtils;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,6 +33,8 @@ public class MedicineService {
     private MedicineTypeRepository medicineTypeRepository;
     @Autowired
     private TransactionRetryUtility transactionRetryUtility;
+    @Autowired
+    private StaffService staffService;
     private final Logger logger = LoggerFactory.getLogger(MedicineService.class);
 
     public Optional<Medicine> getMedicineBy(String medicineName) {
@@ -53,12 +54,13 @@ public class MedicineService {
 
     @Transactional
     @PreAuthorize("hasRole('ADMIN') or hasRole('SUPERADMIN')")
-    public Medicine addMedStock(MedicineAddDto addDto) {
+    public String addMedStock(MedicineAddDto addDto) {
         MedicineAddDto cleanedDto = medicineSanitiseService.sanitize(addDto);
         return transactionRetryUtility.executeWithRetry(() -> {
             try {
+                Staff current = staffService.currentUSer();;
                 MedicineType type = medicineTypeRepository.findByIgnoreCaseName(cleanedDto.getMedicineType())
-                        .orElseThrow(() -> new ValidationException("Cant find this type in Medicine types. Add the type"));
+                        .orElseThrow(() -> new InvalidResourceRequest("Cant find this type in Medicine types. Add the type"));
 
                 if (cleanedDto.getDescription() == null) {
                     cleanedDto.setDescription("Description hasn't been provided. Please input description and instructions for various uses");
@@ -69,31 +71,61 @@ public class MedicineService {
                 Medicine newMed = mapToEntity(cleanedDto);
                 newMed.setCost(BigDecimal.valueOf(0.00));
                 newMed.setMed_type(type);
-                return medicineRepo.save(newMed);
+
+                medicineRepo.save(newMed);
+                logger.info("New medicine {} added by {}", cleanedDto.getMedicineName(), current.getName());
+                return("New Medicine" + cleanedDto.getMedicineName());
             } catch (Exception e) {
-                logger.error("Failed to add{}", addDto.getMedicineName());
-                throw new RuntimeException(e);
+                logger.error("Failed to add {}: error {}", addDto.getMedicineName(), e.getMessage(), e);
+                throw new RuntimeException("DB operation failed: " + e);
             }
         });
     }
 
-    //using add Dto since update uses same fields
     @Transactional
     @PreAuthorize("hasRole('ADMIN') or hasRole('SUPERADMIN')")
-    public Medicine updateMedStock(MedicineAddDto updateDto) {
-        medicineSanitiseService.sanitize(updateDto);
+    public String updateMedStock(MedicineUpdateDto updateDto) {
         return transactionRetryUtility.executeWithRetry(() -> {
-            Medicine existing = medicineRepo.findByMedicineName(updateDto.getMedicineName())
-                    .orElseThrow(() -> new RuntimeException("Medicine doesnt exist. Add first"));
-            MedicineType updating = medicineTypeRepository.findByIgnoreCaseName(updateDto.getMedicineType())
-                    .orElseThrow(() -> new RuntimeException("This type isn't available in Medicine types"));
+            try {
+                MedicineUpdateDto cleaned =  medicineSanitiseService.sanitizeMedUpdate(updateDto);
+                Staff current = staffService.currentUSer();
+                Medicine existing = medicineRepo.findByMedicineName(cleaned.getMedicineName())
+                        .orElseThrow(() -> new InvalidResourceRequest("Medicine doesnt exist. Add first"));
 
-            existing.setMedicineName(updateDto.getMedicineName());
-            existing.setDescription(updateDto.getDescription());
-            existing.setSku(updateDto.getSku());
-            existing.setMed_type(updating);
-            existing.setQuantity(updateDto.getQuantity());
-            return medicineRepo.save(existing);
+                MedicineType updating = medicineTypeRepository.findByIgnoreCaseName(cleaned.getMedicineType())
+                        .orElseThrow(() -> new InvalidResourceRequest("This type isn't available in Medicine types"));
+                List<String> updated = new ArrayList<>();
+                if (cleaned.getMedicineName() != null || !cleaned.getMedicineName().isBlank()){
+                    existing.setMedicineName(cleaned.getMedicineName());
+                    updated.add("MedicineName");
+                }
+                if (cleaned.getDescription() != null || !cleaned.getDescription().isBlank()){
+                    existing.setDescription(cleaned.getDescription());
+                    updated.add("Medicine Description");
+                }
+                if (cleaned.getSku() != null || !cleaned.getSku().isBlank()){
+                    existing.setSku(cleaned.getSku());
+                    updated.add("Medicine Sku");
+                }
+                if (cleaned.getMedicineType() != null || !cleaned.getMedicineType().isBlank()){
+                    existing.setMed_type(updating);
+                    updated.add("Medicine medicine_Type");
+                }
+                if (cleaned.getQuantity() != null ){
+                    existing.setQuantity(cleaned.getQuantity());
+                    updated.add("Medicine Quantity");
+                }
+                medicineRepo.save(existing);
+                //ALERT FOR QUANTITY CHANGES NOT MADE BY SUPERADMIN OR ANY OTHER FOR THAT MATTER
+                if (updated.contains("Medicine Quantity")){
+                    logger.warn("Quantity changed to {} for Medicine {} altered not involving sales by {}", cleaned.getQuantity(), existing.getMedicineName(),current.getName());
+                }
+                logger.info("Update on medicine {} by user {} with {} privileges", existing.getMedicineName(), current.getName(), current.getRole());
+                return("Successfully updated : " +cleaned.getMedicineName());
+            } catch (Exception e) {
+                logger.info("Update failed: {} ", e.getMessage(),e);
+                throw new RuntimeException(e);
+            }
         });
     }
 

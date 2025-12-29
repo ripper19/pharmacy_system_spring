@@ -1,6 +1,8 @@
 package com.pharmacy.pharmacy_management.service;
 
 import com.pharmacy.pharmacy_management.dto.MedicineAddDto;
+import com.pharmacy.pharmacy_management.dto.MedicineUpdateDto;
+import com.pharmacy.pharmacy_management.exception.NoInput;
 import org.springframework.transaction.annotation.Transactional;
 import jakarta.validation.ValidationException;
 import org.springframework.stereotype.Service;
@@ -28,15 +30,21 @@ public class MedicineSanitiseService {
     }
     //sanitise sku
     private String sanitizeSku(String sku){
-        return HtmlUtils.htmlEscape(sku);
+        return HtmlUtils.htmlEscape(sku)
+                .replace("&lt;/?[a-zA-Z0-9]+&gt;","")
+                .strip();
     }
 
     //sanitise name
     private String sanitizeName(String name){
-        return HtmlUtils.htmlEscape(name);
+        return HtmlUtils.htmlEscape(name
+                .replace("&lt;/?[a-zA-Z0-9]+&gt;","")
+                .strip());
     }
     private String sanitiseType(String type){
-        return HtmlUtils.htmlEscape(type);
+        return HtmlUtils.htmlEscape(type
+                .replace("&lt;/?[a-zA-Z0-9]+&gt;","")
+                .strip());
     }
     //sanitise description
     private String sanitizeDescriptor(String description){
@@ -52,5 +60,17 @@ public class MedicineSanitiseService {
         addDto.setSku(sanitizeSku(addDto.getSku()));
         addDto.setDescription(sanitizeDescriptor(addDto.getDescription()));
         return addDto;
+    }
+
+
+    private void validateRequiredUpdateFields(MedicineUpdateDto updateDto){
+        if (updateDto.getMedicineName() == null ||updateDto.getMedicineName().isBlank()) throw new NoInput("Provide Medicine Name to be updated");
+    }
+    public MedicineUpdateDto sanitizeMedUpdate(MedicineUpdateDto updDto){
+        validateRequiredUpdateFields(updDto);
+        updDto.setMedicineName(sanitizeName(updDto.getMedicineName()));
+        updDto.setDescription(sanitizeDescriptor(updDto.getDescription()));
+        updDto.setSku(sanitizeSku(updDto.getSku()));
+        return updDto;
     }
 }

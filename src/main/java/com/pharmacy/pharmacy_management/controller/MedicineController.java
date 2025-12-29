@@ -19,8 +19,8 @@ public class MedicineController {
     private MedicineService medService;
 
     @PostMapping("/create")
-    public ResponseEntity<Medicine> createMedicine(@RequestBody  MedicineAddDto addDto){
-        Medicine created = medService.addMedStock(addDto);
+    public ResponseEntity<String> createMedicine(@RequestBody  MedicineAddDto addDto){
+        String created = medService.addMedStock(addDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(created);
     }
 

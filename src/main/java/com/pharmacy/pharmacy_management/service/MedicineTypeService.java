@@ -51,10 +51,10 @@ public class MedicineTypeService {
             throw new NoInput("Description cant be null");
         }
         String cleanName = HtmlUtils.htmlEscape(addDto.getName()
-                .replace("/&\\#?[a-z0-9]+;/i\"", "")
+                .replace("/&lt;/?[a-zA-Z0-9]+&gt;", "")
                 .strip());
         String cleanDescription = HtmlUtils.htmlEscape(addDto.getDescription()
-                .replace("/&\\#?[a-z0-9]+;/i\"", "")
+                .replace("&lt;/?[a-zA-Z0-9]+&gt;", "")
                 .strip());
 
 
@@ -78,7 +78,7 @@ public class MedicineTypeService {
             throw new NoInput("Name cannot be empty");
         }
         String cleaned = delDto.getName()
-                .replace("/&\\#?[a-z0-9]+;/i\"", "")
+                .replace("&lt;/?[a-zA-Z0-9]+&gt;", "")
                 .strip();
 
         MedicineType type = medTypeRepo.findByIgnoreCaseName(cleaned)
@@ -97,13 +97,13 @@ public class MedicineTypeService {
         List<String> updated = new ArrayList<>();
         if(updDto.getUpdateName() != null || !updDto.getUpdateName().strip().isBlank()){
             type.setName(updDto.getUpdateName()
-                    .replace("/&\\#?[a-z0-9]+;/i\"", "")
+                    .replace("&lt;/?[a-zA-Z0-9]+&gt;", "")
                     .strip());
             updated.add("Medicine Type name");
         }
         if(updDto.getDescription() != null && !updDto.getDescription().strip().isBlank()){
             type.setDescription(updDto.getDescription()
-                    .replace("/&\\#?[a-z0-9]+;/i\"", "")
+                    .replace("&lt;/?[a-zA-Z0-9]+&gt;", "")
                     .strip());
             updated.add("Medicine Type Description");
         }
