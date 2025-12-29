@@ -1,5 +1,7 @@
 package com.pharmacy.pharmacy_management.exception;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
+    private final Logger logger = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
     //roles
     @ExceptionHandler(RolePermission.class)
@@ -18,7 +21,7 @@ public class GlobalExceptionHandler {
     }
 
     //duplicate staff
-    @ExceptionHandler(RolePermission.class)
+    @ExceptionHandler(DuplicateStaffCreation.class)
     @ResponseStatus(HttpStatus.CONFLICT)
     @ResponseBody
     public  ErrorResponse handleDuplicateStaffCreationException(DuplicateStaffCreation e){
@@ -40,4 +43,10 @@ public class GlobalExceptionHandler {
         return new ErrorResponse(ex.getMessage(), HttpStatus.NOT_FOUND.value());
     }
 
+    @ExceptionHandler(duplicateMedicineType.class)
+    @ResponseStatus(HttpStatus.CONFLICT)
+    @ResponseBody
+    public ErrorResponse handleDuplicateMedicineTypes(duplicateMedicineType ex){
+        return new ErrorResponse(ex.getMessage(), HttpStatus.CONFLICT.value());
+    }
 }

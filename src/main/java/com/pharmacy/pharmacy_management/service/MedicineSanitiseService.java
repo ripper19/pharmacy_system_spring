@@ -1,13 +1,8 @@
 package com.pharmacy.pharmacy_management.service;
 
 import com.pharmacy.pharmacy_management.dto.MedicineAddDto;
-import com.pharmacy.pharmacy_management.model.MedicineType;
-import com.pharmacy.pharmacy_management.repository.MedicineTypeRepository;
-import lombok.Builder;
-import lombok.Data;
 import org.springframework.transaction.annotation.Transactional;
 import jakarta.validation.ValidationException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.util.HtmlUtils;
 

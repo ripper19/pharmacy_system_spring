@@ -22,8 +22,8 @@ public class MedTypeController {
     }
 
     @PostMapping("/addType")
-    public ResponseEntity<MedicineType> addMedicineType(@RequestBody MedicineTypeCreateDto addDto){
-        MedicineType created = medicineTypeService.addMedType(addDto);
+    public ResponseEntity<String> addMedicineType(@RequestBody MedicineTypeCreateDto addDto){
+        String created = medicineTypeService.addMedType(addDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(created);
     }
     @DeleteMapping("delete_Type")
@@ -32,8 +32,8 @@ public class MedTypeController {
         return ResponseEntity.status(HttpStatus.OK).body(deleted);
     }
     @PutMapping("/updateType")
-    public ResponseEntity<MedicineType> updateMedicineType(@RequestBody MedicineTypeUpdateDto dto){
-        MedicineType updated = medicineTypeService.updateMedType(dto);
+    public ResponseEntity<String> updateMedicineType(@RequestBody MedicineTypeUpdateDto dto){
+        String updated = medicineTypeService.updateMedType(dto);
         return ResponseEntity.status(HttpStatus.OK).body(updated);
     }
 

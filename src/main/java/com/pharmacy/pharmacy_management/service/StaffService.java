@@ -2,14 +2,13 @@ package com.pharmacy.pharmacy_management.service;
 
 import com.pharmacy.pharmacy_management.dto.StaffCreateDto;
 import com.pharmacy.pharmacy_management.dto.StaffUpdateDto;
-import com.pharmacy.pharmacy_management.exception.RolePermission;
+import com.pharmacy.pharmacy_management.exception.*;
 import com.pharmacy.pharmacy_management.model.Role;
 import com.pharmacy.pharmacy_management.model.Staff;
 import com.pharmacy.pharmacy_management.repository.StaffRepository;
 import com.pharmacy.pharmacy_management.security.RolePolicy;
 import jakarta.annotation.PostConstruct;
 import jakarta.transaction.Transactional;
-import org.apache.catalina.valves.rewrite.InternalRewriteMap;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
@@ -18,6 +17,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Optional;
 import org.slf4j.Logger;
 
@@ -25,6 +28,8 @@ import org.slf4j.Logger;
 public class StaffService {
     @Autowired
     private StaffRepository staffRepo;
+    @Autowired
+    StaffSanitiseService staffSanitiseService;
     private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
     private final Logger logger = LoggerFactory.getLogger(StaffService.class);
 
@@ -66,13 +71,15 @@ public class StaffService {
     public Staff deleteStaff(StaffUpdateDto dto) {
         Staff current = currentUSer();
         if (dto.getPhoneNo().equals(current.getPhoneNo())){
-            throw new RuntimeException("Can't delete yourself");
+            logger.warn("User {} attempted to delete own account", current.getName());
+            throw new InvalidResourceRequest("Cant delete yourself");
         }
         Staff staff = getStaffByPhone(dto.getPhoneNo())
-                .orElseThrow(()-> new RuntimeException("Not found"));
+                .orElseThrow(()-> new InvalidResourceRequest("No such user"));
         Role target = staff.getRole();
         if(!RolePolicy.canDelete(current.getRole(), target)){
-            throw new RuntimeException("Not possible with your permissions");
+            logger.warn("User {} tried deleting user{} with no sufficient privileges", current.getName(), dto.getName());
+            throw new RolePermission("Insufficient privileges");
         }
 
         staffRepo.delete(staff);
@@ -86,40 +93,49 @@ public class StaffService {
         return staffRepo.save(escStaff);
     }
 
+
+
+    //ADD/CREATION
     @PreAuthorize("hasRole('ADMIN') or hasRole('SUPERADMIN')")
     @Transactional
     public Staff addUser(StaffCreateDto newStaff){
         try{
             Staff current = currentUSer();
 
-            if(newStaff == null) throw new RuntimeException("Empty input");
+            if(newStaff == null) throw new NoInput("Empty input");
+            StaffCreateDto cleanStaff = staffSanitiseService.sanitizeStaffCreate(newStaff);
 
-            Role requestedRole = newStaff.getRole();
+
+            Role requestedRole = cleanStaff.getRole();
             if(requestedRole == null) {
-                newStaff.setRole(Role.USER);
-                requestedRole = newStaff.getRole();
+                cleanStaff.setRole(Role.USER);
+                requestedRole = cleanStaff.getRole();
             }
             if(!RolePolicy.canCreate(current.getRole(), requestedRole)){
-                logger.warn("{} attempted an invalid operation of adding {} with role {}", currentUSer().getName(), newStaff.getName(), requestedRole);
+                logger.warn("{} attempted an invalid operation of adding {} with role {}", currentUSer().getName(), cleanStaff.getName(), requestedRole);
                 throw new RolePermission("You dont have sufficient privileges to perform this action");
             }
-                Staff staff = mapToEntity(newStaff);
+                Staff staff = mapToEntity(cleanStaff);
                 staff.setRole(requestedRole);
 
                 String rawPass = staff.getPassword();
                 staff.setPassword(passwordEncoder.encode(rawPass));
 
                 Staff saved = staffRepo.save(staff);
-                logger.info("Staff created " + saved.getName() + "with ID " + saved.getId());
+            logger.info("Staff created {}with ID {}", saved.getName(), saved.getId());
                 return saved;
 
-            }catch (Exception e) {
-            System.out.println("Error" + e.getClass().getName());
-            System.out.println("message" + e.getMessage());
-            e.printStackTrace();
-            throw e;
+            }catch (DuplicateStaffCreation e) {
+            assert newStaff != null;
+            logger.error("Duplicate staff creation request for {}", newStaff.getEmail());
+            throw new DuplicateStaffCreation(newStaff.getEmail());
         }
     }
+
+
+
+
+
 
     @PreAuthorize("hasRole('SUPERADMIN')")
     @Transactional
@@ -135,24 +151,32 @@ public class StaffService {
     @Transactional
     @PreAuthorize("#update.email == authentication.name")
     public Staff updateUser(StaffUpdateDto update) {
-        Staff currentUser = currentUSer();
-        System.out.println("Current name" + currentUser.getName() + currentUser.getEmail());
+            Staff currentUser = currentUSer();
+            StaffUpdateDto cleaned = staffSanitiseService.sanitizeStaffUpdate(update);
+            logger.info("Update initiated by {}", currentUser.getName());
 
+            if (update.getRole() != null) throw new RolePermission("Roles cant be set here");
 
-        if(update.getRole() != null) throw new RuntimeException("Roles arent set here");
+        List <String> changedDetails = new ArrayList<>();
 
-        Staff existing = staffRepo.findByPhoneNo(currentUser.getPhoneNo())
-                .orElseThrow(() -> new RuntimeException("Wrong details"));
+            Staff existing = staffRepo.findByPhoneNo(currentUser.getPhoneNo())
+                    .orElseThrow(() -> new InvalidResourceRequest("Wrong User requested"));
 
-        if (update.getPassword() != null && !update.getPassword().isEmpty())
-            existing.setPassword(passwordEncoder.encode(update.getPassword()));
-        System.out.println("Password changed");
-        if (update.getName() != null && !update.getName().isEmpty()) existing.setName(update.getName());
-        System.out.println("Name changed to" + existing.getName());
+            if (update.getPassword() != null && !update.getPassword().isEmpty()) {
+                existing.setPassword(passwordEncoder.encode(update.getPassword()));
+                logger.info("Users {} password has been changed", currentUser.getName());
+                changedDetails.add("name");
+            }
 
-        Staff updated = staffRepo.save(existing);
-        System.out.println("Updated these new details" + existing.getName());
-        return updated;
+            if (update.getName() != null && !update.getName().isEmpty()) {
+                existing.setName(update.getName());
+                logger.info("Name changed to {}", update.getName());
+                changedDetails.add("password");
+            }
+
+            Staff updated = staffRepo.save(existing);
+            logger.info("Details for user {} updated: {}, ", currentUser.getName(), changedDetails);
+            return updated;
     }
 
     @PostConstruct
@@ -164,13 +188,14 @@ public class StaffService {
             root.setPhoneNo("0700000000");
             root.setRole(Role.SUPERADMIN);
             root.setPassword(passwordEncoder.encode("password123"));
+            logger.info("Default Superuser created.Advise Client to change superuser");
             staffRepo.save(root);
         }
         if(staffRepo.countByRole(Role.SUPERADMIN) > 1){
             throw new RuntimeException("Delete the extra Superadmin or contact developer");
         }
         if (staffRepo.countByRole(Role.ADMIN) > 5){
-            throw new RuntimeException("PLease deescalate some admin. Admins are too many");
+            throw new RuntimeException("Please deescalate some admin. Admins are too many");
         }
     }
 }
