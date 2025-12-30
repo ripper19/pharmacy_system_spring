@@ -49,4 +49,11 @@ public class GlobalExceptionHandler {
     public ErrorResponse handleDuplicateMedicineTypes(duplicateMedicineType ex){
         return new ErrorResponse(ex.getMessage(), HttpStatus.CONFLICT.value());
     }
+
+    @ExceptionHandler(ResourceInUse.class)
+    @ResponseStatus(HttpStatus.FOUND)
+    @ResponseBody
+    public ErrorResponse handleOptimisticLocks(ResourceInUse ex){
+        return new ErrorResponse(ex.getMessage(), HttpStatus.FOUND.value());
+    }
 }
