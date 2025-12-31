@@ -2,7 +2,7 @@ package com.pharmacy.pharmacy_management.model;
 
 import jakarta.persistence.*;
 
-import java.time.LocalDate;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +18,7 @@ public class Sale {
 
     private String clientPhone;
 
-    private String prescription;
+    private String prescriptionInfo;
 
     private LocalDateTime saleTime = LocalDateTime.now();
 
@@ -26,6 +26,8 @@ public class Sale {
 
     @OneToMany(mappedBy = "sale", cascade = CascadeType.ALL)
     private List<SaleItem> items = new ArrayList<>();
+
+    private BigDecimal total;
 
     public long getId() {
         return id;
@@ -51,12 +53,12 @@ public class Sale {
         this.clientPhone = clientPhone;
     }
 
-    public String getPrescription() {
-        return prescription;
+    public String getPrescriptionInfo() {
+        return prescriptionInfo;
     }
 
-    public void setPrescription(String prescription) {
-        this.prescription = prescription;
+    public void setPrescriptionInfo(String prescriptionInfo) {
+        this.prescriptionInfo = prescriptionInfo;
     }
 
     public LocalDateTime getSaleTime() {
@@ -81,5 +83,13 @@ public class Sale {
 
     public void setItems(List<SaleItem> items) {
         this.items = items;
+    }
+
+    public BigDecimal getTotal() {
+        return total;
+    }
+
+    public void setTotal(BigDecimal total) {
+        this.total = total;
     }
 }

@@ -2,7 +2,6 @@ package com.pharmacy.pharmacy_management.controller;
 
 import com.pharmacy.pharmacy_management.dto.*;
 import com.pharmacy.pharmacy_management.exception.ResourceInUse;
-import com.pharmacy.pharmacy_management.model.Staff;
 import com.pharmacy.pharmacy_management.service.MedicineService;
 import com.pharmacy.pharmacy_management.service.StaffService;
 import jakarta.persistence.OptimisticLockException;
