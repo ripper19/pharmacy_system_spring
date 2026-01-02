@@ -1,11 +1,10 @@
 package com.pharmacy.pharmacy_management.dto;
 
-import com.pharmacy.pharmacy_management.model.SaleItem;
 import jakarta.validation.constraints.NotNull;
 
 import java.util.List;
 
-public class saleCreationDto {
+public class SaleCreationDto {
     @NotNull
     private String clientName;
 

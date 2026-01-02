@@ -24,7 +24,7 @@ public class Sale {
 
     private String saleType;
 
-    @OneToMany(mappedBy = "sale", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "sale", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<SaleItem> items = new ArrayList<>();
 
     private BigDecimal total;

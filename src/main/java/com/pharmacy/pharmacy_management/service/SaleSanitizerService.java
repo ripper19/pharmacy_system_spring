@@ -1,13 +1,13 @@
 package com.pharmacy.pharmacy_management.service;
 
-import com.pharmacy.pharmacy_management.dto.saleCreationDto;
+import com.pharmacy.pharmacy_management.dto.SaleCreationDto;
 import com.pharmacy.pharmacy_management.exception.NoInput;
 import org.springframework.stereotype.Service;
 import org.springframework.web.util.HtmlUtils;
 
 @Service
 public class SaleSanitizerService {
-    private void validateRequiredCreation(saleCreationDto creationDto){
+    private void validateRequiredCreation(SaleCreationDto creationDto){
         if (creationDto.getClientName() == null || creationDto.getClientName().isBlank()){
             throw new NoInput("Enter Valid Data");
         }
@@ -37,7 +37,7 @@ public class SaleSanitizerService {
                 .strip());
     }
 
-    public saleCreationDto sanitizeCreated(saleCreationDto createdDto){
+    public SaleCreationDto sanitizeCreated(SaleCreationDto createdDto){
         validateRequiredCreation(createdDto);
         createdDto.setClientName(sanitizeName(createdDto.getClientName()));
         createdDto.setClientPhone(sanitizePhone(createdDto.getClientPhone()));
