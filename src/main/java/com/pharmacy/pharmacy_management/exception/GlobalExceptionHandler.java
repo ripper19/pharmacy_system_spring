@@ -56,4 +56,11 @@ public class GlobalExceptionHandler {
     public ErrorResponse handleOptimisticLocks(ResourceInUse ex){
         return new ErrorResponse(ex.getMessage(), HttpStatus.FOUND.value());
     }
+
+    @ExceptionHandler(WrongUser.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ResponseBody
+    public ErrorResponse handleWrongPasswords(WrongUser ex){
+        return new ErrorResponse(ex.getMessage(), HttpStatus.NOT_FOUND.value());
+    }
 }

@@ -1,0 +1,70 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+body{
+    background-color: brown;
+    background: linear-gradient(to right, white, rgb(222, 191, 191));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
+}
+.container{
+    background-color: whitesmoke;
+    border-radius: 30px;
+    box-shadow: 0 15px rgba(0, 0, 0, 0.35);
+    position: relative;
+    overflow: hidden;
+    width: 768px;
+    max-width: 100%;
+    min-height: 480px;
+}
+.container button{
+    background-color: whitesmoke;
+    color: black;
+    font-size: 15px;
+    padding: 10px 45px;
+    border: 1px solid black;
+    border-radius: 8px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin-top: 10px;
+}
+.container form{
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 40px;
+    height: 100%;
+    line-height: 5;
+}
+.container input{
+    background-color: aliceblue;
+    border: none;
+    margin: 8px 0;
+    padding: 10px 15px;
+    font-size: 15px;
+    border-radius: 8px;
+    width: 55%;
+    outline: none;
+    color: black;
+}
+.container p{
+    padding: 12px 15px;
+    font-size: 25px;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: rgb(88, 77, 77);
+}
+.container a{
+    margin: 0 15px;
+    padding: 8px 10px;
+    color: blue;
+    text-decoration: none;
+}
