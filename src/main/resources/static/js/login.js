@@ -18,7 +18,7 @@ document.getElementById("loginform").addEventListener("submit", async (e) => {
         const data = await res.json();
         localStorage.setItem("token", data.token);
 
-        window.location.replace("sales.html")
+        window.location.replace("dash.html")
     }catch(e){
         alert("Invalid credentials");
     }

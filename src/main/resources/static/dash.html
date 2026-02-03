@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pharmacy Dashboard</title>
+    <link rel="stylesheet" href="css/dash.css">
+</head>
+<body>
+
+<!-- Horizontal Navbar -->
+<div class="top-navbar">
+    <div class="logo" style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode';">PHARMACARE</div>
+    <div class="search-bar">
+        <input type="text" placeholder="Search medicines, sales">
+    </div>
+    <div class="nav-actions">
+        <button onclick="showNotifications()">🔔 Notifications</button>
+        <button onclick="logout()">Logout</button>
+    </div>
+</div>
+
+<!-- Vertical Sidebar -->
+<div class="sidebar">
+    <div class="user-profile">
+        <div class="user-avatar" id="userAvatar">JD</div>
+        <div class="user-name" id="userName">John Doe</div>
+        <div class="user-role" id="userRole">Administrator</div>
+    </div>
+
+    <div class="menu">
+        <a href="#" class="menu-item active" onclick="loadPage('dashboard')">
+            <span class="menu-icon">📊</span>
+            <span>Dashboard</span>
+        </a>
+        <a href="#" class="menu-item" onclick="loadPage('sales')">
+            <span class="menu-icon">💰</span>
+            <span>Sales</span>
+        </a>
+        <a href="#" class="menu-item" onclick="loadPage('inventory')">
+            <span class="menu-icon">📦</span>
+            <span>Inventory</span>
+        </a>
+        <a href="#" class="menu-item" onclick="loadPage('medicines')">
+            <span class="menu-icon">💊</span>
+            <span>Medicines</span>
+        </a>
+        <a href="#" class="menu-item" onclick="loadPage('reports')">
+            <span class="menu-icon">📈</span>
+            <span>Reports</span>
+        </a>
+        <a href="#" class="menu-item" onclick="loadPage('staff')">
+            <span class="menu-icon">👥</span>
+            <span>Staff</span>
+        </a>
+        <a href="#" class="menu-item" onclick="loadPage('settings')">
+            <span class="menu-icon">⚙️</span>
+            <span>Settings</span>
+        </a>
+    </div>
+</div>
+
+<!-- Main Content -->
+<div class="main-content">
+    <div class="page-header">
+        <h1>Dashboard</h1>
+        <p>Welcome back! Here's what's happening today.</p>
+    </div>
+
+    <!-- Stats Grid -->
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-card-header">
+                <span class="stat-card-title">Today's Sales</span>
+                <div class="stat-card-icon" style="background: #e3f2fd; color: #2196f3;">💰</div>
+            </div>
+            <div class="stat-card-value" id="todaySales">KSh 0</div>
+            <div class="stat-card-change">+12% from yesterday</div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-card-header">
+                <span class="stat-card-title">Total Orders</span>
+                <div class="stat-card-icon" style="background: #f3e5f5; color: #9c27b0;">🛒</div>
+            </div>
+            <div class="stat-card-value" id="totalOrders">0</div>
+            <div class="stat-card-change">+8% from yesterday</div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-card-header">
+                <span class="stat-card-title">Low Stock Items</span>
+                <div class="stat-card-icon" style="background: #fff3e0; color: #ff9800;">⚠️</div>
+            </div>
+            <div class="stat-card-value" id="lowStock">0</div>
+            <div class="stat-card-change negative">Needs attention</div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-card-header">
+                <span class="stat-card-title">Total Revenue (Month)</span>
+                <div class="stat-card-icon" style="background: #e8f5e9; color: #4caf50;">📈</div>
+            </div>
+            <div class="stat-card-value" id="monthRevenue">KSh 0</div>
+            <div class="stat-card-change">+23% from last month</div>
+        </div>
+    </div>
+
+    <!-- Sales Chart -->
+    <div class="chart-container">
+        <div class="chart-header">
+            <h2>Sales Overview</h2>
+        </div>
+        <canvas id="salesChart" width="400" height="100"></canvas>
+    </div>
+
+    <!-- Recent Sales Table -->
+    <div class="recent-sales">
+        <h2>Recent Sales</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>Medicine</th>
+                <th>Quantity</th>
+                <th>Amount</th>
+                <th>Status</th>
+                <th>Date</th>
+            </tr>
+            </thead>
+            <tbody id="recentSalesTable">
+            <tr>
+                <td colspan="6" style="text-align: center; padding: 40px;">Loading...</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</body>
+</html>
