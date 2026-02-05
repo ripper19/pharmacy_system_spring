@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pharmacy Dashboard - Staff Management</title>
+    <link rel="stylesheet" href="css/staff.css">
+</head>
+<body>
+
+<!-- Horizontal Navbar -->
+<div class="top-navbar">
+    <div class="logo" style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode';">PHARMACARE</div>
+    <div class="search-bar">
+        <input type="text" placeholder="Search medicines, sales">
+    </div>
+    <div class="nav-actions">
+        <button onclick="showNotifications()">🔔 Notifications</button>
+        <button onclick="logout()">Logout</button>
+    </div>
+</div>
+
+<!-- Vertical Sidebar -->
+<div class="sidebar">
+    <div class="user-profile">
+        <div class="user-avatar" id="userAvatar">JD</div>
+        <div class="user-name" id="userName">John Doe</div>
+        <div class="user-role" id="userRole">Administrator</div>
+    </div>
+
+    <div class="menu">
+        <a href="dash.html" class="menu-item">
+            <span class="menu-icon">📊</span>
+            <span>Dashboard</span>
+        </a>
+        <a href="sales.html" class="menu-item">
+            <span class="menu-icon">💰</span>
+            <span>Sales</span>
+        </a>
+        <a href="inventory.html" class="menu-item">
+            <span class="menu-icon">📦</span>
+            <span>Inventory</span>
+        </a>
+        <a href="medicines.html" class="menu-item">
+            <span class="menu-icon">💊</span>
+            <span>Medicines</span>
+        </a>
+        <a href="reports.html" class="menu-item">
+            <span class="menu-icon">📈</span>
+            <span>Reports</span>
+        </a>
+        <a href="staff.html" class="menu-item active">
+            <span class="menu-icon">👥</span>
+            <span>Staff</span>
+        </a>
+        <a href="settings.html" class="menu-item">
+            <span class="menu-icon">⚙️</span>
+            <span>Settings</span>
+        </a>
+    </div>
+</div>
+
+<!-- Main Content -->
+<div class="main-content">
+    <div class="page-header">
+        <h1>Staff Management</h1>
+        <p>Add, update, or remove staff members from the system</p>
+    </div>
+
+    <!-- Staff Management Section -->
+    <div class="staff-management">
+        <div class="staff-header">
+            <h2>Staff Operations</h2>
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Search staff by name or ID..." id="staffSearch">
+                <button class="search-btn" onclick="searchStaff()">Search</button>
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+            <button class="action-btn active" onclick="setMode('add')">➕ Add Staff</button>
+            <button class="action-btn" onclick="setMode('update')">✏️ Update Staff</button>
+            <button class="action-btn" onclick="setMode('delete')">🗑️ Delete Staff</button>
+            <button class="action-btn" onclick="setMode('view')">👁️ View All Staff</button>
+        </div>
+
+        <!-- Message Area -->
+        <div id="messageArea"></div>
+
+        <!-- Single Form (Changes based on mode) -->
+        <div class="staff-form" id="staffForm">
+            <div id="addForm">
+                <h3>Add New Staff Member</h3>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="staffId">Staff ID *</label>
+                        <input type="text" id="staffId" placeholder="STF-001">
+                    </div>
+                    <div class="form-group">
+                        <label for="fullName">Full Name *</label>
+                        <input type="text" id="fullName" placeholder="John Doe">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" placeholder="john@pharmacare.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" placeholder="0712 345 678">
+                    </div>
+                    <div class="form-group">
+                        <label for="role">Role *</label>
+                        <select id="role">
+                            <option value="">Select Role</option>
+                            <option value="pharmacist">Pharmacist</option>
+                            <option value="assistant">Pharmacy Assistant</option>
+                            <option value="cashier">Cashier</option>
+                            <option value="manager">Manager</option>
+                            <option value="admin">Administrator</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="department">Department</label>
+                        <select id="department">
+                            <option value="">Select Department</option>
+                            <option value="dispensing">Dispensing</option>
+                            <option value="sales">Sales</option>
+                            <option value="inventory">Inventory</option>
+                            <option value="management">Management</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="salary">Monthly Salary (KSh)</label>
+                        <input type="number" id="salary" placeholder="50000">
+                    </div>
+                    <div class="form-group">
+                        <label for="joinDate">Join Date</label>
+                        <input type="date" id="joinDate">
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button class="secondary-btn" onclick="clearForm()">Clear</button>
+                    <button class="primary-btn" onclick="addStaff()">Add Staff Member</button>
+                </div>
+            </div>
+
+            <!-- Update Form (initially hidden) -->
+            <div id="updateForm" class="hidden">
+                <h3>Update Staff Information</h3>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="updateStaffId">Staff ID to Update *</label>
+                        <input type="text" id="updateStaffId" placeholder="Enter staff ID" onchange="loadStaffData()">
+                    </div>
+                    <div class="form-group">
+                        <label for="updateName">Full Name</label>
+                        <input type="text" id="updateName">
+                    </div>
+                    <div class="form-group">
+                        <label for="updateEmail">Email Address</label>
+                        <input type="email" id="updateEmail">
+                    </div>
+                    <div class="form-group">
+                        <label for="updatePhone">Phone Number</label>
+                        <input type="tel" id="updatePhone">
+                    </div>
+                    <div class="form-group">
+                        <label for="updateRole">Role</label>
+                        <select id="updateRole">
+                            <option value="">Select Role</option>
+                            <option value="pharmacist">Pharmacist</option>
+                            <option value="assistant">Pharmacy Assistant</option>
+                            <option value="cashier">Cashier</option>
+                            <option value="manager">Manager</option>
+                            <option value="admin">Administrator</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="updateStatus">Status</label>
+                        <select id="updateStatus">
+                            <option value="active">Active</option>
+                            <option value="inactive">Inactive</option>
+                            <option value="on-leave">On Leave</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button class="secondary-btn" onclick="clearUpdateForm()">Cancel</button>
+                    <button class="primary-btn" onclick="updateStaff()">Update Staff</button>
+                </div>
+            </div>
+
+            <!-- Delete Form (initially hidden) -->
+            <div id="deleteForm" class="hidden">
+                <h3>Delete Staff Member</h3>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="deleteStaffId">Staff ID to Delete *</label>
+                        <input type="text" id="deleteStaffId" placeholder="Enter staff ID">
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmDelete">Confirm Staff Name</label>
+                        <input type="text" id="confirmDelete" placeholder="Type staff name to confirm">
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button class="secondary-btn" onclick="clearDeleteForm()">Cancel</button>
+                    <button class="primary-btn" onclick="deleteStaff()" style="background: #d32f2f;">Delete Staff</button>
+                </div>
+            </div>
+
+            <!-- View Staff Table -->
+            <div id="viewTable" class="hidden">
+                <h3>All Staff Members</h3>
+                <div class="staff-table-container">
+                    <table class="staff-table" id="staffTable">
+                        <thead>
+                        <tr>
+                            <th>Staff ID</th>
+                            <th>Name</th>
+                            <th>Role</th>
+                            <th>Department</th>
+                            <th>Phone</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody id="staffTableBody">
+                        <!-- Staff data will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Current mode state
+    let currentMode = 'add';
+
+    // Sample staff data (in real app, this would come from backend)
+    let staffData = [
+        { id: 'STF-001', name: 'John Doe', email: 'john@pharmacare.com', phone: '0712 345 678', role: 'Pharmacist', department: 'Dispensing', status: 'active', salary: 75000, joinDate: '2023-01-15' },
+        { id: 'STF-002', name: 'Jane Smith', email: 'jane@pharmacare.com', phone: '0713 456 789', role: 'Cashier', department: 'Sales', status: 'active', salary: 45000, joinDate: '2023-03-20' },
+        { id: 'STF-003', name: 'Robert Johnson', email: 'robert@pharmacare.com', phone: '0714 567 890', role: 'Manager', department: 'Management', status: 'active', salary: 120000, joinDate: '2022-11-10' },
+        { id: 'STF-004', name: 'Sarah Williams', email: 'sarah@pharmacare.com', phone: '0715 678 901', role: 'Pharmacy Assistant', department: 'Dispensing', status: 'on-leave', salary: 35000, joinDate: '2023-06-05' },
+        { id: 'STF-005', name: 'Michael Brown', email: 'michael@pharmacare.com', phone: '0716 789 012', role: 'Administrator', department: 'Management', status: 'active', salary: 90000, joinDate: '2023-02-28' }
+    ];
+
+    // Initialize page
+    document.addEventListener('DOMContentLoaded', function() {
+        updateButtonStates();
+        renderStaffTable();
+    });
+
+    // Set mode and update UI
+    function setMode(mode) {
+        currentMode = mode;
+        updateButtonStates();
+        showCurrentForm();
+    }
+
+    // Update button active states
+    function updateButtonStates() {
+        const buttons = document.querySelectorAll('.action-btn');
+        buttons.forEach(btn => {
+            const btnMode = btn.textContent.includes('Add') ? 'add' :
+                          btn.textContent.includes('Update') ? 'update' :
+                          btn.textContent.includes('Delete') ? 'delete' : 'view';
+            btn.classList.toggle('active', btnMode === currentMode);
+        });
+    }
+
+    // Show the appropriate form based on mode
+    function showCurrentForm() {
+        // Hide all forms
+        document.getElementById('addForm').classList.add('hidden');
+        document.getElementById('updateForm').classList.add('hidden');
+        document.getElementById('deleteForm').classList.add('hidden');
+        document.getElementById('viewTable').classList.add('hidden');
+
+        // Show the active form
+        if (currentMode === 'add') {
+            document.getElementById('addForm').classList.remove('hidden');
+        } else if (currentMode === 'update') {
+            document.getElementById('updateForm').classList.remove('hidden');
+        } else if (currentMode === 'delete') {
+            document.getElementById('deleteForm').classList.remove('hidden');
+        } else if (currentMode === 'view') {
+            document.getElementById('viewTable').classList.remove('hidden');
+            renderStaffTable();
+        }
+    }
+
+    // Add new staff member
+    function addStaff() {
+        const staffId = document.getElementById('staffId').value;
+        const fullName = document.getElementById('fullName').value;
+        const email = document.getElementById('email').value;
+        const phone = document.getElementById('phone').value;
+        const role = document.getElementById('role').value;
+
+        // Basic validation
+        if (!staffId || !fullName || !email || !phone || !role) {
+            showMessage('Please fill in all required fields (*)', 'error');
+            return;
+        }
+
+        // Check if staff ID already exists
+        if (staffData.some(staff => staff.id === staffId)) {
+            showMessage('Staff ID already exists!', 'error');
+            return;
+        }
+
+        // Add new staff
+        const newStaff = {
+            id: staffId,
+            name: fullName,
+            email: email,
+            phone: phone,
+            role: role,
+            department: document.getElementById('department').value || 'Not specified',
+            status: 'active',
+            salary: parseInt(document.getElementById('salary').value) || 0,
+            joinDate: document.getElementById('joinDate').value || new Date().toISOString().split('T')[0]
+        };
+
+        staffData.push(newStaff);
+        showMessage(`Staff member ${fullName} added successfully!`, 'success');
+        clearForm();
+        renderStaffTable();
+    }
+
+    // Load staff data for updating
+    function loadStaffData() {
+        const staffId = document.getElementById('updateStaffId').value;
+        const staff = staffData.find(s => s.id === staffId);
+
+        if (staff) {
+            document.getElementById('updateName').value = staff.name;
+            document.getElementById('updateEmail').value = staff.email;
+            document.getElementById('updatePhone').value = staff.phone;
+            document.getElementById('updateRole').value = staff.role;
+            document.getElementById('updateStatus').value = staff.status;
+        } else {
+            showMessage('Staff ID not found!', 'error');
+            clearUpdateForm();
+        }
+    }
+
+    // Update staff information
+    function updateStaff() {
+        const staffId = document.getElementById('updateStaffId').value;
+        const staffIndex = staffData.findIndex(s => s.id === staffId);
+
+        if (staffIndex === -1) {
+            showMessage('Staff ID not found!', 'error');
+            return;
+        }
+
+        // Update staff data
+        staffData[staffIndex] = {
+            ...staffData[staffIndex],
+            name: document.getElementById('updateName').value || staffData[staffIndex].name,
+            email: document.getElementById('updateEmail').value || staffData[staffIndex].email,
+            phone: document.getElementById('updatePhone').value || staffData[staffIndex].phone,
+            role: document.getElementById('updateRole').value || staffData[staffIndex].role,
+            status: document.getElementById('updateStatus').value || staffData[staffIndex].status
+        };
+
+        showMessage(`Staff member ${staffId} updated successfully!`, 'success');
+        clearUpdateForm();
+        renderStaffTable();
+    }
+
+    // Delete staff member
+    function deleteStaff() {
+        const staffId = document.getElementById('deleteStaffId').value;
+        const confirmName = document.getElementById('confirmDelete').value;
+
+        if (!staffId) {
+            showMessage('Please enter a Staff ID', 'error');
+            return;
+        }
+
+        const staff = staffData.find(s => s.id === staffId);
+        if (!staff) {
+            showMessage('Staff ID not found!', 'error');
+            return;
+        }
+
+        // Safety confirmation
+        if (confirmName !== staff.name) {
+            showMessage('Name does not match! Please type the exact staff name to confirm deletion.', 'error');
+            return;
+        }
+
+        // Remove staff
+        staffData = staffData.filter(s => s.id !== staffId);
+        showMessage(`Staff member ${staff.name} deleted successfully!`, 'success');
+        clearDeleteForm();
+        renderStaffTable();
+    }
+
+    // Render staff table
+    function renderStaffTable() {
+        const tableBody = document.getElementById('staffTableBody');
+        tableBody.innerHTML = '';
+
+        staffData.forEach(staff => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${staff.id}</td>
+                <td>${staff.name}</td>
+                <td>${staff.role}</td>
+                <td>${staff.department}</td>
+                <td>${staff.phone}</td>
+                <td><span class="status-badge ${staff.status === 'active' ? 'status-active' : 'status-inactive'}">${staff.status}</span></td>
+                <td class="action-cell">
+                    <button class="icon-btn edit-btn" onclick="editStaff('${staff.id}')">Edit</button>
+                    <button class="icon-btn delete-btn" onclick="confirmDelete('${staff.id}', '${staff.name}')">Delete</button>
+                </td>
+            `;
+            tableBody.appendChild(row);
+        });
+    }
+
+    // Edit staff from table
+    function editStaff(staffId) {
+        setMode('update');
+        document.getElementById('updateStaffId').value = staffId;
+        loadStaffData();
+    }
+
+    // Quick delete from table
+    function confirmDelete(staffId, staffName) {
+        if (confirm(`Are you sure you want to delete ${staffName} (${staffId})?`)) {
+            staffData = staffData.filter(s => s.id !== staffId);
+            showMessage(`Staff member ${staffName} deleted!`, 'success');
+            renderStaffTable();
+        }
+    }
+
+    // Search staff
+    function searchStaff() {
+        const searchTerm = document.getElementById('staffSearch').value.toLowerCase();
+        if (!searchTerm) {
+            renderStaffTable();
+            return;
+        }
+
+        const filtered = staffData.filter(staff =>
+            staff.id.toLowerCase().includes(searchTerm) ||
+            staff.name.toLowerCase().includes(searchTerm) ||
+            staff.role.toLowerCase().includes(searchTerm) ||
+            staff.department.toLowerCase().includes(searchTerm)
+        );
+
+        const tableBody = document.getElementById('staffTableBody');
+        tableBody.innerHTML = '';
+
+        filtered.forEach(staff => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${staff.id}</td>
+                <td>${staff.name}</td>
+                <td>${staff.role}</td>
+                <td>${staff.department}</td>
+                <td>${staff.phone}</td>
+                <td><span class="status-badge ${staff.status === 'active' ? 'status-active' : 'status-inactive'}">${staff.status}</span></td>
+                <td class="action-cell">
+                    <button class="icon-btn edit-btn" onclick="editStaff('${staff.id}')">Edit</button>
+                    <button class="icon-btn delete-btn" onclick="confirmDelete('${staff.id}', '${staff.name}')">Delete</button>
+                </td>
+            `;
+            tableBody.appendChild(row);
+        });
+
+        if (filtered.length === 0) {
+            tableBody.innerHTML = `<tr><td colspan="7" style="text-align: center; padding: 20px;">No staff members found matching "${searchTerm}"</td></tr>`;
+        }
+    }
+
+    // Clear forms
+    function clearForm() {
+        document.getElementById('staffId').value = '';
+        document.getElementById('fullName').value = '';
+        document.getElementById('email').value = '';
+        document.getElementById('phone').value = '';
+        document.getElementById('role').value = '';
+        document.getElementById('department').value = '';
+        document.getElementById('salary').value = '';
+        document.getElementById('joinDate').value = '';
+    }
+
+    function clearUpdateForm() {
+        document.getElementById('updateStaffId').value = '';
+        document.getElementById('updateName').value = '';
+        document.getElementById('updateEmail').value = '';
+        document.getElementById('updatePhone').value = '';
+        document.getElementById('updateRole').value = '';
+        document.getElementById('updateStatus').value = 'active';
+    }
+
+    function clearDeleteForm() {
+        document.getElementById('deleteStaffId').value = '';
+        document.getElementById('confirmDelete').value = '';
+    }
+
+    // Show message
+    function showMessage(message, type) {
+        const messageArea = document.getElementById('messageArea');
+        messageArea.className = `message ${type}`;
+        messageArea.textContent = message;
+        messageArea.style.display = 'block';
+
+        // Auto-hide after 5 seconds
+        setTimeout(() => {
+            messageArea.style.display = 'none';
+        }, 5000);
+    }
+
+    // Navigation functions
+    function showNotifications() {
+        alert('Notifications would appear here');
+    }
+
+    function logout() {
+        if (confirm('Are you sure you want to logout?')) {
+            window.location.href = 'login.html';
+        }
+    }
+</script>
+</body>
+</html>
