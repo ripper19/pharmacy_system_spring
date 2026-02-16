@@ -5,7 +5,7 @@ document.getElementById("loginform").addEventListener("submit", async (e) => {
     const password = document.getElementById("password").value;
 
     console.log("Trying login using", email);
-    console.log("Password is", password)
+    console.log("Password is *****", )
 
     try{
         const res = await fetch("http://localhost:8080/auth/login",{
