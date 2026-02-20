@@ -1,23 +1,31 @@
 package com.pharmacy.pharmacy_management.dto;
 
 public class LoginResponse {
-    private String token;
+    private String role;
+    private String name;
+    private String email;
 
-    private long expiresIn;
-
-    public String getToken(){
-        return token;
+    public String getRole() {
+        return role;
     }
 
-    public void setToken(String token) {
-        this.token = token;
+    public void setRole(String role) {
+        this.role = role;
     }
 
-    public long getExpiresIn() {
-        return expiresIn;
+    public String getName() {
+        return name;
     }
 
-    public void setExpiresIn(long expiresIn) {
-        this.expiresIn = expiresIn;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

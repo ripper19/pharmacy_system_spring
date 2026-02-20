@@ -1,7 +1,9 @@
 package com.pharmacy.pharmacy_management.service;
 
 import com.pharmacy.pharmacy_management.dto.LoginDetailsDto;
+import com.pharmacy.pharmacy_management.dto.LoginResponse;
 import com.pharmacy.pharmacy_management.exception.WrongUser;
+import com.pharmacy.pharmacy_management.model.Role;
 import com.pharmacy.pharmacy_management.model.Staff;
 import com.pharmacy.pharmacy_management.repository.StaffRepository;
 import org.slf4j.Logger;
@@ -19,8 +21,6 @@ public class LoginService {
     @Autowired
     private StaffRepository staffRepository;
     @Autowired
-    private JwtService jwtS;
-
     private final AuthenticationManager authManager;
 
     private final Logger logger = LoggerFactory.getLogger(LoginService.class);
@@ -32,14 +32,18 @@ public class LoginService {
         this.staffRepository = staffRepository;
     }
     @Transactional
-    public Staff logInResponse(LoginDetailsDto detailsDto){
+    public AuthenticatedUserDetails logInResponse(LoginDetailsDto detailsDto){
         authManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         detailsDto.getEmail(),
                         detailsDto.getPassword()
                 )
         );
-        return staffRepository.findByEmail(detailsDto.getEmail())
+        Staff staff = staffRepository.findByEmail(detailsDto.getEmail())
                 .orElseThrow(()-> new WrongUser("User isn't registered with the system"));
+        return new AuthenticatedUserDetails(staff.getName(),staff.getEmail(),staff.getRole());
     }
+    public record AuthenticatedUserDetails(String name,
+                                            String email,
+                                            Role role){}
 }
