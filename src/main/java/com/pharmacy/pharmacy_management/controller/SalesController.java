@@ -46,4 +46,21 @@ public class SalesController {
         return ResponseEntity.status(HttpStatus.OK).body("Sale has been deleted");
     }
 
+
+    @GetMapping("/todaySales")
+    public ResponseEntity<TotalDto> todaySalesAmount(){
+        return ResponseEntity.ok(new TotalDto(saleService.todaySalesAmount().toPlainString()));
+    }
+
+    @GetMapping("/monthlySales")
+    public ResponseEntity<TotalDto> monthlySalesAmount(){
+        return ResponseEntity.ok(new TotalDto(saleService.monthlySalesAmount().toPlainString()));
+    }
+    public record TotalDto(String total){}
+
+    @GetMapping("/rcntSales")
+    public ResponseEntity<List<SaleService.RecentSalesDto>> recentSalesToday(){
+        return ResponseEntity.ok(saleService.recentSalesToday());
+    }
+
 }

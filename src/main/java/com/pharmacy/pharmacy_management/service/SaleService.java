@@ -19,6 +19,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.time.Clock;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,6 +37,8 @@ public class SaleService {
     private MedicineRepository medicineRepository;
     @Autowired
     private SaleItemRepository saleItemRepository;
+    @Autowired
+    private Clock clock;
 
 
     private final Logger logger = LoggerFactory.getLogger(SaleService.class);
@@ -117,4 +122,37 @@ public class SaleService {
         answer.setPrice(returnDto.getPrice());
         return answer;
     }
+
+    @Transactional(readOnly = true)
+    public BigDecimal todaySalesAmount(){
+        LocalDate today = LocalDate.now(clock);
+        LocalDateTime startTodayTime = today.atStartOfDay();
+        LocalDateTime startOfTomorrow = today.plusDays(1).atStartOfDay();
+
+        return saleRepo.sumAllSalesBetween(startTodayTime,startOfTomorrow);
     }
+    @Transactional(readOnly = true)
+    public BigDecimal monthlySalesAmount(){
+        LocalDate today = LocalDate.now(clock);
+        LocalDateTime startOfMonth = today.minusDays(30).atStartOfDay();
+        LocalDateTime endOfMonth = today.atStartOfDay();
+
+        return saleRepo.sumAllSalesBetween(startOfMonth,endOfMonth);
+    }
+    @Transactional(readOnly = true)
+    public List<RecentSalesDto> recentSalesToday(){
+        LocalDate today = LocalDate.now(clock);
+        LocalDateTime start = today.atStartOfDay();
+        LocalDateTime end = LocalDateTime.now();
+
+        return saleRepo.findTop10BySaleTimeBetweenOrderBySaleTimeDesc(start,end)
+                .stream()
+                .map(sale -> new RecentSalesDto(
+                        sale.getClientName(),
+                        sale.getSaleTime().toString(),
+                        sale.getTotal().toPlainString(),
+                        sale.getPrescriptionInfo()
+                )).toList();
+    }
+    public record RecentSalesDto(String clientName, String saleTime, String total, String prescriptionInfo){}
+}

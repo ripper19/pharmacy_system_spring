@@ -2,9 +2,6 @@ package com.pharmacy.pharmacy_management.model;
 
 import jakarta.persistence.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Entity
 public class MedicineType {
 

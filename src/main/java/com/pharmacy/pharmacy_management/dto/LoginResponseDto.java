@@ -1,6 +1,6 @@
 package com.pharmacy.pharmacy_management.dto;
 
-public class LoginResponse {
+public class LoginResponseDto {
     private String role;
     private String name;
     private String email;

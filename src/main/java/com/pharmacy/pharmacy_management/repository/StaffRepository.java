@@ -2,6 +2,7 @@ package com.pharmacy.pharmacy_management.repository;
 
 import com.pharmacy.pharmacy_management.model.Role;
 import com.pharmacy.pharmacy_management.model.Staff;
+import jakarta.annotation.Nonnull;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -11,6 +12,8 @@ import java.util.Optional;
 public interface StaffRepository extends JpaRepository<Staff,Long> {
 
     Optional<Staff> findByPhoneNo(String phoneNo);
+
+    @Nonnull
     Optional<Staff> findById(Long Id);
 
     long countByRole(Role role);

@@ -5,22 +5,23 @@ document.getElementById("loginform").addEventListener("submit", async (e) => {
     const password = document.getElementById("password").value;
 
     console.log("Trying login using", email);
-    console.log("Password is *****", )
+    console.log("Password is ", password);
 
     try{
         const res = await fetch("http://localhost:8080/auth/login",{
             method: "POST",
             headers: { "Content-Type": "application/json" },
+            credentials: 'include',
             body: JSON.stringify({email,password})
         });
         if(!res.ok) throw new Error("Login Failed");
 
-        const data = await res.json();
-        localStorage.setItem("token", data.token);
+        const {name, email: bemail, role}= await res.json();
+        localStorage.setItem('user', JSON.stringify({name,bemail,role }));
 
         window.location.replace("dash.html")
     }catch(e){
-        alert("Invalid credentials");
+        alert("Invalid credentials.");
     }
 }
 );

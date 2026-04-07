@@ -6,12 +6,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -38,24 +38,28 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         http
-                .csrf(csrf->csrf
-                        .ignoringRequestMatchers("/auth/**"))
+                .csrf(AbstractHttpConfigurer::disable)
                 .cors(cors->cors
                         .configurationSource(corsConfigurationSource()))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/staff/create").hasAnyRole("ADMIN", "SUPERADMIN")
-                        .requestMatchers("/staff/update").authenticated()
+                        .requestMatchers(HttpMethod.PATCH, "/staff/update").authenticated()
+                        .requestMatchers(HttpMethod.GET, "/staff/all").hasAnyRole("ADMIN", "SUPERADMIN")
                         .requestMatchers(HttpMethod.DELETE,"/staff/delete").hasAnyRole("ADMIN", "SUPERADMIN")
+                        .requestMatchers(HttpMethod.GET,"/staff/email").hasRole("SUPERADMIN")
                         .requestMatchers("/Medicine_Type/addType").hasAnyRole("ADMIN", "SUPERADMIN")
                         .requestMatchers(HttpMethod.DELETE,"/Medicine_Type/delete_Type").hasAnyRole("ADMIN", "SUPERADMIN")
-                        .requestMatchers(HttpMethod.PUT, "/Medicine_Type/updateType").hasAnyRole("ADMIN", "SUPERADMIN")
                         .requestMatchers("/medicine/create", "/medicine/update").hasAnyRole("ADMIN", "SUPERADMIN")
-                        .requestMatchers("/auth/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/Medicine_type/getAll").authenticated()
+                        .requestMatchers("/auth/login").permitAll()
+                        .requestMatchers("/auth/me").authenticated()
                         .requestMatchers("/index.html").permitAll()
                         .anyRequest().authenticated()
                 )
                 .httpBasic(AbstractHttpConfigurer::disable)
-                .formLogin(Customizer.withDefaults())
+                .sessionManagement(session->session
+                        .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED))
+                .formLogin(AbstractHttpConfigurer::disable)
                 .logout(logout->logout
                         .logoutUrl("/logout")
                         .invalidateHttpSession(true)
@@ -73,10 +77,9 @@ public class SecurityConfig {
         corsConfiguration.setAllowedOrigins(Arrays.asList(
                 "http://localhost:63342",
                 "http://localhost:5500",
-                "http://127.0.0.1:63342",
                 "http://localhost:8080"
         ));
-        corsConfiguration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE"));
+        corsConfiguration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS","PATCH"));
         corsConfiguration.setAllowedHeaders(Arrays.asList("*"));
         corsConfiguration.setAllowCredentials(true);
 

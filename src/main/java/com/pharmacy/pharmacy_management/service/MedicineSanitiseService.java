@@ -1,18 +1,19 @@
 package com.pharmacy.pharmacy_management.service;
 
-import com.pharmacy.pharmacy_management.dto.MedicineAddDto;
-import com.pharmacy.pharmacy_management.dto.MedicineUpdateDto;
+import com.pharmacy.pharmacy_management.dto.*;
 import com.pharmacy.pharmacy_management.exception.NoInput;
 import org.springframework.transaction.annotation.Transactional;
 import jakarta.validation.ValidationException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.util.HtmlUtils;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 @Service
 @Transactional(readOnly = true)
 public class MedicineSanitiseService {
 
-    //validate required fields first
     private void ValidateRequiredFields(MedicineAddDto addDto){
         System.out.println("name: " + addDto.getMedicineName() +
                 "type : " + addDto.getMedicineType() +
@@ -28,14 +29,12 @@ public class MedicineSanitiseService {
             throw new ValidationException("Quantity cannot be 0");
         }
     }
-    //sanitise sku
     private String sanitizeSku(String sku){
         return HtmlUtils.htmlEscape(sku)
                 .replace("&lt;/?[a-zA-Z0-9]+&gt;","")
                 .strip();
     }
 
-    //sanitise name
     private String sanitizeName(String name){
         return HtmlUtils.htmlEscape(name
                 .replace("&lt;/?[a-zA-Z0-9]+&gt;","")
@@ -59,6 +58,12 @@ public class MedicineSanitiseService {
         addDto.setMedicineName(sanitizeName(addDto.getMedicineName()));
         addDto.setSku(sanitizeSku(addDto.getSku()));
         addDto.setDescription(sanitizeDescriptor(addDto.getDescription()));
+        BigDecimal price = addDto.getCost();
+        if (price != null){
+            price = price.setScale(2, RoundingMode.HALF_UP);
+        }
+        addDto.setCost(price);
+
         return addDto;
     }
 
@@ -72,5 +77,38 @@ public class MedicineSanitiseService {
         updDto.setDescription(sanitizeDescriptor(updDto.getDescription()));
         updDto.setSku(sanitizeSku(updDto.getSku()));
         return updDto;
+    }
+
+
+    private void validateTypeFields(MedicineTypeCreateDto dto){
+        if (dto.getName() == null) throw new NoInput("Type name empty");
+        if (dto.getDescription() == null) throw new NoInput("Description for type is empty");
+    }
+    public MedicineTypeCreateDto validateMedTypeCreation(MedicineTypeCreateDto dto){
+        validateTypeFields(dto);
+        if (dto.getName() != null) dto.setName(sanitizeName(dto.getName()));
+        if (dto.getDescription() != null) dto.setDescription(sanitizeDescriptor(dto.getDescription()));
+
+        return dto;
+    }
+    public String validateDeleteType(String name){
+        if (name == null) throw new NoInput("Name to be deleted is empty");
+        return sanitizeName(name);
+    }
+
+    public String validateGetNumberFromType(String type){
+        if (type == null) throw new NoInput("NO Input");
+        return sanitizeName(type);
+    }
+
+    public MedicineDeleteDto cleanDeleteDto(MedicineDeleteDto dto){
+        if (dto.getName()!=null) dto.setName(sanitizeName(dto.getName()));
+        if (dto.getSku()!=null) dto.setSku(sanitizeSku(dto.getSku()));
+        return dto;
+    }
+    public MedicineCheckStockDto  sanitizeCheckStockDto(MedicineCheckStockDto dto){
+        if(dto.getMedicineType() == null) throw new NoInput("No Data present");
+        dto.setMedicineType(sanitiseType(dto.getMedicineType()));
+        return dto;
     }
 }

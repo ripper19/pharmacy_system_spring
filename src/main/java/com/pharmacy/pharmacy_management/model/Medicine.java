@@ -4,8 +4,10 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @Entity
 @Builder
@@ -19,6 +21,7 @@ public class Medicine {
     private String medicineName;
 
     @ManyToOne
+    @JoinColumn(name = "med_type_id")
     private MedicineType medType;
 
     private int quantity;
@@ -32,6 +35,10 @@ public class Medicine {
     private MedicineStatus status;
 
     private Integer lowStockThreshold;
+
+    @CreationTimestamp
+    @Column(nullable = false, updatable = false, columnDefinition = "TIMESTAMP(0)")
+    private LocalDateTime dateAdded;
 
     @Version
     private Long version;
@@ -106,4 +113,7 @@ public class Medicine {
         this.lowStockThreshold = lowStockThreshold;
     }
 
+    public LocalDateTime getDateAdded() {
+        return dateAdded;
+    }
 }

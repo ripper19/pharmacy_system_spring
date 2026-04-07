@@ -58,9 +58,9 @@ public class MedicineController {
 
 
     @PostMapping("/checkTypeStock")
-    public ResponseEntity<List> checkStockByMedType(@RequestBody MedicineCheckStockDto checkStockDto){
+    public ResponseEntity<List<MedicineService.MedicineView>> checkStockByMedType(@RequestBody MedicineCheckStockDto checkStockDto){
         try {
-            List<MedicineService.MedicineStockView> medList = medService.checkMedicineStock(checkStockDto);
+            List<MedicineService.MedicineView> medList = medService.checkMedicineStock(checkStockDto);
             return ResponseEntity.status(HttpStatus.OK).body(medList);
         } catch (RuntimeException e) {
             logger.error("Error when fetching Medicine by Medicine type: {} ",e.getMessage(),e);
@@ -83,9 +83,9 @@ public class MedicineController {
     }
 
     @PostMapping("/checkMedicine")
-    public ResponseEntity<String> checkOneStock(@RequestBody OneMedicineStockDto medicineStockDto){
+    public ResponseEntity<MedicineService.MedicineStockView> checkOneStock(@RequestBody OneMedicineStockDto medicineStockDto){
         try {
-            String medicine = medService.checkOneMedicineStock(medicineStockDto);
+            MedicineService.MedicineStockView medicine = medService.checkOneMedicineStock(medicineStockDto);
             return ResponseEntity.status(HttpStatus.OK).body(medicine);
         } catch (RuntimeException e) {
             logger.error("Error when checking one Medicine stock for {}: {} ",medicineStockDto.getMedicineName(),e.getMessage(),e);

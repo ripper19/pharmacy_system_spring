@@ -3,19 +3,30 @@ package com.pharmacy.pharmacy_management.dto;
 import com.pharmacy.pharmacy_management.model.MedicineType;
 import jakarta.validation.constraints.NotNull;
 
+import java.math.BigDecimal;
+
 public class MedicineAddDto {
 
+    @NotNull
     private String sku;
+
     @NotNull
     private String medicineName;
 
+    @NotNull
     private String medicineType;
+
+    @NotNull
+    private BigDecimal cost;
+
     @NotNull
     private int quantity;
 
+    @NotNull
     private String description;
 
     private Integer lowStockThreshold;
+
 
     public String getSku() {
         return sku;
@@ -63,5 +74,13 @@ public class MedicineAddDto {
 
     public void setLowStockThreshold(Integer lowStockThreshold) {
         this.lowStockThreshold = lowStockThreshold;
+    }
+
+    public BigDecimal getCost() {
+        return cost;
+    }
+
+    public void setCost(BigDecimal cost) {
+        this.cost = cost;
     }
 }

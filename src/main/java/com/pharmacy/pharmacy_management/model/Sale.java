@@ -1,6 +1,7 @@
 package com.pharmacy.pharmacy_management.model;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -20,7 +21,9 @@ public class Sale {
 
     private String prescriptionInfo;
 
-    private LocalDateTime saleTime = LocalDateTime.now();
+    @CreationTimestamp
+    @Column(nullable = false, updatable = false)
+    private LocalDateTime saleTime;
 
     private String saleType;
 

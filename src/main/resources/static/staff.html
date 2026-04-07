@@ -23,8 +23,8 @@
 <!-- Vertical Sidebar -->
 <div class="sidebar">
     <div class="user-profile">
-        <div class="user-avatar" id="userAvatar">JD</div>
-        <div class="user-name" id="userName">John Doe</div>
+        <div class="user-avatar" id="userAvatar"></div>
+        <div class="user-name" id="userName"></div>
         <div class="user-role" id="userRole">Administrator</div>
     </div>
 
@@ -90,65 +90,40 @@
             <div id="addForm">
                 <h3>Add New Staff Member</h3>
                 <div class="form-grid">
-                    <div class="form-group">
-                        <label for="staffId">Staff ID *</label>
-                        <input type="text" id="staffId" placeholder="STF-001">
-                    </div>
+                   
                     <div class="form-group">
                         <label for="fullName">Full Name *</label>
                         <input type="text" id="fullName" placeholder="John Doe">
                     </div>
                     <div class="form-group">
-                        <label for="email">Email Address *</label>
-                        <input type="email" id="email" placeholder="john@pharmacare.com">
+                        <label for="updEmail">Email Address *</label>
+                        <input type="updEmail" id="updEmail" placeholder="john@pharmacare.com">
                     </div>
                     <div class="form-group">
                         <label for="phone">Phone Number *</label>
                         <input type="tel" id="phone" placeholder="0712 345 678">
                     </div>
                     <div class="form-group">
-                        <label for="role">Role *</label>
+                        <label for="role">Role</label>
                         <select id="role">
-                            <option value="">Select Role</option>
-                            <option value="pharmacist">Pharmacist</option>
-                            <option value="assistant">Pharmacy Assistant</option>
-                            <option value="cashier">Cashier</option>
-                            <option value="manager">Manager</option>
-                            <option value="admin">Administrator</option>
+                            <option value="ADMIN">Admin</option>
+                            <option value="USER">User</option>
                         </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="department">Department</label>
-                        <select id="department">
-                            <option value="">Select Department</option>
-                            <option value="dispensing">Dispensing</option>
-                            <option value="sales">Sales</option>
-                            <option value="inventory">Inventory</option>
-                            <option value="management">Management</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="salary">Monthly Salary (KSh)</label>
-                        <input type="number" id="salary" placeholder="50000">
-                    </div>
-                    <div class="form-group">
-                        <label for="joinDate">Join Date</label>
-                        <input type="date" id="joinDate">
                     </div>
                 </div>
                 <div class="form-actions">
                     <button class="secondary-btn" onclick="clearForm()">Clear</button>
-                    <button class="primary-btn" onclick="addStaff()">Add Staff Member</button>
+                    <button class="primary-btn" onclick="addStaff(event)">Add Staff Member</button>
                 </div>
             </div>
 
-            <!-- Update Form (initially hidden) -->
+            <!-- Update Form-->
             <div id="updateForm" class="hidden">
                 <h3>Update Staff Information</h3>
                 <div class="form-grid">
                     <div class="form-group">
-                        <label for="updateStaffId">Staff ID to Update *</label>
-                        <input type="text" id="updateStaffId" placeholder="Enter staff ID" onchange="loadStaffData()">
+                        <label for="updateStaffUser">Staff User to Update *</label>
+                        <input type="text" id="updateStaffUser" placeholder="Enter user Email" onchange="loadStaffData()">
                     </div>
                     <div class="form-group">
                         <label for="updateName">Full Name</label>
@@ -156,7 +131,7 @@
                     </div>
                     <div class="form-group">
                         <label for="updateEmail">Email Address</label>
-                        <input type="email" id="updateEmail">
+                        <input type="updEmail" id="updateEmail">
                     </div>
                     <div class="form-group">
                         <label for="updatePhone">Phone Number</label>
@@ -166,22 +141,23 @@
                         <label for="updateRole">Role</label>
                         <select id="updateRole">
                             <option value="">Select Role</option>
-                            <option value="pharmacist">Pharmacist</option>
-                            <option value="assistant">Pharmacy Assistant</option>
-                            <option value="cashier">Cashier</option>
-                            <option value="manager">Manager</option>
-                            <option value="admin">Administrator</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="updateStatus">Status</label>
-                        <select id="updateStatus">
-                            <option value="active">Active</option>
-                            <option value="inactive">Inactive</option>
-                            <option value="on-leave">On Leave</option>
+                            <option value="admin">Pharmacist</option>
+                            <option value="user">Pharmacy Assistant</option>
                         </select>
                     </div>
                 </div>
+                 <div id="staffCard" class="staff-card" style="display:none;">
+                    <div class="staff-card-header">
+                    <h3 id="cardName">Staff Name</h3>
+                    <span id="cardRole" class="staff-role">Role</span>
+                    </div>
+
+                    <div class="staff-card-body">
+                    <p><strong>ID:</strong> <span id="cardId"></span></p>
+                    <p><strong>Email:</strong> <span id="cardEmail"></span></p>
+                    <p><strong>Phone:</strong> <span id="cardPhone"></span></p>
+                    </div>
+            </div>
                 <div class="form-actions">
                     <button class="secondary-btn" onclick="clearUpdateForm()">Cancel</button>
                     <button class="primary-btn" onclick="updateStaff()">Update Staff</button>
@@ -194,11 +170,11 @@
                 <div class="form-grid">
                     <div class="form-group">
                         <label for="deleteStaffId">Staff ID to Delete *</label>
-                        <input type="text" id="deleteStaffId" placeholder="Enter staff ID">
+                        <input type="number" inputmode="numeric" id="deleteStaffId" placeholder="Enter staff ID">
                     </div>
                     <div class="form-group">
-                        <label for="confirmDelete">Confirm Staff Name</label>
-                        <input type="text" id="confirmDelete" placeholder="Type staff name to confirm">
+                        <label for="confirmDelete">Confirm Staff Email</label>
+                        <input type="text" id="confirmDelete" placeholder="Type staff updEmail to confirm">
                     </div>
                 </div>
                 <div class="form-actions">
@@ -216,10 +192,9 @@
                         <tr>
                             <th>Staff ID</th>
                             <th>Name</th>
+                            <th>Email</th>
                             <th>Role</th>
-                            <th>Department</th>
                             <th>Phone</th>
-                            <th>Status</th>
                             <th>Actions</th>
                         </tr>
                         </thead>
@@ -233,5 +208,7 @@
     </div>
 </div>
 <script src="js/staff.js"></script>
+
 </body>
+
 </html>

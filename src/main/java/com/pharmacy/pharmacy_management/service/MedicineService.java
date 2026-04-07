@@ -11,6 +11,7 @@ import com.pharmacy.pharmacy_management.repository.MedicineRepository;
 import com.pharmacy.pharmacy_management.repository.MedicineTypeRepository;
 import com.pharmacy.pharmacy_management.utilities.TransactionRetryUtility;
 
+import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,16 +26,17 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class MedicineService {
     @Autowired
     private MedicineRepository medicineRepo;
-    @Autowired
+
     private MedicineSanitiseService medicineSanitiseService;
     @Autowired
     private MedicineTypeRepository medicineTypeRepository;
-    @Autowired
+
     private TransactionRetryUtility transactionRetryUtility;
-    @Autowired
+
     private StaffService staffService;
     private final Logger logger = LoggerFactory.getLogger(MedicineService.class);
 
@@ -63,14 +65,10 @@ public class MedicineService {
                 MedicineType type = medicineTypeRepository.findByIgnoreCaseName(cleanedDto.getMedicineType())
                         .orElseThrow(() -> new InvalidResourceRequest("Cant find this type in Medicine types. Add the type"));
 
-                if (cleanedDto.getDescription() == null) {
-                    cleanedDto.setDescription("Description hasn't been provided. Please input description and instructions for various uses");
-                }
                 if (cleanedDto.getLowStockThreshold() == null || cleanedDto.getLowStockThreshold() == 0) {
                     cleanedDto.setLowStockThreshold(50);
                 }
                 Medicine newMed = mapToEntity(cleanedDto);
-                newMed.setCost(BigDecimal.valueOf(0.00));
                 newMed.setMed_type(type);
 
                 medicineRepo.save(newMed);
@@ -78,7 +76,7 @@ public class MedicineService {
                 return("New Medicine" + cleanedDto.getMedicineName());
             } catch (Exception e) {
                 logger.error("Failed to add {}: error {}", addDto.getMedicineName(), e.getMessage(), e);
-                throw new RuntimeException("DB operation failed: " + e);
+                throw new RuntimeException("DB operation failed: " + e.getMessage());
             }
         });
     }
@@ -138,17 +136,18 @@ public class MedicineService {
         return transactionRetryUtility.executeWithRetry(() -> {
             try {
                 Staff current = staffService.currentUSer();
+                MedicineDeleteDto cleaned = medicineSanitiseService.cleanDeleteDto(deleteDto);
 
-                if (deleteDto.getName() == null) throw new NoInput("Empty request");
-                String cleanedName = HtmlUtils.htmlEscape(deleteDto.getName()
-                        .replace("&lt;/?[a-zA-Z0-9]+&gt;", "")
-                        .strip());
-
-                Medicine toDelete = medicineRepo.findByMedicineName(cleanedName)
+                Medicine toDelete = medicineRepo.findBySku(cleaned.getSku())
                         .orElseThrow(() -> new InvalidResourceRequest("This medicine cant be found in database"));
+
+                if (toDelete.getMedicineName().equals(cleaned.getName())){
+                    logger.warn("Incompatible options {} {}",deleteDto.getName(),deleteDto.getSku());
+                    throw new InvalidResourceRequest("Units dont match");
+                }
                 medicineRepo.delete(toDelete);
-                logger.info("Medicine deleted: {} by user {} with {} priviledges", cleanedName, current.getName(), current.getRole());
-                return "Medicine deleted" + cleanedName;
+                logger.info("Medicine deleted: {} by user {} with {} priviledges", cleaned.getName(), current.getName(), current.getRole());
+                return "Medicine deleted" + cleaned.getName();
             } catch (Exception e) {
                 logger.error("Failed to delete medicine {} initiated by user {}",deleteDto.getName(),staffService.currentUSer().getName());
                 throw new RuntimeException(e);
@@ -158,23 +157,14 @@ public class MedicineService {
 
 //check medicine stock by type
     @Transactional(readOnly = true)
-    public List<MedicineStockView> checkMedicineStock(MedicineCheckStockDto checkStockDto ){
+    public List<MedicineView> checkMedicineStock(MedicineCheckStockDto checkStockDto ){
         try {
-            String cleaned = HtmlUtils.htmlEscape(checkStockDto.getMedicineType()
-                    .replace("&lt;/?[a-zA-Z0-9]+&gt;", "")
-                    .strip());
+            MedicineCheckStockDto cleaned = medicineSanitiseService.sanitizeCheckStockDto(checkStockDto);
+            if(cleaned == null) throw new NoInput("No item present for checking");
+            MedicineType type = medicineTypeRepository.findByIgnoreCaseName(cleaned.getMedicineType())
+                    .orElseThrow(()-> new InvalidResourceRequest("No such type"));
 
-            if (cleaned.isBlank()) throw new NoInput("Cant perform this action. empty input");
-            MedicineType type = medicineTypeRepository.findByIgnoreCaseName(cleaned)
-                    .orElseThrow(() -> new InvalidResourceRequest("Type not found"));
-            List<Medicine> medicines = medicineRepo.findByMedType(type);
-            return medicines.stream()
-                    .map(med -> new MedicineStockView(
-                            med.getMedicineName(),
-                            med.getQuantity(),
-                            med.getCost(),
-                            med.getStatus()
-                    )).toList();
+            return medicineRepo.findByMedType(type);
         } catch (Exception e) {
             logger.error("Failed to get medicines: {}",e.getMessage(),e);
             throw new RuntimeException(e);
@@ -183,7 +173,7 @@ public class MedicineService {
 
 
     @Transactional(readOnly = true)
-    public String checkOneMedicineStock(OneMedicineStockDto oneMedicineStockDto) {
+    public MedicineStockView checkOneMedicineStock(OneMedicineStockDto oneMedicineStockDto) {
         try {
             String cleaned = HtmlUtils.htmlEscape(oneMedicineStockDto.getMedicineName());
             if (cleaned.isBlank()) throw new NoInput("Empty input");
@@ -194,8 +184,11 @@ public class MedicineService {
             return new MedicineStockView(
                     medicine.getMedicineName(),
                     medicine.getQuantity(),
+                    medicine.getLowStockThreshold(),
+                    medicine.getMed_type(),
                     medicine.getCost(),
-                    medicine.getStatus()).toString();
+                    medicine.getStatus()
+            );
         } catch (Exception e) {
             logger.error("Failed to fetch record: {}",e.getMessage(),e);
             throw new RuntimeException(e);
@@ -204,11 +197,15 @@ public class MedicineService {
 
         public record MedicineStockView(String medicineName,
                                         int quantity,
+                                        int threshold,
+                                        MedicineType type,
                                         BigDecimal cost,
                                         MedicineStatus status) {
         }
-
-
+        public record  MedicineView(String medicineName,
+                                    int quantity,
+                                    MedicineStatus status,
+                                    BigDecimal cost){}
 }
 
 

@@ -1,10 +1,11 @@
 package com.pharmacy.pharmacy_management.dto;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 public class MedicineTypeCreateDto {
 
-    @NotBlank
+    @NotNull
     private String name;
 
     @NotBlank

@@ -1,50 +1,53 @@
 function loadUserData() {
-        const token = localStorage.getItem('token');
-        if (!token) {
-            window.location.href = 'login.html';
-            return;
+        const user = localStorage.getItem('user');
+        if (!user) {
+            window.location.href = 'index.html';
         }
-
-        // Decode JWT token to get user info (simplified)
-        try {
-            const payload = JSON.parse(atob(token.split('.')[1]));
-            document.getElementById('userName').textContent = payload.name || 'User';
-            document.getElementById('userRole').textContent = payload.role || 'Staff';
-
-            // Set avatar initials
-            const name = payload.name || 'User';
-            const initials = name.split(' ').map(n => n[0]).join('').toUpperCase();
-            document.getElementById('userAvatar').textContent = initials;
-        } catch (e) {
-            console.error('Error decoding token:', e);
-        }
+        fetch('http://localhost:8080/auth/me', {credentials: 'include'})
+        .then(res => {
+            if (res.status===401) {
+                localStorage.clear();
+                window.location.href='index.html';
+                return;
+                }
+            if (!res.ok){
+                throw new Error("Failed auth");
+            }
+            })
+        .catch(() => {
+            localStorage.clear();
+        });
     }
 
-    // Load dashboard stats
     async function loadDashboardStats() {
-        const token = localStorage.getItem('token');
+        const cookie = localStorage.getItem('COOKIE');
 
         try {
-            // Fetch today's sales
-            const salesRes = await fetch('http://localhost:8080/api/sales/today', {
-                headers: { 'Authorization': 'Bearer ' + token }
+            const salesRes = await fetch('http://localhost:8080/sale/todaySales', {
+                method: 'GET',
+                credentials: 'include'
             });
+            if(!salesRes.ok) throw new Error("Request Failed" + salesRes.status);
             const salesData = await salesRes.json();
+
             document.getElementById('todaySales').textContent =
                 'KSh ' + salesData.total.toLocaleString();
-            document.getElementById('totalOrders').textContent = salesData.count;
+            
+            // add with orders module document.getElementById('totalOrders').textContent = salesData.count;
 
             // Fetch low stock items
-            const stockRes = await fetch('http://localhost:8080/api/medicine/low-stock', {
-                headers: { 'Authorization': 'Bearer ' + token }
-            });
-            const stockData = await stockRes.json();
-            document.getElementById('lowStock').textContent = stockData.length;
+            //const stockRes = await fetch('http://localhost:8080/api/medicine/low-stock', {
+               // headers: { 'Authorization': 'Bearer ' + token }
+           // });
 
-            // Fetch month revenue
-            const revenueRes = await fetch('http://localhost:8080/api/sales/monthly', {
-                headers: { 'Authorization': 'Bearer ' + token }
+            //const stockData = await stockRes.json();
+            //document.getElementById('lowStock').textContent = stockData.length;
+
+            const revenueRes = await fetch('http://localhost:8080/sale/monthlySales', {
+                method: 'GET',
+                credentials:'include'
             });
+            
             const revenueData = await revenueRes.json();
             document.getElementById('monthRevenue').textContent =
                 'KSh ' + revenueData.total.toLocaleString();
@@ -56,12 +59,13 @@ function loadUserData() {
 
     // Load recent sales
     async function loadRecentSales() {
-        const token = localStorage.getItem('token');
+        const cookie = localStorage.getItem('COOKIE');
         const tbody = document.getElementById('recentSalesTable');
 
         try {
-            const res = await fetch('http://localhost:8080/api/sales/recent', {
-                headers: { 'Authorization': 'Bearer ' + token }
+            const res = await fetch('http://localhost:8080/sale/rcntSales', {
+                method: 'GET',
+                credentials: 'include'
             });
             const sales = await res.json();
 
@@ -72,11 +76,10 @@ function loadUserData() {
 
             tbody.innerHTML = sales.map(sale => `
                 <tr>
-                    <td>#${sale.id}</td>
-                    <td>${sale.medicineName}</td>
+                    <td>#${sale.clientName}</td>
+                    <td>${sale.prescriptionInfo}</td>
                     <td>${sale.quantity}</td>
                     <td>KSh ${sale.amount.toLocaleString()}</td>
-                    <td><span class="status-badge status-${sale.status.toLowerCase()}">${sale.status}</span></td>
                     <td>${new Date(sale.date).toLocaleDateString()}</td>
                 </tr>
             `).join('');
@@ -96,7 +99,7 @@ function loadUserData() {
                 labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
                 datasets: [{
                     label: 'Sales (KSh)',
-                    data: [12000, 19000, 15000, 25000, 22000, 30000, 28000],
+                    data: [12000, 1900, 1500, 2500, 2200, 3000, 2800],
                     borderColor: '#3498db',
                     backgroundColor: 'rgba(52, 152, 219, 0.1)',
                     tension: 0.4
@@ -129,8 +132,12 @@ function loadUserData() {
     }
 
     function logout() {
-        localStorage.removeItem('token');
-        window.location.href = 'login.html';
+        fetch ('http://localhost:8080/logout',{
+        method: 'POST',
+        credentials: 'include'
+        });
+        localStorage.removeItem('user');
+        window.location.href = 'index.html';
     }
 
     // Initialize dashboard

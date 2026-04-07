@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pharmacy Dashboard - Medicines Inventory Management</title>
+    <link rel="stylesheet" href="css/dash.css">
+    <link rel="stylesheet" href="css/inventory.css">
+</head>
+<body>
+
+<!-- Horizontal Navbar -->
+<div class="top-navbar">
+    <div class="logo" style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode';">PHARMACARE</div>
+    <div class="search-bar">
+        <input type="text" placeholder="Search medicines, sales">
+    </div>
+    <div class="nav-actions">
+        <button onclick="showNotifications()">🔔 Notifications</button>
+        <button onclick="logout()">Logout</button>
+    </div>
+</div>
+
+<!-- Vertical Sidebar -->
+<div class="sidebar">
+    <div class="user-profile">
+        <div class="user-avatar" id="userAvatar">JD</div>
+        <div class="user-name" id="userName">John Doe</div>
+        <div class="user-role" id="userRole">Pharmacist</div>
+    </div>
+
+    <div class="menu">
+        <a href="dash.html" class="menu-item">
+            <span class="menu-icon">📊</span>
+            <span>Dashboard</span>
+        </a>
+        <a href="sales.html" class="menu-item">
+            <span class="menu-icon">💰</span>
+            <span>Sales</span>
+        </a>
+        <a href="#" class="menu-item active">
+            <span class="menu-icon">📦</span>
+            <span>Inventory</span>
+        </a>
+        <a href="medicine.html" class="menu-item">
+            <span class="menu-icon">💊</span>
+            <span>Medicines</span>
+        </a>
+        <a href="reports.html" class="menu-item">
+            <span class="menu-icon">📈</span>
+            <span>Reports</span>
+        </a>
+        <a href="staff.html" class="menu-item">
+            <span class="menu-icon">👥</span>
+            <span>Staff</span>
+        </a>
+        <a href="settings.html" class="menu-item">
+            <span class="menu-icon">⚙️</span>
+            <span>Settings</span>
+        </a>
+    </div>
+</div>
+
+<!-- Main Content -->
+<div class="main-content">
+    <div class="page-header">
+        <h1>Medicines Management</h1>
+        <p>Manage medicine inventory, stock levels, and medicine types</p>
+    </div>
+
+    <!-- Medicines Management Section -->
+    <div class="medicines-management">
+        <div class="medicines-header">
+            <h2>Medicine Operations</h2>
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Search medicines by name, SKU or type..." id="medicineSearch">
+                <button class="search-btn" onclick="searchMedicines()">Search</button>
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+            <button class="action-btn active" onclick="setMode('add')">➕ Add Medicine</button>
+            <button class="action-btn" onclick="setMode('update')">✏️ Update Medicine</button>
+            <button class="action-btn" onclick="setMode('delete')">🗑️ Delete Medicine</button>
+            <button class="action-btn" onclick="setMode('stock-check')">📋 Check Single Stock</button>
+            <button class="action-btn" onclick="setMode('stock-by-type')">📊 Stock by Type</button>
+            <button class="action-btn" onclick="setMode('view')">👁️ View All Medicines</button>
+            <button class="action-btn" onclick="openMedicineTypesModal()">🏷️ Manage Types</button>
+        </div>
+
+        <!-- Message Area -->
+        <div id="messageArea"></div>
+
+        <!-- Single Form (Changes based on mode) -->
+        <div class="medicines-form" id="medicinesForm">
+            <!-- Add Medicine Form -->
+            <div id="addForm">
+                <h3>Add New Medicine</h3>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="sku">SKU *</label>
+                        <input type="text" id="sku" placeholder="MED-001">
+                    </div>
+                    <div class="form-group">
+                        <label for="medicineName">Medicine Name *</label>
+                        <input type="text" id="medicineName" placeholder="Paracetamol 500mg">
+                    </div>
+                    <div class="form-group">
+                        <label for="medicineType">Medicine Type *</label>
+                        <select id="medicineType">
+                            <option value="">Select Type</option>
+                            <option value="analgesic">Analgesic</option>
+                            <option value="antibiotic">Antibiotic</option>
+                            <option value="antiviral">Antiviral</option>
+                            <option value="antifungal">Antifungal</option>
+                            <option value="antihistamine">Antihistamine</option>
+                            <option value="supplement">Supplement</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="quantity">Quantity *</label>
+                        <input type="number" id="quantity" placeholder="100" min="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="lowStockThreshold">Low Stock Threshold *</label>
+                        <input type="number" id="lowStockThreshold" placeholder="10" min="1">
+                        <small style="color: #666; margin-top: 4px;">Alert when stock falls below this number</small>
+                    </div>
+                    <div class="form-group" style="grid-column: span 2;">
+                        <label for="description">Description</label>
+                        <textarea id="description" placeholder="Enter medicine description, usage instructions, etc."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="price">Price per unit (KSh)</label>
+                        <input type="number" id="price" placeholder="50" step="0.01" min="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="expiryDate">Expiry Date</label>
+                        <input type="date" id="expiryDate">
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button class="secondary-btn" onclick="clearForm()">Clear</button>
+                    <button class="primary-btn" onclick="addMedicine()">Add Medicine</button>
+                </div>
+            </div>
+
+            <!-- Update Medicine Form -->
+            <div id="updateForm" class="hidden">
+                <h3>Update Medicine Information</h3>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="updateSku">SKU to Update *</label>
+                        <input type="text" id="updateSku" placeholder="Enter medicine SKU" onchange="loadMedicineData()">
+                    </div>
+                    <div class="form-group">
+                        <label for="updateName">Medicine Name</label>
+                        <input type="text" id="updateName">
+                    </div>
+                    <div class="form-group">
+                        <label for="updateType">Medicine Type</label>
+                        <select id="updateType">
+                            <option value="">Select Type</option>
+                            <option value="analgesic">Analgesic</option>
+                            <option value="antibiotic">Antibiotic</option>
+                            <option value="antiviral">Antiviral</option>
+                            <option value="antifungal">Antifungal</option>
+                            <option value="antihistamine">Antihistamine</option>
+                            <option value="supplement">Supplement</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="updateQuantity">Quantity</label>
+                        <input type="number" id="updateQuantity" min="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="updateThreshold">Low Stock Threshold</label>
+                        <input type="number" id="updateThreshold" min="1">
+                    </div>
+                    <div class="form-group">
+                        <label for="updatePrice">Price per unit (KSh)</label>
+                        <input type="number" id="updatePrice" step="0.01" min="0">
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button class="secondary-btn" onclick="clearUpdateForm()">Cancel</button>
+                    <button class="primary-btn" onclick="updateMedicine()">Update Medicine</button>
+                </div>
+            </div>
+
+            <!-- Delete Medicine Form -->
+            <div id="deleteForm" class="hidden">
+                <h3>Delete Medicine</h3>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="deleteName">Medicine Name to Delete *</label>
+                        <input type="text" id="deleteName" placeholder="Enter medicine name">
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmDeleteMedicine">Confirm SKU</label>
+                        <input type="text" id="confirmDeleteMedicine" placeholder="Type medicine SKU to confirm">
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button class="secondary-btn" onclick="clearDeleteForm()">Cancel</button>
+                    <button class="primary-btn" onclick="deleteMedicine()" style="background: #d32f2f;">Delete Medicine</button>
+                </div>
+            </div>
+
+            <!-- Check Single Stock Form -->
+            <div id="stockCheckForm" class="hidden">
+                <h3>Check Stock for Single Medicine</h3>
+                <div class="stock-check-container">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="checkMedicineName">Medicine Name *</label>
+                            <input type="text" id="checkMedicineName" placeholder="Enter medicine name">
+                        </div>
+                        <div class="form-group">
+                            <button class="primary-btn" onclick="checkStock()" style="margin-top: 25px;">Check Stock</button>
+                        </div>
+                    </div>
+                    <div id="stockResult" class="stock-result hidden">
+                        <!-- Stock result will be displayed here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stock by Type Form -->
+            <div id="stockByTypeForm" class="hidden">
+                <h3>Check Stock by Medicine Type</h3>
+                <div class="stock-check-container">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="checkMedicineType">Medicine Type *</label>
+                            <select id="checkMedicineType">
+                                <option value="">Select Type</option>
+                                <option value="">Analgesic</option>
+                                <option value="">Antibiotic</option>
+                                <option value="">Antiviral</option>
+                                <option value="">Antifungal</option>
+                                <option value="">Antihistamine</option>
+                                <option value="">Supplement</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <button class="primary-btn" onclick="checkStockByType()" style="margin-top: 25px;">Check Stock</button>
+                        </div>
+                    </div>
+                    <div id="stockByTypeResult" class="hidden">
+                        <!-- Stock by type result will be displayed here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- View Medicines Table -->
+            <div id="viewTable" class="hidden">
+                <h3>All Medicines Inventory</h3>
+                <div class="medicines-table-container">
+                    <table class="medicines-table" id="medicinesTable">
+                        <thead>
+                        <tr>
+                            <th>SKU</th>
+                            <th>Name</th>
+                            <th>Type</th>
+                            <th>Quantity</th>
+                            <th>Threshold</th>
+                            <th>Status</th>
+                            <th>Price</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody id="medicinesTableBody">
+                        <!-- Medicine data will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Medicine Types Modal -->
+<div id="medicineTypesModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>Manage Medicine Types</h3>
+            <button class="close-modal" onclick="closeMedicineTypesModal()">&times;</button>
+        </div>
+
+        <div class="form-grid">
+            <div class="form-group">
+                <label for="newTypeName">Medicine Type Name</label>
+                <input type="text" id="newTypeName" placeholder="Enter new medicine type">
+
+                <label for="newTypeDescription">Medicine Type Desription</label>
+                <input type="text" id="newTypeDescription" placeholder="Short description of uses">
+            </div>
+            <div class="form-group">
+                <button class="primary-btn" onclick="addMedicineType()" style="margin-top: 25px;">Add Type</button>
+            </div>
+        </div>
+
+        <div class="medicine-types-list" id="medicineTypesList">
+            <!-- Types will be loaded here -->
+        </div>
+    </div>
+</div>
+<script src="js/inventory.js"></script>
+</body>
+</html>

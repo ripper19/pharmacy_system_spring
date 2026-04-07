@@ -1,129 +1,4 @@
- /* Additional styles for staff management */
- * {
-             margin: 0;
-             padding: 0;
-             box-sizing: border-box;
-         }
-
-         body {
-             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-             background: #f5f5f5;
-         }
-
-         /* Horizontal Navbar */
-         .top-navbar {
-             background: #2c3e50;
-             color: white;
-             height: 60px;
-             display: flex;
-             align-items: center;
-             justify-content: space-between;
-             padding: 0 20px;
-             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-             position: fixed;
-             top: 0;
-             left: 0;
-             right: 0;
-             z-index: 1000;
-         }
-
-         .logo {
-             font-size: 24px;
-             font-weight: bold;
-             color: #3498db;
-         }
-
-         .nav-actions button {
-             background: #3498db;
-             color: white;
-             border: none;
-             padding: 8px 16px;
-             border-radius: 5px;
-             cursor: pointer;
-             margin-left: 10px;
-         }
-
-         .nav-actions button:hover {
-             background: #2980b9;
-         }
-
-         /* Vertical Sidebar */
-         .sidebar {
-             position: fixed;
-             left: 0;
-             top: 60px;
-             width: 250px;
-             height: calc(100vh - 60px);
-             background: white;
-             box-shadow: 2px 0 4px rgba(0,0,0,0.1);
-             overflow-y: auto;
-             z-index: 999;
-         }
-
-         .user-profile {
-             padding: 20px;
-             text-align: center;
-             border-bottom: 1px solid #e0e0e0;
-             background: linear-gradient(135deg, rgb(182, 157, 157) 0%, #764ba2 100%);
-             color: white;
-         }
-
-         .user-avatar {
-             width: 60px;
-             height: 60px;
-             border-radius: 50%;
-             background: white;
-             display: flex;
-             align-items: center;
-             justify-content: center;
-             margin: 0 auto 10px;
-             font-size: 24px;
-             color: #667eea;
-             font-weight: bold;
-         }
-
-         .user-name {
-             font-size: 16px;
-             font-weight: bold;
-         }
-
-         .user-role {
-             font-size: 12px;
-             opacity: 0.9;
-         }
-
-         .menu {
-             padding: 10px 0;
-         }
-
-         .menu-item {
-             padding: 15px 20px;
-             display: flex;
-             align-items: center;
-             gap: 10px;
-             cursor: pointer;
-             transition: 0.3s;
-             color: #333;
-             text-decoration: none;
-         }
-
-         .menu-item:hover {
-             background: #f0f0f0;
-         }
-
-         .menu-item.active {
-             background: #3498db;
-             color: white;
-             border-left: 4px solid #2980b9;
-         }
-          .main-content {
-                     margin-left: 250px;
-                     margin-top: 60px;
-                     padding: 30px;
-                     min-height: calc(100vh - 60px);
-                 }
-
-        .staff-management {
+ .medicines-management {
             background: white;
             border-radius: 10px;
             padding: 25px;
@@ -131,7 +6,7 @@
             margin-bottom: 30px;
         }
 
-        .staff-header {
+        .medicines-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -144,6 +19,7 @@
             display: flex;
             gap: 10px;
             margin-bottom: 20px;
+            flex-wrap: wrap;
         }
 
         .action-btn {
@@ -158,12 +34,19 @@
         }
 
         .action-btn.active {
-            background: #2196f3;
+            background: #4caf50;
             color: white;
         }
 
         .action-btn:hover:not(.active) {
             background: #e0e0e0;
+        }
+
+        .medicines-form {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 25px;
         }
 
         .form-grid {
@@ -185,17 +68,24 @@
         }
 
         .form-group input,
-        .form-group select {
+        .form-group select,
+        .form-group textarea {
             padding: 10px;
             border: 1px solid #ddd;
             border-radius: 4px;
             font-size: 14px;
         }
 
+        .form-group textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+
         .form-group input:focus,
-        .form-group select:focus {
+        .form-group select:focus,
+        .form-group textarea:focus {
             outline: none;
-            border-color: #2196f3;
+            border-color: #4caf50;
         }
 
         .form-actions {
@@ -206,7 +96,7 @@
 
         .primary-btn {
             padding: 10px 25px;
-            background: #2196f3;
+            background: #4caf50;
             color: white;
             border: none;
             border-radius: 5px;
@@ -215,7 +105,7 @@
         }
 
         .primary-btn:hover {
-            background: #1976d2;
+            background: #388e3c;
         }
 
         .secondary-btn {
@@ -232,20 +122,20 @@
             background: #e0e0e0;
         }
 
-        .staff-table-container {
+        .medicines-table-container {
             background: white;
             border-radius: 10px;
             padding: 20px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
-        .staff-table {
+        .medicines-table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 15px;
         }
 
-        .staff-table th {
+        .medicines-table th {
             background: #f5f5f5;
             padding: 12px 15px;
             text-align: left;
@@ -254,30 +144,40 @@
             border-bottom: 2px solid #ddd;
         }
 
-        .staff-table td {
+        .medicines-table td {
             padding: 12px 15px;
             border-bottom: 1px solid #eee;
         }
 
-        .staff-table tr:hover {
+        .medicines-table tr:hover {
             background: #f9f9f9;
         }
 
-        .status-badge {
+        .stock-badge {
             padding: 4px 10px;
             border-radius: 20px;
             font-size: 12px;
             font-weight: 500;
         }
 
-        .status-active {
+        .stock-high {
             background: #e8f5e9;
             color: #2e7d32;
         }
 
-        .status-inactive {
+        .stock-medium {
+            background: #fff3e0;
+            color: #ef6c00;
+        }
+
+        .stock-low {
             background: #ffebee;
             color: #c62828;
+        }
+
+        .stock-out {
+            background: #f5f5f5;
+            color: #757575;
         }
 
         .action-cell {
@@ -318,7 +218,7 @@
 
         .search-btn {
             padding: 10px 20px;
-            background: #4caf50;
+            background: #2196f3;
             color: white;
             border: none;
             border-radius: 4px;
@@ -353,45 +253,126 @@
             color: #ef6c00;
             border: 1px solid #ffe0b2;
         }
-            .staff-form {
-            background: #f9f9f9;
-            padding: 20px;
+
+        .stock-check-container {
+            background: white;
             border-radius: 8px;
-            margin-bottom: 25px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
         }
-        .staff-card {
-    background: white;
-    border-radius: 8px;
-    border-left: 5px solid #3498db;
-    padding: 18px;
-    margin-top: 20px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    max-width: 420px;
-}
 
-.staff-card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 10px;
-    margin-bottom: 10px;
-}
+        .stock-result {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 6px;
+            border-left: 4px solid #4caf50;
+        }
 
-.staff-card-header h3 {
-    margin: 0;
-    font-size: 18px;
-}
+        .medicine-type-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
 
-.staff-role {
-    background: #3498db;
-    color: white;
-    padding: 3px 10px;
-    border-radius: 4px;
-    font-size: 12px;
-}
+        .type-card {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
 
-.staff-card-body p {
-    margin: 6px 0;
-    font-size: 14px;
-}
+        .type-name {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .type-count {
+            font-size: 24px;
+            font-weight: 700;
+            color: #4caf50;
+            margin: 10px 0;
+        }
+
+        .type-status {
+            font-size: 12px;
+            color: #666;
+        }
+
+        /* Modal for medicine types */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: white;
+            width: 500px;
+            max-width: 90%;
+            margin: 50px auto;
+            border-radius: 10px;
+            padding: 20px;
+            position: relative;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .medicine-types-list {
+            max-height: 400px;
+            overflow-y: auto;
+            margin: 15px 0;
+        }
+
+        .type-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .type-item:last-child {
+            border-bottom: none;
+        }
+
+        .type-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .small-btn {
+            padding: 4px 10px;
+            font-size: 12px;
+        }
+
+        .danger-btn {
+            background: #ffebee;
+            color: #d32f2f;
+            border: 1px solid #ffcdd2;
+        }
