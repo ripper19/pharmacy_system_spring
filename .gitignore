@@ -5,13 +5,11 @@
 *.log
 docker-compose.yaml
 .idea
-application.properties
 mvnw
 mvnw.cmd
 .mvn/wrapper/
 
 application.yml
-application-*.properties
 application-*.yml
 
 docker-compose.yml
