@@ -9,8 +9,6 @@ RUN mvn dependency:go-offline
 COPY src ./src
 RUN mvn clean package -DskipTests
 
-RUN mkdir -p "/app/logs"
-
 # Run stage
 FROM eclipse-temurin:17-jre-alpine
 WORKDIR /app
