@@ -3,7 +3,7 @@ function loadUserData() {
         if (!user) {
             window.location.href = 'index.html';
         }
-        fetch('http://localhost:8080/auth/me', {credentials: 'include'})
+        fetch('https://pharmacy-system-spring-utt5.onrender.com/auth/me', {credentials: 'include'})
         .then(res => {
             if (res.status===401) {
                 localStorage.clear();
@@ -23,7 +23,7 @@ function loadUserData() {
         const cookie = localStorage.getItem('COOKIE');
 
         try {
-            const salesRes = await fetch('http://localhost:8080/sale/todaySales', {
+            const salesRes = await fetch('https://pharmacy-system-spring-utt5.onrender.com/sale/todaySales', {
                 method: 'GET',
                 credentials: 'include'
             });
@@ -33,17 +33,17 @@ function loadUserData() {
             document.getElementById('todaySales').textContent =
                 'KSh ' + salesData.total.toLocaleString();
             
-            // add with orders module document.getElementById('totalOrders').textContent = salesData.count;
+            /**  add with orders module document.getElementById('totalOrders').textContent = salesData.count;
 
-            // Fetch low stock items
-            //const stockRes = await fetch('http://localhost:8080/api/medicine/low-stock', {
-               // headers: { 'Authorization': 'Bearer ' + token }
-           // });
+            Fetch low stock items
+            const stockRes = await fetch('https://pharmacy-system-spring-utt5.onrender.com/api/medicine/low-stock', {
+                headers: { 'Authorization': 'Bearer ' + token }
+            });
 
-            //const stockData = await stockRes.json();
-            //document.getElementById('lowStock').textContent = stockData.length;
+           const stockData = await stockRes.json();
+           document.getElementById('lowStock').textContent = stockData.length;*/
 
-            const revenueRes = await fetch('http://localhost:8080/sale/monthlySales', {
+            const revenueRes = await fetch('https://pharmacy-system-spring-utt5.onrender.com/sale/monthlySales', {
                 method: 'GET',
                 credentials:'include'
             });
@@ -63,7 +63,7 @@ function loadUserData() {
         const tbody = document.getElementById('recentSalesTable');
 
         try {
-            const res = await fetch('http://localhost:8080/sale/rcntSales', {
+            const res = await fetch('https://pharmacy-system-spring-utt5.onrender.com/sale/rcntSales', {
                 method: 'GET',
                 credentials: 'include'
             });
@@ -132,7 +132,7 @@ function loadUserData() {
     }
 
     function logout() {
-        fetch ('http://localhost:8080/logout',{
+        fetch ('https://pharmacy-system-spring-utt5.onrender.com/logout',{
         method: 'POST',
         credentials: 'include'
         });

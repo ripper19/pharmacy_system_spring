@@ -116,7 +116,7 @@
         };
 
         try {
-            const res = await fetch('http://localhost:8080/sale/sell', {
+            const res = await fetch('https://pharmacy-system-spring-utt5.onrender.com/sale/sell', {
                 method: 'POST',
                 credentials: 'include',
                 headers:{'Content-Type':'application/json'},
@@ -151,7 +151,7 @@
         event?.target?.classList.add('active');
 
         try {
-            const res = await fetch(`http://localhost:8080/api/sales?filter=${filter}`, {
+            const res = await fetch(`https://pharmacy-system-spring-utt5.onrender.com/api/sales?filter=${filter}`, {
                 headers: { 'Authorization': 'Bearer ' + token }
             });
 
@@ -197,7 +197,7 @@
         const tbody = document.getElementById('salesTableBody');
 
         try {
-            const res = await fetch(`http://localhost:8080/api/sales/search?q=${searchTerm}`, {
+            const res = await fetch(`https://pharmacy-system-spring-utt5.onrender.com/api/sales/search?q=${searchTerm}`, {
                 headers: { 'Authorization': 'Bearer ' + token }
             });
 
@@ -239,7 +239,7 @@
         const token = localStorage.getItem('token');
 
         try {
-            const res = await fetch(`http://localhost:8080/api/sales/${saleId}`, {
+            const res = await fetch(`https://pharmacy-system-spring-utt5.onrender.com/api/sales/${saleId}`, {
                 headers: { 'Authorization': 'Bearer ' + token }
             });
 
@@ -273,7 +273,7 @@
         const token = localStorage.getItem('token');
 
         try {
-            const res = await fetch(`http://localhost:8080/api/sales/${saleId}`, {
+            const res = await fetch(`https://pharmacy-system-spring-utt5.onrender.com/api/sales/${saleId}`, {
                 method: 'DELETE',
                 headers: { 'Authorization': 'Bearer ' + token }
             });

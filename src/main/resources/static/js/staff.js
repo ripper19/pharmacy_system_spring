@@ -9,7 +9,7 @@ async function loadUserData() {
     }
 async function checksuper(){
     try{
-        const res = await fetch("http://localhost:8080/auth/me",{
+        const res = await fetch("https://pharmacy-system-spring-utt5.onrender.com/auth/me",{
             credentials: 'include'
         });
         if(res.status===401){
@@ -139,7 +139,7 @@ let resetTimeOut= null;
         //disable
         btn.disabled=true;
         try{
-            const res = await fetch("http://localhost:8080/staff/create",{
+            const res = await fetch("https://pharmacy-system-spring-utt5.onrender.com/staff/create",{
                 method: "POST",
                 headers: { "Content-Type" : "application/json" },
                 credentials: 'include',
@@ -175,7 +175,7 @@ let resetTimeOut= null;
             currentFetch.abort();
         }
         currentFetch = new AbortController();
-        const res = await fetch(`http://localhost:8080/staff/email?email=${email}`, {
+        const res = await fetch(`https://pharmacy-system-spring-utt5.onrender.com/staff/email?email=${email}`, {
             credentials : 'include',
             signal: currentFetch.signal
         })
@@ -228,7 +228,7 @@ let resetTimeOut= null;
         
         try{
         const myEmail = document.getElementById('updateStaffUser').value;
-        const res = await fetch(`http://localhost:8080/staff/supdate/${myEmail}`, {
+        const res = await fetch(`https://pharmacy-system-spring-utt5.onrender.com/staff/supdate/${myEmail}`, {
             credentials: 'include',
             headers: {'Content-Type': 'application/json'},
             method: 'PATCH',
@@ -262,7 +262,7 @@ let resetTimeOut= null;
         if(!id && !email || !email){
             throw new Error("Please confirm the Staff to be deleted");
         }
-        const res = await fetch("http://localhost:8080/staff/delete",{
+        const res = await fetch("https://pharmacy-system-spring-utt5.onrender.com/staff/delete",{
             headers: {'Content-Type': 'application/json'},
             method:'DELETE',
             credentials: 'include',
@@ -278,7 +278,7 @@ let resetTimeOut= null;
         const tableBody = document.getElementById('staffTableBody');
         tableBody.innerHTML = '';
 
-        const res = await fetch ("http://localhost:8080/staff/all",{
+        const res = await fetch ("https://pharmacy-system-spring-utt5.onrender.com/staff/all",{
             credentials: 'include'
         });
         if(!res.ok){
@@ -318,7 +318,7 @@ let resetTimeOut= null;
     async function confirmDelete(id, email) {
         if (confirm(`Are you sure you want to delete ${email}?`)) {
             console.log(id,email);
-            const res = await fetch("http://localhost:8080/staff/delete", {
+            const res = await fetch("https://pharmacy-system-spring-utt5.onrender.com/staff/delete", {
                 headers:{"Content-Type": "application/json"},
                 method: 'DELETE',
                 credentials: 'include',
@@ -416,7 +416,7 @@ let resetTimeOut= null;
 
     async function logout() {
         if (confirm('Are you sure you want to logout?')) {
-            const res = await fetch("http://localhost:8080/logout", {
+            const res = await fetch("https://pharmacy-system-spring-utt5.onrender.com/logout", {
                 credentials: 'include',
                 method: 'POST'
             });

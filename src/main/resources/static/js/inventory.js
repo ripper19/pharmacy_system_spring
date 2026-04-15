@@ -123,7 +123,7 @@ let medicineTypes = [];
         if(threshold) newMedicine.lowStockThreshold = lowStockThreshold;
 
         try{
-            const res = await fetch("http://localhost:8080/medicine/create", {
+            const res = await fetch("https://pharmacy-system-spring-utt5.onrender.com/medicine/create", {
                 headers: {'Content-Type':'application/json'},
                 credentials: 'include',
                 method: 'POST',
@@ -191,7 +191,7 @@ let medicineTypes = [];
         const sku = document.getElementById('confirmDeleteMedicine').value;
 
         try{
-            const res = await fetch("http://localhost:8080/medicine/delete",{
+            const res = await fetch("https://pharmacy-system-spring-utt5.onrender.com/medicine/delete",{
                 credentials:'include',
                 method:'DELETE',
                 headers: {'Content-Type': 'application/json'},
@@ -217,7 +217,7 @@ let medicineTypes = [];
             return;
         }
         try{
-            const res = await fetch("http://localhost:8080/medicine/checkMedicine",{
+            const res = await fetch("https://pharmacy-system-spring-utt5.onrender.com/medicine/checkMedicine",{
                 credentials:'include',
                 headers: {'Content-Type':'application/json'},
                 body:JSON.stringify({name})
@@ -279,7 +279,7 @@ let medicineTypes = [];
             return;
         }
         try{
-            const res = await fetch("http://localhost:8080/medicine/checkStocktype", {
+            const res = await fetch("https://pharmacy-system-spring-utt5.onrender.com/medicine/checkStocktype", {
                 credentials: 'include',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify(type)
@@ -471,7 +471,7 @@ let medicineTypes = [];
         const typesList = document.getElementById('medicineTypesList');
         typesList.innerHTML = '';
 
-        const res = await fetch("http://localhost:8080/Medicine_type/getAll", {
+        const res = await fetch("https://pharmacy-system-spring-utt5.onrender.com/Medicine_type/getAll", {
             credentials: 'include',
         });
         if(!res.ok){
@@ -507,7 +507,7 @@ let medicineTypes = [];
             alert('Please enter a type name and description');
             return;
         }
-        const res = await fetch("http://localhost:8080/Medicine_type/addType",{
+        const res = await fetch("https://pharmacy-system-spring-utt5.onrender.com/Medicine_type/addType",{
             credentials: 'include',
             headers: {'Content-Type': 'application/json'},
             method: 'POST',
@@ -537,7 +537,7 @@ let medicineTypes = [];
         }
         while(all.count==0){
         if (confirm(`Delete medicine type "${type}"?`)) {
-            const delres = await fetch("http://localhost:8080/Medicine_Type/delete_Type/",{
+            const delres = await fetch("https://pharmacy-system-spring-utt5.onrender.com/Medicine_Type/delete_Type/",{
                 credentials:'include'
             });
             if(!delres.ok){
