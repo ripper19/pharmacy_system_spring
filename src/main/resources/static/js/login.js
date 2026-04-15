@@ -8,7 +8,7 @@ document.getElementById("loginform").addEventListener("submit", async (e) => {
     console.log("Password is ", password);
 
     try{
-        const res = await fetch("http://localhost:8080/auth/login",{
+        const res = await fetch("https://pharmacy-system-spring-utt5.onrender.com/auth/login",{
             method: "POST",
             headers: { "Content-Type": "application/json" },
             credentials: 'include',
