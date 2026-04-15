@@ -54,6 +54,7 @@ public class SecurityConfig {
                         .requestMatchers("/auth/login").permitAll()
                         .requestMatchers("/auth/me").authenticated()
                         .requestMatchers("/index.html").permitAll()
+                        .requestMatchers("/check/*").permitAll()
                         .anyRequest().authenticated()
                 )
                 .httpBasic(AbstractHttpConfigurer::disable)

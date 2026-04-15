@@ -2,7 +2,7 @@ async function loadUser(){
     const user = localStorage.getItem('user');
     if(!user){
         showMessage("Not logged in", "error");
-        await fetch("http://localhost:8008/logout", {
+        await fetch("https://pharmacy-system-spring-utt5.onrender.com/logout", {
             credentials: 'include',
             method: 'POST'
         });
@@ -15,7 +15,7 @@ async function loadUser(){
 }
 async function checkRole() {
     try{
-    const res = await fetch("http://localhost:8080/auth/me", {
+    const res = await fetch("https://pharmacy-system-spring-utt5.onrender.com/auth/me", {
         credentials: 'include'
     });
     if(res.status === 401){
