@@ -2,13 +2,15 @@ async function loadUser(){
     const user = localStorage.getItem('user');
     if(!user){
         showMessage("Not logged in", "error");
-        await fetch("https://pharmacy-system-spring-utt5.onrender.com/logout", {
-            credentials: 'include',
-            method: 'POST'
-        });
-        window.location.href = 'index.html';
         localStorage.clear();
         sessionStorage.clear();
+
+        fetch("https://pharmacy-system-spring-utt5.onrender.com/logout", {
+            credentials: 'include',
+            method: 'POST'
+        }).catch(()=> {});
+        window.location.href = 'index.html';
+        
         return;
     }
     await checkRole();
@@ -51,7 +53,6 @@ async function checkRole() {
 let currentMode = 'add';
 let medicineTypes = [];
 
-    // Initialize page
     document.addEventListener('DOMContentLoaded', function() {
         loadUser();
         updateButtonStates();
