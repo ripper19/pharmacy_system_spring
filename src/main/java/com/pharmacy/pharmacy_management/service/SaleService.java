@@ -10,10 +10,10 @@ import com.pharmacy.pharmacy_management.model.Staff;
 import com.pharmacy.pharmacy_management.repository.MedicineRepository;
 import com.pharmacy.pharmacy_management.repository.SaleItemRepository;
 import com.pharmacy.pharmacy_management.repository.SaleRepository;
+import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,19 +26,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class SaleService {
-    @Autowired
-    private SaleRepository saleRepo;
-    @Autowired
-    private SaleSanitizerService sanitizerService;
-    @Autowired
-    private StaffService staffService;
-    @Autowired
-    private MedicineRepository medicineRepository;
-    @Autowired
-    private SaleItemRepository saleItemRepository;
-    @Autowired
-    private Clock clock;
+
+    private final SaleRepository saleRepo;
+
+    private final SaleSanitizerService sanitizerService;
+
+    private final StaffService staffService;
+
+    private final MedicineRepository medicineRepository;
+
+    private final SaleItemRepository saleItemRepository;
+
+    private final Clock clock;
 
 
     private final Logger logger = LoggerFactory.getLogger(SaleService.class);

@@ -9,8 +9,10 @@ async function loadUser(){
             credentials: 'include',
             method: 'POST'
         }).catch(()=> {});
-        window.location.href = 'index.html';
-        
+
+        setTimeout(()=> {
+            window.location.href = 'index.html';
+        }, 1000);
         return;
     }
     await checkRole();
@@ -36,7 +38,7 @@ async function checkRole() {
         return;
     }
     const {name, email:bemail, role}= await res.json();
-    if(role !== 'SUPERADMIN' || 'ADMIN'){
+    if(role !== 'SUPERADMIN' && role !== 'ADMIN'){
         showMessage("Insufficient priviledges", "error");
         setTimeout(()=> {
             window.location.href = 'sales.html';
@@ -120,8 +122,9 @@ let medicineTypes = [];
             return;
         }
         const newMedicine = {sku, medicineName,quantity,type,description,cost};
-        const lowStockThreshold = parseInt(document.getElementById('lowStockThreshold').value);
-        if(threshold) newMedicine.lowStockThreshold = lowStockThreshold;
+        const threshold = parseInt(document.getElementById('lowStockThreshold').value);
+
+        if(!isNaN(threshold)) newMedicine.lowStockThreshold = threshold;
 
         try{
             const res = await fetch("https://pharmacy-system-spring-utt5.onrender.com/medicine/create", {
@@ -221,6 +224,7 @@ let medicineTypes = [];
             const res = await fetch("https://pharmacy-system-spring-utt5.onrender.com/medicine/checkMedicine",{
                 credentials:'include',
                 headers: {'Content-Type':'application/json'},
+                method: POST,
                 body:JSON.stringify({name})
             });
             //medicine returned from checking one. I thik I have a lot of variables named medicine.
@@ -283,6 +287,7 @@ let medicineTypes = [];
             const res = await fetch("https://pharmacy-system-spring-utt5.onrender.com/medicine/checkStocktype", {
                 credentials: 'include',
                 headers: {'Content-Type': 'application/json'},
+                method:POST,
                 body: JSON.stringify(type)
             });
             const meds = await res.json();
@@ -479,8 +484,8 @@ let medicineTypes = [];
             showMessage("Failed to fetch Types", "error");
         }
         const medicineTypesResult = await res.json();
+        medicineTypes.length=0;
         medicineTypesResult.forEach(type => {
-            medicineTypes.length=0;
             medicineTypes.push(type);
             const typeDiv = document.createElement('div');
             typeDiv.className = 'type-item';
@@ -524,7 +529,7 @@ let medicineTypes = [];
     }
 
     async function deleteMedicineType(type) {
-        const res = await fetch(`http:://localhost:8080/Medcine_Type/check/${type}`,{
+        const res = await fetch(`https://pharmacy-system-spring-utt5.onrender.com/Medcine_Type/check/${type}`,{
             credentials: 'include'
         });
         if(!res.ok) {
@@ -536,7 +541,7 @@ let medicineTypes = [];
             alert(`This Medicine Type has ${all.count} medicines allocated to it. Please reallocated and try again`);
             return;
         }
-        while(all.count==0){
+        if(all.count==0){
         if (confirm(`Delete medicine type "${type}"?`)) {
             const delres = await fetch("https://pharmacy-system-spring-utt5.onrender.com/Medicine_Type/delete_Type/",{
                 credentials:'include'

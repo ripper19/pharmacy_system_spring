@@ -14,7 +14,6 @@ import com.pharmacy.pharmacy_management.utilities.TransactionRetryUtility;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,19 +27,19 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class MedicineService {
-    @Autowired
-    private MedicineRepository medicineRepo;
 
-    private MedicineSanitiseService medicineSanitiseService;
-    @Autowired
-    private MedicineTypeRepository medicineTypeRepository;
+    private final MedicineRepository medicineRepo;
 
-    private TransactionRetryUtility transactionRetryUtility;
+    private final MedicineSanitiseService medicineSanitiseService;
 
-    private StaffService staffService;
+    private final MedicineTypeRepository medicineTypeRepository;
+
+    private final TransactionRetryUtility transactionRetryUtility;
+
+    private final StaffService staffService;
     private final Logger logger = LoggerFactory.getLogger(MedicineService.class);
 
-    public Optional<Medicine> getMedicineBy(String medicineName) {
+    public Optional<Medicine> getMedicineByName(String medicineName) {
         return medicineRepo.findByMedicineName(medicineName);
     }
 
@@ -61,7 +60,7 @@ public class MedicineService {
         MedicineAddDto cleanedDto = medicineSanitiseService.sanitize(addDto);
         return transactionRetryUtility.executeWithRetry(() -> {
             try {
-                Staff current = staffService.currentUSer();;
+                Staff current = staffService.currentUSer();
                 MedicineType type = medicineTypeRepository.findByIgnoreCaseName(cleanedDto.getMedicineType())
                         .orElseThrow(() -> new InvalidResourceRequest("Cant find this type in Medicine types. Add the type"));
 
@@ -146,7 +145,7 @@ public class MedicineService {
                     throw new InvalidResourceRequest("Units dont match");
                 }
                 medicineRepo.delete(toDelete);
-                logger.info("Medicine deleted: {} by user {} with {} priviledges", cleaned.getName(), current.getName(), current.getRole());
+                logger.info("Medicine deleted: {} by user {} with {} privileges", cleaned.getName(), current.getName(), current.getRole());
                 return "Medicine deleted" + cleaned.getName();
             } catch (Exception e) {
                 logger.error("Failed to delete medicine {} initiated by user {}",deleteDto.getName(),staffService.currentUSer().getName());
