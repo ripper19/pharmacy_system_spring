@@ -3,44 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sales Management - PharmaCare</title>
+    <title>Sales Management - Pharmacy Dashboard</title>
+    <link rel="stylesheet" href="css/dash.css">
     <link rel="stylesheet" href="css/sales.css">
 </head>
 <body>
 
-<!-- Horizontal Navbar -->
+<!-- Top Navbar -->
 <div class="top-navbar">
-    <div class="logo">PharmaCare</div>
+    <div class="logo">PHARMACARE</div>
+    <div class="search-bar">
+        <input type="text" placeholder="Search medicines, sales...">
+    </div>
     <div class="nav-actions">
-        <button onclick="window.location.href='dashboard.html'">Dashboard</button>
+        <button onclick="showNotifications()">🔔 Notifications</button>
         <button onclick="logout()">Logout</button>
     </div>
 </div>
 
-<!-- Vertical Sidebar -->
+<!-- Sidebar -->
 <div class="sidebar">
     <div class="user-profile">
         <div class="user-avatar" id="userAvatar">JD</div>
-        <div class="user-name" id="userName">John Doe</div>
+        <div class="user-name" id="userName"></div>
         <div class="user-role" id="userRole">Cashier</div>
     </div>
 
     <div class="menu">
         <a href="dash.html" class="menu-item">
-            <span>📊</span>
+            <span class="menu-icon">📊</span>
             <span>Dashboard</span>
         </a>
         <a href="sales.html" class="menu-item active">
-            <span>💰</span>
+            <span class="menu-icon">💰</span>
             <span>Sales</span>
         </a>
         <a href="inventory.html" class="menu-item">
-            <span>📦</span>
+            <span class="menu-icon">📦</span>
             <span>Inventory</span>
         </a>
-        <a href="medicines.html" class="menu-item">
-            <span>💊</span>
+        <a href="#" class="menu-item">
+            <span class="menu-icon">💊</span>
             <span>Medicines</span>
+        </a>
+        <a href="#" class="menu-item">
+            <span class="menu-icon">📈</span>
+            <span>Reports</span>
+        </a>
+        <a href="staff.html" class="menu-item">
+            <span class="menu-icon">👥</span>
+            <span>Staff</span>
+        </a>
+        <a href="#" class="menu-item">
+            <span class="menu-icon">⚙️</span>
+            <span>Settings</span>
         </a>
     </div>
 </div>
@@ -131,8 +147,8 @@
                 </div>
 
                 <div class="form-group full-width">
-                    <div style="background: #f8f9fa; padding: 15px; border-radius: 5px;">
-                        <h3 style="margin-bottom: 10px; color: #2c3e50;">Total Amount: <span id="totalAmount">KSh 0.00</span></h3>
+                    <div class="total-amount-box">
+                        <h3>Total Amount: <span id="totalAmount">KSh 0.00</span></h3>
                     </div>
                 </div>
             </div>
@@ -188,5 +204,7 @@
             </tbody>
         </table>
     </div>
-    <script src="js/sales.js"></script>
 </div>
+<script src="js/sales.js"></script>
+</body>
+</html>

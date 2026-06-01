@@ -1,22 +1,45 @@
-function loadUserData() {
+async function loadUser(){
         const user = localStorage.getItem('user');
-        if (!user) {
-            window.location.href = 'index.html';
-        }
-        fetch('https://pharmacy-system-spring-utt5.onrender.com/auth/me', {credentials: 'include'})
-        .then(res => {
-            if (res.status===401) {
-                localStorage.clear();
-                window.location.href='index.html';
-                return;
-                }
-            if (!res.ok){
-                throw new Error("Failed auth");
-            }
-            })
-        .catch(() => {
+        if(!user){
             localStorage.clear();
+            sessionStorage.clear();
+
+            fetch("https://pharmacy-system-spring-utt5.onrender.com/logout", {
+                credentials: 'include',
+                method: 'POST'
+            }).catch(()=> {});
+
+            setTimeout(()=> {
+                window.location.href = 'index.html';
+            }, 1000);
+            return;
+        }
+        await checkRole();
+    }
+    async function checkRole() {
+        try{
+        const res = await fetch("https://pharmacy-system-spring-utt5.onrender.com/auth/me", {
+            credentials: 'include'
         });
+        if(res.status === 401){
+            window.location.href = 'index.html';
+            return;
+        }
+        if(!res.ok){
+            localStorage.clear();
+            sessionStorage.clear();
+
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 1000);
+            return;
+        }
+        const {name, email:bemail, role}= await res.json();
+        localStorage.removeItem('user');
+        localStorage.setItem('user', JSON.stringify({name,bemail, role}));
+    }catch(e){
+        console.log("Failure", e);
+    }
     }
 
     async function loadDashboardStats() {
@@ -90,33 +113,6 @@ function loadUserData() {
         }
     }
 
-    // Initialize sales chart
-    function initSalesChart() {
-        const ctx = document.getElementById('salesChart').getContext('2d');
-        new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-                datasets: [{
-                    label: 'Sales (KSh)',
-                    data: [12000, 1900, 1500, 2500, 2200, 3000, 2800],
-                    borderColor: '#3498db',
-                    backgroundColor: 'rgba(52, 152, 219, 0.1)',
-                    tension: 0.4
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        display: false
-                    }
-                }
-            }
-        });
-    }
-
     // Navigation
     function loadPage(page) {
         const menuItems = document.querySelectorAll('.menu-item');
@@ -141,9 +137,17 @@ function loadUserData() {
     }
 
     // Initialize dashboard
-    window.onload = function() {
-        loadUserData();
+    document.addEventListener('DOMContentLoaded', async function() {
+        await loadUser();
+        const currentUser = JSON.parse(localStorage.getItem('user'));
+        document.getElementById('userName').textContent = currentUser?.name;
+        document.getElementById('userRole').textContent = currentUser?.role;
+        const initials = currentUser?.name
+        .split(" ")
+        .map(word=>word[0].toUpperCase())
+        .join("");
+        document.getElementById('userAvatar').textContent=initials;
+
         loadDashboardStats();
         loadRecentSales();
-        initSalesChart();
-    };
+    });

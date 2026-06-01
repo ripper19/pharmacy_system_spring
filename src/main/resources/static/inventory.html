@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pharmacy Dashboard - Medicines Inventory Management</title>
+    <title>Inventory Management - Pharmacy Dashboard</title>
     <link rel="stylesheet" href="css/dash.css">
     <link rel="stylesheet" href="css/inventory.css">
 </head>
 <body>
 
-<!-- Horizontal Navbar -->
+<!-- Top Navbar -->
 <div class="top-navbar">
-    <div class="logo" style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode';">PHARMACARE</div>
+    <div class="logo">PHARMACARE</div>
     <div class="search-bar">
-        <input type="text" placeholder="Search medicines, sales">
+        <input type="text" placeholder="Search medicines, sales...">
     </div>
     <div class="nav-actions">
         <button onclick="showNotifications()">🔔 Notifications</button>
@@ -21,11 +21,11 @@
     </div>
 </div>
 
-<!-- Vertical Sidebar -->
+<!-- Sidebar -->
 <div class="sidebar">
     <div class="user-profile">
         <div class="user-avatar" id="userAvatar">JD</div>
-        <div class="user-name" id="userName">John Doe</div>
+        <div class="user-name" id="userName"></div>
         <div class="user-role" id="userRole">Pharmacist</div>
     </div>
 
@@ -42,11 +42,11 @@
             <span class="menu-icon">📦</span>
             <span>Inventory</span>
         </a>
-        <a href="medicine.html" class="menu-item">
+        <a href="#" class="menu-item">
             <span class="menu-icon">💊</span>
             <span>Medicines</span>
         </a>
-        <a href="reports.html" class="menu-item">
+        <a href="#" class="menu-item">
             <span class="menu-icon">📈</span>
             <span>Reports</span>
         </a>
@@ -54,7 +54,7 @@
             <span class="menu-icon">👥</span>
             <span>Staff</span>
         </a>
-        <a href="settings.html" class="menu-item">
+        <a href="#" class="menu-item">
             <span class="menu-icon">⚙️</span>
             <span>Settings</span>
         </a>
@@ -224,7 +224,6 @@
                         </div>
                     </div>
                     <div id="stockResult" class="stock-result hidden">
-                        <!-- Stock result will be displayed here -->
                     </div>
                 </div>
             </div>
@@ -238,12 +237,12 @@
                             <label for="checkMedicineType">Medicine Type *</label>
                             <select id="checkMedicineType">
                                 <option value="">Select Type</option>
-                                <option value="">Analgesic</option>
-                                <option value="">Antibiotic</option>
-                                <option value="">Antiviral</option>
-                                <option value="">Antifungal</option>
-                                <option value="">Antihistamine</option>
-                                <option value="">Supplement</option>
+                                <option value="analgesic">Analgesic</option>
+                                <option value="antibiotic">Antibiotic</option>
+                                <option value="antiviral">Antiviral</option>
+                                <option value="antifungal">Antifungal</option>
+                                <option value="antihistamine">Antihistamine</option>
+                                <option value="supplement">Supplement</option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -251,7 +250,6 @@
                         </div>
                     </div>
                     <div id="stockByTypeResult" class="hidden">
-                        <!-- Stock by type result will be displayed here -->
                     </div>
                 </div>
             </div>
@@ -274,7 +272,6 @@
                         </tr>
                         </thead>
                         <tbody id="medicinesTableBody">
-                        <!-- Medicine data will be loaded here -->
                         </tbody>
                     </table>
                 </div>
@@ -295,8 +292,7 @@
             <div class="form-group">
                 <label for="newTypeName">Medicine Type Name</label>
                 <input type="text" id="newTypeName" placeholder="Enter new medicine type">
-
-                <label for="newTypeDescription">Medicine Type Desription</label>
+                <label for="newTypeDescription">Medicine Type Description</label>
                 <input type="text" id="newTypeDescription" placeholder="Short description of uses">
             </div>
             <div class="form-group">
@@ -305,7 +301,6 @@
         </div>
 
         <div class="medicine-types-list" id="medicineTypesList">
-            <!-- Types will be loaded here -->
         </div>
     </div>
 </div>

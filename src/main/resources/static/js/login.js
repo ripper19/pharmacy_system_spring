@@ -14,14 +14,21 @@ document.getElementById("loginform").addEventListener("submit", async (e) => {
             credentials: 'include',
             body: JSON.stringify({email,password})
         });
-        if(!res.ok) throw new Error("Login Failed");
+        if(!res.ok){
+            const err = await res.json().catch(()=> ({}));
+            throw new Error(err.message || "Login Failed");
+        }
 
         const {name, email: bemail, role}= await res.json();
         localStorage.setItem('user', JSON.stringify({name,bemail,role }));
 
         window.location.replace("dash.html")
     }catch(e){
-        alert("Invalid credentials.");
+        if (e.message === "Failed to fetch" || e instanceof TypeError) {
+            alert("Network error - check your connection or CORS settings.");
+        } else {
+            alert(e.message || "Invalid credentials.");
+        }
     }
 }
 );

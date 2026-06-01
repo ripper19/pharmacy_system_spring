@@ -24,12 +24,12 @@
 <div class="sidebar">
     <div class="user-profile">
         <div class="user-avatar" id="userAvatar">JD</div>
-        <div class="user-name" id="userName"><script>localStorage.getItem("name");</script></div>
-        <div class="user-role" id="userRole"><script>localStorage.getItem("role");</script></div>
+        <div class="user-name" id="userName"></div>
+        <div class="user-role" id="userRole"></div>
     </div>
 
     <div class="menu">
-        <a href="#" class="menu-item active" onclick="loadPage('dash.html')">
+        <a href="dash.html" class="menu-item active" onclick="loadPage('dash.html')">
             <span class="menu-icon">📊</span>
             <span>Dashboard</span>
         </a>
@@ -106,14 +106,6 @@
         </div>
     </div>
 
-    <!-- Sales Chart -->
-    <div class="chart-container">
-        <div class="chart-header">
-            <h2>Sales Overview</h2>
-        </div>
-        <canvas id="salesChart" width="400" height="100"></canvas>
-    </div>
-
     <!-- Recent Sales Table -->
     <div class="recent-sales">
         <h2>Recent Sales</h2>
@@ -135,8 +127,6 @@
         </table>
     </div>
 </div>
-
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="js/dash.js"></script>
 </body>
 </html>
