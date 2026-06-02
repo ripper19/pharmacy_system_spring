@@ -19,7 +19,7 @@ public interface MedicineRepository extends JpaRepository<Medicine, String> {
     Optional<Medicine> findBySku(String sku);
 
     @Query("""
-            SELECT new MedicineService.MedicineView(
+            SELECT new com.pharmacy.pharmacy_management.MedicineService.MedicineView(
                        m.medicineName,
                        m.quantity,
                        m.status,
