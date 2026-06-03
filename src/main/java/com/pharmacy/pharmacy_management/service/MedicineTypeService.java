@@ -76,15 +76,13 @@ public class MedicineTypeService {
 
     @Cacheable(value = "MedicineType", key = "'all'")
     @Transactional
-    public List<Typenames> getAllMedTypes(){
+    public List<String> getAllMedTypes(){
         List<MedicineType> all = medTypeRepo.findAll();
 
         return all.stream()
-                .map(type -> new Typenames(
-                        type.getName()
-                )).toList();
+                .map(MedicineType::getName)
+                .toList();
     }
-    public record Typenames(String name){}
 
     @Transactional
     public Long getNumberMedicineInType(String type){

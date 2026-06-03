@@ -487,7 +487,7 @@ let medicineTypes = [];
         const typesList = document.getElementById('medicineTypesList');
         typesList.innerHTML = '';
 
-        const res = await fetch("https://pharmacy-system-spring-utt5.onrender.com/Medicine_type/getAll", {
+        const res = await fetch("https://pharmacy-system-spring-utt5.onrender.com/Medicine_Type/getAll", {
             credentials: 'include',
         });
         if(!res.ok){
@@ -495,20 +495,21 @@ let medicineTypes = [];
         }
         const medicineTypesResult = await res.json();
         medicineTypes.length=0;
-        medicineTypesResult.forEach(type => {
-            medicineTypes.push(type);
+        medicineTypesResult.forEach(t => {
+            medicineTypes.push(t.name);
             const typeDiv = document.createElement('div');
             typeDiv.className = 'type-item';
+            const displayName = t.name.charAt(0).toUpperCase() + t.name.slice(1).toLowerCase();
             typeDiv.innerHTML = `
                 <div>
-                    <strong style="text-transform: capitalize;">${type}</strong>
+                    <strong>${displayName}</strong>
                     <div style="font-size: 12px; color: #666;">
-                        ${medicinesData.filter(m => m.type === type).length} medicines
+                        ${medicinesData.filter(m => m.type === t.name).length} medicines
                     </div>
                 </div>
                 <div class="type-actions">
-                    ${type !== 'other' ? `
-                        <button class="small-btn danger-btn" onclick="deleteMedicineType('${type}')">Delete</button>
+                    ${t.name !== 'OTHER' ? `
+                        <button class="small-btn danger-btn" onclick="deleteMedicineType('${t.name}')">Delete</button>
                     ` : ''}
                 </div>
             `;
@@ -527,7 +528,7 @@ let medicineTypes = [];
             credentials: 'include',
             headers: {'Content-Type': 'application/json'},
             method: 'POST',
-            body: JSON.stringify({name,Description})
+            body: JSON.stringify({name, description: Description})
         });
         if(!res.ok){
             showMessage("Failed to add medicine", "error");
@@ -539,30 +540,30 @@ let medicineTypes = [];
     }
 
     async function deleteMedicineType(type) {
-        const res = await fetch(`https://pharmacy-system-spring-utt5.onrender.com/Medcine_Type/check/${type}`,{
+        const res = await fetch(`https://pharmacy-system-spring-utt5.onrender.com/Medicine_Type/check/${type}`,{
             credentials: 'include'
         });
         if(!res.ok) {
             showMessage("Failed to get this Medicine type", "error");
             return;
         }
-        const all = res.json();
-        if(all.count > 0){
-            alert(`This Medicine Type has ${all.count} medicines allocated to it. Please reallocated and try again`);
+        const count = await res.json();
+        if(count > 0){
+            alert(`This Medicine Type has ${count} medicines allocated to it. Please reallocate and try again`);
             return;
         }
-        if(all.count==0){
         if (confirm(`Delete medicine type "${type}"?`)) {
-            const delres = await fetch("https://pharmacy-system-spring-utt5.onrender.com/Medicine_Type/delete_Type/",{
-                credentials:'include'
+            const delres = await fetch(`https://pharmacy-system-spring-utt5.onrender.com/Medicine_Type/delete_Type/${type}`,{
+                credentials:'include',
+                method: 'DELETE'
             });
             if(!delres.ok){
                 showMessage("Failed to delete", "error");
+                return;
             }
             renderMedicineTypes();
             showMessage(`Medicine type "${type}" deleted!`, 'success');
         }
-    }
     }
 
     //REFACTOR THIS!!!

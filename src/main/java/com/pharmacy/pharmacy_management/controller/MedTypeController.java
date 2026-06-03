@@ -30,7 +30,7 @@ public class MedTypeController {
         return ResponseEntity.ok().body(deleted);
     }
     @GetMapping("/getAll")
-    public ResponseEntity<List<MedicineTypeService.Typenames>> getAllMedicineTypes(){
+    public ResponseEntity<List<String>> getAllMedicineTypes(){
         return ResponseEntity.ok().body(medicineTypeService.getAllMedTypes());
     }
 
