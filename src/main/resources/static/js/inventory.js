@@ -1,7 +1,6 @@
 async function loadUser(){
     const user = localStorage.getItem('user');
     if(!user){
-        showMessage("Not logged in", "error");
         localStorage.clear();
         sessionStorage.clear();
 
@@ -17,41 +16,52 @@ async function loadUser(){
     }
     await checkRole();
 }
+
 async function checkRole() {
     try{
-    const res = await fetch("https://pharmacy-system-spring-utt5.onrender.com/auth/me", {
-        credentials: 'include'
-    });
-    if(res.status === 401){
-        showMessage("Not authorised to perform this action");
-        window.location.href = 'sales.html';
-        return;
-    }
-    if(!res.ok){
-        showMessage("Invalidated session token.Redirecting to login", "error");
-        localStorage.clear();
-        sessionStorage.clear();
-
-        setTimeout(() => {
+        const res = await fetch("https://pharmacy-system-spring-utt5.onrender.com/auth/me", {
+            credentials: 'include'
+        });
+        if(res.status === 401){
             window.location.href = 'index.html';
-        }, 1000);
-        return;
+            return;
+        }
+        if(!res.ok){
+            showMessage("Invalidated session token. Redirecting to login", "error");
+            localStorage.clear();
+            sessionStorage.clear();
+
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 1000);
+            return;
+        }
+        const {name, email:bemail, role} = await res.json();
+        localStorage.removeItem('user');
+        localStorage.setItem('user', JSON.stringify({name, bemail, role}));
+        
+        // Initialize user info
+        document.getElementById('userName').textContent = name;
+        document.getElementById('userRole').textContent = role;
+        const initials = name
+            .split(" ")
+            .map(word => word[0].toUpperCase())
+            .join("");
+        document.getElementById('userAvatar').textContent = initials;
+        
+        if(role !== 'SUPERADMIN' && role !== 'ADMIN'){
+            showMessage("Insufficient privileges", "error");
+            setTimeout(()=> {
+                window.location.href = 'sales.html';
+            }, 1000);
+            return;
+        }
+    }catch(e){
+        console.log("Failure", e);
+        showMessage("Failed", "error");
     }
-    const {name, email:bemail, role}= await res.json();
-    if(role !== 'SUPERADMIN' && role !== 'ADMIN'){
-        showMessage("Insufficient priviledges", "error");
-        setTimeout(()=> {
-            window.location.href = 'sales.html';
-        }, 1000);
-        return;
-    }
-    localStorage.removeItem('user');
-    localStorage.setItem('user', JSON.stringify({name,bemail, role}));
-}catch(e){
-    console.log("Failure", e);
-    showMessage("Failed", "error");
 }
-}
+
 let currentMode = 'add';
 let medicineTypes = [];
 
@@ -612,6 +622,11 @@ let medicineTypes = [];
     }
 
     // Navigation functions
+    function toggleSidebar() {
+        document.querySelector('.sidebar').classList.toggle('active');
+        document.querySelector('.sidebar-overlay').classList.toggle('active');
+    }
+
     function showNotifications() {
         alert('Notifications would appear here');
     }

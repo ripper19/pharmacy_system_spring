@@ -123,6 +123,11 @@ async function loadUser(){
         console.log('Loading page:', page);
     }
 
+    function toggleSidebar() {
+        document.querySelector('.sidebar').classList.toggle('active');
+        document.querySelector('.sidebar-overlay').classList.toggle('active');
+    }
+
     function showNotifications() {
         alert('Notifications feature coming soon!');
     }

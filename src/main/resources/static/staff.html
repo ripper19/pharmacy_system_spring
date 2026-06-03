@@ -11,6 +11,7 @@
 
 <!-- Top Navbar -->
 <div class="top-navbar">
+    <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
     <div class="logo">PHARMACARE</div>
     <div class="search-bar">
         <input type="text" placeholder="Search medicines, sales...">
@@ -24,9 +25,9 @@
 <!-- Sidebar -->
 <div class="sidebar">
     <div class="user-profile">
-        <div class="user-avatar" id="userAvatar">JD</div>
+        <div class="user-avatar" id="userAvatar"></div>
         <div class="user-name" id="userName"></div>
-        <div class="user-role" id="userRole">Administrator</div>
+        <div class="user-role" id="userRole"></div>
     </div>
 
     <div class="menu">
@@ -42,7 +43,7 @@
             <span class="menu-icon">📦</span>
             <span>Inventory</span>
         </a>
-        <a href="#" class="menu-item">
+        <a href="inventory.html" class="menu-item">
             <span class="menu-icon">💊</span>
             <span>Medicines</span>
         </a>
@@ -208,6 +209,7 @@
         </div>
     </div>
 </div>
+<div class="sidebar-overlay" onclick="toggleSidebar()"></div>
 <script src="js/staff.js"></script>
 </body>
 </html>

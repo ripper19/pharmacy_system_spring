@@ -10,6 +10,7 @@
 
 <!-- Horizontal Navbar -->
 <div class="top-navbar">
+    <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
     <div class="logo" style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode';">PHARMACARE</div>
     <div class="search-bar">
         <input type="text" placeholder="Search medicines, sales">
@@ -41,7 +42,7 @@
             <span class="menu-icon">📦</span>
             <span>Inventory</span>
         </a>
-        <a href="#" class="menu-item" onclick="loadPage('medicines')">
+        <a href="inventory.html" class="menu-item">
             <span class="menu-icon">💊</span>
             <span>Medicines</span>
         </a>
@@ -127,6 +128,7 @@
         </table>
     </div>
 </div>
+<div class="sidebar-overlay" onclick="toggleSidebar()"></div>
 <script src="js/dash.js"></script>
 </body>
 </html>

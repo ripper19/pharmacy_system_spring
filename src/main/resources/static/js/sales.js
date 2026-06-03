@@ -1,6 +1,60 @@
     // Initialize
     let currentFilter = 'today';
 
+    async function loadUserData() {
+        const user = localStorage.getItem('user');
+        if(!user){
+            localStorage.clear();
+            sessionStorage.clear();
+
+            fetch("https://pharmacy-system-spring-utt5.onrender.com/logout", {
+                credentials: 'include',
+                method: 'POST'
+            }).catch(()=> {});
+
+            setTimeout(()=> {
+                window.location.href = 'index.html';
+            }, 1000);
+            return;
+        }
+        await checkRole();
+    }
+    
+    async function checkRole() {
+        try{
+            const res = await fetch("https://pharmacy-system-spring-utt5.onrender.com/auth/me", {
+                credentials: 'include'
+            });
+            if(res.status === 401){
+                window.location.href = 'index.html';
+                return;
+            }
+            if(!res.ok){
+                localStorage.clear();
+                sessionStorage.clear();
+
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 1000);
+                return;
+            }
+            const {name, email:bemail, role} = await res.json();
+            localStorage.removeItem('user');
+            localStorage.setItem('user', JSON.stringify({name, bemail, role}));
+            
+            // Initialize user info
+            document.getElementById('userName').textContent = name;
+            document.getElementById('userRole').textContent = role;
+            const initials = name
+                .split(" ")
+                .map(word => word[0].toUpperCase())
+                .join("");
+            document.getElementById('userAvatar').textContent = initials;
+        }catch(e){
+            console.log("Failure", e);
+        }
+    }
+
     window.onload = function() {
         loadUserData();
         loadSales(currentFilter);
@@ -316,6 +370,11 @@
         setTimeout(() => {
             alertBox.classList.remove('show');
         }, 5000);
+    }
+
+    function toggleSidebar() {
+        document.querySelector('.sidebar').classList.toggle('active');
+        document.querySelector('.sidebar-overlay').classList.toggle('active');
     }
 
     function logout() {

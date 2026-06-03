@@ -1,3 +1,15 @@
+/* Overlay when sidebar is open on mobile */
+.sidebar-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 998;
+}
+
 /* Sales Management */
 .action-cards {
     display: grid;
@@ -338,6 +350,41 @@
 
 /* Responsive */
 @media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    .top-navbar {
+        padding: 0 16px;
+    }
+
+    .search-bar {
+        display: none;
+    }
+
+    .nav-actions button {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+
+    .sidebar {
+        transform: translateX(-260px);
+        transition: transform 0.3s ease;
+    }
+
+    .sidebar.active {
+        transform: translateX(0);
+    }
+
+    .sidebar-overlay.active {
+        display: block;
+    }
+
+    .main-content {
+        margin-left: 0;
+        padding: 16px;
+    }
+
     .form-grid {
         grid-template-columns: 1fr;
     }

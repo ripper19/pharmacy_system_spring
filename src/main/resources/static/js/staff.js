@@ -1,67 +1,76 @@
 async function loadUserData() {
         const user = localStorage.getItem('user');
         if (!user) {
-            console.log("No user")
-            window.location.href = 'index.html';
-            return;
-        }
-        await checksuper();
-    }
-async function checksuper(){
-    try{
-        const res = await fetch("https://pharmacy-system-spring-utt5.onrender.com/auth/me",{
-            credentials: 'include'
-        });
-        if(res.status===401){
             localStorage.clear();
             sessionStorage.clear();
-            window.location.href = 'index.html';
-            return false;
-        }
-        if(!res.ok){
-            showMessage('Failed Session Verification.You will be redirected to login', 'error');
-            localStorage.removeItem("user");
+
+            fetch("https://pharmacy-system-spring-utt5.onrender.com/logout", {
+                credentials: 'include',
+                method: 'POST'
+            }).catch(()=> {});
 
             setTimeout(()=> {
                 window.location.href = 'index.html';
             }, 1000);
             return;
         }
-        const user = await res.json();
-        if (user.role !== "SUPERADMIN"){
-            showMessage('Not enough priviledges', 'error');
-            window.location.href = 'dash.html';
+        await checkRole();
+    }
+    
+    async function checkRole() {
+        try{
+            const res = await fetch("https://pharmacy-system-spring-utt5.onrender.com/auth/me", {
+                credentials: 'include'
+            });
+            if(res.status === 401){
+                window.location.href = 'index.html';
+                return;
+            }
+            if(!res.ok){
+                showMessage('Failed Session Verification. You will be redirected to login', 'error');
+                localStorage.clear();
+                sessionStorage.clear();
+
+                setTimeout(()=> {
+                    window.location.href = 'index.html';
+                }, 1000);
+                return;
+            }
+            const {name, email:bemail, role} = await res.json();
+            localStorage.removeItem('user');
+            localStorage.setItem('user', JSON.stringify({name, bemail, role}));
+            
+            // Initialize user info
+            document.getElementById('userName').textContent = name;
+            document.getElementById('userRole').textContent = role;
+            const initials = name
+                .split(" ")
+                .map(word => word[0].toUpperCase())
+                .join("");
+            document.getElementById('userAvatar').textContent = initials;
+            
+            if (role !== "SUPERADMIN"){
+                showMessage('Not enough privileges', 'error');
+                window.location.href = 'dash.html';
+            }
+        }catch(e){
+            showMessage('Failed', 'error');
+            console.log(e.message);
+            localStorage.clear();
+            sessionStorage.clear();
+            window.location.href = 'index.html';
         }
-    }catch(e){
-        showMessage('Failed', 'error');
-        console.log(e.message);
-        localStorage.clear();
-        sessionStorage.clear();
-        window.location.href = 'index.html';
     }
-    }
-
-
 
 let staffLoaded = false;
 let currentFetch = null;
 let resetTimeOut= null;
-
-
 
     // Initialize page
     document.addEventListener('DOMContentLoaded', function() {
         loadUserData();
         currentMode = getMode();
         setMode(currentMode);
-        const currentUser = JSON.parse(localStorage.getItem("user"));
-        document.getElementById("userName").textContent = currentUser?.name;
-        document.getElementById("userRole").textContent = currentUser?.role;
-        const initials = currentUser?.name
-        .split(" ")
-        .map(word=>word[0].toUpperCase())
-        .join("");
-        document.getElementById("userAvatar").textContent = initials;
 
         renderStaffTable();
     });
@@ -410,6 +419,11 @@ let resetTimeOut= null;
     }
 
     // Navigation functions
+    function toggleSidebar() {
+        document.querySelector('.sidebar').classList.toggle('active');
+        document.querySelector('.sidebar-overlay').classList.toggle('active');
+    }
+
     function showNotifications() {
         alert('Notifications would appear here');
     }
