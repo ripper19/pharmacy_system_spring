@@ -523,7 +523,7 @@ let medicineTypes = [];
             alert('Please enter a type name and description');
             return;
         }
-        const res = await fetch("https://pharmacy-system-spring-utt5.onrender.com/Medicine_type/addType",{
+        const res = await fetch("https://pharmacy-system-spring-utt5.onrender.com/Medicine_Type/addType",{
             credentials: 'include',
             headers: {'Content-Type': 'application/json'},
             method: 'POST',
