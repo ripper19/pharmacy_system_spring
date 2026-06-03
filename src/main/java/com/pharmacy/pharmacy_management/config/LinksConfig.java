@@ -9,7 +9,7 @@ public class LinksConfig implements WebMvcConfigurer {
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry){
-        registry.addViewController("/").setViewName("forward:/index.htm");
+        registry.addViewController("/").setViewName("forward:/index.html");
         registry.addViewController("/staff").setViewName("forward:/staff.html");
         registry.addViewController("/inventory").setViewName("forward:/inventroy.html");
         registry.addViewController("/dashboard").setViewName("forward:/dash.html");
