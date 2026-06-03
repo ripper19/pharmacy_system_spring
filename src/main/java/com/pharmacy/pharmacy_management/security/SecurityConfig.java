@@ -42,7 +42,7 @@ public class SecurityConfig {
                 .cors(cors->cors
                         .configurationSource(corsConfigurationSource()))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/**/*.html","/css/**","/js/**","/images/**").permitAll()
+                        .requestMatchers("/","/index.html","/**/*.html","/css/**","/js/**","/images/**").permitAll()
                         .requestMatchers("/staff/create").hasAnyRole("ADMIN", "SUPERADMIN")
                         .requestMatchers(HttpMethod.PATCH, "/staff/update").authenticated()
                         .requestMatchers(HttpMethod.GET, "/staff/all").hasAnyRole("ADMIN", "SUPERADMIN")
