@@ -51,6 +51,7 @@ public class MedicineService {
         medicine.setDescription(dto.getDescription());
         medicine.setDescription(dto.getDescription());
         medicine.setLowStockThreshold(dto.getLowStockThreshold());
+        medicine.setExpiryDate(dto.getExpiryDate());
         return medicine;
     }
 

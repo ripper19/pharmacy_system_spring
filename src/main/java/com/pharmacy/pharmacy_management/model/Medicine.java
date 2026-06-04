@@ -12,6 +12,7 @@ import java.util.Date;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "medicine")
 public class Medicine {
     @Id
     @Column(unique = true)
@@ -37,9 +38,8 @@ public class Medicine {
 
     private Integer lowStockThreshold;
 
-    @Getter
-    @Setter
     @Column(name = "expirydate")
+    @Getter @Setter
     private Date expiryDate;
 
     @Version

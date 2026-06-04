@@ -9,6 +9,8 @@ import org.springframework.web.util.HtmlUtils;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.time.LocalDate;
+import java.util.Date;
 
 @Service
 @Transactional(readOnly = true)
@@ -24,6 +26,9 @@ public class MedicineSanitiseService {
         }
         if(addDto.getQuantity() == 0){
             throw new ValidationException("Quantity cannot be 0");
+        }
+        if(addDto.getExpiryDate() == null){
+            throw new ValidationException("Empty expiration date");
         }
     }
     private String sanitizeSku(String sku){
@@ -55,6 +60,7 @@ public class MedicineSanitiseService {
         addDto.setMedicineName(sanitizeName(addDto.getMedicineName()));
         addDto.setSku(sanitizeSku(addDto.getSku()));
         addDto.setDescription(sanitizeDescriptor(addDto.getDescription()));
+        addDto.setExpiryDate(addDto.getExpiryDate());
         BigDecimal price = addDto.getCost();
         if (price != null){
             price = price.setScale(2, RoundingMode.HALF_UP);
