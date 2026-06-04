@@ -4,6 +4,7 @@ import com.pharmacy.pharmacy_management.model.MedicineType;
 import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
 public class MedicineAddDto {
 
@@ -26,6 +27,9 @@ public class MedicineAddDto {
     private String description;
 
     private Integer lowStockThreshold;
+
+    @NotNull
+    private Date expiryDate;
 
 
     public String getSku() {
@@ -82,5 +86,13 @@ public class MedicineAddDto {
 
     public void setCost(BigDecimal cost) {
         this.cost = cost;
+    }
+
+    public Date getExpiryDate() {
+        return expiryDate;
+    }
+
+    public void setExpiryDate(Date expiryDate) {
+        this.expiryDate = expiryDate;
     }
 }

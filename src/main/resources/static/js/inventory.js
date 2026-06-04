@@ -68,6 +68,7 @@ let medicineTypes = [];
     document.addEventListener('DOMContentLoaded', function() {
         loadUser();
         updateButtonStates();
+        renderMedicineTypes();
     });
 
     // Set mode and update UI
@@ -492,29 +493,53 @@ let medicineTypes = [];
         });
         if(!res.ok){
             showMessage("Failed to fetch Types", "error");
+            return;
         }
         const medicineTypesResult = await res.json();
         medicineTypes.length=0;
         medicineTypesResult.forEach(t => {
-            medicineTypes.push(t.name);
+            const typeName = typeof t === 'string' ? t : t.name;
+            if (!typeName) return;
+            medicineTypes.push(typeName);
             const typeDiv = document.createElement('div');
             typeDiv.className = 'type-item';
-            const displayName = t.name.charAt(0).toUpperCase() + t.name.slice(1).toLowerCase();
+            const displayName = typeName.charAt(0).toUpperCase() + typeName.slice(1).toLowerCase();
             typeDiv.innerHTML = `
                 <div>
                     <strong>${displayName}</strong>
                     <div style="font-size: 12px; color: #666;">
-                        ${medicinesData.filter(m => m.type === t.name).length} medicines
+                        &nbsp;
                     </div>
                 </div>
                 <div class="type-actions">
-                    ${t.name !== 'OTHER' ? `
-                        <button class="small-btn danger-btn" onclick="deleteMedicineType('${t.name}')">Delete</button>
+                    ${typeName !== 'OTHER' ? `
+                        <button class="small-btn danger-btn" onclick="deleteMedicineType('${typeName}')">Delete</button>
                     ` : ''}
                 </div>
             `;
             typesList.appendChild(typeDiv);
         });
+        updateTypeSelectOptions();
+    }
+
+    function flashTypeInputs(type) {
+        const inputs = [document.getElementById('newTypeName'), document.getElementById('newTypeDescription')];
+        const cls = type === 'success' ? 'input-success' : 'input-error';
+        inputs.forEach(el => el.classList.add(cls));
+        setTimeout(() => inputs.forEach(el => el.classList.remove(cls)), 3000);
+    }
+
+    function clearTypeForm() {
+        document.getElementById('newTypeName').value = '';
+        document.getElementById('newTypeDescription').value = '';
+    }
+
+    function showTypeModalMessage(message, type) {
+        const el = document.getElementById('typeModalMessage');
+        el.className = `message ${type}`;
+        el.textContent = message;
+        el.style.display = 'block';
+        setTimeout(() => el.style.display = 'none', 5000);
     }
 
     async function addMedicineType() {
@@ -531,11 +556,15 @@ let medicineTypes = [];
             body: JSON.stringify({name, description: Description})
         });
         if(!res.ok){
-            showMessage("Failed to add medicine", "error");
+            const err = await res.json();
+            showTypeModalMessage(err.message || "Failed to add type", "error");
+            flashTypeInputs('error');
             return;
         }
-        const getBack = await res.json();
-        showMessage(`${getBack}`, 'success');
+        const getBack = await res.text();
+        showTypeModalMessage(getBack, 'success');
+        flashTypeInputs('success');
+        clearTypeForm();
         renderMedicineTypes();
     }
 
@@ -566,9 +595,7 @@ let medicineTypes = [];
         }
     }
 
-    //REFACTOR THIS!!!
     function updateTypeSelectOptions() {
-        // Update all select elements with medicine types
         const selects = ['medicineType', 'updateType', 'checkMedicineType'];
         selects.forEach(selectId => {
             const select = document.getElementById(selectId);
@@ -576,7 +603,7 @@ let medicineTypes = [];
                 const currentValue = select.value;
                 select.innerHTML = '<option value="">Select Type</option>' +
                     medicineTypes.map(type =>
-                        `<option value="${type}">${type.charAt(0).toUpperCase() + type.slice(1)}</option>`
+                        `<option value="${type}">${type.charAt(0).toUpperCase() + type.slice(1).toLowerCase()}</option>`
                     ).join('');
                 select.value = currentValue;
             }

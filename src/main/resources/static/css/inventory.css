@@ -10,12 +10,6 @@
     z-index: 998;
 }
 
-/* Constrain topbar to content area (after sidebar) */
-.top-navbar {
-    margin-left: 260px;
-    width: calc(100% - 260px);
-}
-
 /* Ensure form inputs fill their grid cells */
 .form-group input,
 .form-group select,
@@ -448,6 +442,16 @@
 .danger-btn {
     background: rgba(239, 68, 68, 0.12);
     color: #991B1B;
+}
+
+.input-success {
+    border-color: #22c55e !important;
+    box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.15) !important;
+}
+
+.input-error {
+    border-color: #ef4444 !important;
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15) !important;
 }
 
 /* Responsive */

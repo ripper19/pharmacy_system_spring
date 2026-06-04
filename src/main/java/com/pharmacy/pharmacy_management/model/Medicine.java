@@ -1,13 +1,12 @@
 package com.pharmacy.pharmacy_management.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 @Builder
@@ -24,8 +23,10 @@ public class Medicine {
     @JoinColumn(name = "med_type_id")
     private MedicineType medType;
 
+    @Setter
     private int quantity;
 
+    @Setter
     private BigDecimal cost;
 
     private String description;
@@ -36,9 +37,10 @@ public class Medicine {
 
     private Integer lowStockThreshold;
 
-    @CreationTimestamp
-    @Column(nullable = false, updatable = false, columnDefinition = "TIMESTAMP(0)")
-    private LocalDateTime dateAdded;
+    @Getter
+    @Setter
+    @Column(name = "expirydate")
+    private Date expiryDate;
 
     @Version
     private Long version;
@@ -85,16 +87,8 @@ public class Medicine {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
     public BigDecimal getCost() {
         return cost;
-    }
-
-    public void setCost(BigDecimal cost) {
-        this.cost = cost;
     }
 
     public String getDescription() {
@@ -113,7 +107,4 @@ public class Medicine {
         this.lowStockThreshold = lowStockThreshold;
     }
 
-    public LocalDateTime getDateAdded() {
-        return dateAdded;
-    }
 }

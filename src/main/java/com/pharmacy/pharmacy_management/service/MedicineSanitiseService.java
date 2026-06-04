@@ -15,10 +15,7 @@ import java.math.RoundingMode;
 public class MedicineSanitiseService {
 
     private void ValidateRequiredFields(MedicineAddDto addDto){
-        System.out.println("name: " + addDto.getMedicineName() +
-                "type : " + addDto.getMedicineType() +
-                "sku : " + addDto.getSku() +
-                "description : " + addDto.getDescription());
+
         if(addDto.getMedicineName() == null || addDto.getMedicineName().isBlank()){
             throw new ValidationException("Empty name field ");
         }
