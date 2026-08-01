@@ -1,0 +1,208 @@
+/* Reports page — page-specific styles only (shared components live in base.css) */
+
+/* Report modules */
+.report-module {
+    margin-bottom: 24px;
+}
+
+.report-card {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 24px;
+    border: 1px solid #dce9f8;
+    box-shadow: 0 1px 3px rgba(20, 75, 145, 0.05), 0 8px 24px rgba(20, 75, 145, 0.06);
+}
+
+.report-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 18px;
+    border-bottom: 1px solid #dce9f8;
+    padding-bottom: 16px;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.report-card-header h2 {
+    font-size: 17px;
+    font-weight: 700;
+    color: #08234a;
+}
+
+.report-card-header p {
+    font-size: 13px;
+    color: #68809d;
+    margin-top: 2px;
+}
+
+/* Tables */
+.report-table-wrap {
+    overflow-x: auto;
+}
+
+.report-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.report-table th {
+    background: #eef6ff;
+    padding: 12px 16px;
+    text-align: left;
+    font-weight: 700;
+    font-size: 11px;
+    color: #68809d;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+}
+
+.report-table th:first-child {
+    border-radius: 10px 0 0 10px;
+}
+
+.report-table th:last-child {
+    border-radius: 0 10px 10px 0;
+}
+
+.report-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid #e9f2fc;
+    color: #122642;
+    font-size: 13px;
+}
+
+.report-table tr:hover td {
+    background: #f4f9ff;
+}
+
+.report-table .med-name {
+    font-weight: 600;
+    color: #08234a;
+}
+
+.type-tag {
+    display: inline-block;
+    padding: 4px 11px;
+    border-radius: 999px;
+    background: rgba(23, 105, 232, 0.1);
+    color: #125bc8;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+/* Selling range pills */
+.range-pill {
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 500;
+}
+
+.range-top {
+    background: rgba(34, 197, 94, 0.12);
+    color: #166534;
+}
+
+.range-mid {
+    background: rgba(23, 105, 232, 0.12);
+    color: #125bc8;
+}
+
+.range-low {
+    background: rgba(245, 158, 11, 0.12);
+    color: #92400E;
+}
+
+/* Monthly trend list */
+.trend-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.trend-row {
+    display: grid;
+    grid-template-columns: 120px 1fr 140px;
+    align-items: center;
+    gap: 16px;
+}
+
+.trend-month {
+    font-size: 13px;
+    font-weight: 600;
+    color: #122642;
+}
+
+.trend-bar-track {
+    height: 12px;
+    background: #e9f2fc;
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.trend-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #53b9ff, #1769e8);
+    border-radius: 999px;
+}
+
+.trend-meta {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+    font-size: 13px;
+}
+
+.trend-value {
+    font-weight: 600;
+    color: #122642;
+}
+
+.trend-change {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 999px;
+}
+
+.trend-change.up {
+    background: rgba(34, 197, 94, 0.12);
+    color: #15803D;
+}
+
+.trend-change.down {
+    background: rgba(239, 68, 68, 0.12);
+    color: #991B1B;
+}
+
+.trend-change.flat {
+    background: rgba(100, 116, 139, 0.12);
+    color: #475569;
+}
+
+/* Empty state */
+.report-empty {
+    text-align: center;
+    padding: 40px 16px;
+    color: #93a9c4;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Responsive — page-specific */
+@media (max-width: 768px) {
+    .trend-row {
+        grid-template-columns: 90px 1fr;
+    }
+
+    .trend-meta {
+        grid-column: 1 / -1;
+        justify-content: flex-start;
+    }
+}

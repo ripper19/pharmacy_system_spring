@@ -52,6 +52,7 @@ public class MedicineService {
         medicine.setDescription(dto.getDescription());
         medicine.setLowStockThreshold(dto.getLowStockThreshold());
         medicine.setExpiryDate(dto.getExpiryDate());
+        medicine.setCost(dto.getCost());
         return medicine;
     }
 
@@ -182,6 +183,7 @@ public class MedicineService {
                     .orElseThrow(() -> new InvalidResourceRequest("Medicine not found"));
 
             return new MedicineStockView(
+                    medicine.getPublicId(),
                     medicine.getMedicineName(),
                     medicine.getQuantity(),
                     medicine.getLowStockThreshold(),
@@ -194,18 +196,42 @@ public class MedicineService {
             throw new RuntimeException(e);
         }
     }
+    public List<AllMedicines> getAll(){
+        List<Medicine> all = medicineRepo.findAll();
+        return all.stream()
+                .map(medicine-> new AllMedicines(
+                        medicine.getPublicId(),
+                        medicine.getSku(),
+                        medicine.getMedicineName(),
+                        medicine.getMed_type(),
+                        medicine.getQuantity(),
+                        medicine.getStatus(),
+                        medicine.getCost()
+                ))
+                .toList();
+    }
 
-        public record MedicineStockView(String medicineName,
+        public record MedicineStockView(UUID publicId,
+                                        String medicineName,
                                         int quantity,
                                         int threshold,
                                         MedicineType type,
                                         BigDecimal cost,
                                         MedicineStatus status) {
         }
-        public record  MedicineView(String medicineName,
+        public record  MedicineView(UUID publicId,
+                                    String medicineName,
                                     int quantity,
                                     MedicineStatus status,
                                     BigDecimal cost){}
+    public record AllMedicines(UUID publicId,
+                               String sku,
+                               String medicineName,
+                               MedicineType medicineType,
+                               int quantity,
+                               MedicineStatus status,
+                               BigDecimal cost
+                               ){}
 }
 
 

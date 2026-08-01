@@ -17,6 +17,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 @RequiredArgsConstructor
 public class LoginService {
@@ -39,9 +41,10 @@ public class LoginService {
         );
         Staff staff = staffRepository.findByEmail(detailsDto.getEmail())
                 .orElseThrow(()-> new WrongUser("User isn't registered with the system"));
-        return new AuthenticatedUserDetails(staff.getName(),staff.getEmail(),staff.getRole());
+        return new AuthenticatedUserDetails(staff.getPublicId(), staff.getName(),staff.getEmail(),staff.getRole());
     }
-    public record AuthenticatedUserDetails(String name,
+    public record AuthenticatedUserDetails(UUID publicId,
+                                            String name,
                                             String email,
                                             Role role){}
 }

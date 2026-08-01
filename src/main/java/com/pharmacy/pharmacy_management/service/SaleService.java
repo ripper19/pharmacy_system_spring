@@ -24,6 +24,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -99,10 +100,10 @@ public class SaleService {
 
     @Transactional
     @PreAuthorize("hasRole('SUPERADMIN')")
-    public void deleteSale(Long id) {
+    public void deleteSale(UUID publicId) {
         {
             Staff current = staffService.currentUSer();
-            Sale deleteSale = saleRepo.findById(id)
+            Sale deleteSale = saleRepo.findByPublicId(publicId)
                     .orElseThrow(() -> new InvalidResourceRequest("Cant find this particular sale"));
             logger.info("Sale: {} {} {} was deleted by user {}", deleteSale.getClientName(), deleteSale.getPrescriptionInfo(), deleteSale.getTotal(), current.getName());
             saleRepo.delete(deleteSale);
@@ -111,7 +112,7 @@ public class SaleService {
     }
     private SalesSearchReturnDto mapToDto(Sale sale){
         SalesSearchReturnDto returnDto = modelMapper.map(sale, SalesSearchReturnDto.class);
-        returnDto.setId(sale.getId());
+        returnDto.setPublicId(sale.getPublicId());
         returnDto.setSaleTime(sale.getSaleTime());
         returnDto.setTotal(sale.getTotal());
         return returnDto;
@@ -149,11 +150,12 @@ public class SaleService {
         return saleRepo.findTop10BySaleTimeBetweenOrderBySaleTimeDesc(start,end)
                 .stream()
                 .map(sale -> new RecentSalesDto(
+                        sale.getPublicId(),
                         sale.getClientName(),
                         sale.getSaleTime().toString(),
                         sale.getTotal().toPlainString(),
                         sale.getPrescriptionInfo()
                 )).toList();
     }
-    public record RecentSalesDto(String clientName, String saleTime, String total, String prescriptionInfo){}
+    public record RecentSalesDto(UUID publicId, String clientName, String saleTime, String total, String prescriptionInfo){}
 }

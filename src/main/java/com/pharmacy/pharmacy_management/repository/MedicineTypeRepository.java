@@ -6,10 +6,13 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.Optional;
+import java.util.UUID;
 
 public interface MedicineTypeRepository extends JpaRepository<MedicineType, Long> {
 
     Optional<MedicineType> findByIgnoreCaseName(String name);
+
+    Optional<MedicineType> findByPublicId(UUID publicId);
 
     boolean existsByNameIgnoreCase(String name);
 

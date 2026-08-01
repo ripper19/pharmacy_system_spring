@@ -25,6 +25,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 import org.slf4j.Logger;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -78,11 +79,8 @@ public class StaffService {
     @PreAuthorize("hasRole('SUPERADMIN') or hasRole('ADMIN')")
     public void deleteStaff(StaffDeleteDto dto) {
         Staff current = currentUSer();
-        Staff existing = staffRepo.findByEmail(dto.getEmail())
+        Staff existing = staffRepo.findByPublicId(dto.getPublicId())
                 .orElseThrow(()-> new WrongUser("User cant be found"));
-        if(!dto.getId().equals(existing.getId())){
-            throw new InvalidResourceRequest("incompatible params given");
-        }
         if (!RolePolicy.canDelete(current.getRole(),existing.getRole())){
             logger.info("Wrong info provided for {} by {}", existing.getName(),current.getName());
             throw new RolePermission("Insufficient privileges");
@@ -236,12 +234,12 @@ public class StaffService {
                 .map(staff->new AllDto(
                         staff.getName(),
                         staff.getEmail(),
-                        staff.getId(),
+                        staff.getPublicId(),
                         staff.getRole(),
                         staff.getPhoneNo(),
                         staff.getDateJoined()
                 )).toList();
     }
-    public record AllDto (String name,String email, Long Id, Role role, String phoneNo, LocalDateTime joined) implements Serializable{}
+    public record AllDto (String name,String email, UUID publicId, Role role, String phoneNo, LocalDateTime joined) implements Serializable{}
 
 }

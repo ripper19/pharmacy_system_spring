@@ -3,6 +3,7 @@ package com.pharmacy.pharmacy_management.model;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
+import java.util.UUID;
 
 @Entity
 public class SaleItem {
@@ -10,6 +11,9 @@ public class SaleItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @Column(unique = true, updatable = false, columnDefinition = "UUID")
+    private UUID publicId;
 
     @ManyToOne
     private Medicine medicine;
@@ -20,6 +24,15 @@ public class SaleItem {
     private int quantity;
 
     private BigDecimal price;
+
+    @PrePersist
+    private void generatePublicId() {
+        if (this.publicId == null) this.publicId = UUID.randomUUID();
+    }
+
+    public UUID getPublicId() {
+        return publicId;
+    }
 
     public long getId() {
         return id;

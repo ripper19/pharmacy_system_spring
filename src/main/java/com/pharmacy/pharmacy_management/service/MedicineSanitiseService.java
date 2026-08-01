@@ -30,6 +30,9 @@ public class MedicineSanitiseService {
         if(addDto.getExpiryDate() == null){
             throw new ValidationException("Empty expiration date");
         }
+        if (addDto.getCost() == null){
+            throw new ValidationException("Cost cannot be 0");
+        }
     }
     private String sanitizeSku(String sku){
         return HtmlUtils.htmlEscape(sku)

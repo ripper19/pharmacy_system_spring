@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import org.slf4j.Logger;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/staff")
@@ -60,7 +61,7 @@ public class StaffController {
     public ResponseEntity<availableStaff> updateStaff(@PathVariable String email, @RequestBody StaffSuperDto dto){
         logger.info("Email{} details {} ,{} ,{} ,{}.", email, dto.getName(), dto.getUpdEmail(),dto.getRole(),dto.getPhoneNo());
         Staff staff = staffService.updateSuper(email,dto);
-        return ResponseEntity.ok().body(new availableStaff(staff.getId(), staff.getName(),staff.getPhoneNo(),staff.getEmail(),staff.getRole()));
+        return ResponseEntity.ok().body(new availableStaff(staff.getPublicId(), staff.getName(),staff.getPhoneNo(),staff.getEmail(),staff.getRole()));
     }
 
     @DeleteMapping("/delete")
@@ -73,9 +74,9 @@ public class StaffController {
     public ResponseEntity<availableStaff> validatExistingUser(@RequestParam String email) {
         Staff staff = staffService.findUser(email);
         logger.info("Data requested for {}", staff.getName());
-        return ResponseEntity.ok().body(new availableStaff(staff.getId(),staff.getName(),staff.getPhoneNo(),staff.getEmail(),staff.getRole()));
+        return ResponseEntity.ok().body(new availableStaff(staff.getPublicId(),staff.getName(),staff.getPhoneNo(),staff.getEmail(),staff.getRole()));
     }
-    public record availableStaff(Long Id, String name, String phoneNo, String email, Role role){}
+    public record availableStaff(UUID publicId, String name, String phoneNo, String email, Role role){}
 
     @GetMapping("/all")
     public ResponseEntity<List<StaffService.AllDto>> returnAllStaff(){

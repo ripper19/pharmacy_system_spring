@@ -7,6 +7,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.UUID;
 
 @Entity
 @Builder
@@ -17,6 +18,9 @@ public class Medicine {
     @Id
     @Column(unique = true)
     private String sku;
+
+    @Column(unique = true, updatable = false, columnDefinition = "UUID")
+    private UUID publicId;
 
     private String medicineName;
 
@@ -49,6 +53,7 @@ public class Medicine {
     @PrePersist
     @PreUpdate
     private void calculateStatus(){
+        if (this.publicId == null) this.publicId = UUID.randomUUID();
         this.status = determineMedicineStatusWithQuantity(this.quantity);
     }
 
@@ -56,6 +61,11 @@ public class Medicine {
         if (qty == 0 || qty < 0) return MedicineStatus.UNAVAILABLE;
         return MedicineStatus.AVAILABLE;
     }
+
+    public UUID getPublicId(){
+        return publicId;
+    }
+
     public MedicineStatus getStatus(){
         return status;
     }

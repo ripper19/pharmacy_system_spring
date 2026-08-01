@@ -6,24 +6,28 @@
     <title>Sales Management - Pharmacy Dashboard</title>
     <link rel="stylesheet" href="css/dash.css">
     <link rel="stylesheet" href="css/sales.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
+<a class="skip-link" href="#mainContent">Skip to main content</a>
 
 <!-- Top Navbar -->
-<div class="top-navbar">
-    <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
-    <div class="logo">PHARMACARE</div>
+<header class="top-navbar">
+    <button class="menu-toggle" onclick="toggleSidebar()" aria-label="Open menu">☰</button>
+    <button class="collapse-toggle" onclick="toggleSidebarCollapse()" aria-label="Toggle sidebar"></button>
+    <div class="logo"><span class="logo-text">PHARMACARE</span></div>
     <div class="search-bar">
-        <input type="text" placeholder="Search medicines, sales...">
+        <input type="text" placeholder="Search medicines, sales..." aria-label="Search medicines and sales">
     </div>
     <div class="nav-actions">
-        <button onclick="showNotifications()">🔔 Notifications</button>
-        <button onclick="logout()">Logout</button>
+        <button onclick="showNotifications()" aria-label="Notifications" data-notif-btn style="position:relative"><span aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg></span> <span class="btn-label">Notifications</span></button>
+        <button onclick="logout()" aria-label="Log out" class="logout-btn"><svg class="nav-icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg> <span class="btn-label">Logout</span></button>
     </div>
-</div>
+</header>
 
 <!-- Sidebar -->
-<div class="sidebar">
+<nav class="sidebar" aria-label="Main menu">
     <div class="user-profile">
         <div class="user-avatar" id="userAvatar"></div>
         <div class="user-name" id="userName"></div>
@@ -31,39 +35,49 @@
     </div>
 
     <div class="menu">
+        <div class="menu-group">Overview</div>
         <a href="dash.html" class="menu-item">
-            <span class="menu-icon">📊</span>
+            <span class="menu-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></span>
             <span>Dashboard</span>
         </a>
-        <a href="sales.html" class="menu-item active">
-            <span class="menu-icon">💰</span>
+        <div class="menu-group">Management</div>
+        <a href="sales.html" class="menu-item active" aria-current="page">
+            <span class="menu-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="20" r="1.6"/><circle cx="17" cy="20" r="1.6"/><path d="M3 4h2l2.4 12h10.4l2-8H6"/></svg></span>
             <span>Sales</span>
         </a>
         <a href="inventory.html" class="menu-item">
-            <span class="menu-icon">📦</span>
-            <span>Inventory</span>
+            <span class="menu-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 8l-9-5-9 5v8l9 5 9-5z"/><path d="M3 8l9 5 9-5M12 13v8"/></svg></span>
+            <span>Inventory</span><span class="menu-badge" id="inventoryMenuBadge" hidden></span>
         </a>
-        <a href="inventory.html" class="menu-item">
-            <span class="menu-icon">💊</span>
+        <a href="medicines.html" class="menu-item">
+            <span class="menu-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g transform="rotate(-45 12 12)"><rect x="3" y="8" width="18" height="8" rx="4"/><line x1="12" y1="8" x2="12" y2="16"/></g></svg></span>
             <span>Medicines</span>
         </a>
-        <a href="#" class="menu-item">
-            <span class="menu-icon">📈</span>
+        <a href="reports.html" class="menu-item">
+            <span class="menu-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h16"/><path d="M7 16v-5M12 16V7M17 16v-8"/></svg></span>
             <span>Reports</span>
         </a>
+        <div class="menu-group">System</div>
         <a href="staff.html" class="menu-item">
-            <span class="menu-icon">👥</span>
+            <span class="menu-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><path d="M16 4.6a3.5 3.5 0 0 1 0 6.8M18.5 14.5c1.9.9 3 2.6 3 5.5"/></svg></span>
             <span>Staff</span>
         </a>
-        <a href="#" class="menu-item">
-            <span class="menu-icon">⚙️</span>
+        <a href="settings.html" class="menu-item">
+            <span class="menu-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33h.01a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82v.01a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></span>
             <span>Settings</span>
         </a>
     </div>
-</div>
+
+    <div class="sidebar-footer">
+        <a href="#" class="sidebar-logout" onclick="logout(); return false;">
+            <svg class="nav-icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+            <span>Logout</span>
+        </a>
+    </div>
+</nav>
 
 <!-- Main Content -->
-<div class="main-content">
+<main class="main-content" id="mainContent">
     <div class="page-header">
         <h1>Sales Management</h1>
         <p>Create, search, and manage all sales transactions</p>
@@ -75,13 +89,13 @@
     <!-- Action Cards -->
     <div class="action-cards">
         <div class="action-card" onclick="toggleForm('createSale')">
-            <div class="action-card-icon">➕</div>
+            <div class="action-card-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></div>
             <div class="action-card-title">Create New Sale</div>
             <div class="action-card-desc">Record a new sale transaction</div>
         </div>
 
         <div class="action-card" onclick="toggleForm('searchSale')">
-            <div class="action-card-icon">🔍</div>
+            <div class="action-card-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></div>
             <div class="action-card-title">Search Sale</div>
             <div class="action-card-desc">Find a specific sale by ID or date</div>
         </div>
@@ -94,7 +108,7 @@
             <button class="close-btn" onclick="closeForm('createSale')">Close</button>
         </div>
 
-        <form id="saleForm" onsubmit="submitSale(event)">
+        <form id="saleForm" onsubmit="submitSale(event)" novalidate>
             <div class="form-grid">
                 <div class="form-group">
                     <label for="clientName">Client Name *</label>
@@ -103,7 +117,7 @@
 
                 <div class="form-group">
                     <label for="clientPhone">Client Phone *</label>
-                    <input type="tel" id="clientPhone" placeholder="0712345678" required>
+                    <input type="tel" id="clientPhone" placeholder="0712345678" pattern="[\d\s\-\+\(\)]{7,}" required>
                 </div>
 
                 <div class="form-group">
@@ -126,15 +140,15 @@
                         <div class="medicine-item">
                             <div>
                                 <label>Medicine Name</label>
-                                <input type="text" class="medicine-name" placeholder="Search medicine..." required>
+                                <input type="text" class="medicine-name" placeholder="Search medicine..." aria-label="Medicine name" required>
                             </div>
                             <div>
                                 <label>Quantity</label>
-                                <input type="number" class="medicine-qty" min="1" value="1" required>
+                                <input type="number" class="medicine-qty" min="1" value="1" aria-label="Quantity" required>
                             </div>
                             <div>
                                 <label>Price</label>
-                                <input type="number" class="medicine-price" step="0.01" placeholder="0.00" required>
+                                <input type="number" class="medicine-price" step="0.01" min="0" placeholder="0.00" aria-label="Price" required>
                             </div>
                             <button type="button" class="remove-item-btn" onclick="removeMedicineItem(this)" style="display: none;">Remove</button>
                         </div>
@@ -166,9 +180,9 @@
         </div>
 
         <div class="search-box">
-            <input type="text" id="searchInput" placeholder="Enter Sale ID or Date (YYYY-MM-DD)">
+            <input type="text" id="searchInput" placeholder="Enter Sale ID or Date (YYYY-MM-DD)" aria-label="Sale ID or date">
             <button onclick="searchSale()">Search</button>
-            <button onclick="clearSearch()" style="background: #95a5a6;">Clear</button>
+            <button onclick="clearSearch()" class="search-clear-btn">Clear</button>
         </div>
     </div>
 
@@ -198,15 +212,15 @@
             </thead>
             <tbody id="salesTableBody">
             <tr>
-                <td colspan="7" style="text-align: center; padding: 40px; color: #7f8c8d;">
-                    Loading sales data...
-                </td>
+                <td colspan="7" class="table-loading"><span class="spinner" aria-hidden="true"></span>Loading sales data…</td>
             </tr>
             </tbody>
         </table>
     </div>
-</div>
-<div class="sidebar-overlay" onclick="toggleSidebar()"></div>
+</main>
+<div class="sidebar-overlay" onclick="toggleSidebar()" aria-hidden="true"></div>
+<nav class="bottom-nav" aria-label="Mobile navigation"><a href="dash.html" class="bottom-nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg><span>Home</span></a><a href="sales.html" class="bottom-nav-item active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="20" r="1.6"/><circle cx="17" cy="20" r="1.6"/><path d="M3 4h2l2.4 12h10.4l2-8H6"/></svg><span>Sales</span></a><a href="inventory.html" class="bottom-nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 8l-9-5-9 5v8l9 5 9-5z"/><path d="M3 8l9 5 9-5M12 13v8"/></svg><span>Stock</span></a><button type="button" class="bottom-nav-item" onclick="toggleSidebar()" aria-label="Open menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg><span>More</span></button></nav>
+<script src="js/ui.js"></script>
 <script src="js/sales.js"></script>
 </body>
 </html>

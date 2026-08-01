@@ -73,10 +73,12 @@ let resetTimeOut= null;
         setMode(currentMode);
 
         renderStaffTable();
+        PharmUI.attachLiveValidation(document.getElementById('staffForm'));
     });
 
     function getMode(){
-    return localStorage.getItem('staffMode');
+    // Default to the Add Staff module when no mode has been chosen yet.
+    return localStorage.getItem('staffMode') || 'add';
 }
     // Set mode and update UI
     function setMode(mode) {
@@ -122,10 +124,14 @@ let resetTimeOut= null;
         if(btn.disabled) return;
 
         const name = document.getElementById('fullName').value;
-        const email = document.getElementById('email').value;
+        const email = document.getElementById('updEmail').value;
         const phoneNo = document.getElementById('phone').value;
         const role = document.getElementById('role').value;
 
+        if (!PharmUI.validate(document.getElementById('addForm'))) {
+            showMessage('Please fix the highlighted fields', 'warning');
+            return;
+        }
         if (!name || !email || !phoneNo) {
             showMessage('Please fill in all required fields (*)', 'warning');
             return;
@@ -206,11 +212,11 @@ let resetTimeOut= null;
     function showStaffCard(staff){
         document.getElementById("cardName").textContent = staff.name;
         document.getElementById("cardRole").textContent = staff.role;
-        document.getElementById("cardId").textContent = staff.Id;
+        document.getElementById("cardId").textContent = staff.publicId;
         document.getElementById("cardEmail").textContent =staff.updEmail||staff.email;
         document.getElementById("cardPhone").textContent =staff.phoneNo;
 
-        document.getElementById("staffCard").style.display="block"
+        document.getElementById("staffCard").classList.remove('hidden');
     }
 
 
@@ -265,17 +271,18 @@ let resetTimeOut= null;
 
     // Delete staff member
     async function deleteStaff() {
-        const id = document.getElementById('deleteStaffId').value;
+        const publicId = document.getElementById('deleteStaffId').value;
         const email = document.getElementById('confirmDelete').value;
 
-        if(!id && !email || !email){
-            throw new Error("Please confirm the Staff to be deleted");
+        if(!publicId && !email || !email){
+            showMessage("Please confirm the Staff to be deleted", "warning");
+            return;
         }
         const res = await fetch("https://pharmacy-system-spring-utt5.onrender.com/staff/delete",{
             headers: {'Content-Type': 'application/json'},
             method:'DELETE',
             credentials: 'include',
-            body: JSON.stringify({id,email})
+            body: JSON.stringify({publicId,email})
         });
         if(!res.ok) {showMessage(`Failed to delete user!`,`error`);}
         if(res.ok) {showMessage(`User deleted`, `success`)};
@@ -285,30 +292,88 @@ let resetTimeOut= null;
     // Render staff table
     async function renderStaffTable() {
         const tableBody = document.getElementById('staffTableBody');
-        tableBody.innerHTML = '';
+        tableBody.innerHTML = PharmUI.skeletonRows(7);
 
-        const res = await fetch ("https://pharmacy-system-spring-utt5.onrender.com/staff/all",{
-            credentials: 'include'
-        });
+        let res;
+        try {
+            res = await PharmUI.withTimeout(fetch ("https://pharmacy-system-spring-utt5.onrender.com/staff/all",{
+                credentials: 'include'
+            }));
+        } catch (e) {
+            console.log('Failed to load staff', e);
+            PharmUI.tableEmpty(tableBody, 7, {
+                icon: 'warning',
+                title: "Couldn't load staff",
+                message: 'Check your connection and try again.',
+                actionLabel: 'Retry',
+                onRetry: renderStaffTable
+            });
+            return;
+        }
         if(!res.ok){
             showMessage("Failed to fetch all staff!!", "error");
+            PharmUI.tableEmpty(tableBody, 7, {
+                icon: 'warning',
+                title: "Couldn't load staff",
+                message: 'The server returned an error. Please try again.',
+                actionLabel: 'Retry',
+                onRetry: renderStaffTable
+            });
             return;
         };
         try{
         const users = await res.json();
+        if (!users || users.length === 0) {
+            PharmUI.tableEmpty(tableBody, 7, {
+                icon: 'users',
+                title: 'No staff yet',
+                message: 'Team members you add will appear here.',
+                actionLabel: 'Add staff',
+                actionHref: 'staff.html'
+            });
+            return;
+        }
         users.forEach(user => {
             const row = document.createElement('tr');
-            row.innerHTML=`
-            <td>${user.Id}</td>
-            <td>${user.name}</td>
-            <td>${user.email}</td>
-            <td>${user.role}</td>
-            <td>${user.phoneNo}</td>
-            <td>${user.joined}</td>
-            <td class="action-cell">
-            <button class="icon-btn edit-btn" onclick="editStaff('${user.email}')">Edit</button>
-            <button class="icon-btn delete-btn" onclick="confirmDelete('${user.Id}', '${user.email}')">Delete</button>
-            </td>`;
+
+            const td1 = document.createElement('td');
+            td1.textContent = user.publicId;
+            row.appendChild(td1);
+
+            const td2 = document.createElement('td');
+            td2.textContent = user.name;
+            row.appendChild(td2);
+
+            const td3 = document.createElement('td');
+            td3.textContent = user.email;
+            row.appendChild(td3);
+
+            const td4 = document.createElement('td');
+            td4.textContent = user.role;
+            row.appendChild(td4);
+
+            const td5 = document.createElement('td');
+            td5.textContent = user.phoneNo;
+            row.appendChild(td5);
+
+            const td6 = document.createElement('td');
+            td6.textContent = user.joined;
+            row.appendChild(td6);
+
+            const tdActions = document.createElement('td');
+            tdActions.className = 'action-cell';
+            const btnEdit = document.createElement('button');
+            btnEdit.className = 'icon-btn edit-btn';
+            btnEdit.textContent = 'Edit';
+            btnEdit.addEventListener('click', () => editStaff(user.email));
+            const btnDelete = document.createElement('button');
+            btnDelete.className = 'icon-btn delete-btn';
+            btnDelete.textContent = 'Delete';
+            btnDelete.addEventListener('click', () => confirmDelete(user.publicId, user.email));
+            tdActions.appendChild(btnEdit);
+            tdActions.appendChild(btnDelete);
+            row.appendChild(tdActions);
+
             tableBody.appendChild(row);
         });
     }catch(e){
@@ -324,14 +389,20 @@ let resetTimeOut= null;
     }
 
     // Quick delete from table
-    async function confirmDelete(id, email) {
-        if (confirm(`Are you sure you want to delete ${email}?`)) {
-            console.log(id,email);
+    async function confirmDelete(publicId, email) {
+        const ok = await PharmUI.confirm({
+            title: 'Delete staff member?',
+            message: `Are you sure you want to delete ${email}?`,
+            confirmText: 'Delete',
+            danger: true
+        });
+        if (ok) {
+            console.log(publicId,email);
             const res = await fetch("https://pharmacy-system-spring-utt5.onrender.com/staff/delete", {
                 headers:{"Content-Type": "application/json"},
                 method: 'DELETE',
                 credentials: 'include',
-                body: JSON.stringify({id, email})
+                body: JSON.stringify({publicId, email})
             });
             if(!res.ok){
                 showMessage("Failed!", "error");
@@ -351,7 +422,7 @@ let resetTimeOut= null;
         }
 
         const filtered = staffData.filter(staff =>
-            staff.id.toLowerCase().includes(searchTerm) ||
+            staff.publicId.toLowerCase().includes(searchTerm) ||
             staff.name.toLowerCase().includes(searchTerm) ||
             staff.role.toLowerCase().includes(searchTerm) ||
             staff.department.toLowerCase().includes(searchTerm)
@@ -362,30 +433,60 @@ let resetTimeOut= null;
 
         filtered.forEach(staff => {
             const row = document.createElement('tr');
-            row.innerHTML = `
-                <td>${staff.id}</td>
-                <td>${staff.name}</td>
-                <td>${staff.role}</td>
-                <td>${staff.department}</td>
-                <td>${staff.phone}</td>
-                <td><span class="status-badge ${staff.status === 'active' ? 'status-active' : 'status-inactive'}">${staff.status}</span></td>
-                <td class="action-cell">
-                    <button class="icon-btn edit-btn" onclick="editStaff('${staff.id}')">Edit</button>
-                    <button class="icon-btn delete-btn" onclick="confirmDelete('${staff.id}', '${staff.name}')">Delete</button>
-                </td>
-            `;
+
+            const td1 = document.createElement('td');
+            td1.textContent = staff.publicId;
+            row.appendChild(td1);
+
+            const td2 = document.createElement('td');
+            td2.textContent = staff.name;
+            row.appendChild(td2);
+
+            const td3 = document.createElement('td');
+            td3.textContent = staff.role;
+            row.appendChild(td3);
+
+            const td4 = document.createElement('td');
+            td4.textContent = staff.department;
+            row.appendChild(td4);
+
+            const td5 = document.createElement('td');
+            td5.textContent = staff.phone;
+            row.appendChild(td5);
+
+            const td6 = document.createElement('td');
+            const badge = document.createElement('span');
+            badge.className = 'status-badge ' + (staff.status === 'active' ? 'status-active' : 'status-inactive');
+            badge.textContent = staff.status;
+            td6.appendChild(badge);
+            row.appendChild(td6);
+
+            const tdActions = document.createElement('td');
+            tdActions.className = 'action-cell';
+            const btnEdit = document.createElement('button');
+            btnEdit.className = 'icon-btn edit-btn';
+            btnEdit.textContent = 'Edit';
+            btnEdit.addEventListener('click', () => editStaff(staff.publicId));
+            const btnDelete = document.createElement('button');
+            btnDelete.className = 'icon-btn delete-btn';
+            btnDelete.textContent = 'Delete';
+            btnDelete.addEventListener('click', () => confirmDelete(staff.publicId, staff.name));
+            tdActions.appendChild(btnEdit);
+            tdActions.appendChild(btnDelete);
+            row.appendChild(tdActions);
+
             tableBody.appendChild(row);
         });
 
         if (filtered.length === 0) {
-            tableBody.innerHTML = `<tr><td colspan="7" style="text-align: center; padding: 20px;">No staff members found matching "${searchTerm}"</td></tr>`;
+            tableBody.innerHTML = '<tr><td colspan="7" style="text-align: center; padding: 20px;">No staff members found matching "' + htmlEncode(searchTerm) + '"</td></tr>';
         }
     }
 
     // Clear forms
     function clearForm() {
         document.getElementById('fullName').value = '';
-        document.getElementById('email').value = '';
+        document.getElementById('updEmail').value = '';
         document.getElementById('phone').value = '';
         document.getElementById('role').value = '';
     }
@@ -397,7 +498,7 @@ let resetTimeOut= null;
         document.getElementById('updatePhone').value = '';
         document.getElementById('updateRole').value = '';
 
-        document.getElementById("staffCard").style.display = "none"
+        document.getElementById("staffCard").classList.add('hidden');
     }
 
     function clearDeleteForm() {
@@ -424,13 +525,14 @@ let resetTimeOut= null;
         document.querySelector('.sidebar-overlay').classList.toggle('active');
     }
 
-    function showNotifications() {
-        alert('Notifications would appear here');
-    }
-
     async function logout() {
-        if (confirm('Are you sure you want to logout?')) {
-            const res = await fetch("https://pharmacy-system-spring-utt5.onrender.com/logout", {
+        const ok = await PharmUI.confirm({
+            title: 'Log out?',
+            message: 'Are you sure you want to logout?',
+            confirmText: 'Logout'
+        });
+        if (ok) {
+            await fetch("https://pharmacy-system-spring-utt5.onrender.com/logout", {
                 credentials: 'include',
                 method: 'POST'
             });

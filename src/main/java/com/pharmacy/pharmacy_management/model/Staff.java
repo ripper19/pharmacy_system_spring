@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
+import java.util.UUID;
 
 @Entity
 public class Staff implements UserDetails {
@@ -16,6 +17,9 @@ public class Staff implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long Id;
+
+    @Column(unique = true, updatable = false, columnDefinition = "UUID")
+    private UUID publicId;
 
     private String name;
 
@@ -35,6 +39,15 @@ public class Staff implements UserDetails {
     @Column(nullable = false, updatable = false, columnDefinition = "TIMESTAMP(0)")
     private LocalDateTime dateJoined;
 
+
+    @PrePersist
+    private void generatePublicId() {
+        if (this.publicId == null) this.publicId = UUID.randomUUID();
+    }
+
+    public UUID getPublicId() {
+        return publicId;
+    }
 
     public long getId() {
         return Id;

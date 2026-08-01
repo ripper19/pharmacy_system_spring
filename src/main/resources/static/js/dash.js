@@ -46,16 +46,15 @@ async function loadUser(){
         const cookie = localStorage.getItem('COOKIE');
 
         try {
-            const salesRes = await fetch('https://pharmacy-system-spring-utt5.onrender.com/sale/todaySales', {
+            const salesRes = await PharmUI.withTimeout(fetch('https://pharmacy-system-spring-utt5.onrender.com/sale/todaySales', {
                 method: 'GET',
                 credentials: 'include'
-            });
+            }));
             if(!salesRes.ok) throw new Error("Request Failed" + salesRes.status);
             const salesData = await salesRes.json();
 
-            document.getElementById('todaySales').textContent =
-                'KSh ' + salesData.total.toLocaleString();
-            
+            countUpStat(document.getElementById('todaySales'), salesData.total);
+
             /**  add with orders module document.getElementById('totalOrders').textContent = salesData.count;
 
             Fetch low stock items
@@ -66,41 +65,71 @@ async function loadUser(){
            const stockData = await stockRes.json();
            document.getElementById('lowStock').textContent = stockData.length;*/
 
-            const revenueRes = await fetch('https://pharmacy-system-spring-utt5.onrender.com/sale/monthlySales', {
+            const revenueRes = await PharmUI.withTimeout(fetch('https://pharmacy-system-spring-utt5.onrender.com/sale/monthlySales', {
                 method: 'GET',
                 credentials:'include'
-            });
-            
+            }));
+
             const revenueData = await revenueRes.json();
-            document.getElementById('monthRevenue').textContent =
-                'KSh ' + revenueData.total.toLocaleString();
+            countUpStat(document.getElementById('monthRevenue'), revenueData.total);
 
         } catch (e) {
             console.error('Error loading stats:', e);
+            ['todaySales', 'monthRevenue'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el && el.classList.contains('empty-stat')) el.textContent = '—';
+            });
         }
+    }
+
+    // Animate a stat value from 0 (skipped under reduced motion).
+    function countUpStat(el, target) {
+        if (!el || typeof target !== 'number') return;
+        el.classList.remove('empty-stat');
+        const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (reduce) {
+            el.textContent = 'KSh ' + target.toLocaleString();
+            return;
+        }
+        const dur = 700, t0 = performance.now();
+        function tick(t) {
+            const p = Math.min((t - t0) / dur, 1);
+            const eased = 1 - Math.pow(1 - p, 3);
+            el.textContent = 'KSh ' + Math.round(target * eased).toLocaleString();
+            if (p < 1) requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
     }
 
     // Load recent sales
     async function loadRecentSales() {
         const cookie = localStorage.getItem('COOKIE');
         const tbody = document.getElementById('recentSalesTable');
+        tbody.innerHTML = PharmUI.skeletonRows(5);
 
         try {
-            const res = await fetch('https://pharmacy-system-spring-utt5.onrender.com/sale/rcntSales', {
+            const res = await PharmUI.withTimeout(fetch('https://pharmacy-system-spring-utt5.onrender.com/sale/rcntSales', {
                 method: 'GET',
                 credentials: 'include'
-            });
+            }));
+            if (!res.ok) throw new Error('Request failed ' + res.status);
             const sales = await res.json();
 
-            if (sales.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="6" style="text-align: center;">No recent sales</td></tr>';
+            if (!Array.isArray(sales) || sales.length === 0) {
+                PharmUI.tableEmpty(tbody, 5, {
+                    icon: 'cart',
+                    title: 'No sales yet',
+                    message: 'Sales you record will show up here.',
+                    actionLabel: 'Record your first sale',
+                    actionHref: 'sales.html'
+                });
                 return;
             }
 
             tbody.innerHTML = sales.map(sale => `
                 <tr>
-                    <td>#${sale.clientName}</td>
-                    <td>${sale.prescriptionInfo}</td>
+                    <td>#${htmlEncode(sale.clientName)}</td>
+                    <td>${htmlEncode(sale.prescriptionInfo)}</td>
                     <td>${sale.quantity}</td>
                     <td>KSh ${sale.amount.toLocaleString()}</td>
                     <td>${new Date(sale.date).toLocaleDateString()}</td>
@@ -109,27 +138,166 @@ async function loadUser(){
 
         } catch (e) {
             console.error('Error loading recent sales:', e);
-            tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; color: red;">Error loading data</td></tr>';
+            PharmUI.tableEmpty(tbody, 5, {
+                icon: 'warning',
+                title: "Couldn't load sales",
+                message: 'Check your connection and try again.',
+                actionLabel: 'Retry',
+                onRetry: loadRecentSales
+            });
         }
     }
 
-    // Navigation
-    function loadPage(page) {
-        const menuItems = document.querySelectorAll('.menu-item');
-        menuItems.forEach(item => item.classList.remove('active'));
-        event.target.closest('.menu-item').classList.add('active');
+    // ===== Sales Overview chart =====
+    let currentOverviewRange = 'today';
 
-        // Navigate to page (implement as needed)
-        console.log('Loading page:', page);
+    function setOverviewRange(range, evt) {
+        currentOverviewRange = range;
+        document.querySelectorAll('.chart-filters button').forEach(b => b.classList.remove('active'));
+        if (evt && evt.target) evt.target.classList.add('active');
+        loadSalesOverview(range);
     }
 
+    function drawSalesChart(points, hoverIdx) {
+        const canvas = document.getElementById('salesChart');
+        const empty = document.querySelector('.chart-empty');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+
+        if (!points || points.length === 0) {
+            if (empty) empty.style.display = 'flex';
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            chartBars = [];
+            return;
+        }
+        if (empty) empty.style.display = 'none';
+
+        // Match the bitmap to the displayed size for a crisp render.
+        const dpr = window.devicePixelRatio || 1;
+        const cssW = canvas.clientWidth || 600;
+        const cssH = canvas.clientHeight || 240;
+        canvas.width = cssW * dpr;
+        canvas.height = cssH * dpr;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        ctx.clearRect(0, 0, cssW, cssH);
+
+        const max = Math.max(...points.map(p => p.total || 0), 1);
+        const topPad = 22;
+        const bottomPad = 26;
+        const n = points.length;
+        const gap = Math.max(10, Math.min(28, cssW / (n * 3)));
+        const barW = Math.max(2, (cssW - gap * (n + 1)) / n);
+
+        // Baseline
+        ctx.strokeStyle = '#dce9f8';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(0, cssH - bottomPad + 0.5);
+        ctx.lineTo(cssW, cssH - bottomPad + 0.5);
+        ctx.stroke();
+
+        chartBars = [];
+        points.forEach((p, i) => {
+            const h = ((p.total || 0) / max) * (cssH - topPad - bottomPad);
+            const x = gap + i * (barW + gap);
+            const y = cssH - bottomPad - h;
+            chartBars.push({ x, y, w: barW, h: Math.max(h, 2), point: p });
+
+            ctx.fillStyle = i === hoverIdx ? '#4a8ef4' : '#1769e8';
+            roundRect(ctx, x, y, barW, Math.max(h, 2), 6);
+            ctx.fill();
+
+            // Value label above the bar (skip when bars are too dense)
+            if (barW >= 26) {
+                ctx.fillStyle = i === hoverIdx ? '#08234a' : '#68809d';
+                ctx.font = '600 10px Inter, sans-serif';
+                ctx.textAlign = 'center';
+                ctx.fillText(formatCompact(p.total || 0), x + barW / 2, y - 6);
+            }
+
+            ctx.fillStyle = '#68809d';
+            ctx.font = '11px Inter, sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText(p.label != null ? String(p.label) : '', x + barW / 2, cssH - 9);
+        });
+    }
+
+    function formatCompact(n) {
+        if (n >= 1000) return (n / 1000).toFixed(n >= 10000 ? 0 : 1).replace(/\.0$/, '') + 'k';
+        return String(Math.round(n));
+    }
+
+    // Chart hover tooltip
+    let chartBars = [];
+    (function initChartTooltip() {
+        document.addEventListener('DOMContentLoaded', () => {
+            const canvas = document.getElementById('salesChart');
+            const body = document.querySelector('.chart-body');
+            if (!canvas || !body) return;
+
+            const tip = document.createElement('div');
+            tip.className = 'chart-tooltip';
+            tip.hidden = true;
+            body.appendChild(tip);
+
+            canvas.addEventListener('mousemove', e => {
+                const rect = canvas.getBoundingClientRect();
+                const mx = e.clientX - rect.left;
+                const my = e.clientY - rect.top;
+                const idx = chartBars.findIndex(b => mx >= b.x - 4 && mx <= b.x + b.w + 4);
+                const points = chartBars.length ? currentOverviewPoints : [];
+                drawSalesChart(points, idx >= 0 ? idx : undefined);
+                if (idx >= 0 && chartBars[idx]) {
+                    const b = chartBars[idx];
+                    tip.textContent = `${b.point.label}: KSh ${(b.point.total || 0).toLocaleString()}`;
+                    tip.style.left = Math.min(Math.max(b.x + b.w / 2, 60), rect.width - 60) + 'px';
+                    tip.style.top = Math.max(b.y - 8, 4) + 'px';
+                    tip.hidden = false;
+                    canvas.style.cursor = 'pointer';
+                } else {
+                    tip.hidden = true;
+                    canvas.style.cursor = 'default';
+                }
+            });
+            canvas.addEventListener('mouseleave', () => {
+                tip.hidden = true;
+                drawSalesChart(currentOverviewPoints);
+            });
+        });
+    })();
+
+    let currentOverviewPoints = [];
+
+    async function loadSalesOverview(range) {
+        let points = [];
+        try {
+            const res = await PharmUI.withTimeout(fetch(`https://pharmacy-system-spring-utt5.onrender.com/sale/overview?range=${range}`, {
+                method: 'GET',
+                credentials: 'include'
+            }));
+            if (res.ok) points = await res.json();
+        } catch (e) {
+            console.error('Error loading sales overview:', e);
+        }
+        currentOverviewPoints = Array.isArray(points) ? points : [];
+        drawSalesChart(currentOverviewPoints);
+    }
+
+    function roundRect(ctx, x, y, w, h, r) {
+        r = Math.min(r, w / 2, h / 2);
+        ctx.beginPath();
+        ctx.moveTo(x + r, y);
+        ctx.arcTo(x + w, y, x + w, y + h, r);
+        ctx.arcTo(x + w, y + h, x, y + h, r);
+        ctx.arcTo(x, y + h, x, y, r);
+        ctx.arcTo(x, y, x + w, y, r);
+        ctx.closePath();
+    }
+
+    // Navigation
     function toggleSidebar() {
         document.querySelector('.sidebar').classList.toggle('active');
         document.querySelector('.sidebar-overlay').classList.toggle('active');
-    }
-
-    function showNotifications() {
-        alert('Notifications feature coming soon!');
     }
 
     function logout() {
@@ -155,4 +323,5 @@ async function loadUser(){
 
         loadDashboardStats();
         loadRecentSales();
+        loadSalesOverview('today');
     });

@@ -64,11 +64,13 @@ async function checkRole() {
 
 let currentMode = 'add';
 let medicineTypes = [];
+let medicinesData = [];
 
     document.addEventListener('DOMContentLoaded', function() {
         loadUser();
         updateButtonStates();
         renderMedicineTypes();
+        PharmUI.attachLiveValidation(document.getElementById('medicinesForm'));
     });
 
     // Set mode and update UI
@@ -122,17 +124,20 @@ let medicineTypes = [];
         const sku = document.getElementById('sku').value;
         const medicineName = document.getElementById('medicineName').value;
         const quantity = parseInt(document.getElementById('quantity').value);
-        const type = document.getElementById('medicineType').value;
+        const medicineType = document.getElementById('medicineType').value;
         const description = document.getElementById('description').value;
         const cost = document.getElementById('price').value;
+        const expiryDate = document.getElementById('expiryDate').value;
 
-        
-
-        if (!sku || !medicineName || !type || !description || isNaN(quantity) || isNaN(cost)) {
+        if (!PharmUI.validate(document.getElementById('addForm'))) {
+            showMessage('Please fix the highlighted fields', 'error');
+            return;
+        }
+        if (!sku || !medicineName || !medicineType || !description || isNaN(quantity) || isNaN(cost) || !expiryDate) {
             showMessage('Please fill in all required fields (*)', 'error');
             return;
         }
-        const newMedicine = {sku, medicineName,quantity,type,description,cost};
+        const newMedicine = {sku, medicineName,quantity,medicineType,description,cost,expiryDate};
         const threshold = parseInt(document.getElementById('lowStockThreshold').value);
 
         if(!isNaN(threshold)) newMedicine.lowStockThreshold = threshold;
@@ -142,7 +147,7 @@ let medicineTypes = [];
                 headers: {'Content-Type':'application/json'},
                 credentials: 'include',
                 method: 'POST',
-                body: JSON.stringify({newMedicine})
+                body: JSON.stringify(newMedicine)
             });
             const returnedResult = await res.json();
             if(!res.ok){
@@ -235,7 +240,7 @@ let medicineTypes = [];
             const res = await fetch("https://pharmacy-system-spring-utt5.onrender.com/medicine/checkMedicine",{
                 credentials:'include',
                 headers: {'Content-Type':'application/json'},
-                method: POST,
+                method: 'POST',
                 body:JSON.stringify({name})
             });
             //medicine returned from checking one. I thik I have a lot of variables named medicine.
@@ -247,39 +252,55 @@ let medicineTypes = [];
         const stockStatus = getStockStatus(medicine.quantity, medicine.threshold);
         const statusClass = getStockStatusClass(stockStatus);
 
-        document.getElementById('stockResult').innerHTML = `
-            <h4>${medicine.name} (${medicine.sku})</h4>
-            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-top: 15px;">
-                <div>
-                    <strong>Current Stock:</strong>
-                    <div style="font-size: 28px; font-weight: bold; color: ${getStockColor(medicine.quantity, medicine.threshold)}">${medicine.quantity}</div>
-                </div>
-                <div>
-                    <strong>Threshold:</strong>
-                    <div style="font-size: 20px; color: #666;">${medicine.threshold}</div>
-                </div>
-                <div>
-                    <strong>Type:</strong>
-                    <div>${medicine.type}</div>
-                </div>
-                <div>
-                    <strong>Price:</strong>
-                    <div>KSh ${medicine.price.toFixed(2)}</div>
-                </div>
-                <div>
-                    <strong>Status:</strong>
-                    <div><span class="stock-badge ${statusClass}">${stockStatus}</span></div>
-                </div>
-                <div>
-                    <strong>Safety Margin:</strong>
-                    <div>${Math.max(0, medicine.quantity - medicine.threshold)} units</div>
-                </div>
-            </div>
-            ${medicine.quantity <= medicine.threshold ?
-                `<div style="margin-top: 15px; padding: 10px; background: #ffebee; border-radius: 5px; color: #c62828;">
-                    ⚠️ <strong>Low Stock Alert:</strong> Consider reordering soon!
-                </div>` : ''}
-        `;
+        const resultDiv = document.getElementById('stockResult');
+        resultDiv.textContent = '';
+        const h4 = document.createElement('h4');
+        h4.textContent = medicine.name + ' (' + medicine.sku + ')';
+        resultDiv.appendChild(h4);
+
+        const grid = document.createElement('div');
+        grid.style.cssText = 'display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-top: 15px;';
+
+        const addItem = (label, value, opts) => {
+            const div = document.createElement('div');
+            const strong = document.createElement('strong');
+            strong.textContent = label + ':';
+            div.appendChild(strong);
+            const valDiv = document.createElement('div');
+            if (opts && opts.style) valDiv.style.cssText = opts.style;
+            valDiv.textContent = value;
+            div.appendChild(valDiv);
+            grid.appendChild(div);
+        };
+
+        addItem('Current Stock', medicine.quantity, {
+            style: 'font-size: 28px; font-weight: bold; color: ' + getStockColor(medicine.quantity, medicine.threshold)
+        });
+        addItem('Threshold', medicine.threshold, { style: 'font-size: 20px; color: #666;' });
+        addItem('Type', medicine.type);
+        addItem('Price', 'KSh ' + medicine.price.toFixed(2));
+
+        const statusDiv = document.createElement('div');
+        const strongStatus = document.createElement('strong');
+        strongStatus.textContent = 'Status:';
+        statusDiv.appendChild(strongStatus);
+        const valDiv = document.createElement('div');
+        const badge = document.createElement('span');
+        badge.className = 'stock-badge ' + statusClass;
+        badge.textContent = stockStatus;
+        valDiv.appendChild(badge);
+        statusDiv.appendChild(valDiv);
+        grid.appendChild(statusDiv);
+
+        addItem('Safety Margin', Math.max(0, medicine.quantity - medicine.threshold) + ' units');
+        resultDiv.appendChild(grid);
+
+        if (medicine.quantity <= medicine.threshold) {
+            const alertDiv = document.createElement('div');
+            alertDiv.style.cssText = 'margin-top: 15px; padding: 10px; background: #ffebee; border-radius: 5px; color: #c62828;';
+            alertDiv.textContent = '\u26A0\uFE0F Low Stock Alert: Consider reordering soon!';
+            resultDiv.appendChild(alertDiv);
+        }
         document.getElementById('stockResult').classList.remove('hidden');
     }catch(e){
         console.log("Error:", e);
@@ -298,7 +319,7 @@ let medicineTypes = [];
             const res = await fetch("https://pharmacy-system-spring-utt5.onrender.com/medicine/checkStocktype", {
                 credentials: 'include',
                 headers: {'Content-Type': 'application/json'},
-                method:POST,
+                method: 'POST',
                 body: JSON.stringify(type)
             });
             const meds = await res.json();
@@ -308,7 +329,7 @@ let medicineTypes = [];
             }
         if (meds === null) {
             document.getElementById('stockByTypeResult').innerHTML = `
-                <div class="message warning">No medicines found for type: ${type}</div>
+                <div class="message warning">No medicines found for type: ${htmlEncode(type)}</div>
             `;
             document.getElementById('stockByTypeResult').classList.remove('hidden');
             return;
@@ -321,7 +342,7 @@ let medicineTypes = [];
 
         document.getElementById('stockByTypeResult').innerHTML = `
             <div class="stock-result">
-                <h4>Stock Summary${type !== 'all' ? ` for ${type}` : ''}</h4>
+                <h4>Stock Summary${type !== 'all' ? ` for ${htmlEncode(type)}` : ''}</h4>
                 ${type === 'all' ? typeSummary : ''}
 
                 <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 20px;">
@@ -352,29 +373,98 @@ let medicineTypes = [];
 }
 
     // Render medicines table
-    function renderMedicinesTable() {
+    async function renderMedicinesTable() {
         const tableBody = document.getElementById('medicinesTableBody');
-        tableBody.innerHTML = '';
+        tableBody.innerHTML = PharmUI.skeletonRows(8);
+
+        try{
+            const res = await PharmUI.withTimeout(fetch("https://pharmacy-system-spring-utt5.onrender.com/medicine/getAll",{
+            credentials:'include',
+            }));
+            if (!res.ok) throw new Error('Request failed ' + res.status);
+            const data = await res.json();
+            medicinesData = data;
+        }catch(e){
+            console.log("Failed to load medicines", e);
+            PharmUI.tableEmpty(tableBody, 8, {
+                icon: 'warning',
+                title: "Couldn't load medicines",
+                message: 'Check your connection and try again.',
+                actionLabel: 'Retry',
+                onRetry: renderMedicinesTable
+            });
+            return;
+        }
+
+        if (!medicinesData || medicinesData.length === 0) {
+            PharmUI.tableEmpty(tableBody, 8, {
+                icon: 'pill',
+                title: 'No medicines yet',
+                message: 'Use the Add Medicine form to stock your first item.'
+            });
+            return;
+        }
 
         medicinesData.forEach(medicine => {
             const stockStatus = getStockStatus(medicine.quantity, medicine.threshold);
             const statusClass = getStockStatusClass(stockStatus);
 
             const row = document.createElement('tr');
-            row.innerHTML = `
-                <td>${medicine.sku}</td>
-                <td><strong>${medicine.name}</strong><br><small style="color: #666;">${medicine.description.substring(0, 50)}${medicine.description.length > 50 ? '...' : ''}</small></td>
-                <td>${medicine.type}</td>
-                <td>${medicine.quantity}</td>
-                <td>${medicine.threshold}</td>
-                <td><span class="stock-badge ${statusClass}">${stockStatus}</span></td>
-                <td>KSh ${medicine.price.toFixed(2)}</td>
-                <td class="action-cell">
-                    <button class="icon-btn edit-btn" onclick="editMedicine('${medicine.sku}')">Edit</button>
-                    <button class="icon-btn delete-btn" onclick="confirmDeleteMedicine('${medicine.sku}', '${medicine.name}')">Delete</button>
-                    <button class="icon-btn" style="background: #e8f5e9; color: #2e7d32;" onclick="checkSingleMedicine('${medicine.sku}')">Stock</button>
-                </td>
-            `;
+
+            const tdSku = document.createElement('td');
+            tdSku.textContent = medicine.sku;
+            row.appendChild(tdSku);
+
+            const tdName = document.createElement('td');
+            const strongName = document.createElement('strong');
+            strongName.textContent = medicine.name;
+            tdName.appendChild(strongName);
+            tdName.appendChild(document.createElement('br'));
+            const descSmall = document.createElement('small');
+            descSmall.style.color = '#666';
+            descSmall.textContent = medicine.description.substring(0, 50) + (medicine.description.length > 50 ? '...' : '');
+            tdName.appendChild(descSmall);
+            row.appendChild(tdName);
+
+            const tdType = document.createElement('td');
+            tdType.textContent = medicine.type;
+            row.appendChild(tdType);
+
+            const tdQty = document.createElement('td');
+            tdQty.textContent = medicine.quantity;
+            row.appendChild(tdQty);
+
+            const tdStatus = document.createElement('td');
+            const badge = document.createElement('span');
+            badge.className = 'stock-badge ' + statusClass;
+            badge.textContent = stockStatus;
+            tdStatus.appendChild(badge);
+            row.appendChild(tdStatus);
+
+            const tdPrice = document.createElement('td');
+            tdPrice.textContent = 'KSh ' + medicine.price.toFixed(2);
+            row.appendChild(tdPrice);
+
+            const tdActions = document.createElement('td');
+            tdActions.className = 'action-cell';
+            const btnEdit = document.createElement('button');
+            btnEdit.className = 'icon-btn edit-btn';
+            btnEdit.textContent = 'Edit';
+            btnEdit.addEventListener('click', () => editMedicine(medicine.sku));
+            const btnDelete = document.createElement('button');
+            btnDelete.className = 'icon-btn delete-btn';
+            btnDelete.textContent = 'Delete';
+            btnDelete.addEventListener('click', () => confirmDeleteMedicine(medicine.sku, medicine.name));
+            const btnStock = document.createElement('button');
+            btnStock.className = 'icon-btn';
+            btnStock.style.cssText = 'background: #e8f5e9; color: #2e7d32;';
+            btnStock.textContent = 'Stock';
+            btnStock.addEventListener('click', () => checkSingleMedicine(medicine.sku));
+            tdActions.appendChild(btnEdit);
+            tdActions.appendChild(btnDelete);
+            tdActions.appendChild(btnStock);
+            row.appendChild(tdActions);
+
             tableBody.appendChild(row);
         });
     }
@@ -422,8 +512,14 @@ let medicineTypes = [];
     }
 
     // Quick delete from table
-    function confirmDeleteMedicine(sku, name) {
-        if (confirm(`Are you sure you want to delete ${name} (${sku})?\n\nThis action cannot be undone.`)) {
+    async function confirmDeleteMedicine(sku, name) {
+        const ok = await PharmUI.confirm({
+            title: 'Delete medicine?',
+            message: `Are you sure you want to delete ${name} (${sku})?\n\nThis action cannot be undone.`,
+            confirmText: 'Delete',
+            danger: true
+        });
+        if (ok) {
             medicinesData = medicinesData.filter(m => m.sku !== sku);
             showMessage(`Medicine ${name} deleted!`, 'success');
             renderMedicinesTable();
@@ -453,24 +549,64 @@ let medicineTypes = [];
             const statusClass = getStockStatusClass(stockStatus);
 
             const row = document.createElement('tr');
-            row.innerHTML = `
-                <td>${medicine.sku}</td>
-                <td><strong>${medicine.name}</strong><br><small style="color: #666;">${medicine.description.substring(0, 50)}${medicine.description.length > 50 ? '...' : ''}</small></td>
-                <td>${medicine.type}</td>
-                <td>${medicine.quantity}</td>
-                <td>${medicine.threshold}</td>
-                <td><span class="stock-badge ${statusClass}">${stockStatus}</span></td>
-                <td>KSh ${medicine.price.toFixed(2)}</td>
-                <td class="action-cell">
-                    <button class="icon-btn edit-btn" onclick="editMedicine('${medicine.sku}')">Edit</button>
-                    <button class="icon-btn delete-btn" onclick="confirmDeleteMedicine('${medicine.sku}', '${medicine.name}')">Delete</button>
-                </td>
-            `;
+
+            const tdSku = document.createElement('td');
+            tdSku.textContent = medicine.sku;
+            row.appendChild(tdSku);
+
+            const tdName = document.createElement('td');
+            const strongName = document.createElement('strong');
+            strongName.textContent = medicine.name;
+            tdName.appendChild(strongName);
+            tdName.appendChild(document.createElement('br'));
+            const descSmall = document.createElement('small');
+            descSmall.style.color = '#666';
+            descSmall.textContent = medicine.description.substring(0, 50) + (medicine.description.length > 50 ? '...' : '');
+            tdName.appendChild(descSmall);
+            row.appendChild(tdName);
+
+            const tdType = document.createElement('td');
+            tdType.textContent = medicine.type;
+            row.appendChild(tdType);
+
+            const tdQty = document.createElement('td');
+            tdQty.textContent = medicine.quantity;
+            row.appendChild(tdQty);
+
+            const tdThreshold = document.createElement('td');
+            tdThreshold.textContent = medicine.threshold;
+            row.appendChild(tdThreshold);
+
+            const tdStatus = document.createElement('td');
+            const badge = document.createElement('span');
+            badge.className = 'stock-badge ' + statusClass;
+            badge.textContent = stockStatus;
+            tdStatus.appendChild(badge);
+            row.appendChild(tdStatus);
+
+            const tdPrice = document.createElement('td');
+            tdPrice.textContent = 'KSh ' + medicine.price.toFixed(2);
+            row.appendChild(tdPrice);
+
+            const tdActions = document.createElement('td');
+            tdActions.className = 'action-cell';
+            const btnEdit = document.createElement('button');
+            btnEdit.className = 'icon-btn edit-btn';
+            btnEdit.textContent = 'Edit';
+            btnEdit.addEventListener('click', () => editMedicine(medicine.sku));
+            const btnDelete = document.createElement('button');
+            btnDelete.className = 'icon-btn delete-btn';
+            btnDelete.textContent = 'Delete';
+            btnDelete.addEventListener('click', () => confirmDeleteMedicine(medicine.sku, medicine.name));
+            tdActions.appendChild(btnEdit);
+            tdActions.appendChild(btnDelete);
+            row.appendChild(tdActions);
+
             tableBody.appendChild(row);
         });
 
         if (filtered.length === 0) {
-            tableBody.innerHTML = `<tr><td colspan="8" style="text-align: center; padding: 20px;">No medicines found matching "${searchTerm}"</td></tr>`;
+            tableBody.innerHTML = '<tr><td colspan="8" style="text-align: center; padding: 20px;">No medicines found matching "' + htmlEncode(searchTerm) + '"</td></tr>';
         }
     }
 
@@ -504,19 +640,28 @@ let medicineTypes = [];
             const typeDiv = document.createElement('div');
             typeDiv.className = 'type-item';
             const displayName = typeName.charAt(0).toUpperCase() + typeName.slice(1).toLowerCase();
-            typeDiv.innerHTML = `
-                <div>
-                    <strong>${displayName}</strong>
-                    <div style="font-size: 12px; color: #666;">
-                        &nbsp;
-                    </div>
-                </div>
-                <div class="type-actions">
-                    ${typeName !== 'OTHER' ? `
-                        <button class="small-btn danger-btn" onclick="deleteMedicineType('${typeName}')">Delete</button>
-                    ` : ''}
-                </div>
-            `;
+
+            const infoDiv = document.createElement('div');
+            const strongEl = document.createElement('strong');
+            strongEl.textContent = displayName;
+            infoDiv.appendChild(strongEl);
+            const subDiv = document.createElement('div');
+            subDiv.style.cssText = 'font-size: 12px; color: #666;';
+            subDiv.textContent = '\xA0';
+            infoDiv.appendChild(subDiv);
+            typeDiv.appendChild(infoDiv);
+
+            const actionsDiv = document.createElement('div');
+            actionsDiv.className = 'type-actions';
+            if (typeName !== 'OTHER') {
+                const btnDelete = document.createElement('button');
+                btnDelete.className = 'small-btn danger-btn';
+                btnDelete.textContent = 'Delete';
+                btnDelete.addEventListener('click', () => deleteMedicineType(typeName));
+                actionsDiv.appendChild(btnDelete);
+            }
+            typeDiv.appendChild(actionsDiv);
+
             typesList.appendChild(typeDiv);
         });
         updateTypeSelectOptions();
@@ -546,7 +691,8 @@ let medicineTypes = [];
         const name = document.getElementById('newTypeName').value.trim().toLowerCase();
         const Description = document.getElementById('newTypeDescription').value.trim();
         if (!name || !Description) {
-            alert('Please enter a type name and description');
+            showTypeModalMessage('Please enter a type name and description', 'warning');
+            flashTypeInputs('error');
             return;
         }
         const res = await fetch("https://pharmacy-system-spring-utt5.onrender.com/Medicine_Type/addType",{
@@ -578,10 +724,16 @@ let medicineTypes = [];
         }
         const count = await res.json();
         if(count > 0){
-            alert(`This Medicine Type has ${count} medicines allocated to it. Please reallocate and try again`);
+            showTypeModalMessage(`This Medicine Type has ${count} medicines allocated to it. Please reallocate and try again`, 'warning');
             return;
         }
-        if (confirm(`Delete medicine type "${type}"?`)) {
+        const ok = await PharmUI.confirm({
+            title: 'Delete medicine type?',
+            message: `Delete medicine type "${type}"?`,
+            confirmText: 'Delete',
+            danger: true
+        });
+        if (ok) {
             const delres = await fetch(`https://pharmacy-system-spring-utt5.onrender.com/Medicine_Type/delete_Type/${type}`,{
                 credentials:'include',
                 method: 'DELETE'
@@ -601,10 +753,13 @@ let medicineTypes = [];
             const select = document.getElementById(selectId);
             if (select) {
                 const currentValue = select.value;
-                select.innerHTML = '<option value="">Select Type</option>' +
-                    medicineTypes.map(type =>
-                        `<option value="${type}">${type.charAt(0).toUpperCase() + type.slice(1).toLowerCase()}</option>`
-                    ).join('');
+                select.innerHTML = '<option value="">Select Type</option>';
+                medicineTypes.forEach(type => {
+                    const opt = document.createElement('option');
+                    opt.value = type;
+                    opt.textContent = type.charAt(0).toUpperCase() + type.slice(1).toLowerCase();
+                    select.appendChild(opt);
+                });
                 select.value = currentValue;
             }
         });
@@ -655,13 +810,14 @@ let medicineTypes = [];
         document.querySelector('.sidebar-overlay').classList.toggle('active');
     }
 
-    function showNotifications() {
-        alert('Notifications would appear here');
-    }
-
-    function logout() {
-        if (confirm('Are you sure you want to logout?')) {
-            window.location.href = 'login.html';
+    async function logout() {
+        const ok = await PharmUI.confirm({
+            title: 'Log out?',
+            message: 'Are you sure you want to logout?',
+            confirmText: 'Logout'
+        });
+        if (ok) {
+            window.location.href = 'index.html';
         }
     }
 

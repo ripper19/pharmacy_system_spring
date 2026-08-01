@@ -13,6 +13,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
@@ -31,7 +33,7 @@ public class AuthController {
         String name = authentication.getName();
         Staff staff = staffRepository.findByEmail(name)
                 .orElseThrow((()->new WrongUser("User not found")));
-        return ResponseEntity.status(HttpStatus.OK).body(new AuthenticatedUserDetails(staff.getName(), staff.getEmail(), staff.getRole()));
+        return ResponseEntity.status(HttpStatus.OK).body(new AuthenticatedUserDetails(staff.getPublicId(), staff.getName(), staff.getEmail(), staff.getRole()));
     }
-    public record AuthenticatedUserDetails(String name, String email, Role role){}
+    public record AuthenticatedUserDetails(UUID publicId, String name, String email, Role role){}
 }

@@ -10,10 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -90,6 +87,15 @@ public class MedicineController {
         } catch (RuntimeException e) {
             logger.error("Error when checking one Medicine stock for {}: {} ",medicineStockDto.getMedicineName(),e.getMessage(),e);
             throw new RuntimeException("Failed to fetch resource for stock view. Consult logs for error");
+        }
+    }
+
+    @GetMapping("/getAll")
+    public ResponseEntity<List<MedicineService.AllMedicines>> getAllMedicines(){
+        try{
+            return ResponseEntity.ok().body(medService.getAll());
+        } catch (RuntimeException e) {
+            throw new RuntimeException("Failed to get all Medicines", e);
         }
     }
 }

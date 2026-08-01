@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/sale")
@@ -41,8 +42,8 @@ public class SalesController {
     }
 
     @DeleteMapping("delete_sale")
-    public ResponseEntity<String> deleteSale(Long id) {
-        saleService.deleteSale(id);
+    public ResponseEntity<String> deleteSale(@RequestParam UUID publicId) {
+        saleService.deleteSale(publicId);
         return ResponseEntity.status(HttpStatus.OK).body("Sale has been deleted");
     }
 

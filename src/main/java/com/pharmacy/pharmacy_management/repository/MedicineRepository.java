@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Repository
 public interface MedicineRepository extends JpaRepository<Medicine, String> {
@@ -18,8 +19,11 @@ public interface MedicineRepository extends JpaRepository<Medicine, String> {
 
     Optional<Medicine> findBySku(String sku);
 
+    Optional<Medicine> findByPublicId(UUID publicId);
+
     @Query("""
             SELECT new com.pharmacy.pharmacy_management.service.MedicineService$MedicineView(
+                       m.publicId,
                        m.medicineName,
                        m.quantity,
                        m.status,

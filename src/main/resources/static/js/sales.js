@@ -59,6 +59,7 @@
         loadUserData();
         loadSales(currentFilter);
         calculateTotal();
+        PharmUI.attachLiveValidation(document.getElementById('saleForm'));
     };
 
     function toggleForm(formType) {
@@ -100,15 +101,15 @@
         newItem.innerHTML = `
             <div>
                 <label>Medicine Name</label>
-                <input type="text" class="medicine-name" placeholder="Search medicine..." required>
+                <input type="text" class="medicine-name" placeholder="Search medicine..." aria-label="Medicine name" required>
             </div>
             <div>
                 <label>Quantity</label>
-                <input type="number" class="medicine-qty" min="1" value="1" required onchange="calculateTotal()">
+                <input type="number" class="medicine-qty" min="1" value="1" aria-label="Quantity" required onchange="calculateTotal()">
             </div>
             <div>
                 <label>Price</label>
-                <input type="number" class="medicine-price" step="0.01" placeholder="0.00" required onchange="calculateTotal()">
+                <input type="number" class="medicine-price" step="0.01" min="0" placeholder="0.00" aria-label="Price" required onchange="calculateTotal()">
             </div>
             <button type="button" class="remove-item-btn" onclick="removeMedicineItem(this)">Remove</button>
         `;
@@ -154,6 +155,11 @@
     async function submitSale(e) {
         e.preventDefault();
 
+        if (!PharmUI.validate(document.getElementById('saleForm'))) {
+            showAlert('Please fix the highlighted fields', 'error');
+            return;
+        }
+
         const items = Array.from(document.querySelectorAll('.medicine-item')).map(item => ({
             medicineName: item.querySelector('.medicine-name').value,
             quantity: parseInt(item.querySelector('.medicine-qty').value),
@@ -180,7 +186,7 @@
             const data = await res.json();
 
             if (res.ok) {
-                showAlert('Sale created successfully! Sale ID: #' + data.id, 'success');
+                showAlert('Sale created successfully!', 'success');
                 document.getElementById('saleForm').reset();
                 calculateTotal();
                 closeForm('createSale');
@@ -204,38 +210,55 @@
         document.querySelectorAll('.filter-btns button').forEach(btn => btn.classList.remove('active'));
         event?.target?.classList.add('active');
 
+        tbody.innerHTML = PharmUI.skeletonRows(7);
+
         try {
-            const res = await fetch(`https://pharmacy-system-spring-utt5.onrender.com/api/sales?filter=${filter}`, {
+            const res = await PharmUI.withTimeout(fetch(`https://pharmacy-system-spring-utt5.onrender.com/api/sales?filter=${filter}`, {
                 headers: { 'Authorization': 'Bearer ' + token }
-            });
+            }));
 
             const sales = await res.json();
 
-            if (sales.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; padding: 40px; color: #7f8c8d;">No sales found</td></tr>';
+            if (!Array.isArray(sales) || sales.length === 0) {
+                PharmUI.tableEmpty(tbody, 7, {
+                    icon: 'cart',
+                    title: 'No sales found',
+                    message: 'Sales for this period will show up here.'
+                });
                 return;
             }
 
-            tbody.innerHTML = sales.map(sale => `
-                <tr>
-                    <td>#${sale.id}</td>
-                    <td>${sale.clientName}</td>
-                    <td>${sale.clientPhone}</td>
-                    <td>${sale.saleType}</td>
-                    <td>KSh ${sale.totalAmount.toFixed(2)}</td>
-                    <td>${formatDateTime(sale.createdAt)}</td>
-                    <td>
-                        <div class="action-btns">
-                            <button class="btn-view" onclick="viewSale(${sale.id})">View</button>
-                            <button class="btn-delete" onclick="deleteSale(${sale.id})">Delete</button>
-                        </div>
-                    </td>
-                </tr>
-            `).join('');
+            tbody.innerHTML = '';
+            sales.forEach(sale => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `<td>#${htmlEncode(sale.publicId)}</td><td>${htmlEncode(sale.clientName)}</td><td>${htmlEncode(sale.clientPhone)}</td><td>${htmlEncode(sale.saleType)}</td><td>KSh ${sale.totalAmount.toFixed(2)}</td><td>${formatDateTime(sale.createdAt)}</td>`;
+                const tdActions = document.createElement('td');
+                const divActions = document.createElement('div');
+                divActions.className = 'action-btns';
+                const btnView = document.createElement('button');
+                btnView.className = 'btn-view';
+                btnView.textContent = 'View';
+                btnView.addEventListener('click', () => viewSale(sale.publicId));
+                const btnDelete = document.createElement('button');
+                btnDelete.className = 'btn-delete';
+                btnDelete.textContent = 'Delete';
+                btnDelete.addEventListener('click', () => deleteSale(sale.publicId));
+                divActions.appendChild(btnView);
+                divActions.appendChild(btnDelete);
+                tdActions.appendChild(divActions);
+                tr.appendChild(tdActions);
+                tbody.appendChild(tr);
+            });
 
         } catch (e) {
             console.error('Error loading sales:', e);
-            tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; color: red;">Error loading sales data</td></tr>';
+            PharmUI.tableEmpty(tbody, 7, {
+                icon: 'warning',
+                title: "Couldn't load sales",
+                message: 'Check your connection and try again.',
+                actionLabel: 'Retry',
+                onRetry: () => loadSales(filter)
+            });
         }
     }
 
@@ -260,22 +283,31 @@
             document.getElementById('tableTitle').textContent = `Search Results for "${searchTerm}"`;
 
             if (sales.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; padding: 40px; color: #7f8c8d;">No sales found</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="7" class="table-empty">No sales found</td></tr>';
                 return;
             }
 
-            tbody.innerHTML = sales.map(sale => `
-                <tr>
-                    <td>#${sale.id}</td>
-                    <td>${sale.clientName}</td>
-                    <td>${sale.clientPhone}</td>
-                    <td>${sale.saleType}</td>
-                    <td>KSh ${sale.totalAmount.toFixed(2)}</td>
-                    <td>${formatDateTime(sale.createdAt)}</td>
-                    <td>
-                        <div class="action-btns">
-                            <button class="btn-view" onclick="viewSale(${sale.id})">View</button>
-                            <button class="btn-delete" onclick="deleteSale(${sale.id})">Delete</button></div></td></tr>`).join('');
+            tbody.innerHTML = '';
+            sales.forEach(sale => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `<td>#${htmlEncode(sale.publicId)}</td><td>${htmlEncode(sale.clientName)}</td><td>${htmlEncode(sale.clientPhone)}</td><td>${htmlEncode(sale.saleType)}</td><td>KSh ${sale.totalAmount.toFixed(2)}</td><td>${formatDateTime(sale.createdAt)}</td>`;
+                const tdActions = document.createElement('td');
+                const divActions = document.createElement('div');
+                divActions.className = 'action-btns';
+                const btnView = document.createElement('button');
+                btnView.className = 'btn-view';
+                btnView.textContent = 'View';
+                btnView.addEventListener('click', () => viewSale(sale.publicId));
+                const btnDelete = document.createElement('button');
+                btnDelete.className = 'btn-delete';
+                btnDelete.textContent = 'Delete';
+                btnDelete.addEventListener('click', () => deleteSale(sale.publicId));
+                divActions.appendChild(btnView);
+                divActions.appendChild(btnDelete);
+                tdActions.appendChild(divActions);
+                tr.appendChild(tdActions);
+                tbody.appendChild(tr);
+            });
     } catch (e) {
             console.error('Error searching sales:', e);
             showAlert('Search failed. Please try again.', 'error');
@@ -299,18 +331,22 @@
 
             const sale = await res.json();
 
-            const items = sale.items.map(item =>
-                `${item.medicineName} (${item.quantity}x) - KSh ${item.price}`
-            ).join('\n');
+            const itemRows = sale.items.map(item =>
+                `<tr><td>${htmlEncode(item.medicineName)}</td><td>${htmlEncode(item.quantity)}×</td><td>KSh ${htmlEncode(item.price)}</td></tr>`
+            ).join('');
 
-            alert(`Sale Details\n\n` +
-                  `ID: #${sale.id}\n` +
-                  `Client: ${sale.clientName}\n` +
-                  `Phone: ${sale.clientPhone}\n` +
-                  `Type: ${sale.saleType}\n` +
-                  `Items:\n${items}\n` +
-                  `Total: KSh ${sale.totalAmount}\n` +
-                  `Date: ${formatDateTime(sale.createdAt)}`);
+            PharmUI.info({
+                title: `Sale #${sale.publicId}`,
+                html: `
+                    <table>
+                        <tr><td><strong>Client</strong></td><td colspan="2">${htmlEncode(sale.clientName)}</td></tr>
+                        <tr><td><strong>Phone</strong></td><td colspan="2">${htmlEncode(sale.clientPhone)}</td></tr>
+                        <tr><td><strong>Type</strong></td><td colspan="2">${htmlEncode(sale.saleType)}</td></tr>
+                        ${itemRows}
+                        <tr><td><strong>Total</strong></td><td colspan="2"><strong>KSh ${htmlEncode(sale.totalAmount)}</strong></td></tr>
+                        <tr><td><strong>Date</strong></td><td colspan="2">${htmlEncode(formatDateTime(sale.createdAt))}</td></tr>
+                    </table>`
+            });
 
         } catch (e) {
             console.error('Error viewing sale:', e);
@@ -320,7 +356,13 @@
 
     // Delete sale
     async function deleteSale(saleId) {
-        if (!confirm('Are you sure you want to delete this sale? This action cannot be undone.')) {
+        const ok = await PharmUI.confirm({
+            title: 'Delete sale?',
+            message: 'Are you sure you want to delete this sale? This action cannot be undone.',
+            confirmText: 'Delete',
+            danger: true
+        });
+        if (!ok) {
             return;
         }
 

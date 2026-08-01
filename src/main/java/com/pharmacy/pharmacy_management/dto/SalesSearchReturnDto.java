@@ -2,20 +2,21 @@ package com.pharmacy.pharmacy_management.dto;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 public class SalesSearchReturnDto {
-    private Long id;
+    private UUID publicId;
 
     private BigDecimal total;
 
     private LocalDateTime saleTime;
 
-    public Long getId() {
-        return id;
+    public UUID getPublicId() {
+        return publicId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setPublicId(UUID publicId) {
+        this.publicId = publicId;
     }
 
     public BigDecimal getTotal() {

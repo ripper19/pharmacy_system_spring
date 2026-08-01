@@ -2,6 +2,8 @@ package com.pharmacy.pharmacy_management.model;
 
 import jakarta.persistence.*;
 
+import java.util.UUID;
+
 @Entity
 public class MedicineType {
 
@@ -9,10 +11,22 @@ public class MedicineType {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
 
+    @Column(unique = true, updatable = false, columnDefinition = "UUID")
+    private UUID publicId;
+
     @Column(unique = true)
     private String name;
 
     private String description;
+
+    @PrePersist
+    private void generatePublicId() {
+        if (this.publicId == null) this.publicId = UUID.randomUUID();
+    }
+
+    public UUID getPublicId() {
+        return publicId;
+    }
 
     public Long getId() {
         return Id;

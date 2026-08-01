@@ -7,6 +7,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Entity
 public class Sale {
@@ -14,6 +15,9 @@ public class Sale {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @Column(unique = true, updatable = false, columnDefinition = "UUID")
+    private UUID publicId;
 
     private String clientName;
 
@@ -31,6 +35,15 @@ public class Sale {
     private List<SaleItem> items = new ArrayList<>();
 
     private BigDecimal total;
+
+    @PrePersist
+    private void generatePublicId() {
+        if (this.publicId == null) this.publicId = UUID.randomUUID();
+    }
+
+    public UUID getPublicId() {
+        return publicId;
+    }
 
     public long getId() {
         return id;
