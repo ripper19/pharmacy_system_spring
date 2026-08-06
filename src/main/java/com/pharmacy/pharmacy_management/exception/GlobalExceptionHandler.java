@@ -63,4 +63,12 @@ public class GlobalExceptionHandler {
     public ErrorResponse handleWrongPasswords(WrongUser ex){
         return new ErrorResponse(ex.getMessage(), HttpStatus.NOT_FOUND.value());
     }
+
+    @ExceptionHandler(DiagnosisServiceException.class)
+    @ResponseStatus(HttpStatus.SERVICE_UNAVAILABLE)
+    @ResponseBody
+    public ErrorResponse handleDiagnosisServiceException(DiagnosisServiceException ex){
+        logger.error("Diagnosis service error: {}", ex.getMessage(), ex);
+        return new ErrorResponse(ex.getMessage(), HttpStatus.SERVICE_UNAVAILABLE.value());
+    }
 }

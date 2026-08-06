@@ -10,3 +10,10 @@ spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
 spring.jpa.properties.hibernate.format_sql=true
 spring.jpa.show-sql=true
 
+# AI / Differential diagnosis (OpenAI-compatible endpoint).
+# Set AI_MOCK=false and provide AI_BASE_URL + AI_API_KEY to use a real LLM.
+ai.base-url="https://api.openai.com"
+ai.api-key="YOUR AI API KEY"
+ai.model="gpt-4o-mini"
+ai.mock=true
+

@@ -43,9 +43,21 @@ window.htmlEncode = (function () {
         }
     }
 
+    // Reveal admin-only nav items (e.g. Diagnosis) for ADMIN/SUPERADMIN.
+    // Reads the cached role set at login; page scripts refresh it via /auth/me.
+    function applyRoleGating() {
+        let cached;
+        try { cached = JSON.parse(localStorage.getItem('user')); } catch (e) { cached = null; }
+        const role = cached && cached.role;
+        if (role === 'ADMIN' || role === 'SUPERADMIN') {
+            document.querySelectorAll('.admin-only').forEach(el => el.classList.remove('admin-only'));
+        }
+    }
+
     function init() {
         apply(localStorage.getItem(KEY) === '1');
         hydrateUser();
+        applyRoleGating();
     }
 
     // Exposed for the navbar toggle button's onclick.

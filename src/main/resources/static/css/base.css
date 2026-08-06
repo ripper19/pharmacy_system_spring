@@ -49,6 +49,10 @@
     --font: 'Inter', 'Plus Jakarta Sans', 'Poppins', sans-serif;
 }
 
+/* ===== Role-gated (admin-only) elements =====
+ * Hidden by default; ui.js reveals them once the cached role is ADMIN or SUPERADMIN. */
+.admin-only { display: none !important; }
+
 /* ===== Accessibility fixes ===== */
 
 /* Sidebar inactive items — keep readable contrast on the deep blue gradient */

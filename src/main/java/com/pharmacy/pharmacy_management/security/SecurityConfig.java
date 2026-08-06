@@ -52,6 +52,9 @@ public class SecurityConfig {
                                 "/inventory.html",
                                 "/dash.html",
                                 "/sales.html",
+                                "/medicines.html",
+                                "/reports.html",
+                                "/settings.html",
                                 "/css/**",
                                 "/js/**",
                                 "/images/**").permitAll()
@@ -61,12 +64,12 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.DELETE,"/staff/delete").hasAnyRole("ADMIN", "SUPERADMIN")
                         .requestMatchers(HttpMethod.GET,"/staff/email").hasRole("SUPERADMIN")
                         .requestMatchers("/Medicine_Type/addType").hasAnyRole("ADMIN", "SUPERADMIN")
-                        .requestMatchers(HttpMethod.DELETE,"/Medicine_Type/delete_Type").hasAnyRole("ADMIN", "SUPERADMIN")
+                        .requestMatchers(HttpMethod.DELETE,"/Medicine_Type/delete_Type/*").hasAnyRole("ADMIN", "SUPERADMIN")
                         .requestMatchers("/medicine/create", "/medicine/update").hasAnyRole("ADMIN", "SUPERADMIN")
-                        .requestMatchers(HttpMethod.GET, "/Medicine_type/getAll").authenticated()
+                        .requestMatchers(HttpMethod.GET, "/Medicine_Type/getAll").authenticated()
                         .requestMatchers("/auth/login").permitAll()
                         .requestMatchers("/auth/me").authenticated()
-                        .requestMatchers("/index.html").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/diagnosis/**").hasAnyRole("ADMIN", "SUPERADMIN")
                         .requestMatchers("/check/health").permitAll()
                         .anyRequest().authenticated()
                 )
