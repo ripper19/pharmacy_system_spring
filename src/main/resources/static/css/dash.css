@@ -140,6 +140,7 @@ body {
     top: 64px;
     width: 260px;
     height: calc(100vh - 64px);
+    height: calc(100dvh - 64px);
     background: linear-gradient(180deg, #08234a 0%, #125bc8 130%);
     overflow-y: auto;
     overflow-x: hidden;
@@ -293,6 +294,7 @@ body {
     margin-top: 64px;
     padding: 24px;
     min-height: calc(100vh - 64px);
+    min-height: calc(100dvh - 64px);
     transition: margin-left 0.25s ease;
 }
 
@@ -686,6 +688,8 @@ body {
     border-radius: 20px;
     border: 1px solid #dce9f8;
     box-shadow: 0 1px 3px rgba(20, 75, 145, 0.05), 0 8px 24px rgba(20, 75, 145, 0.06);
+    /* Wide tables scroll horizontally inside the card on narrow screens */
+    overflow-x: auto;
 }
 
 .recent-sales h2 {
@@ -903,13 +907,22 @@ body.sidebar-collapsed .collapse-toggle::before {
     }
 
     .main-content {
-        padding-bottom: 80px;
+        /* 80px clears the 62px bottom-nav; add the device safe-area so
+           content is never hidden under the home indicator on phones */
+        padding-bottom: calc(80px + env(safe-area-inset-bottom));
     }
 
     .notif-panel {
         right: 12px;
         left: 12px;
         width: auto;
+    }
+}
+
+/* Responsive - Large Tablet */
+@media (max-width: 1200px) {
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
@@ -1006,9 +1019,22 @@ body.sidebar-collapsed .collapse-toggle::before {
     }
 }
 
-/* Responsive - Large Tablet */
-@media (max-width: 1200px) {
-    .stats-grid {
-        grid-template-columns: repeat(2, 1fr);
+/* Responsive - Small phones */
+@media (max-width: 480px) {
+    .top-navbar {
+        padding: 0 10px;
+    }
+
+    /* Decorative brand mark — bottom-nav already provides branding */
+    .logo {
+        display: none;
+    }
+
+    .search-bar {
+        margin: 0 6px;
+    }
+
+    .page-header h1 {
+        font-size: 20px;
     }
 }

@@ -1,5 +1,3 @@
-const API_BASE = "https://pharmacy-system-spring-utt5.onrender.com";
-
 // ---- Auth ----
 async function loadUser() {
     const user = localStorage.getItem('user');
@@ -41,6 +39,10 @@ async function checkRole() {
         document.getElementById('userAvatar').textContent = initials;
     } catch (e) {
         console.log("Failure", e);
+        // Session could not be verified — send the user back to login.
+        localStorage.clear();
+        sessionStorage.clear();
+        window.location.href = 'index.html';
     }
 }
 

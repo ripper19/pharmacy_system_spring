@@ -4,7 +4,7 @@ async function loadUser(){
             localStorage.clear();
             sessionStorage.clear();
 
-            fetch("https://pharmacy-system-spring-utt5.onrender.com/logout", {
+            fetch(API_BASE + "/logout", {
                 credentials: 'include',
                 method: 'POST'
             }).catch(()=> {});
@@ -18,7 +18,7 @@ async function loadUser(){
     }
     async function checkRole() {
         try{
-        const res = await fetch("https://pharmacy-system-spring-utt5.onrender.com/auth/me", {
+        const res = await fetch(API_BASE + "/auth/me", {
             credentials: 'include'
         });
         if(res.status === 401){
@@ -39,6 +39,10 @@ async function loadUser(){
         localStorage.setItem('user', JSON.stringify({name,bemail, role}));
     }catch(e){
         console.log("Failure", e);
+        // Session could not be verified — send the user back to login.
+        localStorage.clear();
+        sessionStorage.clear();
+        window.location.href = 'index.html';
     }
     }
 
@@ -46,7 +50,7 @@ async function loadUser(){
         const cookie = localStorage.getItem('COOKIE');
 
         try {
-            const salesRes = await PharmUI.withTimeout(fetch('https://pharmacy-system-spring-utt5.onrender.com/sale/todaySales', {
+            const salesRes = await PharmUI.withTimeout(fetch(API_BASE + '/sale/todaySales', {
                 method: 'GET',
                 credentials: 'include'
             }));
@@ -58,14 +62,14 @@ async function loadUser(){
             /**  add with orders module document.getElementById('totalOrders').textContent = salesData.count;
 
             Fetch low stock items
-            const stockRes = await fetch('https://pharmacy-system-spring-utt5.onrender.com/api/medicine/low-stock', {
+            const stockRes = await fetch(API_BASE + '/api/medicine/low-stock', {
                 headers: { 'Authorization': 'Bearer ' + token }
             });
 
            const stockData = await stockRes.json();
            document.getElementById('lowStock').textContent = stockData.length;*/
 
-            const revenueRes = await PharmUI.withTimeout(fetch('https://pharmacy-system-spring-utt5.onrender.com/sale/monthlySales', {
+            const revenueRes = await PharmUI.withTimeout(fetch(API_BASE + '/sale/monthlySales', {
                 method: 'GET',
                 credentials:'include'
             }));
@@ -108,7 +112,7 @@ async function loadUser(){
         tbody.innerHTML = PharmUI.skeletonRows(5);
 
         try {
-            const res = await PharmUI.withTimeout(fetch('https://pharmacy-system-spring-utt5.onrender.com/sale/rcntSales', {
+            const res = await PharmUI.withTimeout(fetch(API_BASE + '/sale/rcntSales', {
                 method: 'GET',
                 credentials: 'include'
             }));
@@ -268,10 +272,17 @@ async function loadUser(){
 
     let currentOverviewPoints = [];
 
+    // Redraw the chart to fit when the viewport changes (rotation, resize).
+    let chartResizeTimer = null;
+    window.addEventListener('resize', () => {
+        clearTimeout(chartResizeTimer);
+        chartResizeTimer = setTimeout(() => drawSalesChart(currentOverviewPoints), 150);
+    });
+
     async function loadSalesOverview(range) {
         let points = [];
         try {
-            const res = await PharmUI.withTimeout(fetch(`https://pharmacy-system-spring-utt5.onrender.com/sale/overview?range=${range}`, {
+            const res = await PharmUI.withTimeout(fetch(`${API_BASE}/sale/overview?range=${range}`, {
                 method: 'GET',
                 credentials: 'include'
             }));
@@ -301,7 +312,7 @@ async function loadUser(){
     }
 
     function logout() {
-        fetch ('https://pharmacy-system-spring-utt5.onrender.com/logout',{
+        fetch (API_BASE + '/logout',{
         method: 'POST',
         credentials: 'include'
         });

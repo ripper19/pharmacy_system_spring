@@ -4,7 +4,7 @@ async function loadUserData() {
             localStorage.clear();
             sessionStorage.clear();
 
-            fetch("https://pharmacy-system-spring-utt5.onrender.com/logout", {
+            fetch(API_BASE + "/logout", {
                 credentials: 'include',
                 method: 'POST'
             }).catch(()=> {});
@@ -19,7 +19,7 @@ async function loadUserData() {
     
     async function checkRole() {
         try{
-            const res = await fetch("https://pharmacy-system-spring-utt5.onrender.com/auth/me", {
+            const res = await fetch(API_BASE + "/auth/me", {
                 credentials: 'include'
             });
             if(res.status === 401){
@@ -154,7 +154,7 @@ let resetTimeOut= null;
         //disable
         btn.disabled=true;
         try{
-            const res = await fetch("https://pharmacy-system-spring-utt5.onrender.com/staff/create",{
+            const res = await fetch(API_BASE + "/staff/create",{
                 method: "POST",
                 headers: { "Content-Type" : "application/json" },
                 credentials: 'include',
@@ -190,7 +190,7 @@ let resetTimeOut= null;
             currentFetch.abort();
         }
         currentFetch = new AbortController();
-        const res = await fetch(`https://pharmacy-system-spring-utt5.onrender.com/staff/email?email=${email}`, {
+        const res = await fetch(`${API_BASE}/staff/email?email=${email}`, {
             credentials : 'include',
             signal: currentFetch.signal
         })
@@ -243,7 +243,7 @@ let resetTimeOut= null;
         
         try{
         const myEmail = document.getElementById('updateStaffUser').value;
-        const res = await fetch(`https://pharmacy-system-spring-utt5.onrender.com/staff/supdate/${myEmail}`, {
+        const res = await fetch(`${API_BASE}/staff/supdate/${myEmail}`, {
             credentials: 'include',
             headers: {'Content-Type': 'application/json'},
             method: 'PATCH',
@@ -278,7 +278,7 @@ let resetTimeOut= null;
             showMessage("Please confirm the Staff to be deleted", "warning");
             return;
         }
-        const res = await fetch("https://pharmacy-system-spring-utt5.onrender.com/staff/delete",{
+        const res = await fetch(API_BASE + "/staff/delete",{
             headers: {'Content-Type': 'application/json'},
             method:'DELETE',
             credentials: 'include',
@@ -296,7 +296,7 @@ let resetTimeOut= null;
 
         let res;
         try {
-            res = await PharmUI.withTimeout(fetch ("https://pharmacy-system-spring-utt5.onrender.com/staff/all",{
+            res = await PharmUI.withTimeout(fetch (API_BASE + "/staff/all",{
                 credentials: 'include'
             }));
         } catch (e) {
@@ -398,7 +398,7 @@ let resetTimeOut= null;
         });
         if (ok) {
             console.log(publicId,email);
-            const res = await fetch("https://pharmacy-system-spring-utt5.onrender.com/staff/delete", {
+            const res = await fetch(API_BASE + "/staff/delete", {
                 headers:{"Content-Type": "application/json"},
                 method: 'DELETE',
                 credentials: 'include',
@@ -532,7 +532,7 @@ let resetTimeOut= null;
             confirmText: 'Logout'
         });
         if (ok) {
-            await fetch("https://pharmacy-system-spring-utt5.onrender.com/logout", {
+            await fetch(API_BASE + "/logout", {
                 credentials: 'include',
                 method: 'POST'
             });

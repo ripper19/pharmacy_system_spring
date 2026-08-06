@@ -428,7 +428,6 @@ window.PharmUI = (function () {
 
     // ---- Notifications panel ----
     const notifications = (function () {
-        const API_BASE = "https://pharmacy-system-spring-utt5.onrender.com";
         let panel = null, badge = null, lastCount = 0, loaded = false;
 
         function ensurePanel() {

@@ -7,7 +7,7 @@
             localStorage.clear();
             sessionStorage.clear();
 
-            fetch("https://pharmacy-system-spring-utt5.onrender.com/logout", {
+            fetch(API_BASE + "/logout", {
                 credentials: 'include',
                 method: 'POST'
             }).catch(()=> {});
@@ -22,7 +22,7 @@
     
     async function checkRole() {
         try{
-            const res = await fetch("https://pharmacy-system-spring-utt5.onrender.com/auth/me", {
+            const res = await fetch(API_BASE + "/auth/me", {
                 credentials: 'include'
             });
             if(res.status === 401){
@@ -52,6 +52,10 @@
             document.getElementById('userAvatar').textContent = initials;
         }catch(e){
             console.log("Failure", e);
+            // Session could not be verified — send the user back to login.
+            localStorage.clear();
+            sessionStorage.clear();
+            window.location.href = 'index.html';
         }
     }
 
@@ -176,7 +180,7 @@
         };
 
         try {
-            const res = await fetch('https://pharmacy-system-spring-utt5.onrender.com/sale/sell', {
+            const res = await fetch(API_BASE + '/sale/sell', {
                 method: 'POST',
                 credentials: 'include',
                 headers:{'Content-Type':'application/json'},
@@ -208,12 +212,12 @@
 
         // Update filter buttons
         document.querySelectorAll('.filter-btns button').forEach(btn => btn.classList.remove('active'));
-        event?.target?.classList.add('active');
+        event?.target?.classList?.add('active');
 
         tbody.innerHTML = PharmUI.skeletonRows(7);
 
         try {
-            const res = await PharmUI.withTimeout(fetch(`https://pharmacy-system-spring-utt5.onrender.com/api/sales?filter=${filter}`, {
+            const res = await PharmUI.withTimeout(fetch(`${API_BASE}/api/sales?filter=${filter}`, {
                 headers: { 'Authorization': 'Bearer ' + token }
             }));
 
@@ -274,7 +278,7 @@
         const tbody = document.getElementById('salesTableBody');
 
         try {
-            const res = await fetch(`https://pharmacy-system-spring-utt5.onrender.com/api/sales/search?q=${searchTerm}`, {
+            const res = await fetch(`${API_BASE}/api/sales/search?q=${searchTerm}`, {
                 headers: { 'Authorization': 'Bearer ' + token }
             });
 
@@ -325,7 +329,7 @@
         const token = localStorage.getItem('token');
 
         try {
-            const res = await fetch(`https://pharmacy-system-spring-utt5.onrender.com/api/sales/${saleId}`, {
+            const res = await fetch(`${API_BASE}/api/sales/${saleId}`, {
                 headers: { 'Authorization': 'Bearer ' + token }
             });
 
@@ -369,7 +373,7 @@
         const token = localStorage.getItem('token');
 
         try {
-            const res = await fetch(`https://pharmacy-system-spring-utt5.onrender.com/api/sales/${saleId}`, {
+            const res = await fetch(`${API_BASE}/api/sales/${saleId}`, {
                 method: 'DELETE',
                 headers: { 'Authorization': 'Bearer ' + token }
             });

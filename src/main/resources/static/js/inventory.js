@@ -4,7 +4,7 @@ async function loadUser(){
         localStorage.clear();
         sessionStorage.clear();
 
-        fetch("https://pharmacy-system-spring-utt5.onrender.com/logout", {
+        fetch(API_BASE + "/logout", {
             credentials: 'include',
             method: 'POST'
         }).catch(()=> {});
@@ -19,7 +19,7 @@ async function loadUser(){
 
 async function checkRole() {
     try{
-        const res = await fetch("https://pharmacy-system-spring-utt5.onrender.com/auth/me", {
+        const res = await fetch(API_BASE + "/auth/me", {
             credentials: 'include'
         });
         if(res.status === 401){
@@ -58,7 +58,11 @@ async function checkRole() {
         }
     }catch(e){
         console.log("Failure", e);
-        showMessage("Failed", "error");
+        // Session could not be verified — send the user back to login.
+        showMessage("Failed Session Verification. Redirecting to login", "error");
+        localStorage.clear();
+        sessionStorage.clear();
+        window.location.href = 'index.html';
     }
 }
 
@@ -143,7 +147,7 @@ let medicinesData = [];
         if(!isNaN(threshold)) newMedicine.lowStockThreshold = threshold;
 
         try{
-            const res = await fetch("https://pharmacy-system-spring-utt5.onrender.com/medicine/create", {
+            const res = await fetch(API_BASE + "/medicine/create", {
                 headers: {'Content-Type':'application/json'},
                 credentials: 'include',
                 method: 'POST',
@@ -211,7 +215,7 @@ let medicinesData = [];
         const sku = document.getElementById('confirmDeleteMedicine').value;
 
         try{
-            const res = await fetch("https://pharmacy-system-spring-utt5.onrender.com/medicine/delete",{
+            const res = await fetch(API_BASE + "/medicine/delete",{
                 credentials:'include',
                 method:'DELETE',
                 headers: {'Content-Type': 'application/json'},
@@ -237,7 +241,7 @@ let medicinesData = [];
             return;
         }
         try{
-            const res = await fetch("https://pharmacy-system-spring-utt5.onrender.com/medicine/checkMedicine",{
+            const res = await fetch(API_BASE + "/medicine/checkMedicine",{
                 credentials:'include',
                 headers: {'Content-Type':'application/json'},
                 method: 'POST',
@@ -316,7 +320,7 @@ let medicinesData = [];
             return;
         }
         try{
-            const res = await fetch("https://pharmacy-system-spring-utt5.onrender.com/medicine/checkStocktype", {
+            const res = await fetch(API_BASE + "/medicine/checkStocktype", {
                 credentials: 'include',
                 headers: {'Content-Type': 'application/json'},
                 method: 'POST',
@@ -378,7 +382,7 @@ let medicinesData = [];
         tableBody.innerHTML = PharmUI.skeletonRows(8);
 
         try{
-            const res = await PharmUI.withTimeout(fetch("https://pharmacy-system-spring-utt5.onrender.com/medicine/getAll",{
+            const res = await PharmUI.withTimeout(fetch(API_BASE + "/medicine/getAll",{
             credentials:'include',
             }));
             if (!res.ok) throw new Error('Request failed ' + res.status);
@@ -624,9 +628,15 @@ let medicinesData = [];
         const typesList = document.getElementById('medicineTypesList');
         typesList.innerHTML = '';
 
-        const res = await fetch("https://pharmacy-system-spring-utt5.onrender.com/Medicine_Type/getAll", {
-            credentials: 'include',
-        });
+        let res;
+        try {
+            res = await fetch(API_BASE + "/Medicine_Type/getAll", {
+                credentials: 'include',
+            });
+        } catch (e) {
+            showMessage("Failed to fetch Types", "error");
+            return;
+        }
         if(!res.ok){
             showMessage("Failed to fetch Types", "error");
             return;
@@ -695,7 +705,7 @@ let medicinesData = [];
             flashTypeInputs('error');
             return;
         }
-        const res = await fetch("https://pharmacy-system-spring-utt5.onrender.com/Medicine_Type/addType",{
+        const res = await fetch(API_BASE + "/Medicine_Type/addType",{
             credentials: 'include',
             headers: {'Content-Type': 'application/json'},
             method: 'POST',
@@ -715,7 +725,7 @@ let medicinesData = [];
     }
 
     async function deleteMedicineType(type) {
-        const res = await fetch(`https://pharmacy-system-spring-utt5.onrender.com/Medicine_Type/check/${type}`,{
+        const res = await fetch(`${API_BASE}/Medicine_Type/check/${type}`,{
             credentials: 'include'
         });
         if(!res.ok) {
@@ -734,7 +744,7 @@ let medicinesData = [];
             danger: true
         });
         if (ok) {
-            const delres = await fetch(`https://pharmacy-system-spring-utt5.onrender.com/Medicine_Type/delete_Type/${type}`,{
+            const delres = await fetch(`${API_BASE}/Medicine_Type/delete_Type/${type}`,{
                 credentials:'include',
                 method: 'DELETE'
             });

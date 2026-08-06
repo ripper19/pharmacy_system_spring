@@ -109,7 +109,7 @@ form.addEventListener("submit", async (e) => {
     submitBtn.textContent = "Signing in…";
 
     try {
-        const res = await fetch("https://pharmacy-system-spring-utt5.onrender.com/auth/login", {
+        const res = await fetch(API_BASE + "/auth/login", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             credentials: 'include',
