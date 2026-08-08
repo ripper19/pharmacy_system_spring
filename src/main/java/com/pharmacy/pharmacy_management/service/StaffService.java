@@ -18,6 +18,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.io.Serializable;
@@ -239,6 +241,18 @@ public class StaffService {
                         staff.getPhoneNo(),
                         staff.getDateJoined()
                 )).toList();
+    }
+
+    @Transactional(readOnly = true)
+    public Page<AllDto> getAllPaged(Pageable pageable){
+        return staffRepo.findAll(pageable).map(staff -> new AllDto(
+                staff.getName(),
+                staff.getEmail(),
+                staff.getPublicId(),
+                staff.getRole(),
+                staff.getPhoneNo(),
+                staff.getDateJoined()
+        ));
     }
     public record AllDto (String name,String email, UUID publicId, Role role, String phoneNo, LocalDateTime joined) implements Serializable{}
 

@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
+<script>(function(){try{if(localStorage.getItem('sidebarCollapsed')==='1')document.body.classList.add('sidebar-collapsed')}catch(e){}})();</script>
 <a class="skip-link" href="#mainContent">Skip to main content</a>
 
 <!-- Top Navbar -->
@@ -156,7 +157,7 @@
                 </div>
                 <div class="form-actions">
                     <button class="secondary-btn" onclick="clearForm()">Clear</button>
-                    <button class="primary-btn" onclick="addMedicine()">Add Medicine</button>
+                    <button class="primary-btn" onclick="addMedicine(this)">Add Medicine</button>
                 </div>
             </div>
 
@@ -212,7 +213,7 @@
                 </div>
                 <div class="form-actions">
                     <button class="secondary-btn" onclick="clearDeleteForm()">Cancel</button>
-                    <button class="primary-btn btn-danger" onclick="deleteMedicine()">Delete Medicine</button>
+                    <button class="primary-btn btn-danger" onclick="deleteMedicine(this)">Delete Medicine</button>
                 </div>
             </div>
 
@@ -265,7 +266,6 @@
                             <th>Name</th>
                             <th>Type</th>
                             <th>Quantity</th>
-                            <th>Threshold</th>
                             <th>Status</th>
                             <th>Price</th>
                             <th>Actions</th>
@@ -298,7 +298,7 @@
                 <input type="text" id="newTypeDescription" placeholder="Short description of uses">
             </div>
             <div class="form-group">
-                <button class="primary-btn label-offset" onclick="addMedicineType()">Add Type</button>
+                <button class="primary-btn label-offset" onclick="addMedicineType(this)">Add Type</button>
             </div>
         </div>
 

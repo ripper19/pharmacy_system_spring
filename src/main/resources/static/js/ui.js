@@ -417,6 +417,114 @@ window.PharmUI = (function () {
         ]);
     }
 
+    /**
+     * Disable a button while an async action runs, then restore it.
+     * Re-entry while busy is ignored (covers double-click AND Enter-key
+     * re-submission, since a disabled submit button blocks implicit submit).
+     * @param {HTMLButtonElement} btn
+     * @param {string} [busyLabel]  e.g. 'Saving…' — omit to keep the label
+     * @param {() => Promise<any>} action
+     */
+    async function guard(btn, busyLabel, action) {
+        if (!btn || btn.disabled) return;
+        const label = btn.textContent;
+        btn.disabled = true;
+        if (busyLabel) btn.textContent = busyLabel;
+        try { await action(); }
+        finally {
+            btn.disabled = false;
+            if (busyLabel) btn.textContent = label;
+        }
+    }
+
+    /**
+     * Render a pager (Prev / "Page X of Y · Z items" / Next) into `container`.
+     * Clears the container first. No-op (renders nothing) when there is a
+     * single page or fewer. Calls onPage(newPage) when a nav button is clicked.
+     * @param {HTMLElement} container
+     * @param {{page:number, totalPages:number, totalElements:number}} info
+     * @param {(page:number)=>void} onPage
+     */
+    function pager(container, info, onPage) {
+        if (!container) return;
+        container.innerHTML = '';
+        const page = (info && info.page) || 0;
+        const totalPages = (info && info.totalPages) || 1;
+        const totalElements = (info && info.totalElements) || 0;
+        if (totalPages <= 1) return;
+
+        const wrap = document.createElement('div');
+        wrap.className = 'ui-pager';
+
+        const prev = document.createElement('button');
+        prev.type = 'button';
+        prev.className = 'ui-pager-btn';
+        prev.textContent = '‹ Prev';
+        prev.disabled = page <= 0;
+        prev.addEventListener('click', () => { if (page > 0) onPage(page - 1); });
+
+        const inf = document.createElement('span');
+        inf.className = 'ui-pager-info';
+        inf.textContent = 'Page ' + (page + 1) + ' of ' + totalPages +
+            ' · ' + totalElements + ' item' + (totalElements === 1 ? '' : 's');
+
+        const next = document.createElement('button');
+        next.type = 'button';
+        next.className = 'ui-pager-btn';
+        next.textContent = 'Next ›';
+        next.disabled = page >= totalPages - 1;
+        next.addEventListener('click', () => { if (page < totalPages - 1) onPage(page + 1); });
+
+        wrap.append(prev, inf, next);
+        container.appendChild(wrap);
+    }
+
+    /**
+     * Render the right empty state after a fetch failure.
+     *
+     * A genuine connection issue — a client-side timeout or an HTTP 408 /
+     * 5xx response — shows the "couldn't load, check your connection" retry
+     * state. Anything else (no API linked / network failure / other HTTP
+     * status / bad JSON) is treated as "no data to display" so the UI does
+     * not cry wolf when the backend simply isn't running.
+     *
+     * @param {HTMLElement} tbody  table body to render into
+     * @param {number} cols        column span for the empty row
+     * @param {object} noData      opts for the no-data state (icon, title,
+     *                             message, actionLabel?, actionHref?) plus
+     *                             optional retryTitle / onRetry used only
+     *                             when the failure is a genuine issue
+     * @param {Error} [err]        caught error (network failure / timeout /
+     *                             bad JSON). Pass null when `res` is given.
+     * @param {Response} [res]     the Response object when !res.ok
+     */
+    function fetchEmpty(tbody, cols, noData, err, res) {
+        let connection = false;
+        if (res) {
+            const s = res.status;
+            connection = s === 408 || (s >= 500 && s <= 599);
+        } else if (err && err.message === 'timeout') {
+            connection = true;
+        }
+        if (connection) {
+            tableEmpty(tbody, cols, {
+                icon: 'warning',
+                title: (noData && noData.retryTitle) || "Couldn't load data",
+                message: 'Check your connection and try again.',
+                actionLabel: 'Retry',
+                onRetry: noData && noData.onRetry
+            });
+        } else {
+            tableEmpty(tbody, cols, {
+                icon: (noData && noData.icon) || 'box',
+                title: (noData && noData.title) || 'No data to display',
+                message: noData && noData.message,
+                actionLabel: noData && noData.actionLabel,
+                actionHref: noData && noData.actionHref
+            });
+        }
+    }
+
     // ---- Sidebar menu badge (e.g. low-stock count on Inventory) ----
     function setMenuBadge(count) {
         const badge = document.getElementById('inventoryMenuBadge');
@@ -467,7 +575,7 @@ window.PharmUI = (function () {
             setMenuBadge(n);
         }
 
-        function render(items) {
+        function render(items, connectionIssue) {
             const p = ensurePanel();
             if (!items) {
                 p.innerHTML = '';
@@ -475,13 +583,23 @@ window.PharmUI = (function () {
                 head.className = 'notif-head';
                 head.textContent = 'Notifications';
                 p.appendChild(head);
-                p.appendChild(emptyState({
-                    icon: 'warning',
-                    title: "Couldn't load alerts",
-                    message: 'Check your connection and try again.',
-                    actionLabel: 'Retry',
-                    onRetry: load
-                }));
+                // Genuine connection issue (timeout / 408 / 5xx) → retry
+                // state. No API linked / other failure → "all caught up".
+                if (connectionIssue) {
+                    p.appendChild(emptyState({
+                        icon: 'warning',
+                        title: "Couldn't load alerts",
+                        message: 'Check your connection and try again.',
+                        actionLabel: 'Retry',
+                        onRetry: load
+                    }));
+                } else {
+                    p.appendChild(emptyState({
+                        icon: 'check',
+                        title: 'All caught up',
+                        message: 'No low-stock alerts right now.'
+                    }));
+                }
                 return;
             }
             if (items.length === 0) {
@@ -519,9 +637,25 @@ window.PharmUI = (function () {
             if (p.classList.contains('open')) {
                 p.innerHTML = '<div class="notif-head">Notifications</div><div class="notif-loading"><span class="spinner"></span>Checking stock levels…</div>';
             }
+            let res;
             try {
-                const res = await withTimeout(fetch(`${API_BASE}/api/medicine/low-stock`, { credentials: 'include' }), 8000);
-                if (!res.ok) throw new Error('Request failed ' + res.status);
+                res = await withTimeout(fetch(`${API_BASE}/api/medicine/low-stock`, { credentials: 'include' }), 8000);
+            } catch (e) {
+                console.log('Notifications failed', e);
+                if (!loaded) setBadge(0);
+                // Client-side timeout = genuine connection issue; a network
+                // failure (no API linked) is treated as "all caught up".
+                render(null, e && e.message === 'timeout');
+                return;
+            }
+            if (!res.ok) {
+                const s = res.status;
+                console.log('Notifications failed', 'status', s);
+                if (!loaded) setBadge(0);
+                render(null, s === 408 || (s >= 500 && s <= 599));
+                return;
+            }
+            try {
                 const data = await res.json();
                 const items = Array.isArray(data) ? data : [];
                 loaded = true;
@@ -530,7 +664,7 @@ window.PharmUI = (function () {
             } catch (e) {
                 console.log('Notifications failed', e);
                 if (!loaded) setBadge(0);
-                render(null);
+                render(null, false);
             }
         }
 
@@ -605,5 +739,5 @@ window.PharmUI = (function () {
     });
 
     return { toast, dialog, confirm, info, validate, attachLiveValidation, setFieldError, clearFieldError,
-             skeletonRows, emptyState, tableEmpty, withTimeout, setMenuBadge, notifications };
+             skeletonRows, emptyState, tableEmpty, fetchEmpty, withTimeout, guard, pager, setMenuBadge, notifications };
 })();

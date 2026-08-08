@@ -18,6 +18,8 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.util.HtmlUtils;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -210,6 +212,21 @@ public class MedicineService {
                         medicine.getCost()
                 ))
                 .toList();
+    }
+
+    @Transactional(readOnly = true)
+    public Page<AllMedicines> getAllPaged(String type, String q, Pageable pageable){
+        String t = (type == null || type.isBlank()) ? null : type.toLowerCase();
+        String p = (q == null || q.isBlank()) ? null : "%" + q.toLowerCase() + "%";
+        return medicineRepo.search(t, p, pageable).map(medicine -> new AllMedicines(
+                medicine.getPublicId(),
+                medicine.getSku(),
+                medicine.getMedicineName(),
+                medicine.getMed_type(),
+                medicine.getQuantity(),
+                medicine.getStatus(),
+                medicine.getCost()
+        ));
     }
 
         public record MedicineStockView(UUID publicId,

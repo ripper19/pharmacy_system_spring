@@ -179,29 +179,32 @@
             notes: document.getElementById('notes').value
         };
 
-        try {
-            const res = await fetch(API_BASE + '/sale/sell', {
-                method: 'POST',
-                credentials: 'include',
-                headers:{'Content-Type':'application/json'},
-                body: JSON.stringify(saleData)
-            });
+        const btn = e.target.querySelector('button[type="submit"]');
+        await PharmUI.guard(btn, 'Creating…', async () => {
+            try {
+                const res = await fetch(API_BASE + '/sale/sell', {
+                    method: 'POST',
+                    credentials: 'include',
+                    headers:{'Content-Type':'application/json'},
+                    body: JSON.stringify(saleData)
+                });
 
-            const data = await res.json();
+                const data = await res.json();
 
-            if (res.ok) {
-                showAlert('Sale created successfully!', 'success');
-                document.getElementById('saleForm').reset();
-                calculateTotal();
-                closeForm('createSale');
-                loadSales(currentFilter);
-            } else {
-                showAlert('Error: ' + data.message, 'error');
+                if (res.ok) {
+                    showAlert('Sale created successfully!', 'success');
+                    document.getElementById('saleForm').reset();
+                    calculateTotal();
+                    closeForm('createSale');
+                    loadSales(currentFilter);
+                } else {
+                    showAlert('Error: ' + data.message, 'error');
+                }
+            } catch (err) {
+                console.error('Error creating sale:', err);
+                showAlert('Failed to create sale. Please try again.', 'error');
             }
-        } catch (e) {
-            console.error('Error creating sale:', e);
-            showAlert('Failed to create sale. Please try again.', 'error');
-        }
+        });
     }
 
     // Load sales
@@ -215,12 +218,29 @@
         event?.target?.classList?.add('active');
 
         tbody.innerHTML = PharmUI.skeletonRows(7);
-
+        const noData = {
+            icon: 'cart',
+            title: 'No sales found',
+            message: 'Sales for this period will show up here.',
+            retryTitle: "Couldn't load sales",
+            onRetry: () => loadSales(filter)
+        };
+        let res;
         try {
-            const res = await PharmUI.withTimeout(fetch(`${API_BASE}/api/sales?filter=${filter}`, {
+            res = await PharmUI.withTimeout(fetch(`${API_BASE}/api/sales?filter=${filter}`, {
                 headers: { 'Authorization': 'Bearer ' + token }
             }));
-
+        } catch (e) {
+            console.error('Error loading sales:', e);
+            PharmUI.fetchEmpty(tbody, 7, noData, e);
+            return;
+        }
+        if (!res.ok) {
+            console.error('Error loading sales:', res.status);
+            PharmUI.fetchEmpty(tbody, 7, noData, null, res);
+            return;
+        }
+        try {
             const sales = await res.json();
 
             if (!Array.isArray(sales) || sales.length === 0) {
@@ -256,13 +276,7 @@
 
         } catch (e) {
             console.error('Error loading sales:', e);
-            PharmUI.tableEmpty(tbody, 7, {
-                icon: 'warning',
-                title: "Couldn't load sales",
-                message: 'Check your connection and try again.',
-                actionLabel: 'Retry',
-                onRetry: () => loadSales(filter)
-            });
+            PharmUI.fetchEmpty(tbody, 7, noData, e);
         }
     }
 

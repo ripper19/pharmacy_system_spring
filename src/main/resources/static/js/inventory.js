@@ -69,6 +69,8 @@ async function checkRole() {
 let currentMode = 'add';
 let medicineTypes = [];
 let medicinesData = [];
+let currentMedPage = 0;
+let currentMedSearch = '';
 
     document.addEventListener('DOMContentLoaded', function() {
         loadUser();
@@ -124,7 +126,7 @@ let medicinesData = [];
         }
     }
 
-    async function addMedicine() {
+    async function addMedicine(btn) {
         const sku = document.getElementById('sku').value;
         const medicineName = document.getElementById('medicineName').value;
         const quantity = parseInt(document.getElementById('quantity').value);
@@ -146,25 +148,27 @@ let medicinesData = [];
 
         if(!isNaN(threshold)) newMedicine.lowStockThreshold = threshold;
 
-        try{
-            const res = await fetch(API_BASE + "/medicine/create", {
-                headers: {'Content-Type':'application/json'},
-                credentials: 'include',
-                method: 'POST',
-                body: JSON.stringify(newMedicine)
-            });
-            const returnedResult = await res.json();
-            if(!res.ok){
-                showMessage(`${returnedResult.message}`, 'error');
-                return;
-            }
-            showMessage(`${returnedResult.message}`, 'success');
-            renderMedicinesTable();
+        await PharmUI.guard(btn, 'Adding…', async () => {
+            try{
+                const res = await fetch(API_BASE + "/medicine/create", {
+                    headers: {'Content-Type':'application/json'},
+                    credentials: 'include',
+                    method: 'POST',
+                    body: JSON.stringify(newMedicine)
+                });
+                const returnedResult = await res.json();
+                if(!res.ok){
+                    showMessage(`${returnedResult.message}`, 'error');
+                    return;
+                }
+                showMessage(`${returnedResult.message}`, 'success');
+                renderMedicinesTable();
 
-        }catch(e){
-            console.log("Error:", e);
-            showMessage("Failed to add medicine", "error");
-        }
+            }catch(e){
+                console.log("Error:", e);
+                showMessage("Failed to add medicine", "error");
+            }
+        });
     }
 
     // Load medicine data for updating
@@ -210,29 +214,31 @@ let medicinesData = [];
     }
 
     
-    async function deleteMedicine() {
+    async function deleteMedicine(btn) {
         const name = document.getElementById('deleteName').value;
         const sku = document.getElementById('confirmDeleteMedicine').value;
 
-        try{
-            const res = await fetch(API_BASE + "/medicine/delete",{
-                credentials:'include',
-                method:'DELETE',
-                headers: {'Content-Type': 'application/json'},
-                body:JSON.stringify({name,sku})
-            });
-            const deleteRes = await res.json();
-            if(!res.ok){
-                showMessage(deleteRes.deleted, 'error');
-                return;
+        await PharmUI.guard(btn, 'Deleting…', async () => {
+            try{
+                const res = await fetch(API_BASE + "/medicine/delete",{
+                    credentials:'include',
+                    method:'DELETE',
+                    headers: {'Content-Type': 'application/json'},
+                    body:JSON.stringify({name,sku})
+                });
+                const deleteRes = await res.json();
+                if(!res.ok){
+                    showMessage(deleteRes.deleted, 'error');
+                    return;
+                }
+                showMessage(deleteRes.deleted, 'success');
+                clearDeleteForm();
+                renderMedicineTypes();
+            }catch(e){
+                console.log("Error occured", e);
+                showMessage("Error occured", "error");
             }
-            showMessage(deleteRes.deleted, 'success');
-            clearDeleteForm();
-            renderMedicineTypes();
-        }catch(e){
-            console.log("Error occured", e);
-            showMessage("Error occured", "error");
-        }
+        });
     }
     async function checkStock() {
         const name = document.getElementById('checkMedicineName').value;
@@ -377,42 +383,64 @@ let medicinesData = [];
 }
 
     // Render medicines table
-    async function renderMedicinesTable() {
+    async function renderMedicinesTable(page) {
+        if (page === undefined) page = currentMedPage;
+        currentMedPage = page;
         const tableBody = document.getElementById('medicinesTableBody');
-        tableBody.innerHTML = PharmUI.skeletonRows(8);
+        tableBody.innerHTML = PharmUI.skeletonRows(7);
 
+        const noData = {
+            icon: 'pill',
+            title: 'No medicines yet',
+            message: 'Use the Add Medicine form to stock your first item.',
+            retryTitle: "Couldn't load medicines",
+            onRetry: () => renderMedicinesTable(currentMedPage)
+        };
+        let res;
         try{
-            const res = await PharmUI.withTimeout(fetch(API_BASE + "/medicine/getAll",{
+            const url = API_BASE + "/medicine/getAll?page=" + page + "&size=20"
+                + (currentMedSearch ? "&q=" + encodeURIComponent(currentMedSearch) : "");
+            res = await PharmUI.withTimeout(fetch(url,{
             credentials:'include',
             }));
-            if (!res.ok) throw new Error('Request failed ' + res.status);
-            const data = await res.json();
-            medicinesData = data;
         }catch(e){
             console.log("Failed to load medicines", e);
-            PharmUI.tableEmpty(tableBody, 8, {
-                icon: 'warning',
-                title: "Couldn't load medicines",
-                message: 'Check your connection and try again.',
-                actionLabel: 'Retry',
-                onRetry: renderMedicinesTable
-            });
+            medicinesData = [];
+            PharmUI.fetchEmpty(tableBody, 7, noData, e);
             return;
         }
+        if(!res.ok){
+            console.log("Failed to load medicines", res.status);
+            medicinesData = [];
+            PharmUI.fetchEmpty(tableBody, 7, noData, null, res);
+            return;
+        }
+        let pageData;
+        try{
+            pageData = await res.json();
+        }catch(e){
+            console.log("Failed to parse medicines", e);
+            medicinesData = [];
+            PharmUI.fetchEmpty(tableBody, 7, noData, e);
+            return;
+        }
+        medicinesData = Array.isArray(pageData) ? pageData : (pageData.content || []);
+        let totalPages = (pageData && pageData.totalPages) ? pageData.totalPages : 1;
+        let totalElements = (pageData && pageData.totalElements != null) ? pageData.totalElements : medicinesData.length;
 
         if (!medicinesData || medicinesData.length === 0) {
-            PharmUI.tableEmpty(tableBody, 8, {
+            PharmUI.tableEmpty(tableBody, 7, {
                 icon: 'pill',
                 title: 'No medicines yet',
                 message: 'Use the Add Medicine form to stock your first item.'
             });
+            renderPager(tableBody, page, totalPages, totalElements);
             return;
         }
 
+        // Clear the skeleton rows before appending real data.
+        tableBody.innerHTML = '';
         medicinesData.forEach(medicine => {
-            const stockStatus = getStockStatus(medicine.quantity, medicine.threshold);
-            const statusClass = getStockStatusClass(stockStatus);
-
             const row = document.createElement('tr');
 
             const tdSku = document.createElement('td');
@@ -421,17 +449,12 @@ let medicinesData = [];
 
             const tdName = document.createElement('td');
             const strongName = document.createElement('strong');
-            strongName.textContent = medicine.name;
+            strongName.textContent = medicine.medicineName || medicine.name || '\u2014';
             tdName.appendChild(strongName);
-            tdName.appendChild(document.createElement('br'));
-            const descSmall = document.createElement('small');
-            descSmall.style.color = '#666';
-            descSmall.textContent = medicine.description.substring(0, 50) + (medicine.description.length > 50 ? '...' : '');
-            tdName.appendChild(descSmall);
             row.appendChild(tdName);
 
             const tdType = document.createElement('td');
-            tdType.textContent = medicine.type;
+            tdType.textContent = (medicine.medicineType && medicine.medicineType.name) || medicine.type || '\u2014';
             row.appendChild(tdType);
 
             const tdQty = document.createElement('td');
@@ -440,13 +463,14 @@ let medicinesData = [];
 
             const tdStatus = document.createElement('td');
             const badge = document.createElement('span');
-            badge.className = 'stock-badge ' + statusClass;
-            badge.textContent = stockStatus;
+            badge.className = 'stock-badge ' + String(medicine.status || '').toLowerCase();
+            badge.textContent = medicine.status || '\u2014';
             tdStatus.appendChild(badge);
             row.appendChild(tdStatus);
 
             const tdPrice = document.createElement('td');
-            tdPrice.textContent = 'KSh ' + medicine.price.toFixed(2);
+            const cost = typeof medicine.cost === 'number' ? medicine.cost : (typeof medicine.price === 'number' ? medicine.price : null);
+            tdPrice.textContent = cost !== null ? 'KSh ' + cost.toFixed(2) : '\u2014';
             row.appendChild(tdPrice);
 
             const tdActions = document.createElement('td');
@@ -470,6 +494,23 @@ let medicinesData = [];
             row.appendChild(tdActions);
 
             tableBody.appendChild(row);
+        });
+
+        renderPager(tableBody, page, totalPages, totalElements);
+    }
+
+    // Render the pager below the medicines table.
+    function renderPager(tableBody, page, totalPages, totalElements) {
+        let pagerEl = document.getElementById('medicinesViewPager');
+        if (!pagerEl) {
+            pagerEl = document.createElement('div');
+            pagerEl.id = 'medicinesViewPager';
+            const table = tableBody.closest('table');
+            if (table) table.after(pagerEl);
+            else tableBody.parentElement.appendChild(pagerEl);
+        }
+        PharmUI.pager(pagerEl, { page: page, totalPages: totalPages, totalElements: totalElements }, function (p) {
+            renderMedicinesTable(p);
         });
     }
 
@@ -530,88 +571,11 @@ let medicinesData = [];
         }
     }
 
-    // Search medicines
+    // Search medicines (server-side via ?q= on the paginated endpoint)
     function searchMedicines() {
-        const searchTerm = document.getElementById('medicineSearch').value.toLowerCase();
-        if (!searchTerm) {
-            renderMedicinesTable();
-            return;
-        }
-
-        const filtered = medicinesData.filter(medicine =>
-            medicine.sku.toLowerCase().includes(searchTerm) ||
-            medicine.name.toLowerCase().includes(searchTerm) ||
-            medicine.type.toLowerCase().includes(searchTerm) ||
-            medicine.description.toLowerCase().includes(searchTerm)
-        );
-
-        const tableBody = document.getElementById('medicinesTableBody');
-        tableBody.innerHTML = '';
-
-        filtered.forEach(medicine => {
-            const stockStatus = getStockStatus(medicine.quantity, medicine.threshold);
-            const statusClass = getStockStatusClass(stockStatus);
-
-            const row = document.createElement('tr');
-
-            const tdSku = document.createElement('td');
-            tdSku.textContent = medicine.sku;
-            row.appendChild(tdSku);
-
-            const tdName = document.createElement('td');
-            const strongName = document.createElement('strong');
-            strongName.textContent = medicine.name;
-            tdName.appendChild(strongName);
-            tdName.appendChild(document.createElement('br'));
-            const descSmall = document.createElement('small');
-            descSmall.style.color = '#666';
-            descSmall.textContent = medicine.description.substring(0, 50) + (medicine.description.length > 50 ? '...' : '');
-            tdName.appendChild(descSmall);
-            row.appendChild(tdName);
-
-            const tdType = document.createElement('td');
-            tdType.textContent = medicine.type;
-            row.appendChild(tdType);
-
-            const tdQty = document.createElement('td');
-            tdQty.textContent = medicine.quantity;
-            row.appendChild(tdQty);
-
-            const tdThreshold = document.createElement('td');
-            tdThreshold.textContent = medicine.threshold;
-            row.appendChild(tdThreshold);
-
-            const tdStatus = document.createElement('td');
-            const badge = document.createElement('span');
-            badge.className = 'stock-badge ' + statusClass;
-            badge.textContent = stockStatus;
-            tdStatus.appendChild(badge);
-            row.appendChild(tdStatus);
-
-            const tdPrice = document.createElement('td');
-            tdPrice.textContent = 'KSh ' + medicine.price.toFixed(2);
-            row.appendChild(tdPrice);
-
-            const tdActions = document.createElement('td');
-            tdActions.className = 'action-cell';
-            const btnEdit = document.createElement('button');
-            btnEdit.className = 'icon-btn edit-btn';
-            btnEdit.textContent = 'Edit';
-            btnEdit.addEventListener('click', () => editMedicine(medicine.sku));
-            const btnDelete = document.createElement('button');
-            btnDelete.className = 'icon-btn delete-btn';
-            btnDelete.textContent = 'Delete';
-            btnDelete.addEventListener('click', () => confirmDeleteMedicine(medicine.sku, medicine.name));
-            tdActions.appendChild(btnEdit);
-            tdActions.appendChild(btnDelete);
-            row.appendChild(tdActions);
-
-            tableBody.appendChild(row);
-        });
-
-        if (filtered.length === 0) {
-            tableBody.innerHTML = '<tr><td colspan="8" style="text-align: center; padding: 20px;">No medicines found matching "' + htmlEncode(searchTerm) + '"</td></tr>';
-        }
+        currentMedSearch = document.getElementById('medicineSearch').value.trim();
+        currentMedPage = 0;
+        renderMedicinesTable(0);
     }
 
     // Medicine Types Management
@@ -667,7 +631,7 @@ let medicinesData = [];
                 const btnDelete = document.createElement('button');
                 btnDelete.className = 'small-btn danger-btn';
                 btnDelete.textContent = 'Delete';
-                btnDelete.addEventListener('click', () => deleteMedicineType(typeName));
+                btnDelete.addEventListener('click', () => deleteMedicineType(typeName, btnDelete));
                 actionsDiv.appendChild(btnDelete);
             }
             typeDiv.appendChild(actionsDiv);
@@ -697,7 +661,7 @@ let medicinesData = [];
         setTimeout(() => el.style.display = 'none', 5000);
     }
 
-    async function addMedicineType() {
+    async function addMedicineType(btn) {
         const name = document.getElementById('newTypeName').value.trim().toLowerCase();
         const Description = document.getElementById('newTypeDescription').value.trim();
         if (!name || !Description) {
@@ -705,26 +669,34 @@ let medicinesData = [];
             flashTypeInputs('error');
             return;
         }
-        const res = await fetch(API_BASE + "/Medicine_Type/addType",{
-            credentials: 'include',
-            headers: {'Content-Type': 'application/json'},
-            method: 'POST',
-            body: JSON.stringify({name, description: Description})
+        await PharmUI.guard(btn, 'Adding…', async () => {
+            try {
+                const res = await fetch(API_BASE + "/Medicine_Type/addType",{
+                    credentials: 'include',
+                    headers: {'Content-Type': 'application/json'},
+                    method: 'POST',
+                    body: JSON.stringify({name, description: Description})
+                });
+                if(!res.ok){
+                    const err = await res.json();
+                    showTypeModalMessage(err.message || "Failed to add type", "error");
+                    flashTypeInputs('error');
+                    return;
+                }
+                const getBack = await res.text();
+                showTypeModalMessage(getBack, 'success');
+                flashTypeInputs('success');
+                clearTypeForm();
+                renderMedicineTypes();
+            } catch (e) {
+                console.log("Error adding type:", e);
+                showTypeModalMessage("Failed to add type", "error");
+                flashTypeInputs('error');
+            }
         });
-        if(!res.ok){
-            const err = await res.json();
-            showTypeModalMessage(err.message || "Failed to add type", "error");
-            flashTypeInputs('error');
-            return;
-        }
-        const getBack = await res.text();
-        showTypeModalMessage(getBack, 'success');
-        flashTypeInputs('success');
-        clearTypeForm();
-        renderMedicineTypes();
     }
 
-    async function deleteMedicineType(type) {
+    async function deleteMedicineType(type, btn) {
         const res = await fetch(`${API_BASE}/Medicine_Type/check/${type}`,{
             credentials: 'include'
         });
@@ -744,16 +716,23 @@ let medicinesData = [];
             danger: true
         });
         if (ok) {
-            const delres = await fetch(`${API_BASE}/Medicine_Type/delete_Type/${type}`,{
-                credentials:'include',
-                method: 'DELETE'
+            await PharmUI.guard(btn, 'Deleting…', async () => {
+                try {
+                    const delres = await fetch(`${API_BASE}/Medicine_Type/delete_Type/${type}`,{
+                        credentials:'include',
+                        method: 'DELETE'
+                    });
+                    if(!delres.ok){
+                        showMessage("Failed to delete", "error");
+                        return;
+                    }
+                    renderMedicineTypes();
+                    showMessage(`Medicine type "${type}" deleted!`, 'success');
+                } catch (e) {
+                    console.log("Error deleting type:", e);
+                    showMessage("Failed to delete", "error");
+                }
             });
-            if(!delres.ok){
-                showMessage("Failed to delete", "error");
-                return;
-            }
-            renderMedicineTypes();
-            showMessage(`Medicine type "${type}" deleted!`, 'success');
         }
     }
 

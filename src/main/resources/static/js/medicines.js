@@ -1,5 +1,7 @@
 let allMedicines = [];
 let medicineTypes = [];
+let catalogPage = 0;
+let searchTimer = null;
 
 // ---- Auth (user-facing: any authenticated user) ----
 async function loadUser() {
@@ -81,28 +83,77 @@ async function loadTypes() {
     }
 }
 
-async function loadMedicines() {
+async function loadMedicines(page) {
+    if (page === undefined) page = catalogPage;
+    catalogPage = page;
     const tbody = document.getElementById('medicinesCatalogBody');
     tbody.innerHTML = PharmUI.skeletonRows(5);
+    const noData = {
+        icon: 'pill',
+        title: 'No medicines in the catalog',
+        message: 'Medicines you add will appear here.',
+        actionLabel: 'Add a medicine',
+        actionHref: 'inventory.html',
+        retryTitle: "Couldn't load medicines",
+        onRetry: () => loadMedicines(catalogPage)
+    };
+    const params = new URLSearchParams();
+    params.set('page', String(page));
+    params.set('size', '20');
+    const q = (document.getElementById('medicineSearch').value || '').trim();
+    if (q) params.set('q', q);
+    const type = document.getElementById('typeFilter').value || 'all';
+    if (type && type !== 'all') params.set('type', type);
+
+    let res;
     try {
-        const res = await PharmUI.withTimeout(fetch(`${API_BASE}/medicine/getAll`, { credentials: 'include' }));
-        if (!res.ok) throw new Error('Request failed ' + res.status);
-        allMedicines = await res.json();
+        res = await PharmUI.withTimeout(fetch(`${API_BASE}/medicine/getAll?${params.toString()}`, { credentials: 'include' }));
     } catch (e) {
         console.log("Failed to load medicines", e);
         allMedicines = [];
-        PharmUI.tableEmpty(tbody, 5, {
-            icon: 'warning',
-            title: "Couldn't load medicines",
-            message: 'Check your connection and try again.',
-            actionLabel: 'Retry',
-            onRetry: loadMedicines
-        });
-        updateSummary();
+        PharmUI.fetchEmpty(tbody, 5, noData, e);
+        updateSummary(0);
         return;
     }
-    updateSummary();
-    applyFilters();
+    if (!res.ok) {
+        console.log("Failed to load medicines", res.status);
+        allMedicines = [];
+        PharmUI.fetchEmpty(tbody, 5, noData, null, res);
+        updateSummary(0);
+        return;
+    }
+    let pageData;
+    try {
+        pageData = await res.json();
+    } catch (e) {
+        console.log("Failed to parse medicines", e);
+        allMedicines = [];
+        PharmUI.fetchEmpty(tbody, 5, noData, e);
+        updateSummary(0);
+        return;
+    }
+    allMedicines = Array.isArray(pageData) ? pageData : (pageData.content || []);
+    const totalPages = (pageData && pageData.totalPages) ? pageData.totalPages : 1;
+    const totalElements = (pageData && pageData.totalElements != null) ? pageData.totalElements : allMedicines.length;
+    updateSummary(totalElements);
+
+    if (allMedicines.length === 0) {
+        if (totalElements === 0 && (q || (type && type !== 'all'))) {
+            tbody.innerHTML = emptyRow('No medicines match your search');
+        } else {
+            PharmUI.tableEmpty(tbody, 5, {
+                icon: 'pill',
+                title: 'No medicines in the catalog',
+                message: 'Medicines you add will appear here.',
+                actionLabel: 'Add a medicine',
+                actionHref: 'inventory.html'
+            });
+        }
+        renderCatalogPager(tbody, page, totalPages, totalElements);
+        return;
+    }
+    renderTable(allMedicines);
+    renderCatalogPager(tbody, page, totalPages, totalElements);
 }
 
 // ---- Rendering ----
@@ -144,27 +195,15 @@ function selectChip(type) {
 }
 
 function applyFilters() {
-    const search = (document.getElementById('medicineSearch').value || '').toLowerCase();
+    // Sync chip active state to the current select value.
     const type = document.getElementById('typeFilter').value || 'all';
-
-    // Sync chip active state
     document.querySelectorAll('.type-chip').forEach(chip => {
         chip.classList.toggle('active', chip.dataset.type === type);
     });
 
-    let filtered = allMedicines;
-    if (type !== 'all') {
-        filtered = filtered.filter(m => (m.type || '').toLowerCase() === type.toLowerCase());
-    }
-    if (search) {
-        filtered = filtered.filter(m =>
-            (m.name || '').toLowerCase().includes(search) ||
-            (m.sku || '').toLowerCase().includes(search) ||
-            (m.type || '').toLowerCase().includes(search)
-        );
-    }
-
-    renderTable(filtered);
+    // Debounce so typing doesn't fire a request per keystroke.
+    clearTimeout(searchTimer);
+    searchTimer = setTimeout(() => loadMedicines(0), 300);
 }
 
 function renderTable(medicines) {
@@ -186,33 +225,44 @@ function renderTable(medicines) {
     }
 
     tbody.innerHTML = medicines.map(med => {
-        const status = getStockStatus(med.quantity, med.threshold);
-        const statusClass = getStockStatusClass(status);
-        const encDesc = (med.description || '')
-            ? htmlEncode(med.description.substring(0, 60)) + (med.description.length > 60 ? '…' : '')
-            : '';
-        const desc = encDesc
-            ? `<small class="med-desc">${encDesc}</small>`
-            : '';
-        const price = (typeof med.price === 'number') ? `KSh ${med.price.toFixed(2)}` : 'No data available';
+        const cost = (typeof med.cost === 'number') ? med.cost : (typeof med.price === 'number' ? med.price : null);
+        const price = cost !== null ? `KSh ${cost.toFixed(2)}` : 'No data available';
         return `
             <tr>
                 <td>${htmlEncode(med.sku ?? '—')}</td>
-                <td><span class="med-name">${htmlEncode(med.name ?? '—')}</span>${desc}</td>
-                <td><span class="type-tag">${htmlEncode(med.type ?? '—')}</span></td>
+                <td><span class="med-name">${htmlEncode(med.medicineName ?? med.name ?? '—')}</span></td>
+                <td><span class="type-tag">${htmlEncode((med.medicineType && med.medicineType.name) || med.type || '—')}</span></td>
                 <td>${price}</td>
-                <td><span class="stock-badge ${statusClass}">${status}</span></td>
+                <td><span class="stock-badge ${String(med.status || '').toLowerCase()}">${htmlEncode(med.status ?? '—')}</span></td>
             </tr>
         `;
     }).join('');
 }
 
-function updateSummary() {
+function renderCatalogPager(tbody, page, totalPages, totalElements) {
+    let pagerEl = document.getElementById('catalogPager');
+    if (!pagerEl) {
+        pagerEl = document.createElement('div');
+        pagerEl.id = 'catalogPager';
+        const table = tbody.closest('table');
+        if (table) table.after(pagerEl);
+        else tbody.parentElement.appendChild(pagerEl);
+    }
+    PharmUI.pager(pagerEl, { page: page, totalPages: totalPages, totalElements: totalElements }, function (p) {
+        loadMedicines(p);
+    });
+}
+
+function updateSummary(totalElements) {
     const totalEl = document.getElementById('statTotal');
     const typesEl = document.getElementById('statTypes');
     const inStockEl = document.getElementById('statInStock');
 
-    if (!allMedicines || allMedicines.length === 0) {
+    const total = (typeof totalElements === 'number') ? totalElements : allMedicines.length;
+    const inStock = allMedicines.filter(m => (m.quantity || 0) > 0).length;
+    const typeCount = medicineTypes.length;
+
+    if (total === 0) {
         [totalEl, typesEl, inStockEl].forEach(el => {
             el.textContent = 'No data available';
             el.classList.add('empty-stat');
@@ -220,10 +270,7 @@ function updateSummary() {
         return;
     }
 
-    const inStock = allMedicines.filter(m => (m.quantity || 0) > 0).length;
-    const typeCount = medicineTypes.length || new Set(allMedicines.map(m => m.type)).size;
-
-    setStat(totalEl, allMedicines.length);
+    setStat(totalEl, total);
     setStat(typesEl, typeCount);
     setStat(inStockEl, inStock);
 }

@@ -8,6 +8,9 @@ import jakarta.persistence.OptimisticLockException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -91,9 +94,19 @@ public class MedicineController {
     }
 
     @GetMapping("/getAll")
-    public ResponseEntity<List<MedicineService.AllMedicines>> getAllMedicines(){
+    public ResponseEntity<?> getAllMedicines(
+            @RequestParam(required = false) Integer page,
+            @RequestParam(required = false) Integer size,
+            @RequestParam(required = false) String q,
+            @RequestParam(required = false) String type){
         try{
-            return ResponseEntity.ok().body(medService.getAll());
+            if (page == null && size == null) {
+                return ResponseEntity.ok().body(medService.getAll());
+            }
+            int p = page == null ? 0 : Math.max(page, 0);
+            int s = size == null ? 20 : Math.max(size, 1);
+            Pageable pageable = PageRequest.of(p, s, Sort.by("sku").ascending());
+            return ResponseEntity.ok().body(medService.getAllPaged(type, q, pageable));
         } catch (RuntimeException e) {
             throw new RuntimeException("Failed to get all Medicines", e);
         }

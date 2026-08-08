@@ -10,6 +10,9 @@ import com.pharmacy.pharmacy_management.model.Staff;
 import com.pharmacy.pharmacy_management.service.StaffService;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -79,7 +82,15 @@ public class StaffController {
     public record availableStaff(UUID publicId, String name, String phoneNo, String email, Role role){}
 
     @GetMapping("/all")
-    public ResponseEntity<List<StaffService.AllDto>> returnAllStaff(){
-        return ResponseEntity.ok().body(staffService.getAll());
+    public ResponseEntity<?> returnAllStaff(
+            @RequestParam(required = false) Integer page,
+            @RequestParam(required = false) Integer size){
+        if (page == null && size == null) {
+            return ResponseEntity.ok().body(staffService.getAll());
+        }
+        int p = page == null ? 0 : Math.max(page, 0);
+        int s = size == null ? 20 : Math.max(size, 1);
+        Pageable pageable = PageRequest.of(p, s, Sort.by(Sort.Order.asc("name"), Sort.Order.asc("id")));
+        return ResponseEntity.ok().body(staffService.getAllPaged(pageable));
     }
 }

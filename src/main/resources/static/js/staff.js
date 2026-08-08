@@ -65,6 +65,7 @@ async function loadUserData() {
 let staffLoaded = false;
 let currentFetch = null;
 let resetTimeOut= null;
+let currentStaffPage = 0;
 
     // Initialize page
     document.addEventListener('DOMContentLoaded', function() {
@@ -220,7 +221,7 @@ let resetTimeOut= null;
     }
 
 
-    async function updateStaff() {
+    async function updateStaff(btn) {
         if (staffLoaded === false){
             showMessage(`Cannot update unavailable user`, `warning`);
             return;
@@ -240,37 +241,39 @@ let resetTimeOut= null;
         if(updEmail) updatesBeingSent.updEmail=updEmail;
         if(role) updatesBeingSent.role=role;
         if(phoneNo) updatesBeingSent.phoneNo=phoneNo;
-        
-        try{
-        const myEmail = document.getElementById('updateStaffUser').value;
-        const res = await fetch(`${API_BASE}/staff/supdate/${myEmail}`, {
-            credentials: 'include',
-            headers: {'Content-Type': 'application/json'},
-            method: 'PATCH',
-            body: JSON.stringify(updatesBeingSent)
-        });
-        if(!res.ok){
-            showMessage(`Failed to update`, `error`)
-            return;
-        }
-        showMessage("Staff updated", "success");
-        const updatedStaff = await res.json();
-        showStaffCard(updatedStaff);
 
-        if(resetTimeOut) clearTimeout(resetTimeOut);
-        resetTimeOut = setTimeout(() => {
-        staffLoaded = false;
-        clearUpdateForm();
-        document.getElementById("updateStaffUser").readOnly=false;
-        }, 25000);
-    }catch(e){
-        showMessage("Unknown error occurred duriong update", "error");
-        console.log(e.message);
-    }
+        await PharmUI.guard(btn, 'Updating…', async () => {
+            try{
+                const myEmail = document.getElementById('updateStaffUser').value;
+                const res = await fetch(`${API_BASE}/staff/supdate/${myEmail}`, {
+                    credentials: 'include',
+                    headers: {'Content-Type': 'application/json'},
+                    method: 'PATCH',
+                    body: JSON.stringify(updatesBeingSent)
+                });
+                if(!res.ok){
+                    showMessage(`Failed to update`, `error`)
+                    return;
+                }
+                showMessage("Staff updated", "success");
+                const updatedStaff = await res.json();
+                showStaffCard(updatedStaff);
+
+                if(resetTimeOut) clearTimeout(resetTimeOut);
+                resetTimeOut = setTimeout(() => {
+                    staffLoaded = false;
+                    clearUpdateForm();
+                    document.getElementById("updateStaffUser").readOnly=false;
+                }, 25000);
+            }catch(e){
+                showMessage("Unknown error occurred duriong update", "error");
+                console.log(e.message);
+            }
+        });
     }
 
     // Delete staff member
-    async function deleteStaff() {
+    async function deleteStaff(btn) {
         const publicId = document.getElementById('deleteStaffId').value;
         const email = document.getElementById('confirmDelete').value;
 
@@ -278,51 +281,67 @@ let resetTimeOut= null;
             showMessage("Please confirm the Staff to be deleted", "warning");
             return;
         }
-        const res = await fetch(API_BASE + "/staff/delete",{
-            headers: {'Content-Type': 'application/json'},
-            method:'DELETE',
-            credentials: 'include',
-            body: JSON.stringify({publicId,email})
+        await PharmUI.guard(btn, 'Deleting…', async () => {
+            try {
+                const res = await fetch(API_BASE + "/staff/delete",{
+                    headers: {'Content-Type': 'application/json'},
+                    method:'DELETE',
+                    credentials: 'include',
+                    body: JSON.stringify({publicId,email})
+                });
+                if(!res.ok) {showMessage(`Failed to delete user!`,`error`); return;}
+                if(res.ok) {showMessage(`User deleted`, `success`)};
+                clearDeleteForm();
+            } catch (e) {
+                console.log("Error deleting staff:", e);
+                showMessage("Failed to delete user", "error");
+            }
         });
-        if(!res.ok) {showMessage(`Failed to delete user!`,`error`);}
-        if(res.ok) {showMessage(`User deleted`, `success`)};
-        clearDeleteForm();
     }
 
     // Render staff table
-    async function renderStaffTable() {
+    async function renderStaffTable(page) {
+        if (page === undefined) page = currentStaffPage;
+        currentStaffPage = page;
         const tableBody = document.getElementById('staffTableBody');
         tableBody.innerHTML = PharmUI.skeletonRows(7);
 
         let res;
         try {
-            res = await PharmUI.withTimeout(fetch (API_BASE + "/staff/all",{
+            res = await PharmUI.withTimeout(fetch (API_BASE + "/staff/all?page=" + page + "&size=20",{
                 credentials: 'include'
             }));
         } catch (e) {
             console.log('Failed to load staff', e);
-            PharmUI.tableEmpty(tableBody, 7, {
-                icon: 'warning',
-                title: "Couldn't load staff",
-                message: 'Check your connection and try again.',
-                actionLabel: 'Retry',
-                onRetry: renderStaffTable
-            });
+            // No API linked / network failure → "no data to display".
+            // Genuine client timeout → "couldn't load" retry state.
+            PharmUI.fetchEmpty(tableBody, 7, {
+                icon: 'users',
+                title: 'No staff to display',
+                message: 'Team members you add will appear here.',
+                retryTitle: "Couldn't load staff",
+                onRetry: () => renderStaffTable(currentStaffPage)
+            }, e);
             return;
         }
         if(!res.ok){
-            showMessage("Failed to fetch all staff!!", "error");
-            PharmUI.tableEmpty(tableBody, 7, {
-                icon: 'warning',
-                title: "Couldn't load staff",
-                message: 'The server returned an error. Please try again.',
-                actionLabel: 'Retry',
-                onRetry: renderStaffTable
-            });
+            // Genuine server error (408 / 5xx) → "couldn't load" retry.
+            // Any other status → "no data to display".
+            showMessage("Couldn't load staff (" + res.status + ")", "error");
+            PharmUI.fetchEmpty(tableBody, 7, {
+                icon: 'users',
+                title: 'No staff to display',
+                message: 'Team members you add will appear here.',
+                retryTitle: "Couldn't load staff",
+                onRetry: () => renderStaffTable(currentStaffPage)
+            }, null, res);
             return;
-        };
+        }
         try{
-        const users = await res.json();
+        const pageData = await res.json();
+        const users = Array.isArray(pageData) ? pageData : (pageData.content || []);
+        const totalPages = (pageData && pageData.totalPages) ? pageData.totalPages : 1;
+        const totalElements = (pageData && pageData.totalElements != null) ? pageData.totalElements : users.length;
         if (!users || users.length === 0) {
             PharmUI.tableEmpty(tableBody, 7, {
                 icon: 'users',
@@ -331,8 +350,11 @@ let resetTimeOut= null;
                 actionLabel: 'Add staff',
                 actionHref: 'staff.html'
             });
+            renderStaffPager(tableBody, page, totalPages, totalElements);
             return;
         }
+        // Clear the skeleton rows before appending real data.
+        tableBody.innerHTML = '';
         users.forEach(user => {
             const row = document.createElement('tr');
 
@@ -376,10 +398,32 @@ let resetTimeOut= null;
 
             tableBody.appendChild(row);
         });
+        renderStaffPager(tableBody, page, totalPages, totalElements);
     }catch(e){
-        showMessage("Error!!");
-        console.log(e.message);
+        console.log('Failed to parse staff', e);
+        PharmUI.fetchEmpty(tableBody, 7, {
+            icon: 'users',
+            title: 'No staff to display',
+            message: 'Team members you add will appear here.',
+            retryTitle: "Couldn't load staff",
+            onRetry: () => renderStaffTable(currentStaffPage)
+        }, e);
     }
+    }
+
+    // Render the pager below the staff table.
+    function renderStaffPager(tableBody, page, totalPages, totalElements) {
+        let pagerEl = document.getElementById('staffViewPager');
+        if (!pagerEl) {
+            pagerEl = document.createElement('div');
+            pagerEl.id = 'staffViewPager';
+            const table = tableBody.closest('table');
+            if (table) table.after(pagerEl);
+            else tableBody.parentElement.appendChild(pagerEl);
+        }
+        PharmUI.pager(pagerEl, { page: page, totalPages: totalPages, totalElements: totalElements }, function (p) {
+            renderStaffTable(p);
+        });
     }
 
     // Edit staff from table

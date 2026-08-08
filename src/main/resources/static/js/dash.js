@@ -110,13 +110,32 @@ async function loadUser(){
         const cookie = localStorage.getItem('COOKIE');
         const tbody = document.getElementById('recentSalesTable');
         tbody.innerHTML = PharmUI.skeletonRows(5);
-
+        const noData = {
+            icon: 'cart',
+            title: 'No sales yet',
+            message: 'Sales you record will show up here.',
+            actionLabel: 'Record your first sale',
+            actionHref: 'sales.html',
+            retryTitle: "Couldn't load sales",
+            onRetry: loadRecentSales
+        };
+        let res;
         try {
-            const res = await PharmUI.withTimeout(fetch(API_BASE + '/sale/rcntSales', {
+            res = await PharmUI.withTimeout(fetch(API_BASE + '/sale/rcntSales', {
                 method: 'GET',
                 credentials: 'include'
             }));
-            if (!res.ok) throw new Error('Request failed ' + res.status);
+        } catch (e) {
+            console.error('Error loading recent sales:', e);
+            PharmUI.fetchEmpty(tbody, 5, noData, e);
+            return;
+        }
+        if (!res.ok) {
+            console.error('Error loading recent sales:', res.status);
+            PharmUI.fetchEmpty(tbody, 5, noData, null, res);
+            return;
+        }
+        try {
             const sales = await res.json();
 
             if (!Array.isArray(sales) || sales.length === 0) {
@@ -142,13 +161,7 @@ async function loadUser(){
 
         } catch (e) {
             console.error('Error loading recent sales:', e);
-            PharmUI.tableEmpty(tbody, 5, {
-                icon: 'warning',
-                title: "Couldn't load sales",
-                message: 'Check your connection and try again.',
-                actionLabel: 'Retry',
-                onRetry: loadRecentSales
-            });
+            PharmUI.fetchEmpty(tbody, 5, noData, e);
         }
     }
 

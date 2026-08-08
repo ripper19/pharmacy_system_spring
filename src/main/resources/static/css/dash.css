@@ -178,18 +178,6 @@ body {
     border-color: rgba(255, 255, 255, 0.45);
 }
 
-.user-avatar::after {
-    content: '';
-    position: absolute;
-    bottom: 2px;
-    right: 2px;
-    width: 11px;
-    height: 11px;
-    background: #22C55E;
-    border-radius: 50%;
-    border: 2px solid #0e3a75;
-}
-
 .user-name {
     font-size: 15px;
     font-weight: 600;

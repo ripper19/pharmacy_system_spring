@@ -102,20 +102,32 @@ async function loadSalesPerformance() {
 async function loadSellingRanges() {
     const tbody = document.getElementById('sellingRangesBody');
     tbody.innerHTML = PharmUI.skeletonRows(5);
+    const noData = {
+        icon: 'chart',
+        title: 'No data available',
+        message: 'Report data will appear once sales are recorded.',
+        retryTitle: "Couldn't load this report",
+        onRetry: loadSellingRanges
+    };
     let data = [];
+    let res;
     try {
-        const res = await PharmUI.withTimeout(fetch(`${API_BASE}/sale/medicineSales`, { credentials: 'include' }));
-        if (res.ok) data = await res.json();
-        else throw new Error('Request failed ' + res.status);
+        res = await PharmUI.withTimeout(fetch(`${API_BASE}/sale/medicineSales`, { credentials: 'include' }));
     } catch (e) {
         console.log('selling ranges failed', e);
-        PharmUI.tableEmpty(tbody, 5, {
-            icon: 'warning',
-            title: "Couldn't load this report",
-            message: 'Check your connection and try again.',
-            actionLabel: 'Retry',
-            onRetry: loadSellingRanges
-        });
+        PharmUI.fetchEmpty(tbody, 5, noData, e);
+        return;
+    }
+    if (!res.ok) {
+        console.log('selling ranges failed', res.status);
+        PharmUI.fetchEmpty(tbody, 5, noData, null, res);
+        return;
+    }
+    try {
+        data = await res.json();
+    } catch (e) {
+        console.log('selling ranges parse failed', e);
+        PharmUI.fetchEmpty(tbody, 5, noData, e);
         return;
     }
 
