@@ -1,0 +1,10 @@
+data/
+!data/ddxplus/
+artifacts/
+wheelhouse/
+__pycache__/
+*.pyc
+tests/
+train/
+eval/
+.git/
