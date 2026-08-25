@@ -9,5 +9,8 @@ public record DifferentialDto(
     String likelihood,
     String reasoning,
     @JsonAlias({"suggested_actions", "suggestedActions"}) List<String> suggestedActions,
-    @JsonAlias({"suggested_medicines", "suggestedMedicines"}) List<String> suggestedMedicines
+    @JsonAlias({"suggested_medicines", "suggestedMedicines"}) List<String> suggestedMedicines,
+    @JsonAlias({"condition_code", "conditionCode"}) String conditionCode,
+    @JsonAlias({"condition_name", "conditionName"}) String conditionName,
+    Double probability
 ) {}

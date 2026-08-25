@@ -1,5 +1,6 @@
 package com.pharmacy.pharmacy_management.service;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pharmacy.pharmacy_management.config.AiProperties;
@@ -29,7 +30,8 @@ public class DiagnosisService {
     private AiProperties aiProperties;
 
     private final Logger logger = LoggerFactory.getLogger(DiagnosisService.class);
-    private final ObjectMapper objectMapper = new ObjectMapper();
+    private final ObjectMapper objectMapper = new ObjectMapper()
+        .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
     private static final String MEDICAL_DISCLAIMER =
         "Educational decision-support for licensed pharmacy staff. " +

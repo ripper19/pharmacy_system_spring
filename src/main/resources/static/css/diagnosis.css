@@ -238,3 +238,23 @@
     .chat-messages { padding: 16px; }
     .chat-input { padding: 12px; }
 }
+
+/* ===== Stage B: live engine ===== */
+.chat-mic {
+    border: none; background: transparent; color: var(--ink-500, #64748b);
+    cursor: pointer; padding: 8px; border-radius: 10px; align-self: flex-end;
+}
+.chat-mic:hover { background: rgba(100,116,139,.12); }
+.chat-mic.listening { color: #dc2626; animation: chat-pulse 1s infinite; }
+@keyframes chat-pulse { 50% { opacity: .45; } }
+
+.chat-urgent {
+    align-self: flex-start; margin: 4px 0 4px 44px; padding: 10px 14px;
+    border-radius: 10px; background: #fef2f2; color: #991b1b;
+    border: 1px solid #fecaca; font-size: .92em; max-width: 78%;
+}
+.chat-warn {
+    align-self: flex-start; margin: 4px 0 4px 44px; padding: 8px 14px;
+    border-radius: 10px; background: #fffbeb; color: #92400e;
+    border: 1px solid #fde68a; font-size: .9em; max-width: 78%;
+}

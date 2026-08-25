@@ -1,20 +1,16 @@
 // Differential Diagnosis — frontend page logic.
-//
-// This is a PLACEHOLDER: the chat surface is wired up so the experience is
-// fully usable and styled, but it does NOT yet call the backend. Once the
-// diagnosis engine is fully implemented, send() will POST to
-//   API_BASE + '/diagnosis/differential'
-// and render the returned ranked differentials, red flags and disclaimer.
+// Talks to POST /diagnosis/differential (Spring proxies the local dx shim).
+// Stateless multi-turn: every send re-submits the accumulated transcript;
+// assistant follow-up questions are echoed back verbatim (with their hidden
+// [code:…] markers) so the engine knows what has already been asked.
 
 const AVATAR_ASSISTANT =
     '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>';
 const AVATAR_USER =
     '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.6"/><path d="M4 20c0-3.6 3.6-6 8-6s8 2.4 8 6"/></svg>';
 
-const PLACEHOLDER_REPLY =
-    "Thanks for the details. The diagnosis engine isn't connected yet — this chat is a preview of what's coming.\n\n" +
-    "Once the backend is fully implemented, your message will be sent to the differential-diagnosis service and you'll get back ranked differentials, red flags and a disclaimer here.";
-
+const LIKELIHOOD_COLORS = { HIGH: '#16a34a', MEDIUM: '#d97706', LOW: '#64748b' };
+const dxTranscript = [];   // raw lines: user inputs + echoed follow-up questions
 let busy = false;
 
 // ===== Auth + role gate (mirrors staff.js / dash.js) =====
@@ -126,6 +122,68 @@ function setBusy(b) {
     sendBtn().disabled = b || textarea().value.trim() === '';
 }
 
+function stripMarker(text) {
+    return (text || '').replace(/\s*\[code:[^\]]+\]/g, '');
+}
+
+function renderDifferential(data) {
+    if (data.followUpQuestion) {
+        appendMessage('assistant', stripMarker(data.followUpQuestion));
+        return;
+    }
+    if ((data.status === 'abstain') && (!data.differentials || data.differentials.length === 0)) {
+        const reasons = (data.abstainReasons || []).map(r => '• ' + r).join('\n');
+        appendMessage('assistant', "I can't narrow this down responsibly yet.\n" + reasons +
+            "\n\nAdd more details about how you feel.");
+        return;
+    }
+
+    if (data.needsUrgentCare) {
+        const urgent = document.createElement('div');
+        urgent.className = 'chat-urgent';
+        urgent.innerHTML = '<strong>⚠ Urgent — refer now.</strong> ' +
+            (data.redFlags || []).map(stripMarker).join(' · ');
+        messagesEl().appendChild(urgent);
+    } else if ((data.redFlags || []).length) {
+        const warn = document.createElement('div');
+        warn.className = 'chat-warn';
+        warn.textContent = '⚠ Red flags: ' + data.redFlags.map(stripMarker).join(' · ');
+        messagesEl().appendChild(warn);
+    }
+
+    (data.differentials || []).forEach(d => {
+        const name = d.conditionName || d.condition || '?';
+        const pct = d.probability != null ? Math.round(d.probability * 100) + '%' : '';
+        const lik = d.likelihood || '';
+        const color = LIKELIHOOD_COLORS[lik] || '#64748b';
+        const wrap = document.createElement('div');
+        wrap.className = 'chat-msg chat-msg-assistant';
+        wrap.innerHTML =
+            '<div class="chat-avatar">' + AVATAR_ASSISTANT + '</div>' +
+            '<div class="chat-bubble">' +
+            '<div style="display:flex;justify-content:space-between;gap:12px;align-items:baseline;">' +
+            '<strong>' + name + '</strong>' +
+            '<span style="color:' + color + ';font-weight:600;white-space:nowrap;">' + pct +
+            (lik ? ' · ' + lik : '') + '</span></div>' +
+            (d.reasoning ? '<div style="margin-top:6px;font-size:.92em;">' + d.reasoning + '</div>' : '') +
+            ((d.suggestedActions || []).length ?
+                '<div style="margin-top:6px;"><em>Do:</em> ' + d.suggestedActions.join('; ') + '</div>' : '') +
+            ((d.suggestedMedicines || []).length ?
+                '<div style="margin-top:2px;"><em>Consider:</em> ' + d.suggestedMedicines.join('; ') + '</div>' : '') +
+            '</div>';
+        messagesEl().appendChild(wrap);
+    });
+
+    if (data.disclaimer) {
+        const disc = document.createElement('div');
+        disc.className = 'chat-disclaimer-inline';
+        disc.style.cssText = 'font-size:.8em;opacity:.75;margin:8px 0 0 44px;';
+        disc.textContent = data.disclaimer;
+        messagesEl().appendChild(disc);
+    }
+    scrollToBottom();
+}
+
 async function send(text) {
     if (busy) return;
 
@@ -133,20 +191,31 @@ async function send(text) {
     if (intro) intro.remove();
 
     appendMessage('user', text);
+    dxTranscript.push(text);
     setBusy(true);
 
     const typing = appendTyping();
-
-    // PLACEHOLDER: simulate assistant think-time, then a fixed reply.
-    // Replace this block with a real fetch to /diagnosis/differential later:
-    //   const res = await fetch(API_BASE + '/diagnosis/differential', {
-    //       method: 'POST', credentials: 'include',
-    //       headers: { 'Content-Type': 'application/json' },
-    //       body: JSON.stringify({ symptoms, age, sex, duration, notes })
-    //   });
-    await new Promise(r => setTimeout(r, 1100));
-    typing.remove();
-    appendMessage('assistant', PLACEHOLDER_REPLY);
+    try {
+        const res = await fetch(API_BASE + '/diagnosis/differential', {
+            method: 'POST',
+            credentials: 'include',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ symptoms: dxTranscript.join('\n') })
+        });
+        typing.remove();
+        if (!res.ok) {
+            appendMessage('assistant',
+                'The diagnosis engine is unreachable right now (' + res.status +
+                '). It may still be starting — try again in a moment.');
+        } else {
+            const data = await res.json();
+            if (data.followUpQuestion) dxTranscript.push(data.followUpQuestion); // echo w/ marker
+            renderDifferential(data);
+        }
+    } catch (e) {
+        typing.remove();
+        appendMessage('assistant', 'Network error reaching the diagnosis engine. Is the local service running?');
+    }
 
     setBusy(false);
     textarea().focus();
@@ -161,6 +230,32 @@ function autoGrow() {
 document.addEventListener('DOMContentLoaded', function () {
     loadUserData();
     renderIntro();
+
+    // Mic dictation (Web Speech API — Chrome/Edge; requires HTTPS or localhost)
+    const micBtn = document.getElementById('chatMic');
+    const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (SR && micBtn) {
+        micBtn.hidden = false;
+        let rec = null;
+        micBtn.addEventListener('click', function () {
+            if (rec) { rec.stop(); return; }
+            rec = new SR();
+            rec.lang = 'en-US'; rec.interimResults = false; rec.continuous = true;
+            rec.onresult = function (e) {
+                for (let i = e.resultIndex; i < e.results.length; i++) {
+                    if (e.results[i].isFinal) {
+                        textarea().value = (textarea().value + ' ' + e.results[i][0].transcript).trim();
+                        autoGrow();
+                        sendBtn().disabled = busy || textarea().value.trim() === '';
+                    }
+                }
+            };
+            rec.onend = function () { rec = null; micBtn.classList.remove('listening'); };
+            rec.onerror = function () { rec = null; micBtn.classList.remove('listening'); };
+            micBtn.classList.add('listening');
+            rec.start();
+        });
+    }
 
     // Send on Enter, newline on Shift+Enter.
     textarea().addEventListener('keydown', function (e) {
