@@ -54,12 +54,14 @@ def unpack(zip_path: Path, dest: Path) -> None:
 
 
 def main() -> None:
-    if not os.environ.get("KAGGLE_API_TOKEN"):
-        raise SystemExit("KAGGLE_API_TOKEN env var is required")
-
     if already_present():
-        print("[fetch] artifacts already present — skipping")
+        print("[fetch] artifacts already present — skipping (no Kaggle call)")
         return
+    if not os.environ.get("KAGGLE_API_TOKEN"):
+        raise SystemExit(
+            "artifacts missing and KAGGLE_API_TOKEN unset — "
+            "either commit artifacts/ or provide the token to download them"
+        )
 
     ART.mkdir(parents=True, exist_ok=True)
     for kernel_id, _is_e3 in KERNELS:

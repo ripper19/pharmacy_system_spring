@@ -1,6 +1,5 @@
 data/
 !data/ddxplus/
-artifacts/
 wheelhouse/
 __pycache__/
 *.pyc
