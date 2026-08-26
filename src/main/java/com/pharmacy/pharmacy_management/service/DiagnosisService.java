@@ -139,13 +139,19 @@ public class DiagnosisService {
                         "ai.base-url (AI_BASE_URL), ai.api-key (AI_API_KEY) and ai.model (AI_MODEL) " +
                         "to enable real differentials.",
                 List.of("Set AI_MOCK=false and provide AI_BASE_URL / AI_API_KEY / AI_MODEL"),
-                List.of()
+                List.of(),
+                null,
+                null,
+                null
         );
         return new DifferentialResponseDto(
                 List.of(placeholder),
                 List.of(),
                 false,
-                "MOCK MODE — no LLM configured. " + MEDICAL_DISCLAIMER
+                "MOCK MODE — no LLM configured. " + MEDICAL_DISCLAIMER,
+                null,
+                null,
+                null
         );
     }
 
