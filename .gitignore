@@ -46,3 +46,18 @@ replay_pid*
 Thumbs.db
 .aider*
 Coder
+# dx: local environments, build caches, training data staging, E3 checkpoint (>100MB GitHub limit)
+dx/.venv/
+dx/data/v2_corpus/
+dx/data/kaggle_dataset_v2/
+dx/data/kernel_all_v2/
+dx/data/kernel_e3_v2/
+dx/data/kernel_out_v2/
+dx/data/ddxplus/processed_*.csv
+dx/data/ddxplus/v2_corpus/
+dx/artifacts/e3_bert/
+dx/artifacts/e3_MANIFEST.sha256.json
+dx/artifacts/e3_metrics.json
+__pycache__/
+*.pyc
+*.egg-info/

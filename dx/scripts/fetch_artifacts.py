@@ -23,9 +23,9 @@ ART = Path(os.environ.get("ARTIFACTS_DIR", "/app/artifacts"))
 INCLUDE_E3 = os.environ.get("INCLUDE_E3", "false").lower() == "true"
 
 REQUIRED_CORE = ["vocab.json", "e1_logreg.joblib", "e2_lgbm.txt", "ask_table.json", "calib.json"]
-KERNELS = [("joeonsase/dx-train-all", False)]
+KERNELS = [("joeonsase/dx-train-all-v2", False)]
 if INCLUDE_E3:
-    KERNELS.append(("joeonsase/dx-train-e3", True))
+    KERNELS.append(("joeonsase/dx-train-e3-v2", True))
 
 
 def already_present() -> bool:

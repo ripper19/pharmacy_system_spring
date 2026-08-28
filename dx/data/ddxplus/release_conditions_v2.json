@@ -1,0 +1,9593 @@
+{
+ "Spontaneous pneumothorax": {
+  "condition_name": "Spontaneous pneumothorax",
+  "cond-name-fr": "Pneumothorax spontan\u00e9",
+  "cond-name-eng": "Spontaneous pneumothorax",
+  "icd10-id": "J93",
+  "symptoms": {
+   "E_55": {},
+   "E_53": {},
+   "E_57": {},
+   "E_54": {},
+   "E_59": {},
+   "E_56": {},
+   "E_58": {},
+   "E_66": {},
+   "E_220": {},
+   "E_218": {},
+   "E_14": {},
+   "E_151": {}
+  },
+  "antecedents": {
+   "E_79": {},
+   "E_165": {},
+   "E_21": {},
+   "E_123": {},
+   "E_204": {}
+  },
+  "severity": 2
+ },
+ "Cluster headache": {
+  "condition_name": "Cluster headache",
+  "cond-name-fr": "C\u00e9phal\u00e9e en grappe",
+  "cond-name-eng": "Cluster headache",
+  "icd10-id": "g44.009",
+  "symptoms": {
+   "E_55": {},
+   "E_53": {},
+   "E_57": {},
+   "E_54": {},
+   "E_59": {},
+   "E_56": {},
+   "E_58": {},
+   "E_127": {},
+   "E_181": {},
+   "E_176": {}
+  },
+  "antecedents": {
+   "E_25": {},
+   "E_78": {},
+   "E_184": {},
+   "E_204": {}
+  },
+  "severity": 3
+ },
+ "Boerhaave": {
+  "condition_name": "Boerhaave",
+  "cond-name-fr": "Syndrome de Boerhaave",
+  "cond-name-eng": "Boerhaave",
+  "icd10-id": "K22.3",
+  "symptoms": {
+   "E_55": {},
+   "E_53": {},
+   "E_57": {},
+   "E_54": {},
+   "E_59": {},
+   "E_56": {},
+   "E_58": {},
+   "E_66": {},
+   "E_210": {},
+   "E_211": {},
+   "E_148": {}
+  },
+  "antecedents": {
+   "E_78": {},
+   "E_204": {}
+  },
+  "severity": 2
+ },
+ "Spontaneous rib fracture": {
+  "condition_name": "Spontaneous rib fracture",
+  "cond-name-fr": "Fracture de c\u00f4te spontan\u00e9e",
+  "cond-name-eng": "Spontaneous rib fracture",
+  "icd10-id": "S22.9",
+  "symptoms": {
+   "E_55": {},
+   "E_53": {},
+   "E_57": {},
+   "E_54": {},
+   "E_59": {},
+   "E_56": {},
+   "E_58": {},
+   "E_220": {},
+   "E_216": {},
+   "E_201": {},
+   "E_151": {},
+   "E_203": {},
+   "E_66": {}
+  },
+  "antecedents": {
+   "E_78": {},
+   "E_37": {},
+   "E_153": {},
+   "E_204": {}
+  },
+  "severity": 3
+ },
+ "GERD": {
+  "condition_name": "GERD",
+  "cond-name-fr": "RGO",
+  "cond-name-eng": "GERD",
+  "icd10-id": "K21",
+  "symptoms": {
+   "E_173": {},
+   "E_201": {},
+   "E_215": {},
+   "E_55": {},
+   "E_53": {},
+   "E_57": {},
+   "E_54": {},
+   "E_59": {},
+   "E_56": {},
+   "E_58": {},
+   "E_217": {},
+   "E_210": {},
+   "E_140": {}
+  },
+  "antecedents": {
+   "E_70": {},
+   "E_167": {},
+   "E_124": {},
+   "E_78": {},
+   "E_79": {},
+   "E_98": {},
+   "E_204": {}
+  },
+  "severity": 3
+ },
+ "HIV (initial infection)": {
+  "condition_name": "HIV (initial infection)",
+  "cond-name-fr": "VIH (Primo-infection)",
+  "cond-name-eng": "HIV (initial infection)",
+  "icd10-id": "B20",
+  "symptoms": {
+   "E_91": {},
+   "E_88": {},
+   "E_144": {},
+   "E_162": {},
+   "E_55": {},
+   "E_53": {},
+   "E_57": {},
+   "E_54": {},
+   "E_59": {},
+   "E_56": {},
+   "E_58": {},
+   "E_97": {},
+   "E_9": {},
+   "E_51": {},
+   "E_133": {},
+   "E_129": {},
+   "E_130": {},
+   "E_134": {},
+   "E_132": {},
+   "E_136": {},
+   "E_135": {},
+   "E_131": {},
+   "E_148": {},
+   "E_50": {}
+  },
+  "antecedents": {
+   "E_115": {},
+   "E_61": {},
+   "E_27": {},
+   "E_189": {},
+   "E_204": {}
+  },
+  "severity": 3
+ },
+ "Anemia": {
+  "condition_name": "Anemia",
+  "cond-name-fr": "An\u00e9mie",
+  "cond-name-eng": "Anemia",
+  "icd10-id": "D64.9",
+  "symptoms": {
+   "E_76": {},
+   "E_89": {},
+   "E_88": {},
+   "E_66": {},
+   "E_154": {},
+   "E_82": {},
+   "E_55": {},
+   "E_53": {},
+   "E_57": {},
+   "E_54": {},
+   "E_59": {},
+   "E_56": {},
+   "E_58": {},
+   "E_179": {},
+   "E_140": {},
+   "E_145": {}
+  },
+  "antecedents": {
+   "E_7": {},
+   "E_24": {},
+   "E_26": {},
+   "E_167": {},
+   "E_113": {},
+   "E_208": {},
+   "E_146": {},
+   "E_204": {}
+  },
+  "severity": 4
+ },
+ "Viral pharyngitis": {
+  "condition_name": "Viral pharyngitis",
+  "cond-name-fr": "Pharyngite virale",
+  "cond-name-eng": "Viral pharyngitis",
+  "icd10-id": "J02.9",
+  "symptoms": {
+   "E_55": {},
+   "E_53": {},
+   "E_57": {},
+   "E_54": {},
+   "E_59": {},
+   "E_56": {},
+   "E_58": {},
+   "E_181": {},
+   "E_91": {},
+   "E_201": {},
+   "E_45": {}
+  },
+  "antecedents": {
+   "E_49": {},
+   "E_48": {},
+   "E_79": {},
+   "E_41": {},
+   "E_227": {},
+   "E_204": {}
+  },
+  "severity": 4
+ },
+ "Inguinal hernia": {
+  "condition_name": "Inguinal hernia",
+  "cond-name-fr": "Hernie inguinale",
+  "cond-name-eng": "Inguinal hernia",
+  "icd10-id": "K40",
+  "symptoms": {
+   "E_55": {},
+   "E_53": {},
+   "E_57": {},
+   "E_54": {},
+   "E_59": {},
+   "E_56": {},
+   "E_58": {},
+   "E_133": {},
+   "E_129": {},
+   "E_130": {},
+   "E_134": {},
+   "E_132": {},
+   "E_136": {},
+   "E_135": {},
+   "E_131": {},
+   "E_30": {},
+   "E_203": {},
+   "E_221": {},
+   "E_150": {}
+  },
+  "antecedents": {
+   "E_160": {},
+   "E_70": {},
+   "E_204": {}
+  },
+  "severity": 3
+ },
+ "Myasthenia gravis": {
+  "condition_name": "Myasthenia gravis",
+  "cond-name-fr": "Myasth\u00e9nie grave",
+  "cond-name-eng": "Myasthenia gravis",
+  "icd10-id": "G70.0",
+  "symptoms": {
+   "E_65": {},
+   "E_63": {},
+   "E_52": {},
+   "E_172": {},
+   "E_84": {},
+   "E_66": {},
+   "E_90": {},
+   "E_38": {},
+   "E_176": {}
+  },
+  "antecedents": {
+   "E_28": {},
+   "E_204": {}
+  },
+  "severity": 3
+ },
+ "Whooping cough": {
+  "condition_name": "Whooping cough",
+  "cond-name-fr": "Coqueluche",
+  "cond-name-eng": "Whooping cough",
+  "icd10-id": "A37",
+  "symptoms": {
+   "E_166": {},
+   "E_203": {},
+   "E_112": {}
+  },
+  "antecedents": {
+   "E_40": {},
+   "E_124": {},
+   "E_70": {},
+   "E_209": {},
+   "E_204": {}
+  },
+  "severity": 4
+ },
+ "Anaphylaxis": {
+  "condition_name": "Anaphylaxis",
+  "cond-name-fr": "Anaphylaxie",
+  "cond-name-eng": "Anaphylaxis",
+  "icd10-id": "T78.0",
+  "symptoms": {
+   "E_42": {},
+   "E_82": {},
+   "E_159": {},
+   "E_66": {},
+   "E_214": {},
+   "E_194": {},
+   "E_152": {},
+   "E_151": {},
+   "E_51": {},
+   "E_55": {},
+   "E_53": {},
+   "E_57": {},
+   "E_54": {},
+   "E_59": {},
+   "E_56": {},
+   "E_58": {},
+   "E_148": {},
+   "E_133": {},
+   "E_129": {},
+   "E_130": {},
+   "E_134": {},
+   "E_132": {},
+   "E_136": {},
+   "E_135": {},
+   "E_131": {}
+  },
+  "antecedents": {
+   "E_226": {},
+   "E_12": {},
+   "E_204": {}
+  },
+  "severity": 1
+ },
+ "Epiglottitis": {
+  "condition_name": "Epiglottitis",
+  "cond-name-fr": "\u00c9piglottite",
+  "cond-name-eng": "Epiglottitis",
+  "icd10-id": "J05.1",
+  "symptoms": {
+   "E_55": {},
+   "E_53": {},
+   "E_57": {},
+   "E_54": {},
+   "E_59": {},
+   "E_56": {},
+   "E_58": {},
+   "E_91": {},
+   "E_190": {},
+   "E_33": {},
+   "E_65": {},
+   "E_212": {},
+   "E_66": {},
+   "E_194": {}
+  },
+  "antecedents": {
+   "E_104": {},
+   "E_69": {},
+   "E_209": {},
+   "E_78": {},
+   "E_62": {},
+   "E_204": {}
+  },
+  "severity": 2
+ },
+ "Guillain-Barr\u00e9 syndrome": {
+  "condition_name": "Guillain-Barr\u00e9 syndrome",
+  "cond-name-fr": "Syndrome de Guillain-Barr\u00e9",
+  "cond-name-eng": "Guillain-Barr\u00e9 syndrome",
+  "icd10-id": "G61.0",
+  "symptoms": {
+   "E_84": {},
+   "E_66": {},
+   "E_83": {},
+   "E_157": {},
+   "E_93": {},
+   "E_156": {},
+   "E_176": {},
+   "E_177": {}
+  },
+  "antecedents": {
+   "E_0": {},
+   "E_204": {}
+  },
+  "severity": 2
+ },
+ "Acute laryngitis": {
+  "condition_name": "Acute laryngitis",
+  "cond-name-fr": "Laryngite aigue",
+  "cond-name-eng": "Acute laryngitis",
+  "icd10-id": "J04.0",
+  "symptoms": {
+   "E_212": {},
+   "E_91": {},
+   "E_201": {},
+   "E_55": {},
+   "E_53": {},
+   "E_57": {},
+   "E_54": {},
+   "E_59": {},
+   "E_56": {},
+   "E_58": {}
+  },
+  "antecedents": {
+   "E_116": {},
+   "E_48": {},
+   "E_49": {},
+   "E_79": {},
+   "E_204": {}
+  },
+  "severity": 4
+ },
+ "Croup": {
+  "condition_name": "Croup",
+  "cond-name-fr": "Laryngo-trach\u00e9o-bronchite (Croup)",
+  "cond-name-eng": "Croup",
+  "icd10-id": "J05.0",
+  "symptoms": {
+   "E_194": {},
+   "E_91": {},
+   "E_181": {},
+   "E_202": {},
+   "E_66": {},
+   "E_219": {},
+   "E_190": {}
+  },
+  "antecedents": {
+   "E_4": {},
+   "E_209": {},
+   "E_204": {}
+  },
+  "severity": 2
+ },
+ "PSVT": {
+  "condition_name": "PSVT",
+  "cond-name-fr": "TSVP",
+  "cond-name-eng": "PSVT",
+  "icd10-id": "I47.1",
+  "symptoms": {
+   "E_155": {},
+   "E_76": {},
+   "E_66": {},
+   "E_82": {},
+   "E_16": {},
+   "E_55": {},
+   "E_53": {},
+   "E_57": {},
+   "E_54": {},
+   "E_59": {},
+   "E_56": {},
+   "E_58": {}
+  },
+  "antecedents": {
+   "E_62": {},
+   "E_60": {},
+   "E_35": {},
+   "E_213": {},
+   "E_204": {}
+  },
+  "severity": 2
+ },
+ "Atrial fibrillation": {
+  "condition_name": "Atrial fibrillation",
+  "cond-name-fr": "Fibrillation auriculaire/Flutter auriculaire",
+  "cond-name-eng": "Atrial fibrillation",
+  "icd10-id": "I48.91",
+  "symptoms": {
+   "E_155": {},
+   "E_66": {},
+   "E_76": {},
+   "E_218": {},
+   "E_164": {}
+  },
+  "antecedents": {
+   "E_139": {},
+   "E_19": {},
+   "E_104": {},
+   "E_105": {},
+   "E_69": {},
+   "E_31": {},
+   "E_70": {},
+   "E_22": {},
+   "E_204": {}
+  },
+  "severity": 3
+ },
+ "Bronchiectasis": {
+  "condition_name": "Bronchiectasis",
+  "cond-name-fr": "Bronchiectasies",
+  "cond-name-eng": "Bronchiectasis",
+  "icd10-id": "J47",
+  "symptoms": {
+   "E_201": {},
+   "E_77": {},
+   "E_45": {},
+   "E_66": {}
+  },
+  "antecedents": {
+   "E_17": {},
+   "E_18": {},
+   "E_118": {},
+   "E_47": {},
+   "E_20": {},
+   "E_227": {},
+   "E_124": {},
+   "E_123": {},
+   "E_204": {}
+  },
+  "severity": 3
+ },
+ "Allergic sinusitis": {
+  "condition_name": "Allergic sinusitis",
+  "cond-name-fr": "Rhinite allergique",
+  "cond-name-eng": "Allergic sinusitis",
+  "icd10-id": "J30",
+  "symptoms": {
+   "E_201": {},
+   "E_181": {},
+   "E_170": {},
+   "E_169": {}
+  },
+  "antecedents": {
+   "E_226": {},
+   "E_207": {},
+   "E_86": {},
+   "E_87": {},
+   "E_124": {},
+   "E_204": {}
+  },
+  "severity": 4
+ },
+ "Chagas": {
+  "condition_name": "Chagas",
+  "cond-name-fr": "Chagas",
+  "cond-name-eng": "Chagas",
+  "icd10-id": "B57",
+  "symptoms": {
+   "E_91": {},
+   "E_175": {},
+   "E_174": {},
+   "E_148": {},
+   "E_51": {},
+   "E_9": {},
+   "E_55": {},
+   "E_53": {},
+   "E_57": {},
+   "E_54": {},
+   "E_59": {},
+   "E_56": {},
+   "E_58": {},
+   "E_152": {},
+   "E_151": {},
+   "E_66": {}
+  },
+  "antecedents": {
+   "E_204": {}
+  },
+  "severity": 3
+ },
+ "Scombroid food poisoning": {
+  "condition_name": "Scombroid food poisoning",
+  "cond-name-fr": "Scombro\u00efde",
+  "cond-name-eng": "Scombroid food poisoning",
+  "icd10-id": "T61.1",
+  "symptoms": {
+   "E_82": {},
+   "E_133": {},
+   "E_129": {},
+   "E_130": {},
+   "E_134": {},
+   "E_132": {},
+   "E_136": {},
+   "E_135": {},
+   "E_131": {},
+   "E_51": {},
+   "E_148": {},
+   "E_66": {},
+   "E_92": {},
+   "E_214": {},
+   "E_155": {}
+  },
+  "antecedents": {
+   "E_187": {},
+   "E_204": {}
+  },
+  "severity": 2
+ },
+ "Myocarditis": {
+  "condition_name": "Myocarditis",
+  "cond-name-fr": "Myocardite",
+  "cond-name-eng": "Myocarditis",
+  "icd10-id": "I51.4",
+  "symptoms": {
+   "E_175": {},
+   "E_155": {},
+   "E_66": {},
+   "E_55": {},
+   "E_53": {},
+   "E_57": {},
+   "E_54": {},
+   "E_59": {},
+   "E_56": {},
+   "E_58": {},
+   "E_114": {},
+   "E_64": {},
+   "E_217": {},
+   "E_218": {}
+  },
+  "antecedents": {
+   "E_0": {},
+   "E_204": {}
+  },
+  "severity": 2
+ },
+ "Larygospasm": {
+  "condition_name": "Larygospasm",
+  "cond-name-fr": "Laryngospasme",
+  "cond-name-eng": "Larygospasm",
+  "icd10-id": "J38.5",
+  "symptoms": {
+   "E_194": {}
+  },
+  "antecedents": {
+   "E_124": {},
+   "E_116": {},
+   "E_79": {},
+   "E_222": {},
+   "E_125": {},
+   "E_204": {}
+  },
+  "severity": 1
+ },
+ "Acute dystonic reactions": {
+  "condition_name": "Acute dystonic reactions",
+  "cond-name-fr": "R\u00e9action dystonique a\u00efgue",
+  "cond-name-eng": "Acute dystonic reactions",
+  "icd10-id": "G24.02",
+  "symptoms": {
+   "E_128": {},
+   "E_193": {},
+   "E_205": {},
+   "E_192": {},
+   "E_168": {},
+   "E_66": {},
+   "E_172": {},
+   "E_180": {}
+  },
+  "antecedents": {
+   "E_62": {},
+   "E_15": {},
+   "E_147": {},
+   "E_204": {}
+  },
+  "severity": 2
+ },
+ "Localized edema": {
+  "condition_name": "Localized edema",
+  "cond-name-fr": "Oed\u00e8me localis\u00e9 ou g\u00e9n\u00e9ralis\u00e9 sans atteinte pulmonaire associ\u00e9e",
+  "cond-name-eng": "Localized edema",
+  "icd10-id": "R60.0",
+  "symptoms": {
+   "E_66": {},
+   "E_152": {},
+   "E_151": {},
+   "E_217": {},
+   "E_67": {},
+   "E_96": {},
+   "E_55": {},
+   "E_53": {},
+   "E_57": {},
+   "E_54": {},
+   "E_59": {},
+   "E_56": {},
+   "E_58": {}
+  },
+  "antecedents": {
+   "E_137": {},
+   "E_158": {},
+   "E_109": {},
+   "E_149": {},
+   "E_44": {},
+   "E_197": {},
+   "E_126": {},
+   "E_106": {},
+   "E_22": {},
+   "E_186": {},
+   "E_10": {},
+   "E_204": {}
+  },
+  "severity": 4
+ },
+ "SLE": {
+  "condition_name": "SLE",
+  "cond-name-fr": "Lupus \u00e9ryth\u00e9mateux diss\u00e9min\u00e9 (LED)",
+  "cond-name-eng": "SLE",
+  "icd10-id": "M32",
+  "symptoms": {
+   "E_55": {},
+   "E_53": {},
+   "E_57": {},
+   "E_54": {},
+   "E_59": {},
+   "E_56": {},
+   "E_58": {},
+   "E_133": {},
+   "E_129": {},
+   "E_130": {},
+   "E_132": {},
+   "E_136": {},
+   "E_135": {},
+   "E_131": {},
+   "E_66": {},
+   "E_206": {},
+   "E_89": {},
+   "E_151": {}
+  },
+  "antecedents": {
+   "E_79": {},
+   "E_141": {},
+   "E_11": {},
+   "E_3": {},
+   "E_102": {},
+   "E_204": {}
+  },
+  "severity": 4
+ },
+ "Tuberculosis": {
+  "condition_name": "Tuberculosis",
+  "cond-name-fr": "Tuberculose",
+  "cond-name-eng": "Tuberculosis",
+  "icd10-id": "a15",
+  "symptoms": {
+   "E_201": {},
+   "E_45": {},
+   "E_66": {},
+   "E_91": {},
+   "E_162": {}
+  },
+  "antecedents": {
+   "E_78": {},
+   "E_61": {},
+   "E_2": {},
+   "E_44": {},
+   "E_69": {},
+   "E_208": {},
+   "E_204": {}
+  },
+  "severity": 3
+ },
+ "Unstable angina": {
+  "condition_name": "Unstable angina",
+  "cond-name-fr": "Angine instable",
+  "cond-name-eng": "Unstable angina",
+  "icd10-id": "I20.0",
+  "symptoms": {
+   "E_218": {},
+   "E_13": {},
+   "E_14": {},
+   "E_55": {},
+   "E_53": {},
+   "E_57": {},
+   "E_54": {},
+   "E_59": {},
+   "E_56": {},
+   "E_58": {},
+   "E_66": {},
+   "E_89": {},
+   "E_148": {},
+   "E_50": {}
+  },
+  "antecedents": {
+   "E_69": {},
+   "E_104": {},
+   "E_79": {},
+   "E_70": {},
+   "E_71": {},
+   "E_78": {},
+   "E_143": {},
+   "E_225": {},
+   "E_105": {},
+   "E_204": {}
+  },
+  "severity": 2
+ },
+ "Stable angina": {
+  "condition_name": "Stable angina",
+  "cond-name-fr": "Angine stable",
+  "cond-name-eng": "Stable angina",
+  "icd10-id": "I20.9",
+  "symptoms": {
+   "E_218": {},
+   "E_55": {},
+   "E_53": {},
+   "E_57": {},
+   "E_54": {},
+   "E_59": {},
+   "E_56": {},
+   "E_58": {},
+   "E_66": {},
+   "E_89": {}
+  },
+  "antecedents": {
+   "E_105": {},
+   "E_69": {},
+   "E_104": {},
+   "E_79": {},
+   "E_70": {},
+   "E_71": {},
+   "E_78": {},
+   "E_143": {},
+   "E_225": {},
+   "E_204": {}
+  },
+  "severity": 2
+ },
+ "Ebola": {
+  "condition_name": "Ebola",
+  "cond-name-fr": "Ebola",
+  "cond-name-eng": "Ebola",
+  "icd10-id": "a98.4",
+  "symptoms": {
+   "E_178": {},
+   "E_91": {},
+   "E_148": {},
+   "E_51": {},
+   "E_39": {},
+   "E_201": {},
+   "E_144": {},
+   "E_89": {},
+   "E_66": {},
+   "E_97": {}
+  },
+  "antecedents": {
+   "E_41": {},
+   "E_204": {},
+   "E_73": {}
+  },
+  "severity": 1
+ },
+ "Acute otitis media": {
+  "condition_name": "Acute otitis media",
+  "cond-name-fr": "Otite moyenne aigue (OMA)",
+  "cond-name-eng": "Acute otitis media",
+  "icd10-id": "H66.90",
+  "symptoms": {
+   "E_55": {},
+   "E_53": {},
+   "E_57": {},
+   "E_54": {},
+   "E_59": {},
+   "E_56": {},
+   "E_58": {},
+   "E_91": {},
+   "E_181": {},
+   "E_201": {},
+   "E_114": {}
+  },
+  "antecedents": {
+   "E_1": {},
+   "E_209": {},
+   "E_204": {}
+  },
+  "severity": 4
+ },
+ "Panic attack": {
+  "condition_name": "Panic attack",
+  "cond-name-fr": "Attaque de panique",
+  "cond-name-eng": "Panic attack",
+  "icd10-id": "f41",
+  "symptoms": {
+   "E_155": {},
+   "E_75": {},
+   "E_55": {},
+   "E_53": {},
+   "E_16": {},
+   "E_177": {},
+   "E_50": {},
+   "E_66": {},
+   "E_57": {},
+   "E_54": {},
+   "E_59": {},
+   "E_56": {},
+   "E_58": {},
+   "E_148": {},
+   "E_82": {},
+   "E_171": {},
+   "E_157": {},
+   "E_111": {}
+  },
+  "antecedents": {
+   "E_81": {},
+   "E_80": {},
+   "E_78": {},
+   "E_29": {},
+   "E_185": {},
+   "E_124": {},
+   "E_99": {},
+   "E_138": {},
+   "E_204": {}
+  },
+  "severity": 5
+ },
+ "Bronchospasm / acute asthma exacerbation": {
+  "condition_name": "Bronchospasm / acute asthma exacerbation",
+  "cond-name-fr": "Asthme exacerb\u00e9 ou bronchospasme",
+  "cond-name-eng": "Bronchospasm / acute asthma exacerbation",
+  "icd10-id": "J45",
+  "symptoms": {
+   "E_201": {},
+   "E_66": {},
+   "E_214": {}
+  },
+  "antecedents": {
+   "E_116": {},
+   "E_207": {},
+   "E_87": {},
+   "E_222": {},
+   "E_124": {},
+   "E_101": {},
+   "E_46": {},
+   "E_226": {},
+   "E_119": {},
+   "E_204": {}
+  },
+  "severity": 3
+ },
+ "Bronchitis": {
+  "condition_name": "Bronchitis",
+  "cond-name-fr": "Bronchite",
+  "cond-name-eng": "Bronchitis",
+  "icd10-id": "j40",
+  "symptoms": {
+   "E_219": {},
+   "E_201": {},
+   "E_97": {},
+   "E_181": {},
+   "E_77": {},
+   "E_55": {},
+   "E_53": {},
+   "E_57": {},
+   "E_54": {},
+   "E_59": {},
+   "E_56": {},
+   "E_58": {},
+   "E_214": {},
+   "E_91": {},
+   "E_66": {}
+  },
+  "antecedents": {
+   "E_209": {},
+   "E_79": {},
+   "E_123": {},
+   "E_204": {}
+  },
+  "severity": 4
+ },
+ "Acute COPD exacerbation / infection": {
+  "condition_name": "Acute COPD exacerbation / infection",
+  "cond-name-fr": "Exacerbation aigue de MPOC et/ou surinfection associ\u00e9e",
+  "cond-name-eng": "Acute COPD exacerbation / infection",
+  "icd10-id": "j44.1",
+  "symptoms": {
+   "E_201": {},
+   "E_214": {},
+   "E_77": {},
+   "E_66": {}
+  },
+  "antecedents": {
+   "E_125": {},
+   "E_79": {},
+   "E_123": {},
+   "E_72": {},
+   "E_198": {},
+   "E_200": {},
+   "E_199": {},
+   "E_31": {},
+   "E_204": {}
+  },
+  "severity": 3
+ },
+ "Pulmonary embolism": {
+  "condition_name": "Pulmonary embolism",
+  "cond-name-fr": "Embolie pulmonaire",
+  "cond-name-eng": "Pulmonary embolism",
+  "icd10-id": "i26",
+  "symptoms": {
+   "E_55": {},
+   "E_53": {},
+   "E_57": {},
+   "E_54": {},
+   "E_59": {},
+   "E_56": {},
+   "E_58": {},
+   "E_152": {},
+   "E_151": {},
+   "E_159": {},
+   "E_45": {},
+   "E_220": {},
+   "E_66": {}
+  },
+  "antecedents": {
+   "E_34": {},
+   "E_109": {},
+   "E_196": {},
+   "E_110": {},
+   "E_204": {},
+   "E_100": {}
+  },
+  "severity": 2
+ },
+ "URTI": {
+  "condition_name": "URTI",
+  "cond-name-fr": "IVRS ou vir\u00e9mie",
+  "cond-name-eng": "URTI",
+  "icd10-id": "j06.9",
+  "symptoms": {
+   "E_55": {},
+   "E_53": {},
+   "E_57": {},
+   "E_54": {},
+   "E_59": {},
+   "E_56": {},
+   "E_58": {},
+   "E_201": {},
+   "E_50": {},
+   "E_181": {},
+   "E_97": {},
+   "E_144": {},
+   "E_91": {},
+   "E_77": {}
+  },
+  "antecedents": {
+   "E_48": {},
+   "E_222": {},
+   "E_49": {},
+   "E_41": {},
+   "E_79": {},
+   "E_204": {}
+  },
+  "severity": 5
+ },
+ "Influenza": {
+  "condition_name": "Influenza",
+  "cond-name-fr": "Possible influenza ou syndrome vir\u00e9mique typique",
+  "cond-name-eng": "Influenza",
+  "icd10-id": "j11.1",
+  "symptoms": {
+   "E_133": {},
+   "E_129": {},
+   "E_130": {},
+   "E_134": {},
+   "E_132": {},
+   "E_136": {},
+   "E_135": {},
+   "E_131": {},
+   "E_161": {},
+   "E_94": {},
+   "E_91": {},
+   "E_50": {},
+   "E_201": {},
+   "E_88": {},
+   "E_181": {},
+   "E_97": {},
+   "E_144": {},
+   "E_55": {},
+   "E_53": {},
+   "E_57": {},
+   "E_54": {},
+   "E_59": {},
+   "E_56": {},
+   "E_58": {}
+  },
+  "antecedents": {
+   "E_79": {},
+   "E_227": {},
+   "E_204": {}
+  },
+  "severity": 3
+ },
+ "Pneumonia": {
+  "condition_name": "Pneumonia",
+  "cond-name-fr": "Pneumonie",
+  "cond-name-eng": "Pneumonia",
+  "icd10-id": "j17, j18",
+  "symptoms": {
+   "E_220": {},
+   "E_55": {},
+   "E_53": {},
+   "E_57": {},
+   "E_54": {},
+   "E_59": {},
+   "E_56": {},
+   "E_58": {},
+   "E_45": {},
+   "E_133": {},
+   "E_129": {},
+   "E_130": {},
+   "E_134": {},
+   "E_132": {},
+   "E_136": {},
+   "E_135": {},
+   "E_131": {},
+   "E_175": {},
+   "E_161": {},
+   "E_219": {},
+   "E_91": {},
+   "E_77": {},
+   "E_201": {},
+   "E_66": {},
+   "E_94": {},
+   "E_144": {},
+   "E_181": {}
+  },
+  "antecedents": {
+   "E_209": {},
+   "E_196": {},
+   "E_123": {},
+   "E_124": {},
+   "E_106": {},
+   "E_107": {},
+   "E_95": {},
+   "E_79": {},
+   "E_78": {},
+   "E_208": {},
+   "E_118": {},
+   "E_204": {}
+  },
+  "severity": 3
+ },
+ "Acute rhinosinusitis": {
+  "condition_name": "Acute rhinosinusitis",
+  "cond-name-fr": "Rhinosinusite aigue",
+  "cond-name-eng": "Acute rhinosinusitis",
+  "icd10-id": "j01",
+  "symptoms": {
+   "E_55": {},
+   "E_53": {},
+   "E_57": {},
+   "E_54": {},
+   "E_59": {},
+   "E_56": {},
+   "E_58": {},
+   "E_182": {},
+   "E_201": {},
+   "E_103": {},
+   "E_91": {},
+   "E_181": {}
+  },
+  "antecedents": {
+   "E_209": {},
+   "E_121": {},
+   "E_79": {},
+   "E_125": {},
+   "E_118": {},
+   "E_226": {},
+   "E_124": {},
+   "E_120": {},
+   "E_116": {},
+   "E_204": {}
+  },
+  "severity": 4
+ },
+ "Chronic rhinosinusitis": {
+  "condition_name": "Chronic rhinosinusitis",
+  "cond-name-fr": "Rhinosinusite chronique",
+  "cond-name-eng": "Chronic rhinosinusitis",
+  "icd10-id": "j32",
+  "symptoms": {
+   "E_55": {},
+   "E_53": {},
+   "E_57": {},
+   "E_54": {},
+   "E_59": {},
+   "E_56": {},
+   "E_58": {},
+   "E_182": {},
+   "E_201": {},
+   "E_103": {},
+   "E_181": {}
+  },
+  "antecedents": {
+   "E_116": {},
+   "E_121": {},
+   "E_79": {},
+   "E_125": {},
+   "E_118": {},
+   "E_226": {},
+   "E_124": {},
+   "E_120": {},
+   "E_204": {}
+  },
+  "severity": 5
+ },
+ "Bronchiolitis": {
+  "condition_name": "Bronchiolitis",
+  "cond-name-fr": "Bronchiolite",
+  "cond-name-eng": "Bronchiolitis",
+  "icd10-id": "j21",
+  "symptoms": {
+   "E_201": {},
+   "E_66": {},
+   "E_32": {},
+   "E_181": {},
+   "E_91": {},
+   "E_214": {},
+   "E_23": {}
+  },
+  "antecedents": {
+   "E_209": {},
+   "E_142": {},
+   "E_48": {},
+   "E_195": {},
+   "E_183": {},
+   "E_204": {}
+  },
+  "severity": 3
+ },
+ "Pulmonary neoplasm": {
+  "condition_name": "Pulmonary neoplasm",
+  "cond-name-fr": "n\u00e9oplasie pulmonaire",
+  "cond-name-eng": "Pulmonary neoplasm",
+  "icd10-id": "c34",
+  "symptoms": {
+   "E_55": {},
+   "E_53": {},
+   "E_45": {},
+   "E_162": {},
+   "E_161": {},
+   "E_66": {},
+   "E_57": {},
+   "E_54": {},
+   "E_59": {},
+   "E_56": {},
+   "E_58": {},
+   "E_89": {},
+   "E_201": {}
+  },
+  "antecedents": {
+   "E_191": {},
+   "E_79": {},
+   "E_224": {},
+   "E_222": {},
+   "E_204": {}
+  },
+  "severity": 3
+ },
+ "Possible NSTEMI / STEMI": {
+  "condition_name": "Possible NSTEMI / STEMI",
+  "cond-name-fr": "Possible NSTEMI / STEMI",
+  "cond-name-eng": "Possible NSTEMI / STEMI",
+  "icd10-id": "I21",
+  "symptoms": {
+   "E_161": {},
+   "E_55": {},
+   "E_53": {},
+   "E_57": {},
+   "E_54": {},
+   "E_59": {},
+   "E_56": {},
+   "E_58": {},
+   "E_66": {},
+   "E_89": {},
+   "E_148": {},
+   "E_50": {}
+  },
+  "antecedents": {
+   "E_105": {},
+   "E_108": {},
+   "E_191": {},
+   "E_79": {},
+   "E_104": {},
+   "E_69": {},
+   "E_71": {},
+   "E_2": {},
+   "E_70": {},
+   "E_225": {},
+   "E_204": {}
+  },
+  "severity": 1
+ },
+ "Sarcoidosis": {
+  "condition_name": "Sarcoidosis",
+  "cond-name-fr": "Sarco\u00efdose",
+  "cond-name-eng": "Sarcoidosis",
+  "icd10-id": "d86",
+  "symptoms": {
+   "E_133": {},
+   "E_129": {},
+   "E_130": {},
+   "E_134": {},
+   "E_132": {},
+   "E_136": {},
+   "E_135": {},
+   "E_131": {},
+   "E_74": {},
+   "E_55": {},
+   "E_53": {},
+   "E_57": {},
+   "E_54": {},
+   "E_59": {},
+   "E_56": {},
+   "E_58": {},
+   "E_43": {},
+   "E_9": {},
+   "E_66": {},
+   "E_163": {}
+  },
+  "antecedents": {
+   "E_70": {},
+   "E_198": {},
+   "E_204": {}
+  },
+  "severity": 4
+ },
+ "Pancreatic neoplasm": {
+  "condition_name": "Pancreatic neoplasm",
+  "cond-name-fr": "N\u00e9oplasie du pancr\u00e9as",
+  "cond-name-eng": "Pancreatic neoplasm",
+  "icd10-id": "c25",
+  "symptoms": {
+   "E_55": {},
+   "E_53": {},
+   "E_57": {},
+   "E_54": {},
+   "E_59": {},
+   "E_56": {},
+   "E_58": {},
+   "E_133": {},
+   "E_129": {},
+   "E_130": {},
+   "E_134": {},
+   "E_132": {},
+   "E_136": {},
+   "E_135": {},
+   "E_131": {},
+   "E_51": {},
+   "E_89": {},
+   "E_201": {},
+   "E_188": {},
+   "E_148": {},
+   "E_162": {}
+  },
+  "antecedents": {
+   "E_69": {},
+   "E_79": {},
+   "E_70": {},
+   "E_223": {},
+   "E_6": {},
+   "E_204": {}
+  },
+  "severity": 3
+ },
+ "Acute pulmonary edema": {
+  "condition_name": "Acute pulmonary edema",
+  "cond-name-fr": "OAP/Surcharge pulmonaire",
+  "cond-name-eng": "Acute pulmonary edema",
+  "icd10-id": "J81.0",
+  "symptoms": {
+   "E_218": {},
+   "E_55": {},
+   "E_53": {},
+   "E_57": {},
+   "E_54": {},
+   "E_59": {},
+   "E_56": {},
+   "E_58": {},
+   "E_152": {},
+   "E_151": {},
+   "E_175": {},
+   "E_50": {},
+   "E_66": {},
+   "E_67": {},
+   "E_217": {}
+  },
+  "antecedents": {
+   "E_105": {},
+   "E_106": {},
+   "E_5": {},
+   "E_104": {},
+   "E_8": {},
+   "E_204": {}
+  },
+  "severity": 1
+ },
+ "Pericarditis": {
+  "condition_name": "Pericarditis",
+  "cond-name-fr": "P\u00e9ricardite",
+  "cond-name-eng": "Pericarditis",
+  "icd10-id": "I30",
+  "symptoms": {
+   "E_220": {},
+   "E_217": {},
+   "E_55": {},
+   "E_53": {},
+   "E_57": {},
+   "E_54": {},
+   "E_59": {},
+   "E_56": {},
+   "E_58": {},
+   "E_66": {},
+   "E_155": {}
+  },
+  "antecedents": {
+   "E_0": {},
+   "E_3": {},
+   "E_204": {}
+  },
+  "severity": 4
+ },
+ "Meniere disease": {
+  "condition_name": "Meniere disease",
+  "cond-name-fr": "",
+  "cond-name-eng": "Meniere disease",
+  "icd10-id": "H81.01",
+  "symptoms": [
+   "E_V2_1000",
+   "E_V2_1001",
+   "E_V2_1002",
+   "E_V2_1003",
+   "E_V2_1004",
+   "E_V2_1005",
+   "E_V2_1006",
+   "E_V2_1007",
+   "E_V2_1008",
+   "E_V2_1009"
+  ],
+  "antecedents": [
+   "E_V2_1010",
+   "E_V2_1011",
+   "E_V2_1012"
+  ],
+  "severity": 3,
+  "system": "ENT_ophthalmic",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_1000",
+   "E_V2_1001",
+   "E_V2_1002",
+   "E_V2_1003",
+   "E_V2_1004"
+  ]
+ },
+ "Benign paroxysmal positional vertigo": {
+  "condition_name": "Benign paroxysmal positional vertigo",
+  "cond-name-fr": "",
+  "cond-name-eng": "Benign paroxysmal positional vertigo",
+  "icd10-id": "H81.11",
+  "symptoms": [
+   "E_V2_1013",
+   "E_V2_1014",
+   "E_V2_1015",
+   "E_V2_1016",
+   "E_V2_1017",
+   "E_V2_1018",
+   "E_V2_1019",
+   "E_V2_1020",
+   "E_V2_1021",
+   "E_V2_1022"
+  ],
+  "antecedents": [
+   "E_V2_1023",
+   "E_V2_1024",
+   "E_V2_1025"
+  ],
+  "severity": 3,
+  "system": "ENT_ophthalmic",
+  "prevalence_tier": 3,
+  "v2_core": [
+   "E_V2_1013",
+   "E_V2_1014",
+   "E_V2_1015",
+   "E_V2_1016",
+   "E_V2_1017",
+   "E_V2_1018"
+  ]
+ },
+ "Vestibular neuritis": {
+  "condition_name": "Vestibular neuritis",
+  "cond-name-fr": "",
+  "cond-name-eng": "Vestibular neuritis",
+  "icd10-id": "H81.21",
+  "symptoms": [
+   "E_V2_1026",
+   "E_V2_1027",
+   "E_V2_1028",
+   "E_V2_1029",
+   "E_V2_1030",
+   "E_V2_1031",
+   "E_V2_1032",
+   "E_V2_1033",
+   "E_V2_1034"
+  ],
+  "antecedents": [
+   "E_V2_1035",
+   "E_V2_1036"
+  ],
+  "severity": 3,
+  "system": "ENT_ophthalmic",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_1026",
+   "E_V2_1027",
+   "E_V2_1028",
+   "E_V2_1029",
+   "E_V2_1030"
+  ]
+ },
+ "Acoustic neuroma early": {
+  "condition_name": "Acoustic neuroma early",
+  "cond-name-fr": "",
+  "cond-name-eng": "Acoustic neuroma early",
+  "icd10-id": "D33.3",
+  "symptoms": [
+   "E_V2_1037",
+   "E_V2_1038",
+   "E_V2_1039",
+   "E_V2_1040",
+   "E_V2_1041",
+   "E_V2_1042",
+   "E_V2_1043",
+   "E_V2_1044",
+   "E_V2_1045"
+  ],
+  "antecedents": [
+   "E_V2_1046",
+   "E_V2_1047"
+  ],
+  "severity": 2,
+  "system": "ENT_ophthalmic",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_1037",
+   "E_V2_1038",
+   "E_V2_1039",
+   "E_V2_1040",
+   "E_V2_1041"
+  ]
+ },
+ "Epistaxis recurrent": {
+  "condition_name": "Epistaxis recurrent",
+  "cond-name-fr": "",
+  "cond-name-eng": "Epistaxis recurrent",
+  "icd10-id": "R04.0",
+  "symptoms": [
+   "E_V2_1048",
+   "E_V2_1049",
+   "E_V2_1050",
+   "E_V2_1051",
+   "E_V2_1052",
+   "E_V2_1053",
+   "E_V2_1054",
+   "E_V2_1055",
+   "E_V2_1056"
+  ],
+  "antecedents": [
+   "E_V2_1057",
+   "E_V2_1058",
+   "E_V2_1059",
+   "E_V2_1060"
+  ],
+  "severity": 3,
+  "system": "ENT_ophthalmic",
+  "prevalence_tier": 3,
+  "v2_core": [
+   "E_V2_1048",
+   "E_V2_1049",
+   "E_V2_1050",
+   "E_V2_1051",
+   "E_V2_1052"
+  ]
+ },
+ "Nasal septal deviation symptomatic": {
+  "condition_name": "Nasal septal deviation symptomatic",
+  "cond-name-fr": "",
+  "cond-name-eng": "Nasal septal deviation symptomatic",
+  "icd10-id": "J34.2",
+  "symptoms": [
+   "E_V2_1061",
+   "E_V2_1062",
+   "E_V2_1063",
+   "E_V2_1064",
+   "E_V2_1065",
+   "E_V2_1066",
+   "E_V2_1067",
+   "E_V2_1068",
+   "E_V2_1069"
+  ],
+  "antecedents": [
+   "E_V2_1070",
+   "E_V2_1071"
+  ],
+  "severity": 4,
+  "system": "ENT_ophthalmic",
+  "prevalence_tier": 3,
+  "v2_core": [
+   "E_V2_1061",
+   "E_V2_1062",
+   "E_V2_1063",
+   "E_V2_1064",
+   "E_V2_1065"
+  ]
+ },
+ "Foreign body ear canal": {
+  "condition_name": "Foreign body ear canal",
+  "cond-name-fr": "",
+  "cond-name-eng": "Foreign body ear canal",
+  "icd10-id": "T16.1",
+  "symptoms": [
+   "E_V2_1072",
+   "E_V2_1073",
+   "E_V2_1074",
+   "E_V2_1075",
+   "E_V2_1076",
+   "E_V2_1077",
+   "E_V2_1078",
+   "E_V2_1079",
+   "E_V2_1080"
+  ],
+  "antecedents": [
+   "E_V2_1081",
+   "E_V2_1082"
+  ],
+  "severity": 3,
+  "system": "ENT_ophthalmic",
+  "prevalence_tier": 3,
+  "v2_core": [
+   "E_V2_1072",
+   "E_V2_1073",
+   "E_V2_1074",
+   "E_V2_1075",
+   "E_V2_1076"
+  ]
+ },
+ "Cerumen impaction symptomatic": {
+  "condition_name": "Cerumen impaction symptomatic",
+  "cond-name-fr": "",
+  "cond-name-eng": "Cerumen impaction symptomatic",
+  "icd10-id": "H61.20",
+  "symptoms": [
+   "E_V2_1083",
+   "E_V2_1084",
+   "E_V2_1085",
+   "E_V2_1086",
+   "E_V2_1087",
+   "E_V2_1088",
+   "E_V2_1089",
+   "E_V2_1090",
+   "E_V2_1091"
+  ],
+  "antecedents": [
+   "E_V2_1092",
+   "E_V2_1093",
+   "E_V2_1094"
+  ],
+  "severity": 4,
+  "system": "ENT_ophthalmic",
+  "prevalence_tier": 1,
+  "v2_core": [
+   "E_V2_1083",
+   "E_V2_1084",
+   "E_V2_1085",
+   "E_V2_1086",
+   "E_V2_1087"
+  ]
+ },
+ "Otitis externa malignant risk noted": {
+  "condition_name": "Otitis externa malignant risk noted",
+  "cond-name-fr": "",
+  "cond-name-eng": "Otitis externa malignant risk noted",
+  "icd10-id": "H60.29",
+  "symptoms": [
+   "E_V2_1095",
+   "E_V2_1096",
+   "E_V2_1097",
+   "E_V2_1098",
+   "E_V2_1099",
+   "E_V2_1100",
+   "E_V2_1101",
+   "E_V2_1102",
+   "E_V2_1103"
+  ],
+  "antecedents": [
+   "E_V2_1104",
+   "E_V2_1105",
+   "E_V2_1106"
+  ],
+  "severity": 1,
+  "system": "ENT_ophthalmic",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_1095",
+   "E_V2_1096",
+   "E_V2_1097",
+   "E_V2_1098",
+   "E_V2_1099"
+  ]
+ },
+ "Temporomandibular joint disorder": {
+  "condition_name": "Temporomandibular joint disorder",
+  "cond-name-fr": "",
+  "cond-name-eng": "Temporomandibular joint disorder",
+  "icd10-id": "M26.60",
+  "symptoms": [
+   "E_V2_1107",
+   "E_V2_1108",
+   "E_V2_1109",
+   "E_V2_1110",
+   "E_V2_1111",
+   "E_V2_1112",
+   "E_V2_1113",
+   "E_V2_1114",
+   "E_V2_1115"
+  ],
+  "antecedents": [
+   "E_V2_1116",
+   "E_V2_1117",
+   "E_V2_1118",
+   "E_V2_1119"
+  ],
+  "severity": 4,
+  "system": "ENT_ophthalmic",
+  "prevalence_tier": 1,
+  "v2_core": [
+   "E_V2_1107",
+   "E_V2_1108",
+   "E_V2_1109",
+   "E_V2_1110",
+   "E_V2_1111"
+  ]
+ },
+ "Peritonsillar abscess": {
+  "condition_name": "Peritonsillar abscess",
+  "cond-name-fr": "",
+  "cond-name-eng": "Peritonsillar abscess",
+  "icd10-id": "J36",
+  "symptoms": [
+   "E_V2_1120",
+   "E_V2_1121",
+   "E_V2_1122",
+   "E_V2_1123",
+   "E_V2_1124",
+   "E_V2_1125",
+   "E_V2_1126",
+   "E_V2_1127",
+   "E_V2_1128",
+   "E_V2_1129"
+  ],
+  "antecedents": [
+   "E_V2_1130",
+   "E_V2_1131",
+   "E_V2_1132"
+  ],
+  "severity": 2,
+  "system": "ENT_ophthalmic",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_1120",
+   "E_V2_1121",
+   "E_V2_1122",
+   "E_V2_1123",
+   "E_V2_1124"
+  ]
+ },
+ "Retropharyngeal abscess warning": {
+  "condition_name": "Retropharyngeal abscess warning",
+  "cond-name-fr": "",
+  "cond-name-eng": "Retropharyngeal abscess warning",
+  "icd10-id": "J39.81",
+  "symptoms": [
+   "E_V2_1133",
+   "E_V2_1134",
+   "E_V2_1135",
+   "E_V2_1136",
+   "E_V2_1137",
+   "E_V2_1138",
+   "E_V2_1139",
+   "E_V2_1140",
+   "E_V2_1141"
+  ],
+  "antecedents": [
+   "E_V2_1142",
+   "E_V2_1143",
+   "E_V2_1144"
+  ],
+  "severity": 1,
+  "system": "ENT_ophthalmic",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_1133",
+   "E_V2_1134",
+   "E_V2_1135",
+   "E_V2_1136",
+   "E_V2_1137"
+  ]
+ },
+ "Salivary gland sialolithiasis": {
+  "condition_name": "Salivary gland sialolithiasis",
+  "cond-name-fr": "",
+  "cond-name-eng": "Salivary gland sialolithiasis",
+  "icd10-id": "K11.5",
+  "symptoms": [
+   "E_V2_1145",
+   "E_V2_1146",
+   "E_V2_1147",
+   "E_V2_1148",
+   "E_V2_1149",
+   "E_V2_1150",
+   "E_V2_1151",
+   "E_V2_1152",
+   "E_V2_1153"
+  ],
+  "antecedents": [
+   "E_V2_1154",
+   "E_V2_1155",
+   "E_V2_1156"
+  ],
+  "severity": 3,
+  "system": "ENT_ophthalmic",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_1145",
+   "E_V2_1146",
+   "E_V2_1147",
+   "E_V2_1148",
+   "E_V2_1149"
+  ]
+ },
+ "Sudden sensorineural hearing loss": {
+  "condition_name": "Sudden sensorineural hearing loss",
+  "cond-name-fr": "",
+  "cond-name-eng": "Sudden sensorineural hearing loss",
+  "icd10-id": "H91.20",
+  "symptoms": [
+   "E_V2_1157",
+   "E_V2_1158",
+   "E_V2_1159",
+   "E_V2_1160",
+   "E_V2_1161",
+   "E_V2_1162",
+   "E_V2_1163",
+   "E_V2_1164",
+   "E_V2_1165"
+  ],
+  "antecedents": [
+   "E_V2_1166",
+   "E_V2_1167",
+   "E_V2_1168"
+  ],
+  "severity": 1,
+  "system": "ENT_ophthalmic",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_1157",
+   "E_V2_1158",
+   "E_V2_1159",
+   "E_V2_1160",
+   "E_V2_1161"
+  ]
+ },
+ "Acute conjunctivitis bacterial": {
+  "condition_name": "Acute conjunctivitis bacterial",
+  "cond-name-fr": "",
+  "cond-name-eng": "Acute conjunctivitis bacterial",
+  "icd10-id": "H10.013",
+  "symptoms": [
+   "E_V2_1169",
+   "E_V2_1170",
+   "E_V2_1171",
+   "E_V2_1172",
+   "E_V2_1173",
+   "E_V2_1174",
+   "E_V2_1175",
+   "E_V2_1176",
+   "E_V2_1177"
+  ],
+  "antecedents": [
+   "E_V2_1178",
+   "E_V2_1179",
+   "E_V2_1180"
+  ],
+  "severity": 3,
+  "system": "ENT_ophthalmic",
+  "prevalence_tier": 3,
+  "v2_core": [
+   "E_V2_1169",
+   "E_V2_1170",
+   "E_V2_1171",
+   "E_V2_1172",
+   "E_V2_1173"
+  ]
+ },
+ "Viral keratoconjunctivitis": {
+  "condition_name": "Viral keratoconjunctivitis",
+  "cond-name-fr": "",
+  "cond-name-eng": "Viral keratoconjunctivitis",
+  "icd10-id": "B30.0",
+  "symptoms": [
+   "E_V2_1181",
+   "E_V2_1182",
+   "E_V2_1183",
+   "E_V2_1184",
+   "E_V2_1185",
+   "E_V2_1186",
+   "E_V2_1187",
+   "E_V2_1188",
+   "E_V2_1189"
+  ],
+  "antecedents": [
+   "E_V2_1190",
+   "E_V2_1191"
+  ],
+  "severity": 3,
+  "system": "ENT_ophthalmic",
+  "prevalence_tier": 3,
+  "v2_core": [
+   "E_V2_1181",
+   "E_V2_1182",
+   "E_V2_1183",
+   "E_V2_1184",
+   "E_V2_1185"
+  ]
+ },
+ "Corneal abrasion": {
+  "condition_name": "Corneal abrasion",
+  "cond-name-fr": "",
+  "cond-name-eng": "Corneal abrasion",
+  "icd10-id": "S05.00XA",
+  "symptoms": [
+   "E_V2_1192",
+   "E_V2_1193",
+   "E_V2_1194",
+   "E_V2_1195",
+   "E_V2_1196",
+   "E_V2_1197",
+   "E_V2_1198",
+   "E_V2_1199",
+   "E_V2_1200"
+  ],
+  "antecedents": [
+   "E_V2_1201",
+   "E_V2_1202",
+   "E_V2_1203"
+  ],
+  "severity": 3,
+  "system": "ENT_ophthalmic",
+  "prevalence_tier": 3,
+  "v2_core": [
+   "E_V2_1192",
+   "E_V2_1193",
+   "E_V2_1194",
+   "E_V2_1195",
+   "E_V2_1196"
+  ]
+ },
+ "Uveitis anterior acute": {
+  "condition_name": "Uveitis anterior acute",
+  "cond-name-fr": "",
+  "cond-name-eng": "Uveitis anterior acute",
+  "icd10-id": "H20.011",
+  "symptoms": [
+   "E_V2_1204",
+   "E_V2_1205",
+   "E_V2_1206",
+   "E_V2_1207",
+   "E_V2_1208",
+   "E_V2_1209",
+   "E_V2_1210",
+   "E_V2_1211",
+   "E_V2_1212"
+  ],
+  "antecedents": [
+   "E_V2_1213",
+   "E_V2_1214",
+   "E_V2_1215"
+  ],
+  "severity": 2,
+  "system": "ENT_ophthalmic",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_1204",
+   "E_V2_1205",
+   "E_V2_1206",
+   "E_V2_1207",
+   "E_V2_1208"
+  ]
+ },
+ "Retinal detachment warning": {
+  "condition_name": "Retinal detachment warning",
+  "cond-name-fr": "",
+  "cond-name-eng": "Retinal detachment warning",
+  "icd10-id": "H33.021",
+  "symptoms": [
+   "E_V2_1216",
+   "E_V2_1217",
+   "E_V2_1218",
+   "E_V2_1219",
+   "E_V2_1220",
+   "E_V2_1221",
+   "E_V2_1222",
+   "E_V2_1223",
+   "E_V2_1224"
+  ],
+  "antecedents": [
+   "E_V2_1225",
+   "E_V2_1226",
+   "E_V2_1227",
+   "E_V2_1228"
+  ],
+  "severity": 1,
+  "system": "ENT_ophthalmic",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_1216",
+   "E_V2_1217",
+   "E_V2_1218",
+   "E_V2_1219",
+   "E_V2_1220"
+  ]
+ },
+ "Optic neuritis": {
+  "condition_name": "Optic neuritis",
+  "cond-name-fr": "",
+  "cond-name-eng": "Optic neuritis",
+  "icd10-id": "H46.01",
+  "symptoms": [
+   "E_V2_1229",
+   "E_V2_1230",
+   "E_V2_1231",
+   "E_V2_1232",
+   "E_V2_1233",
+   "E_V2_1234",
+   "E_V2_1235",
+   "E_V2_1236",
+   "E_V2_1237"
+  ],
+  "antecedents": [
+   "E_V2_1238",
+   "E_V2_1239",
+   "E_V2_1240"
+  ],
+  "severity": 2,
+  "system": "ENT_ophthalmic",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_1229",
+   "E_V2_1230",
+   "E_V2_1231",
+   "E_V2_1232",
+   "E_V2_1233"
+  ]
+ },
+ "Dry eye syndrome symptomatic": {
+  "condition_name": "Dry eye syndrome symptomatic",
+  "cond-name-fr": "",
+  "cond-name-eng": "Dry eye syndrome symptomatic",
+  "icd10-id": "H04.123",
+  "symptoms": [
+   "E_V2_1241",
+   "E_V2_1242",
+   "E_V2_1243",
+   "E_V2_1244",
+   "E_V2_1245",
+   "E_V2_1246",
+   "E_V2_1247",
+   "E_V2_1248",
+   "E_V2_1249"
+  ],
+  "antecedents": [
+   "E_V2_1250",
+   "E_V2_1251",
+   "E_V2_1252",
+   "E_V2_1253"
+  ],
+  "severity": 4,
+  "system": "ENT_ophthalmic",
+  "prevalence_tier": 1,
+  "v2_core": [
+   "E_V2_1241",
+   "E_V2_1242",
+   "E_V2_1243",
+   "E_V2_1244",
+   "E_V2_1245"
+  ]
+ },
+ "Acute angle closure glaucoma": {
+  "condition_name": "Acute angle closure glaucoma",
+  "cond-name-fr": "",
+  "cond-name-eng": "Acute angle closure glaucoma",
+  "icd10-id": "H40.211",
+  "symptoms": [
+   "E_V2_1254",
+   "E_V2_1255",
+   "E_V2_1256",
+   "E_V2_1257",
+   "E_V2_1258",
+   "E_V2_1259",
+   "E_V2_1260",
+   "E_V2_1261",
+   "E_V2_1262",
+   "E_V2_1263"
+  ],
+  "antecedents": [
+   "E_V2_1264",
+   "E_V2_1265",
+   "E_V2_1266"
+  ],
+  "severity": 1,
+  "system": "ENT_ophthalmic",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_1254",
+   "E_V2_1255",
+   "E_V2_1256",
+   "E_V2_1257",
+   "E_V2_1258"
+  ]
+ },
+ "Primary hypertension": {
+  "condition_name": "Primary hypertension",
+  "cond-name-fr": "",
+  "cond-name-eng": "Primary hypertension",
+  "icd10-id": "I10",
+  "symptoms": [
+   "E_V2_1267",
+   "E_V2_1268",
+   "E_V2_1269"
+  ],
+  "antecedents": [
+   "E_V2_1270",
+   "E_V2_1271",
+   "E_V2_1272"
+  ],
+  "severity": 3,
+  "system": "cardiovascular",
+  "prevalence_tier": 1,
+  "v2_core": [
+   "E_V2_1267"
+  ]
+ },
+ "Hypertensive crisis": {
+  "condition_name": "Hypertensive crisis",
+  "cond-name-fr": "",
+  "cond-name-eng": "Hypertensive crisis",
+  "icd10-id": "I16.9",
+  "symptoms": [
+   "E_V2_1273",
+   "E_V2_1274",
+   "E_V2_1275",
+   "E_V2_1276",
+   "E_V2_1277",
+   "E_V2_1278"
+  ],
+  "antecedents": [
+   "E_V2_1279",
+   "E_V2_1280"
+  ],
+  "severity": 1,
+  "system": "cardiovascular",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_1273",
+   "E_V2_1274"
+  ]
+ },
+ "Aortic dissection": {
+  "condition_name": "Aortic dissection",
+  "cond-name-fr": "",
+  "cond-name-eng": "Aortic dissection",
+  "icd10-id": "I71.0",
+  "symptoms": [
+   "E_V2_1281",
+   "E_V2_1282",
+   "E_V2_1283",
+   "E_V2_1284"
+  ],
+  "antecedents": [
+   "E_V2_1285",
+   "E_V2_1286"
+  ],
+  "severity": 1,
+  "system": "cardiovascular",
+  "prevalence_tier": 3,
+  "v2_core": [
+   "E_V2_1281"
+  ]
+ },
+ "Cardiac tamponade": {
+  "condition_name": "Cardiac tamponade",
+  "cond-name-fr": "",
+  "cond-name-eng": "Cardiac tamponade",
+  "icd10-id": "I31.4",
+  "symptoms": [
+   "E_V2_1282",
+   "E_V2_1287",
+   "E_V2_1288",
+   "E_V2_1289",
+   "E_V2_1290"
+  ],
+  "antecedents": [
+   "E_V2_1291",
+   "E_V2_1292",
+   "E_V2_1293"
+  ],
+  "severity": 1,
+  "system": "cardiovascular",
+  "prevalence_tier": 3,
+  "v2_core": [
+   "E_V2_1287",
+   "E_V2_1288"
+  ]
+ },
+ "Infective endocarditis": {
+  "condition_name": "Infective endocarditis",
+  "cond-name-fr": "",
+  "cond-name-eng": "Infective endocarditis",
+  "icd10-id": "I33.0",
+  "symptoms": [
+   "E_V2_1294",
+   "E_V2_1295",
+   "E_V2_1296",
+   "E_V2_1297",
+   "E_V2_1298",
+   "E_V2_1299"
+  ],
+  "antecedents": [
+   "E_V2_1300",
+   "E_V2_1301",
+   "E_V2_1302"
+  ],
+  "severity": 2,
+  "system": "cardiovascular",
+  "prevalence_tier": 3,
+  "v2_core": [
+   "E_V2_1294",
+   "E_V2_1295"
+  ]
+ },
+ "Cardiomyopathy": {
+  "condition_name": "Cardiomyopathy",
+  "cond-name-fr": "",
+  "cond-name-eng": "Cardiomyopathy",
+  "icd10-id": "I42.9",
+  "symptoms": [
+   "E_V2_1295",
+   "E_V2_1303",
+   "E_V2_1304",
+   "E_V2_1305",
+   "E_V2_1306"
+  ],
+  "antecedents": [
+   "E_V2_1307",
+   "E_V2_1308"
+  ],
+  "severity": 2,
+  "system": "cardiovascular",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_1303",
+   "E_V2_1304"
+  ]
+ },
+ "Atrial flutter": {
+  "condition_name": "Atrial flutter",
+  "cond-name-fr": "",
+  "cond-name-eng": "Atrial flutter",
+  "icd10-id": "I48.0",
+  "symptoms": [
+   "E_V2_1295",
+   "E_V2_1309",
+   "E_V2_1310",
+   "E_V2_1311"
+  ],
+  "antecedents": [
+   "E_V2_1167",
+   "E_V2_1308",
+   "E_V2_1312"
+  ],
+  "severity": 3,
+  "system": "cardiovascular",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_1309"
+  ]
+ },
+ "Sick sinus syndrome": {
+  "condition_name": "Sick sinus syndrome",
+  "cond-name-fr": "",
+  "cond-name-eng": "Sick sinus syndrome",
+  "icd10-id": "I49.5",
+  "symptoms": [
+   "E_V2_1282",
+   "E_V2_1295",
+   "E_V2_1313",
+   "E_V2_1314",
+   "E_V2_1315"
+  ],
+  "antecedents": [
+   "E_V2_1316",
+   "E_V2_1317"
+  ],
+  "severity": 3,
+  "system": "cardiovascular",
+  "prevalence_tier": 3,
+  "v2_core": [
+   "E_V2_1313",
+   "E_V2_1314"
+  ]
+ },
+ "Supraventricular tachycardia": {
+  "condition_name": "Supraventricular tachycardia",
+  "cond-name-fr": "",
+  "cond-name-eng": "Supraventricular tachycardia",
+  "icd10-id": "I47.1",
+  "symptoms": [
+   "E_V2_1289",
+   "E_V2_1310",
+   "E_V2_1318",
+   "E_V2_1319"
+  ],
+  "antecedents": [
+   "E_V2_1320",
+   "E_V2_1321",
+   "E_V2_1322"
+  ],
+  "severity": 3,
+  "system": "cardiovascular",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_1318"
+  ]
+ },
+ "Long QT syndrome": {
+  "condition_name": "Long QT syndrome",
+  "cond-name-fr": "",
+  "cond-name-eng": "Long QT syndrome",
+  "icd10-id": "I45.81",
+  "symptoms": [
+   "E_V2_1323",
+   "E_V2_1324",
+   "E_V2_1325"
+  ],
+  "antecedents": [
+   "E_V2_1326",
+   "E_V2_1327"
+  ],
+  "severity": 2,
+  "system": "cardiovascular",
+  "prevalence_tier": 3,
+  "v2_core": [
+   "E_V2_1323"
+  ]
+ },
+ "Deep vein thrombosis": {
+  "condition_name": "Deep vein thrombosis",
+  "cond-name-fr": "",
+  "cond-name-eng": "Deep vein thrombosis",
+  "icd10-id": "I82.90",
+  "symptoms": [
+   "E_V2_1328",
+   "E_V2_1329",
+   "E_V2_1330",
+   "E_V2_1331"
+  ],
+  "antecedents": [
+   "E_V2_1332",
+   "E_V2_1333",
+   "E_V2_1334",
+   "E_V2_1335"
+  ],
+  "severity": 2,
+  "system": "cardiovascular",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_1328"
+  ]
+ },
+ "Varicose veins": {
+  "condition_name": "Varicose veins",
+  "cond-name-fr": "",
+  "cond-name-eng": "Varicose veins",
+  "icd10-id": "I86.9",
+  "symptoms": [
+   "E_V2_1336",
+   "E_V2_1337",
+   "E_V2_1338",
+   "E_V2_1339"
+  ],
+  "antecedents": [
+   "E_V2_1271",
+   "E_V2_1340",
+   "E_V2_1341"
+  ],
+  "severity": 4,
+  "system": "cardiovascular",
+  "prevalence_tier": 1,
+  "v2_core": [
+   "E_V2_1336"
+  ]
+ },
+ "Peripheral arterial disease": {
+  "condition_name": "Peripheral arterial disease",
+  "cond-name-fr": "",
+  "cond-name-eng": "Peripheral arterial disease",
+  "icd10-id": "I73.9",
+  "symptoms": [
+   "E_V2_1342",
+   "E_V2_1343",
+   "E_V2_1344",
+   "E_V2_1345"
+  ],
+  "antecedents": [
+   "E_V2_1346",
+   "E_V2_1347",
+   "E_V2_1348"
+  ],
+  "severity": 3,
+  "system": "cardiovascular",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_1342"
+  ]
+ },
+ "Abdominal aortic aneurysm": {
+  "condition_name": "Abdominal aortic aneurysm",
+  "cond-name-fr": "",
+  "cond-name-eng": "Abdominal aortic aneurysm",
+  "icd10-id": "I71.4",
+  "symptoms": [
+   "E_V2_1349",
+   "E_V2_1350",
+   "E_V2_1351",
+   "E_V2_1352"
+  ],
+  "antecedents": [
+   "E_V2_1346",
+   "E_V2_1353",
+   "E_V2_1354",
+   "E_V2_1355"
+  ],
+  "severity": 2,
+  "system": "cardiovascular",
+  "prevalence_tier": 3,
+  "v2_core": [
+   "E_V2_1349",
+   "E_V2_1350"
+  ]
+ },
+ "Acute pericardial effusion": {
+  "condition_name": "Acute pericardial effusion",
+  "cond-name-fr": "",
+  "cond-name-eng": "Acute pericardial effusion",
+  "icd10-id": "I31.3",
+  "symptoms": [
+   "E_V2_1356",
+   "E_V2_1357",
+   "E_V2_1358",
+   "E_V2_1359"
+  ],
+  "antecedents": [
+   "E_V2_1292",
+   "E_V2_1335",
+   "E_V2_1360"
+  ],
+  "severity": 2,
+  "system": "cardiovascular",
+  "prevalence_tier": 3,
+  "v2_core": [
+   "E_V2_1356"
+  ]
+ },
+ "Vasovagal syncope": {
+  "condition_name": "Vasovagal syncope",
+  "cond-name-fr": "",
+  "cond-name-eng": "Vasovagal syncope",
+  "icd10-id": "R55",
+  "symptoms": [
+   "E_V2_1361",
+   "E_V2_1362",
+   "E_V2_1363",
+   "E_V2_1364"
+  ],
+  "antecedents": [
+   "E_V2_1322",
+   "E_V2_1365",
+   "E_V2_1366"
+  ],
+  "severity": 4,
+  "system": "cardiovascular",
+  "prevalence_tier": 1,
+  "v2_core": [
+   "E_V2_1361"
+  ]
+ },
+ "Postural orthostatic tachycardia syndrome": {
+  "condition_name": "Postural orthostatic tachycardia syndrome",
+  "cond-name-fr": "",
+  "cond-name-eng": "Postural orthostatic tachycardia syndrome",
+  "icd10-id": "G90.A",
+  "symptoms": [
+   "E_V2_1310",
+   "E_V2_1367",
+   "E_V2_1368",
+   "E_V2_1369",
+   "E_V2_1370"
+  ],
+  "antecedents": [
+   "E_V2_1371",
+   "E_V2_1372",
+   "E_V2_1373"
+  ],
+  "severity": 3,
+  "system": "cardiovascular",
+  "prevalence_tier": 3,
+  "v2_core": [
+   "E_V2_1367"
+  ]
+ },
+ "Heart failure acute decompensation": {
+  "condition_name": "Heart failure acute decompensation",
+  "cond-name-fr": "",
+  "cond-name-eng": "Heart failure acute decompensation",
+  "icd10-id": "I50.9",
+  "symptoms": [
+   "E_V2_1374",
+   "E_V2_1375",
+   "E_V2_1376",
+   "E_V2_1377",
+   "E_V2_1378"
+  ],
+  "antecedents": [
+   "E_V2_1379",
+   "E_V2_1380",
+   "E_V2_1381"
+  ],
+  "severity": 2,
+  "system": "cardiovascular",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_1374",
+   "E_V2_1375"
+  ]
+ },
+ "Atopic dermatitis adult": {
+  "condition_name": "Atopic dermatitis adult",
+  "cond-name-fr": "",
+  "cond-name-eng": "Atopic dermatitis adult",
+  "icd10-id": "L20.9",
+  "symptoms": [
+   "E_V2_1382",
+   "E_V2_1383",
+   "E_V2_1384",
+   "E_V2_1385",
+   "E_V2_1386",
+   "E_V2_1387",
+   "E_V2_1388",
+   "E_V2_1389",
+   "E_V2_1390",
+   "E_V2_1391"
+  ],
+  "antecedents": [
+   "E_V2_1392",
+   "E_V2_1393",
+   "E_V2_1394"
+  ],
+  "severity": 4,
+  "system": "dermatological",
+  "prevalence_tier": 1,
+  "v2_core": [
+   "E_V2_1382",
+   "E_V2_1383",
+   "E_V2_1384",
+   "E_V2_1385",
+   "E_V2_1386"
+  ]
+ },
+ "Contact dermatitis allergic": {
+  "condition_name": "Contact dermatitis allergic",
+  "cond-name-fr": "",
+  "cond-name-eng": "Contact dermatitis allergic",
+  "icd10-id": "L23.9",
+  "symptoms": [
+   "E_V2_1395",
+   "E_V2_1396",
+   "E_V2_1397",
+   "E_V2_1398",
+   "E_V2_1399",
+   "E_V2_1400",
+   "E_V2_1401",
+   "E_V2_1402",
+   "E_V2_1403",
+   "E_V2_1404"
+  ],
+  "antecedents": [
+   "E_V2_1405",
+   "E_V2_1406",
+   "E_V2_1407"
+  ],
+  "severity": 4,
+  "system": "dermatological",
+  "prevalence_tier": 1,
+  "v2_core": [
+   "E_V2_1395",
+   "E_V2_1396",
+   "E_V2_1397",
+   "E_V2_1398",
+   "E_V2_1399"
+  ]
+ },
+ "Psoriasis plaque": {
+  "condition_name": "Psoriasis plaque",
+  "cond-name-fr": "",
+  "cond-name-eng": "Psoriasis plaque",
+  "icd10-id": "L40.0",
+  "symptoms": [
+   "E_V2_1408",
+   "E_V2_1409",
+   "E_V2_1410",
+   "E_V2_1411",
+   "E_V2_1412",
+   "E_V2_1413",
+   "E_V2_1414",
+   "E_V2_1415",
+   "E_V2_1416",
+   "E_V2_1417"
+  ],
+  "antecedents": [
+   "E_V2_1418",
+   "E_V2_1419",
+   "E_V2_1420"
+  ],
+  "severity": 3,
+  "system": "dermatological",
+  "prevalence_tier": 1,
+  "v2_core": [
+   "E_V2_1408",
+   "E_V2_1409",
+   "E_V2_1410",
+   "E_V2_1411",
+   "E_V2_1412"
+  ]
+ },
+ "Seborrheic dermatitis": {
+  "condition_name": "Seborrheic dermatitis",
+  "cond-name-fr": "",
+  "cond-name-eng": "Seborrheic dermatitis",
+  "icd10-id": "L21.9",
+  "symptoms": [
+   "E_V2_1421",
+   "E_V2_1422",
+   "E_V2_1423",
+   "E_V2_1424",
+   "E_V2_1425",
+   "E_V2_1426",
+   "E_V2_1427",
+   "E_V2_1428",
+   "E_V2_1429"
+  ],
+  "antecedents": [
+   "E_V2_1430",
+   "E_V2_1431"
+  ],
+  "severity": 4,
+  "system": "dermatological",
+  "prevalence_tier": 1,
+  "v2_core": [
+   "E_V2_1421",
+   "E_V2_1422",
+   "E_V2_1423",
+   "E_V2_1424",
+   "E_V2_1425"
+  ]
+ },
+ "Lichen planus": {
+  "condition_name": "Lichen planus",
+  "cond-name-fr": "",
+  "cond-name-eng": "Lichen planus",
+  "icd10-id": "L43.9",
+  "symptoms": [
+   "E_V2_1432",
+   "E_V2_1433",
+   "E_V2_1434",
+   "E_V2_1435",
+   "E_V2_1436",
+   "E_V2_1437",
+   "E_V2_1438",
+   "E_V2_1439",
+   "E_V2_1440"
+  ],
+  "antecedents": [
+   "E_V2_1441",
+   "E_V2_1442",
+   "E_V2_1443"
+  ],
+  "severity": 3,
+  "system": "dermatological",
+  "prevalence_tier": 3,
+  "v2_core": [
+   "E_V2_1432",
+   "E_V2_1433",
+   "E_V2_1434",
+   "E_V2_1435",
+   "E_V2_1436"
+  ]
+ },
+ "Pemphigus vulgaris": {
+  "condition_name": "Pemphigus vulgaris",
+  "cond-name-fr": "",
+  "cond-name-eng": "Pemphigus vulgaris",
+  "icd10-id": "L10.0",
+  "symptoms": [
+   "E_V2_1444",
+   "E_V2_1445",
+   "E_V2_1446",
+   "E_V2_1447",
+   "E_V2_1448",
+   "E_V2_1449",
+   "E_V2_1450",
+   "E_V2_1451",
+   "E_V2_1452"
+  ],
+  "antecedents": [
+   "E_V2_1453",
+   "E_V2_1454"
+  ],
+  "severity": 1,
+  "system": "dermatological",
+  "prevalence_tier": 3,
+  "v2_core": [
+   "E_V2_1444",
+   "E_V2_1445",
+   "E_V2_1446",
+   "E_V2_1447",
+   "E_V2_1448"
+  ]
+ },
+ "Bullous pemphigoid": {
+  "condition_name": "Bullous pemphigoid",
+  "cond-name-fr": "",
+  "cond-name-eng": "Bullous pemphigoid",
+  "icd10-id": "L12.0",
+  "symptoms": [
+   "E_V2_1455",
+   "E_V2_1456",
+   "E_V2_1457",
+   "E_V2_1458",
+   "E_V2_1459",
+   "E_V2_1460",
+   "E_V2_1461",
+   "E_V2_1462",
+   "E_V2_1463"
+  ],
+  "antecedents": [
+   "E_V2_1464",
+   "E_V2_1465",
+   "E_V2_1466"
+  ],
+  "severity": 2,
+  "system": "dermatological",
+  "prevalence_tier": 3,
+  "v2_core": [
+   "E_V2_1455",
+   "E_V2_1456",
+   "E_V2_1457",
+   "E_V2_1458",
+   "E_V2_1459"
+  ]
+ },
+ "Urticaria chronic spontaneous": {
+  "condition_name": "Urticaria chronic spontaneous",
+  "cond-name-fr": "",
+  "cond-name-eng": "Urticaria chronic spontaneous",
+  "icd10-id": "L50.1",
+  "symptoms": [
+   "E_V2_1467",
+   "E_V2_1468",
+   "E_V2_1469",
+   "E_V2_1470",
+   "E_V2_1471",
+   "E_V2_1472",
+   "E_V2_1473",
+   "E_V2_1474",
+   "E_V2_1475"
+  ],
+  "antecedents": [
+   "E_V2_1476",
+   "E_V2_1477"
+  ],
+  "severity": 3,
+  "system": "dermatological",
+  "prevalence_tier": 1,
+  "v2_core": [
+   "E_V2_1467",
+   "E_V2_1468",
+   "E_V2_1469",
+   "E_V2_1470",
+   "E_V2_1471"
+  ]
+ },
+ "Angioedema hereditary": {
+  "condition_name": "Angioedema hereditary",
+  "cond-name-fr": "",
+  "cond-name-eng": "Angioedema hereditary",
+  "icd10-id": "D84.1",
+  "symptoms": [
+   "E_V2_1478",
+   "E_V2_1479",
+   "E_V2_1480",
+   "E_V2_1481",
+   "E_V2_1482",
+   "E_V2_1483",
+   "E_V2_1484",
+   "E_V2_1485",
+   "E_V2_1486"
+  ],
+  "antecedents": [
+   "E_V2_1487",
+   "E_V2_1488"
+  ],
+  "severity": 1,
+  "system": "dermatological",
+  "prevalence_tier": 3,
+  "v2_core": [
+   "E_V2_1478",
+   "E_V2_1479",
+   "E_V2_1480",
+   "E_V2_1481",
+   "E_V2_1482"
+  ]
+ },
+ "Drug eruption morbilliform": {
+  "condition_name": "Drug eruption morbilliform",
+  "cond-name-fr": "",
+  "cond-name-eng": "Drug eruption morbilliform",
+  "icd10-id": "L27.0",
+  "symptoms": [
+   "E_V2_1489",
+   "E_V2_1490",
+   "E_V2_1491",
+   "E_V2_1492",
+   "E_V2_1493",
+   "E_V2_1494",
+   "E_V2_1495",
+   "E_V2_1496",
+   "E_V2_1497"
+  ],
+  "antecedents": [
+   "E_V2_1498",
+   "E_V2_1499",
+   "E_V2_1500"
+  ],
+  "severity": 3,
+  "system": "dermatological",
+  "prevalence_tier": 1,
+  "v2_core": [
+   "E_V2_1489",
+   "E_V2_1490",
+   "E_V2_1491",
+   "E_V2_1492",
+   "E_V2_1493"
+  ]
+ },
+ "Stevens Johnson syndrome early": {
+  "condition_name": "Stevens Johnson syndrome early",
+  "cond-name-fr": "",
+  "cond-name-eng": "Stevens Johnson syndrome early",
+  "icd10-id": "L51.1",
+  "symptoms": [
+   "E_V2_1501",
+   "E_V2_1502",
+   "E_V2_1503",
+   "E_V2_1504",
+   "E_V2_1505",
+   "E_V2_1506",
+   "E_V2_1507",
+   "E_V2_1508",
+   "E_V2_1509"
+  ],
+  "antecedents": [
+   "E_V2_1510",
+   "E_V2_1511",
+   "E_V2_1512"
+  ],
+  "severity": 1,
+  "system": "dermatological",
+  "prevalence_tier": 3,
+  "v2_core": [
+   "E_V2_1501",
+   "E_V2_1502",
+   "E_V2_1503",
+   "E_V2_1504",
+   "E_V2_1505"
+  ]
+ },
+ "Toxic epidermal necrolysis": {
+  "condition_name": "Toxic epidermal necrolysis",
+  "cond-name-fr": "",
+  "cond-name-eng": "Toxic epidermal necrolysis",
+  "icd10-id": "L51.2",
+  "symptoms": [
+   "E_V2_1513",
+   "E_V2_1514",
+   "E_V2_1515",
+   "E_V2_1516",
+   "E_V2_1517",
+   "E_V2_1518",
+   "E_V2_1519",
+   "E_V2_1520",
+   "E_V2_1521"
+  ],
+  "antecedents": [
+   "E_V2_1522",
+   "E_V2_1523",
+   "E_V2_1524"
+  ],
+  "severity": 1,
+  "system": "dermatological",
+  "prevalence_tier": 3,
+  "v2_core": [
+   "E_V2_1513",
+   "E_V2_1514",
+   "E_V2_1515",
+   "E_V2_1516",
+   "E_V2_1517"
+  ]
+ },
+ "Staph scalded skin": {
+  "condition_name": "Staph scalded skin",
+  "cond-name-fr": "",
+  "cond-name-eng": "Staph scalded skin",
+  "icd10-id": "L00",
+  "symptoms": [
+   "E_V2_1525",
+   "E_V2_1526",
+   "E_V2_1527",
+   "E_V2_1528",
+   "E_V2_1529",
+   "E_V2_1530",
+   "E_V2_1531",
+   "E_V2_1532",
+   "E_V2_1533"
+  ],
+  "antecedents": [
+   "E_V2_1534",
+   "E_V2_1535",
+   "E_V2_1536"
+  ],
+  "severity": 2,
+  "system": "dermatological",
+  "prevalence_tier": 3,
+  "v2_core": [
+   "E_V2_1525",
+   "E_V2_1526",
+   "E_V2_1527",
+   "E_V2_1528",
+   "E_V2_1529"
+  ]
+ },
+ "Tinea corporis": {
+  "condition_name": "Tinea corporis",
+  "cond-name-fr": "",
+  "cond-name-eng": "Tinea corporis",
+  "icd10-id": "B35.4",
+  "symptoms": [
+   "E_V2_1537",
+   "E_V2_1538",
+   "E_V2_1539",
+   "E_V2_1540",
+   "E_V2_1541",
+   "E_V2_1542",
+   "E_V2_1543",
+   "E_V2_1544",
+   "E_V2_1545"
+  ],
+  "antecedents": [
+   "E_V2_1546",
+   "E_V2_1547",
+   "E_V2_1548"
+  ],
+  "severity": 4,
+  "system": "dermatological",
+  "prevalence_tier": 1,
+  "v2_core": [
+   "E_V2_1537",
+   "E_V2_1538",
+   "E_V2_1539",
+   "E_V2_1540",
+   "E_V2_1541"
+  ]
+ },
+ "Tinea versicolor": {
+  "condition_name": "Tinea versicolor",
+  "cond-name-fr": "",
+  "cond-name-eng": "Tinea versicolor",
+  "icd10-id": "B36.0",
+  "symptoms": [
+   "E_V2_1549",
+   "E_V2_1550",
+   "E_V2_1551",
+   "E_V2_1552",
+   "E_V2_1553",
+   "E_V2_1554",
+   "E_V2_1555",
+   "E_V2_1556",
+   "E_V2_1557"
+  ],
+  "antecedents": [
+   "E_V2_1558",
+   "E_V2_1559",
+   "E_V2_1560"
+  ],
+  "severity": 4,
+  "system": "dermatological",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_1549",
+   "E_V2_1550",
+   "E_V2_1551",
+   "E_V2_1552",
+   "E_V2_1553"
+  ]
+ },
+ "Onychomycosis": {
+  "condition_name": "Onychomycosis",
+  "cond-name-fr": "",
+  "cond-name-eng": "Onychomycosis",
+  "icd10-id": "B35.1",
+  "symptoms": [
+   "E_V2_1561",
+   "E_V2_1562",
+   "E_V2_1563",
+   "E_V2_1564",
+   "E_V2_1565",
+   "E_V2_1566",
+   "E_V2_1567",
+   "E_V2_1568",
+   "E_V2_1569"
+  ],
+  "antecedents": [
+   "E_V2_1570",
+   "E_V2_1571",
+   "E_V2_1572"
+  ],
+  "severity": 4,
+  "system": "dermatological",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_1561",
+   "E_V2_1562",
+   "E_V2_1563",
+   "E_V2_1564",
+   "E_V2_1565"
+  ]
+ },
+ "Scabies classic": {
+  "condition_name": "Scabies classic",
+  "cond-name-fr": "",
+  "cond-name-eng": "Scabies classic",
+  "icd10-id": "B86",
+  "symptoms": [
+   "E_V2_1573",
+   "E_V2_1574",
+   "E_V2_1575",
+   "E_V2_1576",
+   "E_V2_1577",
+   "E_V2_1578",
+   "E_V2_1579",
+   "E_V2_1580",
+   "E_V2_1581"
+  ],
+  "antecedents": [
+   "E_V2_1582",
+   "E_V2_1583",
+   "E_V2_1584"
+  ],
+  "severity": 4,
+  "system": "dermatological",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_1573",
+   "E_V2_1574",
+   "E_V2_1575",
+   "E_V2_1576",
+   "E_V2_1577"
+  ]
+ },
+ "Pediculosis head lice": {
+  "condition_name": "Pediculosis head lice",
+  "cond-name-fr": "",
+  "cond-name-eng": "Pediculosis head lice",
+  "icd10-id": "B85.0",
+  "symptoms": [
+   "E_V2_1585",
+   "E_V2_1586",
+   "E_V2_1587",
+   "E_V2_1588",
+   "E_V2_1589",
+   "E_V2_1590",
+   "E_V2_1591",
+   "E_V2_1592",
+   "E_V2_1593"
+  ],
+  "antecedents": [
+   "E_V2_1594",
+   "E_V2_1595",
+   "E_V2_1596"
+  ],
+  "severity": 4,
+  "system": "dermatological",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_1585",
+   "E_V2_1586",
+   "E_V2_1587",
+   "E_V2_1588",
+   "E_V2_1589"
+  ]
+ },
+ "Impetigo": {
+  "condition_name": "Impetigo",
+  "cond-name-fr": "",
+  "cond-name-eng": "Impetigo",
+  "icd10-id": "L01.0",
+  "symptoms": [
+   "E_V2_1597",
+   "E_V2_1598",
+   "E_V2_1599",
+   "E_V2_1600",
+   "E_V2_1601",
+   "E_V2_1602",
+   "E_V2_1603",
+   "E_V2_1604",
+   "E_V2_1605"
+  ],
+  "antecedents": [
+   "E_V2_1606",
+   "E_V2_1607",
+   "E_V2_1608"
+  ],
+  "severity": 4,
+  "system": "dermatological",
+  "prevalence_tier": 1,
+  "v2_core": [
+   "E_V2_1597",
+   "E_V2_1598",
+   "E_V2_1599",
+   "E_V2_1600",
+   "E_V2_1601"
+  ]
+ },
+ "Erysipelas face": {
+  "condition_name": "Erysipelas face",
+  "cond-name-fr": "",
+  "cond-name-eng": "Erysipelas face",
+  "icd10-id": "A46",
+  "symptoms": [
+   "E_V2_1609",
+   "E_V2_1610",
+   "E_V2_1611",
+   "E_V2_1612",
+   "E_V2_1613",
+   "E_V2_1614",
+   "E_V2_1615",
+   "E_V2_1616",
+   "E_V2_1617"
+  ],
+  "antecedents": [
+   "E_V2_1618",
+   "E_V2_1619",
+   "E_V2_1620"
+  ],
+  "severity": 2,
+  "system": "dermatological",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_1609",
+   "E_V2_1610",
+   "E_V2_1611",
+   "E_V2_1612",
+   "E_V2_1613"
+  ]
+ },
+ "Hidradenitis suppurativa": {
+  "condition_name": "Hidradenitis suppurativa",
+  "cond-name-fr": "",
+  "cond-name-eng": "Hidradenitis suppurativa",
+  "icd10-id": "L73.2",
+  "symptoms": [
+   "E_V2_1621",
+   "E_V2_1622",
+   "E_V2_1623",
+   "E_V2_1624",
+   "E_V2_1625",
+   "E_V2_1626",
+   "E_V2_1627",
+   "E_V2_1628",
+   "E_V2_1629"
+  ],
+  "antecedents": [
+   "E_V2_1630",
+   "E_V2_1631",
+   "E_V2_1632"
+  ],
+  "severity": 3,
+  "system": "dermatological",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_1621",
+   "E_V2_1622",
+   "E_V2_1623",
+   "E_V2_1624",
+   "E_V2_1625"
+  ]
+ },
+ "Rosacea papulopustular": {
+  "condition_name": "Rosacea papulopustular",
+  "cond-name-fr": "",
+  "cond-name-eng": "Rosacea papulopustular",
+  "icd10-id": "L71.9",
+  "symptoms": [
+   "E_V2_1633",
+   "E_V2_1634",
+   "E_V2_1635",
+   "E_V2_1636",
+   "E_V2_1637",
+   "E_V2_1638",
+   "E_V2_1639",
+   "E_V2_1640",
+   "E_V2_1641"
+  ],
+  "antecedents": [
+   "E_V2_1642",
+   "E_V2_1643",
+   "E_V2_1644"
+  ],
+  "severity": 4,
+  "system": "dermatological",
+  "prevalence_tier": 1,
+  "v2_core": [
+   "E_V2_1633",
+   "E_V2_1634",
+   "E_V2_1635",
+   "E_V2_1636",
+   "E_V2_1637"
+  ]
+ },
+ "Acne nodulocystic": {
+  "condition_name": "Acne nodulocystic",
+  "cond-name-fr": "",
+  "cond-name-eng": "Acne nodulocystic",
+  "icd10-id": "L70.0",
+  "symptoms": [
+   "E_V2_1645",
+   "E_V2_1646",
+   "E_V2_1647",
+   "E_V2_1648",
+   "E_V2_1649",
+   "E_V2_1650",
+   "E_V2_1651",
+   "E_V2_1652",
+   "E_V2_1653"
+  ],
+  "antecedents": [
+   "E_V2_1654",
+   "E_V2_1655",
+   "E_V2_1656"
+  ],
+  "severity": 3,
+  "system": "dermatological",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_1645",
+   "E_V2_1646",
+   "E_V2_1647",
+   "E_V2_1648",
+   "E_V2_1649"
+  ]
+ },
+ "Vitiligo": {
+  "condition_name": "Vitiligo",
+  "cond-name-fr": "",
+  "cond-name-eng": "Vitiligo",
+  "icd10-id": "L80",
+  "symptoms": [
+   "E_V2_1657",
+   "E_V2_1658",
+   "E_V2_1659",
+   "E_V2_1660",
+   "E_V2_1661",
+   "E_V2_1662",
+   "E_V2_1663",
+   "E_V2_1664",
+   "E_V2_1665"
+  ],
+  "antecedents": [
+   "E_V2_1666",
+   "E_V2_1667",
+   "E_V2_1668"
+  ],
+  "severity": 4,
+  "system": "dermatological",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_1657",
+   "E_V2_1658",
+   "E_V2_1659",
+   "E_V2_1660",
+   "E_V2_1661"
+  ]
+ },
+ "Type 2 diabetes mellitus": {
+  "condition_name": "Type 2 diabetes mellitus",
+  "cond-name-fr": "",
+  "cond-name-eng": "Type 2 diabetes mellitus",
+  "icd10-id": "E11.9",
+  "symptoms": [
+   "E_V2_1669",
+   "E_V2_1670",
+   "E_V2_1671",
+   "E_V2_1672",
+   "E_V2_1673",
+   "E_V2_1674",
+   "E_V2_1675",
+   "E_V2_1676",
+   "E_V2_1677",
+   "E_V2_1678",
+   "E_V2_1679"
+  ],
+  "antecedents": [
+   "E_V2_1680",
+   "E_V2_1681",
+   "E_V2_1682",
+   "E_V2_1683"
+  ],
+  "severity": 2,
+  "system": "endocrine_metabolic",
+  "prevalence_tier": 1,
+  "v2_core": [
+   "E_V2_1669",
+   "E_V2_1670",
+   "E_V2_1671",
+   "E_V2_1672",
+   "E_V2_1673",
+   "E_V2_1674"
+  ]
+ },
+ "Type 1 diabetes mellitus": {
+  "condition_name": "Type 1 diabetes mellitus",
+  "cond-name-fr": "",
+  "cond-name-eng": "Type 1 diabetes mellitus",
+  "icd10-id": "E10.9",
+  "symptoms": [
+   "E_V2_1684",
+   "E_V2_1685",
+   "E_V2_1686",
+   "E_V2_1687",
+   "E_V2_1688",
+   "E_V2_1689",
+   "E_V2_1690",
+   "E_V2_1691",
+   "E_V2_1692",
+   "E_V2_1693"
+  ],
+  "antecedents": [
+   "E_V2_1694",
+   "E_V2_1695",
+   "E_V2_1696"
+  ],
+  "severity": 2,
+  "system": "endocrine_metabolic",
+  "prevalence_tier": 1,
+  "v2_core": [
+   "E_V2_1684",
+   "E_V2_1685",
+   "E_V2_1686",
+   "E_V2_1687",
+   "E_V2_1688",
+   "E_V2_1689"
+  ]
+ },
+ "Diabetic ketoacidosis": {
+  "condition_name": "Diabetic ketoacidosis",
+  "cond-name-fr": "",
+  "cond-name-eng": "Diabetic ketoacidosis",
+  "icd10-id": "E10.10",
+  "symptoms": [
+   "E_V2_1697",
+   "E_V2_1698",
+   "E_V2_1699",
+   "E_V2_1700",
+   "E_V2_1701",
+   "E_V2_1702",
+   "E_V2_1703",
+   "E_V2_1704",
+   "E_V2_1705",
+   "E_V2_1706"
+  ],
+  "antecedents": [
+   "E_V2_1707",
+   "E_V2_1708",
+   "E_V2_1709",
+   "E_V2_1710"
+  ],
+  "severity": 1,
+  "system": "endocrine_metabolic",
+  "prevalence_tier": 1,
+  "v2_core": [
+   "E_V2_1697",
+   "E_V2_1698",
+   "E_V2_1699",
+   "E_V2_1700",
+   "E_V2_1701",
+   "E_V2_1702"
+  ]
+ },
+ "Hyperosmolar hyperglycemic state": {
+  "condition_name": "Hyperosmolar hyperglycemic state",
+  "cond-name-fr": "",
+  "cond-name-eng": "Hyperosmolar hyperglycemic state",
+  "icd10-id": "E11.00",
+  "symptoms": [
+   "E_V2_1711",
+   "E_V2_1712",
+   "E_V2_1713",
+   "E_V2_1714",
+   "E_V2_1715",
+   "E_V2_1716",
+   "E_V2_1717",
+   "E_V2_1718",
+   "E_V2_1719",
+   "E_V2_1720"
+  ],
+  "antecedents": [
+   "E_V2_1721",
+   "E_V2_1722",
+   "E_V2_1723",
+   "E_V2_1724"
+  ],
+  "severity": 1,
+  "system": "endocrine_metabolic",
+  "prevalence_tier": 1,
+  "v2_core": [
+   "E_V2_1711",
+   "E_V2_1712",
+   "E_V2_1713",
+   "E_V2_1714",
+   "E_V2_1715",
+   "E_V2_1716"
+  ]
+ },
+ "Overt hypothyroidism": {
+  "condition_name": "Overt hypothyroidism",
+  "cond-name-fr": "",
+  "cond-name-eng": "Overt hypothyroidism",
+  "icd10-id": "E03.9",
+  "symptoms": [
+   "E_V2_1725",
+   "E_V2_1726",
+   "E_V2_1727",
+   "E_V2_1728",
+   "E_V2_1729",
+   "E_V2_1730",
+   "E_V2_1731",
+   "E_V2_1732",
+   "E_V2_1733",
+   "E_V2_1734",
+   "E_V2_1735",
+   "E_V2_1736"
+  ],
+  "antecedents": [
+   "E_V2_1737",
+   "E_V2_1738",
+   "E_V2_1739",
+   "E_V2_1740"
+  ],
+  "severity": 3,
+  "system": "endocrine_metabolic",
+  "prevalence_tier": 1,
+  "v2_core": [
+   "E_V2_1725",
+   "E_V2_1726",
+   "E_V2_1727",
+   "E_V2_1728",
+   "E_V2_1729",
+   "E_V2_1730"
+  ]
+ },
+ "Graves disease": {
+  "condition_name": "Graves disease",
+  "cond-name-fr": "",
+  "cond-name-eng": "Graves disease",
+  "icd10-id": "E05.00",
+  "symptoms": [
+   "E_V2_1741",
+   "E_V2_1742",
+   "E_V2_1743",
+   "E_V2_1744",
+   "E_V2_1745",
+   "E_V2_1746",
+   "E_V2_1747",
+   "E_V2_1748",
+   "E_V2_1749",
+   "E_V2_1750",
+   "E_V2_1751",
+   "E_V2_1752"
+  ],
+  "antecedents": [
+   "E_V2_1753",
+   "E_V2_1754",
+   "E_V2_1755",
+   "E_V2_1756"
+  ],
+  "severity": 2,
+  "system": "endocrine_metabolic",
+  "prevalence_tier": 1,
+  "v2_core": [
+   "E_V2_1741",
+   "E_V2_1742",
+   "E_V2_1743",
+   "E_V2_1744",
+   "E_V2_1745",
+   "E_V2_1746"
+  ]
+ },
+ "Toxic multinodular goiter": {
+  "condition_name": "Toxic multinodular goiter",
+  "cond-name-fr": "",
+  "cond-name-eng": "Toxic multinodular goiter",
+  "icd10-id": "E05.20",
+  "symptoms": [
+   "E_V2_1757",
+   "E_V2_1758",
+   "E_V2_1759",
+   "E_V2_1760",
+   "E_V2_1761",
+   "E_V2_1762",
+   "E_V2_1763",
+   "E_V2_1764",
+   "E_V2_1765",
+   "E_V2_1766",
+   "E_V2_1767"
+  ],
+  "antecedents": [
+   "E_V2_1768",
+   "E_V2_1769",
+   "E_V2_1770",
+   "E_V2_1771"
+  ],
+  "severity": 2,
+  "system": "endocrine_metabolic",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_1757",
+   "E_V2_1758",
+   "E_V2_1759",
+   "E_V2_1760",
+   "E_V2_1761",
+   "E_V2_1762"
+  ]
+ },
+ "Thyroid storm": {
+  "condition_name": "Thyroid storm",
+  "cond-name-fr": "",
+  "cond-name-eng": "Thyroid storm",
+  "icd10-id": "E05.5",
+  "symptoms": [
+   "E_V2_1772",
+   "E_V2_1773",
+   "E_V2_1774",
+   "E_V2_1775",
+   "E_V2_1776",
+   "E_V2_1777",
+   "E_V2_1778",
+   "E_V2_1779",
+   "E_V2_1780",
+   "E_V2_1781"
+  ],
+  "antecedents": [
+   "E_V2_1782",
+   "E_V2_1783",
+   "E_V2_1784",
+   "E_V2_1785"
+  ],
+  "severity": 1,
+  "system": "endocrine_metabolic",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_1772",
+   "E_V2_1773",
+   "E_V2_1774",
+   "E_V2_1775",
+   "E_V2_1776",
+   "E_V2_1777"
+  ]
+ },
+ "Primary adrenal insufficiency": {
+  "condition_name": "Primary adrenal insufficiency",
+  "cond-name-fr": "",
+  "cond-name-eng": "Primary adrenal insufficiency",
+  "icd10-id": "E27.1",
+  "symptoms": [
+   "E_V2_1786",
+   "E_V2_1787",
+   "E_V2_1788",
+   "E_V2_1789",
+   "E_V2_1790",
+   "E_V2_1791",
+   "E_V2_1792",
+   "E_V2_1793",
+   "E_V2_1794",
+   "E_V2_1795",
+   "E_V2_1796"
+  ],
+  "antecedents": [
+   "E_V2_1797",
+   "E_V2_1798",
+   "E_V2_1799",
+   "E_V2_1800"
+  ],
+  "severity": 2,
+  "system": "endocrine_metabolic",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_1786",
+   "E_V2_1787",
+   "E_V2_1788",
+   "E_V2_1789",
+   "E_V2_1790",
+   "E_V2_1791"
+  ]
+ },
+ "Adrenal crisis": {
+  "condition_name": "Adrenal crisis",
+  "cond-name-fr": "",
+  "cond-name-eng": "Adrenal crisis",
+  "icd10-id": "E27.2",
+  "symptoms": [
+   "E_V2_1801",
+   "E_V2_1802",
+   "E_V2_1803",
+   "E_V2_1804",
+   "E_V2_1805",
+   "E_V2_1806",
+   "E_V2_1807",
+   "E_V2_1808",
+   "E_V2_1809",
+   "E_V2_1810"
+  ],
+  "antecedents": [
+   "E_V2_1811",
+   "E_V2_1812",
+   "E_V2_1813",
+   "E_V2_1814"
+  ],
+  "severity": 1,
+  "system": "endocrine_metabolic",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_1801",
+   "E_V2_1802",
+   "E_V2_1803",
+   "E_V2_1804",
+   "E_V2_1805",
+   "E_V2_1806"
+  ]
+ },
+ "Cushing syndrome": {
+  "condition_name": "Cushing syndrome",
+  "cond-name-fr": "",
+  "cond-name-eng": "Cushing syndrome",
+  "icd10-id": "E24.9",
+  "symptoms": [
+   "E_V2_1815",
+   "E_V2_1816",
+   "E_V2_1817",
+   "E_V2_1818",
+   "E_V2_1819",
+   "E_V2_1820",
+   "E_V2_1821",
+   "E_V2_1822",
+   "E_V2_1823",
+   "E_V2_1824",
+   "E_V2_1825",
+   "E_V2_1826"
+  ],
+  "antecedents": [
+   "E_V2_1827",
+   "E_V2_1828",
+   "E_V2_1829",
+   "E_V2_1830"
+  ],
+  "severity": 2,
+  "system": "endocrine_metabolic",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_1815",
+   "E_V2_1816",
+   "E_V2_1817",
+   "E_V2_1818",
+   "E_V2_1819",
+   "E_V2_1820"
+  ]
+ },
+ "Primary hyperaldosteronism": {
+  "condition_name": "Primary hyperaldosteronism",
+  "cond-name-fr": "",
+  "cond-name-eng": "Primary hyperaldosteronism",
+  "icd10-id": "E26.0",
+  "symptoms": [
+   "E_V2_1831",
+   "E_V2_1832",
+   "E_V2_1833",
+   "E_V2_1834",
+   "E_V2_1835",
+   "E_V2_1836",
+   "E_V2_1837",
+   "E_V2_1838",
+   "E_V2_1839",
+   "E_V2_1840",
+   "E_V2_1841"
+  ],
+  "antecedents": [
+   "E_V2_1842",
+   "E_V2_1843",
+   "E_V2_1844",
+   "E_V2_1845"
+  ],
+  "severity": 2,
+  "system": "endocrine_metabolic",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_1831",
+   "E_V2_1832",
+   "E_V2_1833",
+   "E_V2_1834",
+   "E_V2_1835",
+   "E_V2_1836"
+  ]
+ },
+ "Pheochromocytoma": {
+  "condition_name": "Pheochromocytoma",
+  "cond-name-fr": "",
+  "cond-name-eng": "Pheochromocytoma",
+  "icd10-id": "D35.0",
+  "symptoms": [
+   "E_V2_1846",
+   "E_V2_1847",
+   "E_V2_1848",
+   "E_V2_1849",
+   "E_V2_1850",
+   "E_V2_1851",
+   "E_V2_1852",
+   "E_V2_1853",
+   "E_V2_1854",
+   "E_V2_1855",
+   "E_V2_1856"
+  ],
+  "antecedents": [
+   "E_V2_1857",
+   "E_V2_1858",
+   "E_V2_1859",
+   "E_V2_1860"
+  ],
+  "severity": 2,
+  "system": "endocrine_metabolic",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_1846",
+   "E_V2_1847",
+   "E_V2_1848",
+   "E_V2_1849",
+   "E_V2_1850",
+   "E_V2_1851"
+  ]
+ },
+ "Central diabetes insipidus": {
+  "condition_name": "Central diabetes insipidus",
+  "cond-name-fr": "",
+  "cond-name-eng": "Central diabetes insipidus",
+  "icd10-id": "E23.2",
+  "symptoms": [
+   "E_V2_1861",
+   "E_V2_1862",
+   "E_V2_1863",
+   "E_V2_1864",
+   "E_V2_1865",
+   "E_V2_1866",
+   "E_V2_1867",
+   "E_V2_1868",
+   "E_V2_1869",
+   "E_V2_1870",
+   "E_V2_1871"
+  ],
+  "antecedents": [
+   "E_V2_1872",
+   "E_V2_1873",
+   "E_V2_1874",
+   "E_V2_1875"
+  ],
+  "severity": 2,
+  "system": "endocrine_metabolic",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_1861",
+   "E_V2_1862",
+   "E_V2_1863",
+   "E_V2_1864",
+   "E_V2_1865",
+   "E_V2_1866"
+  ]
+ },
+ "Hyponatremia (SIADH)": {
+  "condition_name": "Hyponatremia (SIADH)",
+  "cond-name-fr": "",
+  "cond-name-eng": "Hyponatremia (SIADH)",
+  "icd10-id": "E22.2",
+  "symptoms": [
+   "E_V2_1876",
+   "E_V2_1877",
+   "E_V2_1878",
+   "E_V2_1879",
+   "E_V2_1880",
+   "E_V2_1881",
+   "E_V2_1882",
+   "E_V2_1883",
+   "E_V2_1884",
+   "E_V2_1885",
+   "E_V2_1886"
+  ],
+  "antecedents": [
+   "E_V2_1887",
+   "E_V2_1888",
+   "E_V2_1889",
+   "E_V2_1890"
+  ],
+  "severity": 2,
+  "system": "endocrine_metabolic",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_1876",
+   "E_V2_1877",
+   "E_V2_1878",
+   "E_V2_1879",
+   "E_V2_1880",
+   "E_V2_1881"
+  ]
+ },
+ "Primary hyperparathyroidism": {
+  "condition_name": "Primary hyperparathyroidism",
+  "cond-name-fr": "",
+  "cond-name-eng": "Primary hyperparathyroidism",
+  "icd10-id": "E21.0",
+  "symptoms": [
+   "E_V2_1891",
+   "E_V2_1892",
+   "E_V2_1893",
+   "E_V2_1894",
+   "E_V2_1895",
+   "E_V2_1896",
+   "E_V2_1897",
+   "E_V2_1898",
+   "E_V2_1899",
+   "E_V2_1900",
+   "E_V2_1901"
+  ],
+  "antecedents": [
+   "E_V2_1902",
+   "E_V2_1903",
+   "E_V2_1904",
+   "E_V2_1905"
+  ],
+  "severity": 3,
+  "system": "endocrine_metabolic",
+  "prevalence_tier": 1,
+  "v2_core": [
+   "E_V2_1891",
+   "E_V2_1892",
+   "E_V2_1893",
+   "E_V2_1894",
+   "E_V2_1895",
+   "E_V2_1896"
+  ]
+ },
+ "Hypoparathyroidism": {
+  "condition_name": "Hypoparathyroidism",
+  "cond-name-fr": "",
+  "cond-name-eng": "Hypoparathyroidism",
+  "icd10-id": "E20.9",
+  "symptoms": [
+   "E_V2_1906",
+   "E_V2_1907",
+   "E_V2_1908",
+   "E_V2_1909",
+   "E_V2_1910",
+   "E_V2_1911",
+   "E_V2_1912",
+   "E_V2_1913",
+   "E_V2_1914",
+   "E_V2_1915",
+   "E_V2_1916",
+   "E_V2_1917"
+  ],
+  "antecedents": [
+   "E_V2_1918",
+   "E_V2_1919",
+   "E_V2_1920",
+   "E_V2_1921"
+  ],
+  "severity": 3,
+  "system": "endocrine_metabolic",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_1906",
+   "E_V2_1907",
+   "E_V2_1908",
+   "E_V2_1909",
+   "E_V2_1910",
+   "E_V2_1911"
+  ]
+ },
+ "Acromegaly": {
+  "condition_name": "Acromegaly",
+  "cond-name-fr": "",
+  "cond-name-eng": "Acromegaly",
+  "icd10-id": "E22.0",
+  "symptoms": [
+   "E_V2_1922",
+   "E_V2_1923",
+   "E_V2_1924",
+   "E_V2_1925",
+   "E_V2_1926",
+   "E_V2_1927",
+   "E_V2_1928",
+   "E_V2_1929",
+   "E_V2_1930",
+   "E_V2_1931",
+   "E_V2_1932",
+   "E_V2_1933"
+  ],
+  "antecedents": [
+   "E_V2_1934",
+   "E_V2_1935",
+   "E_V2_1936",
+   "E_V2_1937"
+  ],
+  "severity": 2,
+  "system": "endocrine_metabolic",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_1922",
+   "E_V2_1923",
+   "E_V2_1924",
+   "E_V2_1925",
+   "E_V2_1926",
+   "E_V2_1927"
+  ]
+ },
+ "Prolactinoma": {
+  "condition_name": "Prolactinoma",
+  "cond-name-fr": "",
+  "cond-name-eng": "Prolactinoma",
+  "icd10-id": "D35.2",
+  "symptoms": [
+   "E_V2_1938",
+   "E_V2_1939",
+   "E_V2_1940",
+   "E_V2_1941",
+   "E_V2_1942",
+   "E_V2_1943",
+   "E_V2_1944",
+   "E_V2_1945",
+   "E_V2_1946",
+   "E_V2_1947",
+   "E_V2_1948"
+  ],
+  "antecedents": [
+   "E_V2_1949",
+   "E_V2_1950",
+   "E_V2_1951"
+  ],
+  "severity": 3,
+  "system": "endocrine_metabolic",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_1938",
+   "E_V2_1939",
+   "E_V2_1940",
+   "E_V2_1941",
+   "E_V2_1942",
+   "E_V2_1943"
+  ]
+ },
+ "Metabolic syndrome": {
+  "condition_name": "Metabolic syndrome",
+  "cond-name-fr": "",
+  "cond-name-eng": "Metabolic syndrome",
+  "icd10-id": "E88.81",
+  "symptoms": [
+   "E_V2_1952",
+   "E_V2_1953",
+   "E_V2_1954",
+   "E_V2_1955",
+   "E_V2_1956",
+   "E_V2_1957",
+   "E_V2_1958",
+   "E_V2_1959",
+   "E_V2_1960",
+   "E_V2_1961",
+   "E_V2_1962"
+  ],
+  "antecedents": [
+   "E_V2_1963",
+   "E_V2_1964",
+   "E_V2_1965",
+   "E_V2_1966"
+  ],
+  "severity": 3,
+  "system": "endocrine_metabolic",
+  "prevalence_tier": 1,
+  "v2_core": [
+   "E_V2_1952",
+   "E_V2_1953",
+   "E_V2_1954",
+   "E_V2_1955",
+   "E_V2_1956",
+   "E_V2_1957"
+  ]
+ },
+ "Malignancy-associated hypercalcemia": {
+  "condition_name": "Malignancy-associated hypercalcemia",
+  "cond-name-fr": "",
+  "cond-name-eng": "Malignancy-associated hypercalcemia",
+  "icd10-id": "E83.52",
+  "symptoms": [
+   "E_V2_1967",
+   "E_V2_1968",
+   "E_V2_1969",
+   "E_V2_1970",
+   "E_V2_1971",
+   "E_V2_1972",
+   "E_V2_1973",
+   "E_V2_1974",
+   "E_V2_1975",
+   "E_V2_1976",
+   "E_V2_1977"
+  ],
+  "antecedents": [
+   "E_V2_1978",
+   "E_V2_1979",
+   "E_V2_1980",
+   "E_V2_1981"
+  ],
+  "severity": 1,
+  "system": "endocrine_metabolic",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_1967",
+   "E_V2_1968",
+   "E_V2_1969",
+   "E_V2_1970",
+   "E_V2_1971",
+   "E_V2_1972"
+  ]
+ },
+ "Obesity with insulin resistance": {
+  "condition_name": "Obesity with insulin resistance",
+  "cond-name-fr": "",
+  "cond-name-eng": "Obesity with insulin resistance",
+  "icd10-id": "E66.9",
+  "symptoms": [
+   "E_V2_1982",
+   "E_V2_1983",
+   "E_V2_1984",
+   "E_V2_1985",
+   "E_V2_1986",
+   "E_V2_1987",
+   "E_V2_1988",
+   "E_V2_1989",
+   "E_V2_1990",
+   "E_V2_1991",
+   "E_V2_1992"
+  ],
+  "antecedents": [
+   "E_V2_1993",
+   "E_V2_1994",
+   "E_V2_1995",
+   "E_V2_1996"
+  ],
+  "severity": 3,
+  "system": "endocrine_metabolic",
+  "prevalence_tier": 1,
+  "v2_core": [
+   "E_V2_1982",
+   "E_V2_1983",
+   "E_V2_1984",
+   "E_V2_1985",
+   "E_V2_1986",
+   "E_V2_1987"
+  ]
+ },
+ "Reactive hypoglycemia": {
+  "condition_name": "Reactive hypoglycemia",
+  "cond-name-fr": "",
+  "cond-name-eng": "Reactive hypoglycemia",
+  "icd10-id": "E16.2",
+  "symptoms": [
+   "E_V2_1997",
+   "E_V2_1998",
+   "E_V2_1999",
+   "E_V2_2000",
+   "E_V2_2001",
+   "E_V2_2002",
+   "E_V2_2003",
+   "E_V2_2004",
+   "E_V2_2005",
+   "E_V2_2006",
+   "E_V2_2007"
+  ],
+  "antecedents": [
+   "E_V2_2008",
+   "E_V2_2009",
+   "E_V2_2010"
+  ],
+  "severity": 3,
+  "system": "endocrine_metabolic",
+  "prevalence_tier": 1,
+  "v2_core": [
+   "E_V2_1997",
+   "E_V2_1998",
+   "E_V2_1999",
+   "E_V2_2000",
+   "E_V2_2001",
+   "E_V2_2002"
+  ]
+ },
+ "Vitamin D deficiency osteomalacia": {
+  "condition_name": "Vitamin D deficiency osteomalacia",
+  "cond-name-fr": "",
+  "cond-name-eng": "Vitamin D deficiency osteomalacia",
+  "icd10-id": "E55.0",
+  "symptoms": [
+   "E_V2_2011",
+   "E_V2_2012",
+   "E_V2_2013",
+   "E_V2_2014",
+   "E_V2_2015",
+   "E_V2_2016",
+   "E_V2_2017",
+   "E_V2_2018",
+   "E_V2_2019",
+   "E_V2_2020",
+   "E_V2_2021"
+  ],
+  "antecedents": [
+   "E_V2_2022",
+   "E_V2_2023",
+   "E_V2_2024",
+   "E_V2_2025"
+  ],
+  "severity": 3,
+  "system": "endocrine_metabolic",
+  "prevalence_tier": 1,
+  "v2_core": [
+   "E_V2_2011",
+   "E_V2_2012",
+   "E_V2_2013",
+   "E_V2_2014",
+   "E_V2_2015",
+   "E_V2_2016"
+  ]
+ },
+ "Postmenopausal osteoporosis": {
+  "condition_name": "Postmenopausal osteoporosis",
+  "cond-name-fr": "",
+  "cond-name-eng": "Postmenopausal osteoporosis",
+  "icd10-id": "M81.0",
+  "symptoms": [
+   "E_V2_2026",
+   "E_V2_2027",
+   "E_V2_2028",
+   "E_V2_2029",
+   "E_V2_2030",
+   "E_V2_2031",
+   "E_V2_2032",
+   "E_V2_2033",
+   "E_V2_2034",
+   "E_V2_2035",
+   "E_V2_2036"
+  ],
+  "antecedents": [
+   "E_V2_2037",
+   "E_V2_2038",
+   "E_V2_2039",
+   "E_V2_2040"
+  ],
+  "severity": 3,
+  "system": "endocrine_metabolic",
+  "prevalence_tier": 1,
+  "v2_core": [
+   "E_V2_2026",
+   "E_V2_2027",
+   "E_V2_2028",
+   "E_V2_2029",
+   "E_V2_2030",
+   "E_V2_2031"
+  ]
+ },
+ "Hereditary hemochromatosis": {
+  "condition_name": "Hereditary hemochromatosis",
+  "cond-name-fr": "",
+  "cond-name-eng": "Hereditary hemochromatosis",
+  "icd10-id": "E83.110",
+  "symptoms": [
+   "E_V2_2041",
+   "E_V2_2042",
+   "E_V2_2043",
+   "E_V2_2044",
+   "E_V2_2045",
+   "E_V2_2046",
+   "E_V2_2047",
+   "E_V2_2048",
+   "E_V2_2049",
+   "E_V2_2050",
+   "E_V2_2051",
+   "E_V2_2052"
+  ],
+  "antecedents": [
+   "E_V2_2053",
+   "E_V2_2054",
+   "E_V2_2055",
+   "E_V2_2056"
+  ],
+  "severity": 3,
+  "system": "endocrine_metabolic",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_2041",
+   "E_V2_2042",
+   "E_V2_2043",
+   "E_V2_2044",
+   "E_V2_2045",
+   "E_V2_2046"
+  ]
+ },
+ "Polycystic ovary syndrome": {
+  "condition_name": "Polycystic ovary syndrome",
+  "cond-name-fr": "",
+  "cond-name-eng": "Polycystic ovary syndrome",
+  "icd10-id": "E28.2",
+  "symptoms": [
+   "E_V2_2057",
+   "E_V2_2058",
+   "E_V2_2059",
+   "E_V2_2060",
+   "E_V2_2061",
+   "E_V2_2062",
+   "E_V2_2063",
+   "E_V2_2064",
+   "E_V2_2065",
+   "E_V2_2066",
+   "E_V2_2067"
+  ],
+  "antecedents": [
+   "E_V2_2068",
+   "E_V2_2069",
+   "E_V2_2070"
+  ],
+  "severity": 3,
+  "system": "endocrine_metabolic",
+  "prevalence_tier": 1,
+  "v2_core": [
+   "E_V2_2057",
+   "E_V2_2058",
+   "E_V2_2059",
+   "E_V2_2060",
+   "E_V2_2061",
+   "E_V2_2062"
+  ]
+ },
+ "Peptic ulcer disease": {
+  "condition_name": "Peptic ulcer disease",
+  "cond-name-fr": "",
+  "cond-name-eng": "Peptic ulcer disease",
+  "icd10-id": "K27.9",
+  "symptoms": [
+   "E_V2_2071",
+   "E_V2_2072",
+   "E_V2_2073",
+   "E_V2_2074",
+   "E_V2_2075"
+  ],
+  "antecedents": [
+   "E_V2_1346",
+   "E_V2_2076",
+   "E_V2_2077"
+  ],
+  "severity": 3,
+  "system": "gastrointestinal",
+  "prevalence_tier": 1,
+  "v2_core": [
+   "E_V2_2071"
+  ]
+ },
+ "Gallstone colic": {
+  "condition_name": "Gallstone colic",
+  "cond-name-fr": "",
+  "cond-name-eng": "Gallstone colic",
+  "icd10-id": "K80.20",
+  "symptoms": [
+   "E_V2_2078",
+   "E_V2_2079",
+   "E_V2_2080"
+  ],
+  "antecedents": [
+   "E_V2_1271",
+   "E_V2_2081",
+   "E_V2_2082",
+   "E_V2_2083"
+  ],
+  "severity": 3,
+  "system": "gastrointestinal",
+  "prevalence_tier": 1,
+  "v2_core": [
+   "E_V2_2078"
+  ]
+ },
+ "Acute cholecystitis": {
+  "condition_name": "Acute cholecystitis",
+  "cond-name-fr": "",
+  "cond-name-eng": "Acute cholecystitis",
+  "icd10-id": "K81.9",
+  "symptoms": [
+   "E_V2_2084",
+   "E_V2_2085",
+   "E_V2_2086",
+   "E_V2_2087"
+  ],
+  "antecedents": [
+   "E_V2_1347",
+   "E_V2_2081",
+   "E_V2_2088"
+  ],
+  "severity": 2,
+  "system": "gastrointestinal",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_2084"
+  ]
+ },
+ "Acute pancreatitis": {
+  "condition_name": "Acute pancreatitis",
+  "cond-name-fr": "",
+  "cond-name-eng": "Acute pancreatitis",
+  "icd10-id": "K85.9",
+  "symptoms": [
+   "E_V2_2089",
+   "E_V2_2090",
+   "E_V2_2091",
+   "E_V2_2092"
+  ],
+  "antecedents": [
+   "E_V2_1308",
+   "E_V2_2088",
+   "E_V2_2093"
+  ],
+  "severity": 2,
+  "system": "gastrointestinal",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_2089"
+  ]
+ },
+ "Appendicitis": {
+  "condition_name": "Appendicitis",
+  "cond-name-fr": "",
+  "cond-name-eng": "Appendicitis",
+  "icd10-id": "K35.80",
+  "symptoms": [
+   "E_V2_1278",
+   "E_V2_1352",
+   "E_V2_2094",
+   "E_V2_2095",
+   "E_V2_2096"
+  ],
+  "antecedents": [
+   "E_V2_1354",
+   "E_V2_2097"
+  ],
+  "severity": 2,
+  "system": "gastrointestinal",
+  "prevalence_tier": 1,
+  "v2_core": [
+   "E_V2_2094"
+  ]
+ },
+ "Diverticulitis": {
+  "condition_name": "Diverticulitis",
+  "cond-name-fr": "",
+  "cond-name-eng": "Diverticulitis",
+  "icd10-id": "K57.32",
+  "symptoms": [
+   "E_V2_2073",
+   "E_V2_2098",
+   "E_V2_2099",
+   "E_V2_2100"
+  ],
+  "antecedents": [
+   "E_V2_1271",
+   "E_V2_2101",
+   "E_V2_2102"
+  ],
+  "severity": 3,
+  "system": "gastrointestinal",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_2098"
+  ]
+ },
+ "Inflammatory bowel disease Crohn": {
+  "condition_name": "Inflammatory bowel disease Crohn",
+  "cond-name-fr": "",
+  "cond-name-eng": "Inflammatory bowel disease Crohn",
+  "icd10-id": "K50.90",
+  "symptoms": [
+   "E_V2_1297",
+   "E_V2_2103",
+   "E_V2_2104",
+   "E_V2_2105",
+   "E_V2_2106"
+  ],
+  "antecedents": [
+   "E_V2_1346",
+   "E_V2_2107",
+   "E_V2_2108"
+  ],
+  "severity": 3,
+  "system": "gastrointestinal",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_2103"
+  ]
+ },
+ "Ulcerative colitis": {
+  "condition_name": "Ulcerative colitis",
+  "cond-name-fr": "",
+  "cond-name-eng": "Ulcerative colitis",
+  "icd10-id": "K51.90",
+  "symptoms": [
+   "E_V2_1295",
+   "E_V2_1298",
+   "E_V2_2109",
+   "E_V2_2110",
+   "E_V2_2111"
+  ],
+  "antecedents": [
+   "E_V2_2112",
+   "E_V2_2113",
+   "E_V2_2114"
+  ],
+  "severity": 3,
+  "system": "gastrointestinal",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_2109"
+  ]
+ },
+ "Celiac disease": {
+  "condition_name": "Celiac disease",
+  "cond-name-fr": "",
+  "cond-name-eng": "Celiac disease",
+  "icd10-id": "K90.0",
+  "symptoms": [
+   "E_V2_1298",
+   "E_V2_2115",
+   "E_V2_2116",
+   "E_V2_2117"
+  ],
+  "antecedents": [
+   "E_V2_2118",
+   "E_V2_2119",
+   "E_V2_2120"
+  ],
+  "severity": 3,
+  "system": "gastrointestinal",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_2115"
+  ]
+ },
+ "Irritable bowel syndrome": {
+  "condition_name": "Irritable bowel syndrome",
+  "cond-name-fr": "",
+  "cond-name-eng": "Irritable bowel syndrome",
+  "icd10-id": "K58.9",
+  "symptoms": [
+   "E_V2_2121",
+   "E_V2_2122",
+   "E_V2_2123",
+   "E_V2_2124"
+  ],
+  "antecedents": [
+   "E_V2_2081",
+   "E_V2_2125",
+   "E_V2_2126"
+  ],
+  "severity": 4,
+  "system": "gastrointestinal",
+  "prevalence_tier": 1,
+  "v2_core": [
+   "E_V2_2121"
+  ]
+ },
+ "Chronic pancreatitis": {
+  "condition_name": "Chronic pancreatitis",
+  "cond-name-fr": "",
+  "cond-name-eng": "Chronic pancreatitis",
+  "icd10-id": "K86.1",
+  "symptoms": [
+   "E_V2_2073",
+   "E_V2_2127",
+   "E_V2_2128",
+   "E_V2_2129"
+  ],
+  "antecedents": [
+   "E_V2_1346",
+   "E_V2_2130",
+   "E_V2_2131"
+  ],
+  "severity": 3,
+  "system": "gastrointestinal",
+  "prevalence_tier": 3,
+  "v2_core": [
+   "E_V2_2127"
+  ]
+ },
+ "Esophageal varices": {
+  "condition_name": "Esophageal varices",
+  "cond-name-fr": "",
+  "cond-name-eng": "Esophageal varices",
+  "icd10-id": "I85.01",
+  "symptoms": [
+   "E_V2_2132",
+   "E_V2_2133",
+   "E_V2_2134",
+   "E_V2_2135"
+  ],
+  "antecedents": [
+   "E_V2_2136",
+   "E_V2_2137",
+   "E_V2_2138"
+  ],
+  "severity": 1,
+  "system": "gastrointestinal",
+  "prevalence_tier": 3,
+  "v2_core": [
+   "E_V2_2132"
+  ]
+ },
+ "Mallory Weiss tear": {
+  "condition_name": "Mallory Weiss tear",
+  "cond-name-fr": "",
+  "cond-name-eng": "Mallory Weiss tear",
+  "icd10-id": "K22.6",
+  "symptoms": [
+   "E_V2_2139",
+   "E_V2_2140",
+   "E_V2_2141"
+  ],
+  "antecedents": [
+   "E_V2_2142",
+   "E_V2_2143",
+   "E_V2_2144"
+  ],
+  "severity": 2,
+  "system": "gastrointestinal",
+  "prevalence_tier": 3,
+  "v2_core": [
+   "E_V2_2139"
+  ]
+ },
+ "Achalasia": {
+  "condition_name": "Achalasia",
+  "cond-name-fr": "",
+  "cond-name-eng": "Achalasia",
+  "icd10-id": "K22.0",
+  "symptoms": [
+   "E_V2_1298",
+   "E_V2_2145",
+   "E_V2_2146",
+   "E_V2_2147"
+  ],
+  "antecedents": [
+   "E_V2_1010",
+   "E_V2_2148"
+  ],
+  "severity": 3,
+  "system": "gastrointestinal",
+  "prevalence_tier": 3,
+  "v2_core": [
+   "E_V2_2145"
+  ]
+ },
+ "Gastroparesis": {
+  "condition_name": "Gastroparesis",
+  "cond-name-fr": "",
+  "cond-name-eng": "Gastroparesis",
+  "icd10-id": "K31.84",
+  "symptoms": [
+   "E_V2_1298",
+   "E_V2_2149",
+   "E_V2_2150",
+   "E_V2_2151"
+  ],
+  "antecedents": [
+   "E_V2_2152",
+   "E_V2_2153",
+   "E_V2_2154"
+  ],
+  "severity": 3,
+  "system": "gastrointestinal",
+  "prevalence_tier": 3,
+  "v2_core": [
+   "E_V2_2149"
+  ]
+ },
+ "Anal fissure": {
+  "condition_name": "Anal fissure",
+  "cond-name-fr": "",
+  "cond-name-eng": "Anal fissure",
+  "icd10-id": "K60.2",
+  "symptoms": [
+   "E_V2_2155",
+   "E_V2_2156",
+   "E_V2_2157",
+   "E_V2_2158"
+  ],
+  "antecedents": [
+   "E_V2_2159",
+   "E_V2_2160",
+   "E_V2_2161"
+  ],
+  "severity": 4,
+  "system": "gastrointestinal",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_2155"
+  ]
+ },
+ "Hemorrhoids internal": {
+  "condition_name": "Hemorrhoids internal",
+  "cond-name-fr": "",
+  "cond-name-eng": "Hemorrhoids internal",
+  "icd10-id": "K64.9",
+  "symptoms": [
+   "E_V2_2162",
+   "E_V2_2163",
+   "E_V2_2164",
+   "E_V2_2165"
+  ],
+  "antecedents": [
+   "E_V2_1341",
+   "E_V2_2166",
+   "E_V2_2167",
+   "E_V2_2168"
+  ],
+  "severity": 4,
+  "system": "gastrointestinal",
+  "prevalence_tier": 1,
+  "v2_core": [
+   "E_V2_2162"
+  ]
+ },
+ "Mesenteric ischemia chronic": {
+  "condition_name": "Mesenteric ischemia chronic",
+  "cond-name-fr": "",
+  "cond-name-eng": "Mesenteric ischemia chronic",
+  "icd10-id": "K55.1",
+  "symptoms": [
+   "E_V2_2169",
+   "E_V2_2170",
+   "E_V2_2171",
+   "E_V2_2172"
+  ],
+  "antecedents": [
+   "E_V2_1346",
+   "E_V2_2173",
+   "E_V2_2174"
+  ],
+  "severity": 2,
+  "system": "gastrointestinal",
+  "prevalence_tier": 3,
+  "v2_core": [
+   "E_V2_2169"
+  ]
+ },
+ "Hepatic encephalopathy": {
+  "condition_name": "Hepatic encephalopathy",
+  "cond-name-fr": "",
+  "cond-name-eng": "Hepatic encephalopathy",
+  "icd10-id": "K72.90",
+  "symptoms": [
+   "E_V2_2175",
+   "E_V2_2176",
+   "E_V2_2177",
+   "E_V2_2178"
+  ],
+  "antecedents": [
+   "E_V2_1365",
+   "E_V2_2136",
+   "E_V2_2159",
+   "E_V2_2179"
+  ],
+  "severity": 2,
+  "system": "gastrointestinal",
+  "prevalence_tier": 3,
+  "v2_core": [
+   "E_V2_2175"
+  ]
+ },
+ "Ascites": {
+  "condition_name": "Ascites",
+  "cond-name-fr": "",
+  "cond-name-eng": "Ascites",
+  "icd10-id": "R18.8",
+  "symptoms": [
+   "E_V2_2180",
+   "E_V2_2181",
+   "E_V2_2182",
+   "E_V2_2183"
+  ],
+  "antecedents": [
+   "E_V2_2136",
+   "E_V2_2184",
+   "E_V2_2185"
+  ],
+  "severity": 3,
+  "system": "gastrointestinal",
+  "prevalence_tier": 3,
+  "v2_core": [
+   "E_V2_2180"
+  ]
+ },
+ "Iron deficiency anemia": {
+  "condition_name": "Iron deficiency anemia",
+  "cond-name-fr": "",
+  "cond-name-eng": "Iron deficiency anemia",
+  "icd10-id": "D50.9",
+  "symptoms": [
+   "E_V2_2186",
+   "E_V2_2187",
+   "E_V2_2188",
+   "E_V2_2189",
+   "E_V2_2190",
+   "E_V2_2191",
+   "E_V2_2192",
+   "E_V2_2193",
+   "E_V2_2194",
+   "E_V2_2195",
+   "E_V2_2196"
+  ],
+  "antecedents": [
+   "E_V2_2197",
+   "E_V2_2198",
+   "E_V2_2199",
+   "E_V2_2200"
+  ],
+  "severity": 3,
+  "system": "hematologic",
+  "prevalence_tier": 1,
+  "v2_core": [
+   "E_V2_2186",
+   "E_V2_2187",
+   "E_V2_2188",
+   "E_V2_2189",
+   "E_V2_2190",
+   "E_V2_2191"
+  ]
+ },
+ "Anemia of chronic disease": {
+  "condition_name": "Anemia of chronic disease",
+  "cond-name-fr": "",
+  "cond-name-eng": "Anemia of chronic disease",
+  "icd10-id": "D63.8",
+  "symptoms": [
+   "E_V2_2201",
+   "E_V2_2202",
+   "E_V2_2203",
+   "E_V2_2204",
+   "E_V2_2205",
+   "E_V2_2206",
+   "E_V2_2207",
+   "E_V2_2208",
+   "E_V2_2209",
+   "E_V2_2210"
+  ],
+  "antecedents": [
+   "E_V2_2211",
+   "E_V2_2212",
+   "E_V2_2213",
+   "E_V2_2214"
+  ],
+  "severity": 3,
+  "system": "hematologic",
+  "prevalence_tier": 1,
+  "v2_core": [
+   "E_V2_2201",
+   "E_V2_2202",
+   "E_V2_2203",
+   "E_V2_2204",
+   "E_V2_2205"
+  ]
+ },
+ "Vitamin B12 deficiency anemia": {
+  "condition_name": "Vitamin B12 deficiency anemia",
+  "cond-name-fr": "",
+  "cond-name-eng": "Vitamin B12 deficiency anemia",
+  "icd10-id": "D51.0",
+  "symptoms": [
+   "E_V2_2215",
+   "E_V2_2216",
+   "E_V2_2217",
+   "E_V2_2218",
+   "E_V2_2219",
+   "E_V2_2220",
+   "E_V2_2221",
+   "E_V2_2222",
+   "E_V2_2223",
+   "E_V2_2224",
+   "E_V2_2225"
+  ],
+  "antecedents": [
+   "E_V2_2226",
+   "E_V2_2227",
+   "E_V2_2228",
+   "E_V2_2229"
+  ],
+  "severity": 3,
+  "system": "hematologic",
+  "prevalence_tier": 1,
+  "v2_core": [
+   "E_V2_2215",
+   "E_V2_2216",
+   "E_V2_2217",
+   "E_V2_2218",
+   "E_V2_2219",
+   "E_V2_2220"
+  ]
+ },
+ "Folate deficiency anemia": {
+  "condition_name": "Folate deficiency anemia",
+  "cond-name-fr": "",
+  "cond-name-eng": "Folate deficiency anemia",
+  "icd10-id": "D52.0",
+  "symptoms": [
+   "E_V2_2230",
+   "E_V2_2231",
+   "E_V2_2232",
+   "E_V2_2233",
+   "E_V2_2234",
+   "E_V2_2235",
+   "E_V2_2236",
+   "E_V2_2237",
+   "E_V2_2238",
+   "E_V2_2239"
+  ],
+  "antecedents": [
+   "E_V2_2240",
+   "E_V2_2241",
+   "E_V2_2242",
+   "E_V2_2243"
+  ],
+  "severity": 3,
+  "system": "hematologic",
+  "prevalence_tier": 1,
+  "v2_core": [
+   "E_V2_2230",
+   "E_V2_2231",
+   "E_V2_2232",
+   "E_V2_2233",
+   "E_V2_2234"
+  ]
+ },
+ "Sickle cell crisis": {
+  "condition_name": "Sickle cell crisis",
+  "cond-name-fr": "",
+  "cond-name-eng": "Sickle cell crisis",
+  "icd10-id": "D57.0",
+  "symptoms": [
+   "E_V2_2244",
+   "E_V2_2245",
+   "E_V2_2246",
+   "E_V2_2247",
+   "E_V2_2248",
+   "E_V2_2249",
+   "E_V2_2250",
+   "E_V2_2251",
+   "E_V2_2252",
+   "E_V2_2253",
+   "E_V2_2254"
+  ],
+  "antecedents": [
+   "E_V2_2255",
+   "E_V2_2256",
+   "E_V2_2257",
+   "E_V2_2258"
+  ],
+  "severity": 1,
+  "system": "hematologic",
+  "prevalence_tier": 1,
+  "v2_core": [
+   "E_V2_2244",
+   "E_V2_2245",
+   "E_V2_2246",
+   "E_V2_2247",
+   "E_V2_2248",
+   "E_V2_2249"
+  ]
+ },
+ "Beta thalassemia trait": {
+  "condition_name": "Beta thalassemia trait",
+  "cond-name-fr": "",
+  "cond-name-eng": "Beta thalassemia trait",
+  "icd10-id": "D56.3",
+  "symptoms": [
+   "E_V2_2259",
+   "E_V2_2260",
+   "E_V2_2261",
+   "E_V2_2262",
+   "E_V2_2263",
+   "E_V2_2264",
+   "E_V2_2265",
+   "E_V2_2266",
+   "E_V2_2267"
+  ],
+  "antecedents": [
+   "E_V2_2268",
+   "E_V2_2269",
+   "E_V2_2270"
+  ],
+  "severity": 4,
+  "system": "hematologic",
+  "prevalence_tier": 1,
+  "v2_core": [
+   "E_V2_2259",
+   "E_V2_2260",
+   "E_V2_2261",
+   "E_V2_2262",
+   "E_V2_2263"
+  ]
+ },
+ "Immune thrombocytopenia": {
+  "condition_name": "Immune thrombocytopenia",
+  "cond-name-fr": "",
+  "cond-name-eng": "Immune thrombocytopenia",
+  "icd10-id": "D69.3",
+  "symptoms": [
+   "E_V2_2271",
+   "E_V2_2272",
+   "E_V2_2273",
+   "E_V2_2274",
+   "E_V2_2275",
+   "E_V2_2276",
+   "E_V2_2277",
+   "E_V2_2278",
+   "E_V2_2279",
+   "E_V2_2280"
+  ],
+  "antecedents": [
+   "E_V2_2281",
+   "E_V2_2282",
+   "E_V2_2283"
+  ],
+  "severity": 2,
+  "system": "hematologic",
+  "prevalence_tier": 1,
+  "v2_core": [
+   "E_V2_2271",
+   "E_V2_2272",
+   "E_V2_2273",
+   "E_V2_2274",
+   "E_V2_2275",
+   "E_V2_2276"
+  ]
+ },
+ "Von Willebrand disease": {
+  "condition_name": "Von Willebrand disease",
+  "cond-name-fr": "",
+  "cond-name-eng": "Von Willebrand disease",
+  "icd10-id": "D68.0",
+  "symptoms": [
+   "E_V2_2284",
+   "E_V2_2285",
+   "E_V2_2286",
+   "E_V2_2287",
+   "E_V2_2288",
+   "E_V2_2289",
+   "E_V2_2290",
+   "E_V2_2291",
+   "E_V2_2292"
+  ],
+  "antecedents": [
+   "E_V2_2293",
+   "E_V2_2294",
+   "E_V2_2295"
+  ],
+  "severity": 3,
+  "system": "hematologic",
+  "prevalence_tier": 1,
+  "v2_core": [
+   "E_V2_2284",
+   "E_V2_2285",
+   "E_V2_2286",
+   "E_V2_2287",
+   "E_V2_2288"
+  ]
+ },
+ "Hemophilia A": {
+  "condition_name": "Hemophilia A",
+  "cond-name-fr": "",
+  "cond-name-eng": "Hemophilia A",
+  "icd10-id": "D66",
+  "symptoms": [
+   "E_V2_2296",
+   "E_V2_2297",
+   "E_V2_2298",
+   "E_V2_2299",
+   "E_V2_2300",
+   "E_V2_2301",
+   "E_V2_2302",
+   "E_V2_2303",
+   "E_V2_2304"
+  ],
+  "antecedents": [
+   "E_V2_2305",
+   "E_V2_2306",
+   "E_V2_2307"
+  ],
+  "severity": 2,
+  "system": "hematologic",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_2296",
+   "E_V2_2297",
+   "E_V2_2298",
+   "E_V2_2299",
+   "E_V2_2300"
+  ]
+ },
+ "Polycythemia vera": {
+  "condition_name": "Polycythemia vera",
+  "cond-name-fr": "",
+  "cond-name-eng": "Polycythemia vera",
+  "icd10-id": "D45",
+  "symptoms": [
+   "E_V2_2308",
+   "E_V2_2309",
+   "E_V2_2310",
+   "E_V2_2311",
+   "E_V2_2312",
+   "E_V2_2313",
+   "E_V2_2314",
+   "E_V2_2315",
+   "E_V2_2316",
+   "E_V2_2317",
+   "E_V2_2318"
+  ],
+  "antecedents": [
+   "E_V2_2319",
+   "E_V2_2320",
+   "E_V2_2321",
+   "E_V2_2322"
+  ],
+  "severity": 2,
+  "system": "hematologic",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_2308",
+   "E_V2_2309",
+   "E_V2_2310",
+   "E_V2_2311",
+   "E_V2_2312",
+   "E_V2_2313"
+  ]
+ },
+ "Essential thrombocythemia": {
+  "condition_name": "Essential thrombocythemia",
+  "cond-name-fr": "",
+  "cond-name-eng": "Essential thrombocythemia",
+  "icd10-id": "D47.3",
+  "symptoms": [
+   "E_V2_2323",
+   "E_V2_2324",
+   "E_V2_2325",
+   "E_V2_2326",
+   "E_V2_2327",
+   "E_V2_2328",
+   "E_V2_2329",
+   "E_V2_2330",
+   "E_V2_2331",
+   "E_V2_2332"
+  ],
+  "antecedents": [
+   "E_V2_2333",
+   "E_V2_2334",
+   "E_V2_2335"
+  ],
+  "severity": 3,
+  "system": "hematologic",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_2323",
+   "E_V2_2324",
+   "E_V2_2325",
+   "E_V2_2326",
+   "E_V2_2327"
+  ]
+ },
+ "Acute leukemia presentation": {
+  "condition_name": "Acute leukemia presentation",
+  "cond-name-fr": "",
+  "cond-name-eng": "Acute leukemia presentation",
+  "icd10-id": "C95.0",
+  "symptoms": [
+   "E_V2_2336",
+   "E_V2_2337",
+   "E_V2_2338",
+   "E_V2_2339",
+   "E_V2_2340",
+   "E_V2_2341",
+   "E_V2_2342",
+   "E_V2_2343",
+   "E_V2_2344",
+   "E_V2_2345",
+   "E_V2_2346",
+   "E_V2_2347"
+  ],
+  "antecedents": [
+   "E_V2_2348",
+   "E_V2_2349",
+   "E_V2_2350",
+   "E_V2_2351"
+  ],
+  "severity": 1,
+  "system": "hematologic",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_2336",
+   "E_V2_2337",
+   "E_V2_2338",
+   "E_V2_2339",
+   "E_V2_2340",
+   "E_V2_2341"
+  ]
+ },
+ "Chronic lymphocytic leukemia": {
+  "condition_name": "Chronic lymphocytic leukemia",
+  "cond-name-fr": "",
+  "cond-name-eng": "Chronic lymphocytic leukemia",
+  "icd10-id": "C91.1",
+  "symptoms": [
+   "E_V2_2352",
+   "E_V2_2353",
+   "E_V2_2354",
+   "E_V2_2355",
+   "E_V2_2356",
+   "E_V2_2357",
+   "E_V2_2358",
+   "E_V2_2359",
+   "E_V2_2360",
+   "E_V2_2361",
+   "E_V2_2362"
+  ],
+  "antecedents": [
+   "E_V2_2363",
+   "E_V2_2364",
+   "E_V2_2365",
+   "E_V2_2366"
+  ],
+  "severity": 3,
+  "system": "hematologic",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_2352",
+   "E_V2_2353",
+   "E_V2_2354",
+   "E_V2_2355",
+   "E_V2_2356"
+  ]
+ },
+ "Lymphoma presentation": {
+  "condition_name": "Lymphoma presentation",
+  "cond-name-fr": "",
+  "cond-name-eng": "Lymphoma presentation",
+  "icd10-id": "C85.9",
+  "symptoms": [
+   "E_V2_2367",
+   "E_V2_2368",
+   "E_V2_2369",
+   "E_V2_2370",
+   "E_V2_2371",
+   "E_V2_2372",
+   "E_V2_2373",
+   "E_V2_2374",
+   "E_V2_2375",
+   "E_V2_2376",
+   "E_V2_2377"
+  ],
+  "antecedents": [
+   "E_V2_2378",
+   "E_V2_2379",
+   "E_V2_2380",
+   "E_V2_2381"
+  ],
+  "severity": 2,
+  "system": "hematologic",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_2367",
+   "E_V2_2368",
+   "E_V2_2369",
+   "E_V2_2370",
+   "E_V2_2371",
+   "E_V2_2372"
+  ]
+ },
+ "Multiple myeloma": {
+  "condition_name": "Multiple myeloma",
+  "cond-name-fr": "",
+  "cond-name-eng": "Multiple myeloma",
+  "icd10-id": "C90.0",
+  "symptoms": [
+   "E_V2_2382",
+   "E_V2_2383",
+   "E_V2_2384",
+   "E_V2_2385",
+   "E_V2_2386",
+   "E_V2_2387",
+   "E_V2_2388",
+   "E_V2_2389",
+   "E_V2_2390",
+   "E_V2_2391",
+   "E_V2_2392",
+   "E_V2_2393"
+  ],
+  "antecedents": [
+   "E_V2_2394",
+   "E_V2_2395",
+   "E_V2_2396",
+   "E_V2_2397"
+  ],
+  "severity": 2,
+  "system": "hematologic",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_2382",
+   "E_V2_2383",
+   "E_V2_2384",
+   "E_V2_2385",
+   "E_V2_2386",
+   "E_V2_2387"
+  ]
+ },
+ "Autoimmune hemolytic anemia": {
+  "condition_name": "Autoimmune hemolytic anemia",
+  "cond-name-fr": "",
+  "cond-name-eng": "Autoimmune hemolytic anemia",
+  "icd10-id": "D59.1",
+  "symptoms": [
+   "E_V2_2398",
+   "E_V2_2399",
+   "E_V2_2400",
+   "E_V2_2401",
+   "E_V2_2402",
+   "E_V2_2403",
+   "E_V2_2404",
+   "E_V2_2405",
+   "E_V2_2406",
+   "E_V2_2407",
+   "E_V2_2408"
+  ],
+  "antecedents": [
+   "E_V2_2409",
+   "E_V2_2410",
+   "E_V2_2411",
+   "E_V2_2412"
+  ],
+  "severity": 2,
+  "system": "hematologic",
+  "prevalence_tier": 1,
+  "v2_core": [
+   "E_V2_2398",
+   "E_V2_2399",
+   "E_V2_2400",
+   "E_V2_2401",
+   "E_V2_2402",
+   "E_V2_2403"
+  ]
+ },
+ "Transfusion reaction": {
+  "condition_name": "Transfusion reaction",
+  "cond-name-fr": "",
+  "cond-name-eng": "Transfusion reaction",
+  "icd10-id": "T80.9",
+  "symptoms": [
+   "E_V2_2413",
+   "E_V2_2414",
+   "E_V2_2415",
+   "E_V2_2416",
+   "E_V2_2417",
+   "E_V2_2418",
+   "E_V2_2419",
+   "E_V2_2420",
+   "E_V2_2421",
+   "E_V2_2422"
+  ],
+  "antecedents": [
+   "E_V2_2423",
+   "E_V2_2424",
+   "E_V2_2425"
+  ],
+  "severity": 1,
+  "system": "hematologic",
+  "prevalence_tier": 1,
+  "v2_core": [
+   "E_V2_2413",
+   "E_V2_2414",
+   "E_V2_2415",
+   "E_V2_2416",
+   "E_V2_2417",
+   "E_V2_2418"
+  ]
+ },
+ "Neutropenic fever": {
+  "condition_name": "Neutropenic fever",
+  "cond-name-fr": "",
+  "cond-name-eng": "Neutropenic fever",
+  "icd10-id": "D70.9",
+  "symptoms": [
+   "E_V2_2426",
+   "E_V2_2427",
+   "E_V2_2428",
+   "E_V2_2429",
+   "E_V2_2430",
+   "E_V2_2431",
+   "E_V2_2432",
+   "E_V2_2433",
+   "E_V2_2434",
+   "E_V2_2435",
+   "E_V2_2436"
+  ],
+  "antecedents": [
+   "E_V2_2437",
+   "E_V2_2438",
+   "E_V2_2439"
+  ],
+  "severity": 1,
+  "system": "hematologic",
+  "prevalence_tier": 1,
+  "v2_core": [
+   "E_V2_2426",
+   "E_V2_2427",
+   "E_V2_2428",
+   "E_V2_2429",
+   "E_V2_2430",
+   "E_V2_2431"
+  ]
+ },
+ "Dengue fever": {
+  "condition_name": "Dengue fever",
+  "cond-name-fr": "",
+  "cond-name-eng": "Dengue fever",
+  "icd10-id": "A90",
+  "symptoms": [
+   "E_V2_2440",
+   "E_V2_2441",
+   "E_V2_2442",
+   "E_V2_2443",
+   "E_V2_2444",
+   "E_V2_2445",
+   "E_V2_2446",
+   "E_V2_2447",
+   "E_V2_2448",
+   "E_V2_2449",
+   "E_V2_2450"
+  ],
+  "antecedents": [
+   "E_V2_2451",
+   "E_V2_2452"
+  ],
+  "severity": 2,
+  "system": "infectious_systemic",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_2440",
+   "E_V2_2441",
+   "E_V2_2442",
+   "E_V2_2443",
+   "E_V2_2444",
+   "E_V2_2445"
+  ]
+ },
+ "Malaria uncomplicated": {
+  "condition_name": "Malaria uncomplicated",
+  "cond-name-fr": "",
+  "cond-name-eng": "Malaria uncomplicated",
+  "icd10-id": "B54",
+  "symptoms": [
+   "E_V2_2453",
+   "E_V2_2454",
+   "E_V2_2455",
+   "E_V2_2456",
+   "E_V2_2457",
+   "E_V2_2458",
+   "E_V2_2459",
+   "E_V2_2460",
+   "E_V2_2461",
+   "E_V2_2462"
+  ],
+  "antecedents": [
+   "E_V2_2463",
+   "E_V2_2464"
+  ],
+  "severity": 2,
+  "system": "infectious_systemic",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_2453",
+   "E_V2_2454",
+   "E_V2_2455",
+   "E_V2_2456",
+   "E_V2_2457"
+  ]
+ },
+ "Typhoid fever": {
+  "condition_name": "Typhoid fever",
+  "cond-name-fr": "",
+  "cond-name-eng": "Typhoid fever",
+  "icd10-id": "A01.0",
+  "symptoms": [
+   "E_V2_2465",
+   "E_V2_2466",
+   "E_V2_2467",
+   "E_V2_2468",
+   "E_V2_2469",
+   "E_V2_2470",
+   "E_V2_2471",
+   "E_V2_2472",
+   "E_V2_2473",
+   "E_V2_2474",
+   "E_V2_2475"
+  ],
+  "antecedents": [
+   "E_V2_2476",
+   "E_V2_2477",
+   "E_V2_2478"
+  ],
+  "severity": 2,
+  "system": "infectious_systemic",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_2465",
+   "E_V2_2466",
+   "E_V2_2467",
+   "E_V2_2468",
+   "E_V2_2469",
+   "E_V2_2470"
+  ]
+ },
+ "Brucellosis": {
+  "condition_name": "Brucellosis",
+  "cond-name-fr": "",
+  "cond-name-eng": "Brucellosis",
+  "icd10-id": "A23.9",
+  "symptoms": [
+   "E_V2_2479",
+   "E_V2_2480",
+   "E_V2_2481",
+   "E_V2_2482",
+   "E_V2_2483",
+   "E_V2_2484",
+   "E_V2_2485",
+   "E_V2_2486",
+   "E_V2_2487",
+   "E_V2_2488"
+  ],
+  "antecedents": [
+   "E_V2_2489",
+   "E_V2_2490",
+   "E_V2_2491"
+  ],
+  "severity": 3,
+  "system": "infectious_systemic",
+  "prevalence_tier": 3,
+  "v2_core": [
+   "E_V2_2479",
+   "E_V2_2480",
+   "E_V2_2481",
+   "E_V2_2482",
+   "E_V2_2483"
+  ]
+ },
+ "Leptospirosis": {
+  "condition_name": "Leptospirosis",
+  "cond-name-fr": "",
+  "cond-name-eng": "Leptospirosis",
+  "icd10-id": "A27.9",
+  "symptoms": [
+   "E_V2_2492",
+   "E_V2_2493",
+   "E_V2_2494",
+   "E_V2_2495",
+   "E_V2_2496",
+   "E_V2_2497",
+   "E_V2_2498",
+   "E_V2_2499",
+   "E_V2_2500",
+   "E_V2_2501",
+   "E_V2_2502"
+  ],
+  "antecedents": [
+   "E_V2_2503",
+   "E_V2_2504",
+   "E_V2_2505"
+  ],
+  "severity": 2,
+  "system": "infectious_systemic",
+  "prevalence_tier": 3,
+  "v2_core": [
+   "E_V2_2492",
+   "E_V2_2493",
+   "E_V2_2494",
+   "E_V2_2495",
+   "E_V2_2496",
+   "E_V2_2497"
+  ]
+ },
+ "Lyme disease early disseminated": {
+  "condition_name": "Lyme disease early disseminated",
+  "cond-name-fr": "",
+  "cond-name-eng": "Lyme disease early disseminated",
+  "icd10-id": "A69.2",
+  "symptoms": [
+   "E_V2_2506",
+   "E_V2_2507",
+   "E_V2_2508",
+   "E_V2_2509",
+   "E_V2_2510",
+   "E_V2_2511",
+   "E_V2_2512",
+   "E_V2_2513",
+   "E_V2_2514",
+   "E_V2_2515"
+  ],
+  "antecedents": [
+   "E_V2_2516",
+   "E_V2_2517",
+   "E_V2_2518"
+  ],
+  "severity": 3,
+  "system": "infectious_systemic",
+  "prevalence_tier": 3,
+  "v2_core": [
+   "E_V2_2506",
+   "E_V2_2507",
+   "E_V2_2508",
+   "E_V2_2509",
+   "E_V2_2510"
+  ]
+ },
+ "Rocky Mountain spotted fever": {
+  "condition_name": "Rocky Mountain spotted fever",
+  "cond-name-fr": "",
+  "cond-name-eng": "Rocky Mountain spotted fever",
+  "icd10-id": "A77.0",
+  "symptoms": [
+   "E_V2_2519",
+   "E_V2_2520",
+   "E_V2_2521",
+   "E_V2_2522",
+   "E_V2_2523",
+   "E_V2_2524",
+   "E_V2_2525",
+   "E_V2_2526",
+   "E_V2_2527"
+  ],
+  "antecedents": [
+   "E_V2_2528",
+   "E_V2_2529"
+  ],
+  "severity": 1,
+  "system": "infectious_systemic",
+  "prevalence_tier": 3,
+  "v2_core": [
+   "E_V2_2519",
+   "E_V2_2520",
+   "E_V2_2521",
+   "E_V2_2522",
+   "E_V2_2523"
+  ]
+ },
+ "Measles": {
+  "condition_name": "Measles",
+  "cond-name-fr": "",
+  "cond-name-eng": "Measles",
+  "icd10-id": "B05.9",
+  "symptoms": [
+   "E_V2_2530",
+   "E_V2_2531",
+   "E_V2_2532",
+   "E_V2_2533",
+   "E_V2_2534",
+   "E_V2_2535",
+   "E_V2_2536",
+   "E_V2_2537",
+   "E_V2_2538"
+  ],
+  "antecedents": [
+   "E_V2_2539",
+   "E_V2_2540",
+   "E_V2_2541"
+  ],
+  "severity": 3,
+  "system": "infectious_systemic",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_2530",
+   "E_V2_2531",
+   "E_V2_2532",
+   "E_V2_2533",
+   "E_V2_2534"
+  ]
+ },
+ "Mumps": {
+  "condition_name": "Mumps",
+  "cond-name-fr": "",
+  "cond-name-eng": "Mumps",
+  "icd10-id": "B26.9",
+  "symptoms": [
+   "E_V2_2542",
+   "E_V2_2543",
+   "E_V2_2544",
+   "E_V2_2545",
+   "E_V2_2546",
+   "E_V2_2547",
+   "E_V2_2548",
+   "E_V2_2549",
+   "E_V2_2550"
+  ],
+  "antecedents": [
+   "E_V2_2551",
+   "E_V2_2552"
+  ],
+  "severity": 4,
+  "system": "infectious_systemic",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_2542",
+   "E_V2_2543",
+   "E_V2_2544",
+   "E_V2_2545",
+   "E_V2_2546"
+  ]
+ },
+ "Varicella chickenpox adult": {
+  "condition_name": "Varicella chickenpox adult",
+  "cond-name-fr": "",
+  "cond-name-eng": "Varicella chickenpox adult",
+  "icd10-id": "B01.9",
+  "symptoms": [
+   "E_V2_2553",
+   "E_V2_2554",
+   "E_V2_2555",
+   "E_V2_2556",
+   "E_V2_2557",
+   "E_V2_2558",
+   "E_V2_2559",
+   "E_V2_2560",
+   "E_V2_2561"
+  ],
+  "antecedents": [
+   "E_V2_2562",
+   "E_V2_2563"
+  ],
+  "severity": 3,
+  "system": "infectious_systemic",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_2553",
+   "E_V2_2554",
+   "E_V2_2555",
+   "E_V2_2556",
+   "E_V2_2557"
+  ]
+ },
+ "Shingles herpes zoster thoracic": {
+  "condition_name": "Shingles herpes zoster thoracic",
+  "cond-name-fr": "",
+  "cond-name-eng": "Shingles herpes zoster thoracic",
+  "icd10-id": "B02.9",
+  "symptoms": [
+   "E_V2_2564",
+   "E_V2_2565",
+   "E_V2_2566",
+   "E_V2_2567",
+   "E_V2_2568",
+   "E_V2_2569",
+   "E_V2_2570",
+   "E_V2_2571",
+   "E_V2_2572"
+  ],
+  "antecedents": [
+   "E_V2_2573",
+   "E_V2_2574",
+   "E_V2_2575"
+  ],
+  "severity": 3,
+  "system": "infectious_systemic",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_2564",
+   "E_V2_2565",
+   "E_V2_2566",
+   "E_V2_2567",
+   "E_V2_2568"
+  ]
+ },
+ "Mononucleosis EBV": {
+  "condition_name": "Mononucleosis EBV",
+  "cond-name-fr": "",
+  "cond-name-eng": "Mononucleosis EBV",
+  "icd10-id": "B27.0",
+  "symptoms": [
+   "E_V2_2343",
+   "E_V2_2576",
+   "E_V2_2577",
+   "E_V2_2578",
+   "E_V2_2579",
+   "E_V2_2580",
+   "E_V2_2581",
+   "E_V2_2582",
+   "E_V2_2583",
+   "E_V2_2584"
+  ],
+  "antecedents": [
+   "E_V2_2585",
+   "E_V2_2586"
+  ],
+  "severity": 4,
+  "system": "infectious_systemic",
+  "prevalence_tier": 1,
+  "v2_core": [
+   "E_V2_2576",
+   "E_V2_2577",
+   "E_V2_2578",
+   "E_V2_2579",
+   "E_V2_2580"
+  ]
+ },
+ "Cytomegalovirus mono like": {
+  "condition_name": "Cytomegalovirus mono like",
+  "cond-name-fr": "",
+  "cond-name-eng": "Cytomegalovirus mono like",
+  "icd10-id": "B25.9",
+  "symptoms": [
+   "E_V2_2587",
+   "E_V2_2588",
+   "E_V2_2589",
+   "E_V2_2590",
+   "E_V2_2591",
+   "E_V2_2592",
+   "E_V2_2593",
+   "E_V2_2594",
+   "E_V2_2595"
+  ],
+  "antecedents": [
+   "E_V2_2596",
+   "E_V2_2597"
+  ],
+  "severity": 4,
+  "system": "infectious_systemic",
+  "prevalence_tier": 3,
+  "v2_core": [
+   "E_V2_2587",
+   "E_V2_2588",
+   "E_V2_2589",
+   "E_V2_2590",
+   "E_V2_2591"
+  ]
+ },
+ "Secondary syphilis": {
+  "condition_name": "Secondary syphilis",
+  "cond-name-fr": "",
+  "cond-name-eng": "Secondary syphilis",
+  "icd10-id": "A51.4",
+  "symptoms": [
+   "E_V2_2014",
+   "E_V2_2598",
+   "E_V2_2599",
+   "E_V2_2600",
+   "E_V2_2601",
+   "E_V2_2602",
+   "E_V2_2603",
+   "E_V2_2604",
+   "E_V2_2605",
+   "E_V2_2606"
+  ],
+  "antecedents": [
+   "E_V2_2607",
+   "E_V2_2608",
+   "E_V2_2609"
+  ],
+  "severity": 3,
+  "system": "infectious_systemic",
+  "prevalence_tier": 3,
+  "v2_core": [
+   "E_V2_2598",
+   "E_V2_2599",
+   "E_V2_2600",
+   "E_V2_2601",
+   "E_V2_2602"
+  ]
+ },
+ "Gonorrhea urethritis": {
+  "condition_name": "Gonorrhea urethritis",
+  "cond-name-fr": "",
+  "cond-name-eng": "Gonorrhea urethritis",
+  "icd10-id": "A54.0",
+  "symptoms": [
+   "E_V2_2610",
+   "E_V2_2611",
+   "E_V2_2612",
+   "E_V2_2613",
+   "E_V2_2614",
+   "E_V2_2615",
+   "E_V2_2616",
+   "E_V2_2617",
+   "E_V2_2618"
+  ],
+  "antecedents": [
+   "E_V2_2619",
+   "E_V2_2620"
+  ],
+  "severity": 3,
+  "system": "infectious_systemic",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_2610",
+   "E_V2_2611",
+   "E_V2_2612",
+   "E_V2_2613",
+   "E_V2_2614"
+  ]
+ },
+ "Chlamydia pelvic inflammatory disease": {
+  "condition_name": "Chlamydia pelvic inflammatory disease",
+  "cond-name-fr": "",
+  "cond-name-eng": "Chlamydia pelvic inflammatory disease",
+  "icd10-id": "A56.1",
+  "symptoms": [
+   "E_V2_2621",
+   "E_V2_2622",
+   "E_V2_2623",
+   "E_V2_2624",
+   "E_V2_2625",
+   "E_V2_2626",
+   "E_V2_2627",
+   "E_V2_2628",
+   "E_V2_2629",
+   "E_V2_2630"
+  ],
+  "antecedents": [
+   "E_V2_2631",
+   "E_V2_2632"
+  ],
+  "severity": 3,
+  "system": "infectious_systemic",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_2621",
+   "E_V2_2622",
+   "E_V2_2623",
+   "E_V2_2624",
+   "E_V2_2625"
+  ]
+ },
+ "Trichomoniasis": {
+  "condition_name": "Trichomoniasis",
+  "cond-name-fr": "",
+  "cond-name-eng": "Trichomoniasis",
+  "icd10-id": "A59.0",
+  "symptoms": [
+   "E_V2_2633",
+   "E_V2_2634",
+   "E_V2_2635",
+   "E_V2_2636",
+   "E_V2_2637",
+   "E_V2_2638",
+   "E_V2_2639",
+   "E_V2_2640",
+   "E_V2_2641"
+  ],
+  "antecedents": [
+   "E_V2_2642",
+   "E_V2_2643"
+  ],
+  "severity": 4,
+  "system": "infectious_systemic",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_2633",
+   "E_V2_2634",
+   "E_V2_2635",
+   "E_V2_2636",
+   "E_V2_2637"
+  ]
+ },
+ "Bacterial meningitis": {
+  "condition_name": "Bacterial meningitis",
+  "cond-name-fr": "",
+  "cond-name-eng": "Bacterial meningitis",
+  "icd10-id": "G00.9",
+  "symptoms": [
+   "E_V2_2644",
+   "E_V2_2645",
+   "E_V2_2646",
+   "E_V2_2647",
+   "E_V2_2648",
+   "E_V2_2649",
+   "E_V2_2650",
+   "E_V2_2651",
+   "E_V2_2652",
+   "E_V2_2653"
+  ],
+  "antecedents": [
+   "E_V2_2654",
+   "E_V2_2655",
+   "E_V2_2656"
+  ],
+  "severity": 1,
+  "system": "infectious_systemic",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_2644",
+   "E_V2_2645",
+   "E_V2_2646",
+   "E_V2_2647",
+   "E_V2_2648",
+   "E_V2_2649"
+  ]
+ },
+ "Viral meningitis": {
+  "condition_name": "Viral meningitis",
+  "cond-name-fr": "",
+  "cond-name-eng": "Viral meningitis",
+  "icd10-id": "A87.9",
+  "symptoms": [
+   "E_V2_2657",
+   "E_V2_2658",
+   "E_V2_2659",
+   "E_V2_2660",
+   "E_V2_2661",
+   "E_V2_2662",
+   "E_V2_2663",
+   "E_V2_2664",
+   "E_V2_2665",
+   "E_V2_2666"
+  ],
+  "antecedents": [
+   "E_V2_2667",
+   "E_V2_2668"
+  ],
+  "severity": 3,
+  "system": "infectious_systemic",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_2657",
+   "E_V2_2658",
+   "E_V2_2659",
+   "E_V2_2660",
+   "E_V2_2661"
+  ]
+ },
+ "Encephalitis HSV": {
+  "condition_name": "Encephalitis HSV",
+  "cond-name-fr": "",
+  "cond-name-eng": "Encephalitis HSV",
+  "icd10-id": "B00.4",
+  "symptoms": [
+   "E_V2_2669",
+   "E_V2_2670",
+   "E_V2_2671",
+   "E_V2_2672",
+   "E_V2_2673",
+   "E_V2_2674",
+   "E_V2_2675",
+   "E_V2_2676",
+   "E_V2_2677"
+  ],
+  "antecedents": [
+   "E_V2_2678",
+   "E_V2_2679"
+  ],
+  "severity": 1,
+  "system": "infectious_systemic",
+  "prevalence_tier": 3,
+  "v2_core": [
+   "E_V2_2669",
+   "E_V2_2670",
+   "E_V2_2671",
+   "E_V2_2672",
+   "E_V2_2673"
+  ]
+ },
+ "Sepsis undifferentiated": {
+  "condition_name": "Sepsis undifferentiated",
+  "cond-name-fr": "",
+  "cond-name-eng": "Sepsis undifferentiated",
+  "icd10-id": "A41.9",
+  "symptoms": [
+   "E_V2_2680",
+   "E_V2_2681",
+   "E_V2_2682",
+   "E_V2_2683",
+   "E_V2_2684",
+   "E_V2_2685",
+   "E_V2_2686",
+   "E_V2_2687",
+   "E_V2_2688",
+   "E_V2_2689"
+  ],
+  "antecedents": [
+   "E_V2_2690",
+   "E_V2_2691",
+   "E_V2_2692"
+  ],
+  "severity": 1,
+  "system": "infectious_systemic",
+  "prevalence_tier": 1,
+  "v2_core": [
+   "E_V2_2680",
+   "E_V2_2681",
+   "E_V2_2682",
+   "E_V2_2683",
+   "E_V2_2684",
+   "E_V2_2685"
+  ]
+ },
+ "Necrotizing fasciitis": {
+  "condition_name": "Necrotizing fasciitis",
+  "cond-name-fr": "",
+  "cond-name-eng": "Necrotizing fasciitis",
+  "icd10-id": "M72.6",
+  "symptoms": [
+   "E_V2_2693",
+   "E_V2_2694",
+   "E_V2_2695",
+   "E_V2_2696",
+   "E_V2_2697",
+   "E_V2_2698",
+   "E_V2_2699",
+   "E_V2_2700",
+   "E_V2_2701",
+   "E_V2_2702"
+  ],
+  "antecedents": [
+   "E_V2_2703",
+   "E_V2_2704",
+   "E_V2_2705"
+  ],
+  "severity": 1,
+  "system": "infectious_systemic",
+  "prevalence_tier": 3,
+  "v2_core": [
+   "E_V2_2693",
+   "E_V2_2694",
+   "E_V2_2695",
+   "E_V2_2696",
+   "E_V2_2697",
+   "E_V2_2698"
+  ]
+ },
+ "Tetanus": {
+  "condition_name": "Tetanus",
+  "cond-name-fr": "",
+  "cond-name-eng": "Tetanus",
+  "icd10-id": "A35",
+  "symptoms": [
+   "E_V2_2706",
+   "E_V2_2707",
+   "E_V2_2708",
+   "E_V2_2709",
+   "E_V2_2710",
+   "E_V2_2711",
+   "E_V2_2712",
+   "E_V2_2713",
+   "E_V2_2714"
+  ],
+  "antecedents": [
+   "E_V2_2715",
+   "E_V2_2716",
+   "E_V2_2717"
+  ],
+  "severity": 1,
+  "system": "infectious_systemic",
+  "prevalence_tier": 3,
+  "v2_core": [
+   "E_V2_2706",
+   "E_V2_2707",
+   "E_V2_2708",
+   "E_V2_2709",
+   "E_V2_2710"
+  ]
+ },
+ "Rabies exposure prodrome": {
+  "condition_name": "Rabies exposure prodrome",
+  "cond-name-fr": "",
+  "cond-name-eng": "Rabies exposure prodrome",
+  "icd10-id": "A82.9",
+  "symptoms": [
+   "E_V2_2718",
+   "E_V2_2719",
+   "E_V2_2720",
+   "E_V2_2721",
+   "E_V2_2722",
+   "E_V2_2723",
+   "E_V2_2724",
+   "E_V2_2725",
+   "E_V2_2726"
+  ],
+  "antecedents": [
+   "E_V2_2727",
+   "E_V2_2728",
+   "E_V2_2729"
+  ],
+  "severity": 1,
+  "system": "infectious_systemic",
+  "prevalence_tier": 3,
+  "v2_core": [
+   "E_V2_2718",
+   "E_V2_2719",
+   "E_V2_2720",
+   "E_V2_2721",
+   "E_V2_2722"
+  ]
+ },
+ "COVID19 acute": {
+  "condition_name": "COVID19 acute",
+  "cond-name-fr": "",
+  "cond-name-eng": "COVID19 acute",
+  "icd10-id": "U07.1",
+  "symptoms": [
+   "E_V2_2730",
+   "E_V2_2731",
+   "E_V2_2732",
+   "E_V2_2733",
+   "E_V2_2734",
+   "E_V2_2735",
+   "E_V2_2736",
+   "E_V2_2737",
+   "E_V2_2738",
+   "E_V2_2739"
+  ],
+  "antecedents": [
+   "E_V2_2740",
+   "E_V2_2741",
+   "E_V2_2742"
+  ],
+  "severity": 3,
+  "system": "infectious_systemic",
+  "prevalence_tier": 1,
+  "v2_core": [
+   "E_V2_2730",
+   "E_V2_2731",
+   "E_V2_2732",
+   "E_V2_2733",
+   "E_V2_2734"
+  ]
+ },
+ "Hepatitis A acute": {
+  "condition_name": "Hepatitis A acute",
+  "cond-name-fr": "",
+  "cond-name-eng": "Hepatitis A acute",
+  "icd10-id": "B15.9",
+  "symptoms": [
+   "E_V2_2743",
+   "E_V2_2744",
+   "E_V2_2745",
+   "E_V2_2746",
+   "E_V2_2747",
+   "E_V2_2748",
+   "E_V2_2749",
+   "E_V2_2750",
+   "E_V2_2751",
+   "E_V2_2752"
+  ],
+  "antecedents": [
+   "E_V2_2753",
+   "E_V2_2754",
+   "E_V2_2755"
+  ],
+  "severity": 3,
+  "system": "infectious_systemic",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_2743",
+   "E_V2_2744",
+   "E_V2_2745",
+   "E_V2_2746",
+   "E_V2_2747"
+  ]
+ },
+ "Hepatitis B chronic active": {
+  "condition_name": "Hepatitis B chronic active",
+  "cond-name-fr": "",
+  "cond-name-eng": "Hepatitis B chronic active",
+  "icd10-id": "B18.1",
+  "symptoms": [
+   "E_V2_2756",
+   "E_V2_2757",
+   "E_V2_2758",
+   "E_V2_2759",
+   "E_V2_2760",
+   "E_V2_2761",
+   "E_V2_2762",
+   "E_V2_2763",
+   "E_V2_2764",
+   "E_V2_2765"
+  ],
+  "antecedents": [
+   "E_V2_2766",
+   "E_V2_2767",
+   "E_V2_2768"
+  ],
+  "severity": 3,
+  "system": "infectious_systemic",
+  "prevalence_tier": 3,
+  "v2_core": [
+   "E_V2_2756",
+   "E_V2_2757",
+   "E_V2_2758",
+   "E_V2_2759",
+   "E_V2_2760"
+  ]
+ },
+ "Malaria falciparum severe": {
+  "condition_name": "Malaria falciparum severe",
+  "cond-name-fr": "",
+  "cond-name-eng": "Malaria falciparum severe",
+  "icd10-id": "B50.9",
+  "symptoms": [
+   "E_V2_2769",
+   "E_V2_2770",
+   "E_V2_2771",
+   "E_V2_2772",
+   "E_V2_2773",
+   "E_V2_2774",
+   "E_V2_2775",
+   "E_V2_2776",
+   "E_V2_2777"
+  ],
+  "antecedents": [
+   "E_V2_2778",
+   "E_V2_2779",
+   "E_V2_2780"
+  ],
+  "severity": 1,
+  "system": "infectious_systemic",
+  "prevalence_tier": 3,
+  "v2_core": [
+   "E_V2_2769",
+   "E_V2_2770",
+   "E_V2_2771",
+   "E_V2_2772",
+   "E_V2_2773"
+  ]
+ },
+ "Chikungunya fever": {
+  "condition_name": "Chikungunya fever",
+  "cond-name-fr": "",
+  "cond-name-eng": "Chikungunya fever",
+  "icd10-id": "A92.0",
+  "symptoms": [
+   "E_V2_2781",
+   "E_V2_2782",
+   "E_V2_2783",
+   "E_V2_2784",
+   "E_V2_2785",
+   "E_V2_2786",
+   "E_V2_2787",
+   "E_V2_2788",
+   "E_V2_2789",
+   "E_V2_2790"
+  ],
+  "antecedents": [
+   "E_V2_2791",
+   "E_V2_2792"
+  ],
+  "severity": 3,
+  "system": "infectious_systemic",
+  "prevalence_tier": 3,
+  "v2_core": [
+   "E_V2_2781",
+   "E_V2_2782",
+   "E_V2_2783",
+   "E_V2_2784",
+   "E_V2_2785"
+  ]
+ },
+ "Scarlet fever": {
+  "condition_name": "Scarlet fever",
+  "cond-name-fr": "",
+  "cond-name-eng": "Scarlet fever",
+  "icd10-id": "A38",
+  "symptoms": [
+   "E_V2_2793",
+   "E_V2_2794",
+   "E_V2_2795",
+   "E_V2_2796",
+   "E_V2_2797",
+   "E_V2_2798",
+   "E_V2_2799",
+   "E_V2_2800",
+   "E_V2_2801"
+  ],
+  "antecedents": [
+   "E_V2_2802",
+   "E_V2_2803"
+  ],
+  "severity": 3,
+  "system": "infectious_systemic",
+  "prevalence_tier": 3,
+  "v2_core": [
+   "E_V2_2793",
+   "E_V2_2794",
+   "E_V2_2795",
+   "E_V2_2796",
+   "E_V2_2797"
+  ]
+ },
+ "Rheumatoid arthritis": {
+  "condition_name": "Rheumatoid arthritis",
+  "cond-name-fr": "",
+  "cond-name-eng": "Rheumatoid arthritis",
+  "icd10-id": "M06.9",
+  "symptoms": [
+   "E_V2_2804",
+   "E_V2_2805",
+   "E_V2_2806",
+   "E_V2_2807",
+   "E_V2_2808",
+   "E_V2_2809",
+   "E_V2_2810",
+   "E_V2_2811",
+   "E_V2_2812"
+  ],
+  "antecedents": [
+   "E_V2_2813",
+   "E_V2_2814",
+   "E_V2_2815"
+  ],
+  "severity": 2,
+  "system": "musculoskeletal",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_2804",
+   "E_V2_2805",
+   "E_V2_2806",
+   "E_V2_2807",
+   "E_V2_2808"
+  ]
+ },
+ "Knee osteoarthritis": {
+  "condition_name": "Knee osteoarthritis",
+  "cond-name-fr": "",
+  "cond-name-eng": "Knee osteoarthritis",
+  "icd10-id": "M17.9",
+  "symptoms": [
+   "E_V2_2816",
+   "E_V2_2817",
+   "E_V2_2818",
+   "E_V2_2819",
+   "E_V2_2820",
+   "E_V2_2821",
+   "E_V2_2822",
+   "E_V2_2823",
+   "E_V2_2824"
+  ],
+  "antecedents": [
+   "E_V2_2825",
+   "E_V2_2826",
+   "E_V2_2827"
+  ],
+  "severity": 3,
+  "system": "musculoskeletal",
+  "prevalence_tier": 1,
+  "v2_core": [
+   "E_V2_2816",
+   "E_V2_2817",
+   "E_V2_2818",
+   "E_V2_2819",
+   "E_V2_2820"
+  ]
+ },
+ "Acute gouty arthritis": {
+  "condition_name": "Acute gouty arthritis",
+  "cond-name-fr": "",
+  "cond-name-eng": "Acute gouty arthritis",
+  "icd10-id": "M10.9",
+  "symptoms": [
+   "E_V2_2828",
+   "E_V2_2829",
+   "E_V2_2830",
+   "E_V2_2831",
+   "E_V2_2832",
+   "E_V2_2833",
+   "E_V2_2834",
+   "E_V2_2835",
+   "E_V2_2836"
+  ],
+  "antecedents": [
+   "E_V2_2837",
+   "E_V2_2838",
+   "E_V2_2839"
+  ],
+  "severity": 2,
+  "system": "musculoskeletal",
+  "prevalence_tier": 1,
+  "v2_core": [
+   "E_V2_2828",
+   "E_V2_2829",
+   "E_V2_2830",
+   "E_V2_2831",
+   "E_V2_2832"
+  ]
+ },
+ "Pseudogout CPPD arthritis": {
+  "condition_name": "Pseudogout CPPD arthritis",
+  "cond-name-fr": "",
+  "cond-name-eng": "Pseudogout CPPD arthritis",
+  "icd10-id": "M11.9",
+  "symptoms": [
+   "E_V2_2840",
+   "E_V2_2841",
+   "E_V2_2842",
+   "E_V2_2843",
+   "E_V2_2844",
+   "E_V2_2845",
+   "E_V2_2846",
+   "E_V2_2847",
+   "E_V2_2848"
+  ],
+  "antecedents": [
+   "E_V2_2849",
+   "E_V2_2850",
+   "E_V2_2851"
+  ],
+  "severity": 3,
+  "system": "musculoskeletal",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_2840",
+   "E_V2_2841",
+   "E_V2_2842",
+   "E_V2_2843",
+   "E_V2_2844"
+  ]
+ },
+ "Polymyalgia rheumatica": {
+  "condition_name": "Polymyalgia rheumatica",
+  "cond-name-fr": "",
+  "cond-name-eng": "Polymyalgia rheumatica",
+  "icd10-id": "M35.3",
+  "symptoms": [
+   "E_V2_2852",
+   "E_V2_2853",
+   "E_V2_2854",
+   "E_V2_2855",
+   "E_V2_2856",
+   "E_V2_2857",
+   "E_V2_2858",
+   "E_V2_2859",
+   "E_V2_2860"
+  ],
+  "antecedents": [
+   "E_V2_2053",
+   "E_V2_2861",
+   "E_V2_2862"
+  ],
+  "severity": 3,
+  "system": "musculoskeletal",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_2852",
+   "E_V2_2853",
+   "E_V2_2854",
+   "E_V2_2855",
+   "E_V2_2856"
+  ]
+ },
+ "Fibromyalgia": {
+  "condition_name": "Fibromyalgia",
+  "cond-name-fr": "",
+  "cond-name-eng": "Fibromyalgia",
+  "icd10-id": "M79.7",
+  "symptoms": [
+   "E_V2_2863",
+   "E_V2_2864",
+   "E_V2_2865",
+   "E_V2_2866",
+   "E_V2_2867",
+   "E_V2_2868",
+   "E_V2_2869",
+   "E_V2_2870",
+   "E_V2_2871"
+  ],
+  "antecedents": [
+   "E_V2_2872",
+   "E_V2_2873",
+   "E_V2_2874"
+  ],
+  "severity": 4,
+  "system": "musculoskeletal",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_2863",
+   "E_V2_2864",
+   "E_V2_2865",
+   "E_V2_2866",
+   "E_V2_2867"
+  ]
+ },
+ "Ankylosing spondylitis": {
+  "condition_name": "Ankylosing spondylitis",
+  "cond-name-fr": "",
+  "cond-name-eng": "Ankylosing spondylitis",
+  "icd10-id": "M45",
+  "symptoms": [
+   "E_V2_2875",
+   "E_V2_2876",
+   "E_V2_2877",
+   "E_V2_2878",
+   "E_V2_2879",
+   "E_V2_2880",
+   "E_V2_2881",
+   "E_V2_2882",
+   "E_V2_2883"
+  ],
+  "antecedents": [
+   "E_V2_2884",
+   "E_V2_2885",
+   "E_V2_2886"
+  ],
+  "severity": 2,
+  "system": "musculoskeletal",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_2875",
+   "E_V2_2876",
+   "E_V2_2877",
+   "E_V2_2878",
+   "E_V2_2879"
+  ]
+ },
+ "Psoriatic arthritis": {
+  "condition_name": "Psoriatic arthritis",
+  "cond-name-fr": "",
+  "cond-name-eng": "Psoriatic arthritis",
+  "icd10-id": "L40.50",
+  "symptoms": [
+   "E_V2_2887",
+   "E_V2_2888",
+   "E_V2_2889",
+   "E_V2_2890",
+   "E_V2_2891",
+   "E_V2_2892",
+   "E_V2_2893",
+   "E_V2_2894",
+   "E_V2_2895"
+  ],
+  "antecedents": [
+   "E_V2_2896",
+   "E_V2_2897",
+   "E_V2_2898"
+  ],
+  "severity": 3,
+  "system": "musculoskeletal",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_2887",
+   "E_V2_2888",
+   "E_V2_2889",
+   "E_V2_2890",
+   "E_V2_2891"
+  ]
+ },
+ "Reactive arthritis": {
+  "condition_name": "Reactive arthritis",
+  "cond-name-fr": "",
+  "cond-name-eng": "Reactive arthritis",
+  "icd10-id": "M02.30",
+  "symptoms": [
+   "E_V2_2899",
+   "E_V2_2900",
+   "E_V2_2901",
+   "E_V2_2902",
+   "E_V2_2903",
+   "E_V2_2904",
+   "E_V2_2905",
+   "E_V2_2906",
+   "E_V2_2907"
+  ],
+  "antecedents": [
+   "E_V2_2908",
+   "E_V2_2909",
+   "E_V2_2910"
+  ],
+  "severity": 3,
+  "system": "musculoskeletal",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_2899",
+   "E_V2_2900",
+   "E_V2_2901",
+   "E_V2_2902",
+   "E_V2_2903"
+  ]
+ },
+ "Septic arthritis": {
+  "condition_name": "Septic arthritis",
+  "cond-name-fr": "",
+  "cond-name-eng": "Septic arthritis",
+  "icd10-id": "M00.9",
+  "symptoms": [
+   "E_V2_2911",
+   "E_V2_2912",
+   "E_V2_2913",
+   "E_V2_2914",
+   "E_V2_2915",
+   "E_V2_2916",
+   "E_V2_2917",
+   "E_V2_2918",
+   "E_V2_2919"
+  ],
+  "antecedents": [
+   "E_V2_2920",
+   "E_V2_2921",
+   "E_V2_2922"
+  ],
+  "severity": 1,
+  "system": "musculoskeletal",
+  "prevalence_tier": 1,
+  "v2_core": [
+   "E_V2_2911",
+   "E_V2_2912",
+   "E_V2_2913",
+   "E_V2_2914",
+   "E_V2_2915"
+  ]
+ },
+ "Osteoporotic vertebral compression fracture": {
+  "condition_name": "Osteoporotic vertebral compression fracture",
+  "cond-name-fr": "",
+  "cond-name-eng": "Osteoporotic vertebral compression fracture",
+  "icd10-id": "M80.00XA",
+  "symptoms": [
+   "E_V2_2923",
+   "E_V2_2924",
+   "E_V2_2925",
+   "E_V2_2926",
+   "E_V2_2927",
+   "E_V2_2928",
+   "E_V2_2929",
+   "E_V2_2930",
+   "E_V2_2931"
+  ],
+  "antecedents": [
+   "E_V2_2037",
+   "E_V2_2932",
+   "E_V2_2933"
+  ],
+  "severity": 2,
+  "system": "musculoskeletal",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_2923",
+   "E_V2_2924",
+   "E_V2_2925",
+   "E_V2_2926",
+   "E_V2_2927"
+  ]
+ },
+ "Acute lumbar strain": {
+  "condition_name": "Acute lumbar strain",
+  "cond-name-fr": "",
+  "cond-name-eng": "Acute lumbar strain",
+  "icd10-id": "S39.019A",
+  "symptoms": [
+   "E_V2_2934",
+   "E_V2_2935",
+   "E_V2_2936",
+   "E_V2_2937",
+   "E_V2_2938",
+   "E_V2_2939",
+   "E_V2_2940",
+   "E_V2_2941",
+   "E_V2_2942"
+  ],
+  "antecedents": [
+   "E_V2_2943",
+   "E_V2_2944",
+   "E_V2_2945"
+  ],
+  "severity": 4,
+  "system": "musculoskeletal",
+  "prevalence_tier": 1,
+  "v2_core": [
+   "E_V2_2934",
+   "E_V2_2935",
+   "E_V2_2936",
+   "E_V2_2937",
+   "E_V2_2938"
+  ]
+ },
+ "Lumbar disc herniation sciatica": {
+  "condition_name": "Lumbar disc herniation sciatica",
+  "cond-name-fr": "",
+  "cond-name-eng": "Lumbar disc herniation sciatica",
+  "icd10-id": "M51.16",
+  "symptoms": [
+   "E_V2_2946",
+   "E_V2_2947",
+   "E_V2_2948",
+   "E_V2_2949",
+   "E_V2_2950",
+   "E_V2_2951",
+   "E_V2_2952",
+   "E_V2_2953",
+   "E_V2_2954"
+  ],
+  "antecedents": [
+   "E_V2_2955",
+   "E_V2_2956",
+   "E_V2_2957"
+  ],
+  "severity": 3,
+  "system": "musculoskeletal",
+  "prevalence_tier": 1,
+  "v2_core": [
+   "E_V2_2946",
+   "E_V2_2947",
+   "E_V2_2948",
+   "E_V2_2949",
+   "E_V2_2950"
+  ]
+ },
+ "Lumbar spinal stenosis": {
+  "condition_name": "Lumbar spinal stenosis",
+  "cond-name-fr": "",
+  "cond-name-eng": "Lumbar spinal stenosis",
+  "icd10-id": "M48.062",
+  "symptoms": [
+   "E_V2_2958",
+   "E_V2_2959",
+   "E_V2_2960",
+   "E_V2_2961",
+   "E_V2_2962",
+   "E_V2_2963",
+   "E_V2_2964",
+   "E_V2_2965",
+   "E_V2_2966"
+  ],
+  "antecedents": [
+   "E_V2_2967",
+   "E_V2_2968",
+   "E_V2_2969"
+  ],
+  "severity": 3,
+  "system": "musculoskeletal",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_2958",
+   "E_V2_2959",
+   "E_V2_2960",
+   "E_V2_2961",
+   "E_V2_2962"
+  ]
+ },
+ "Rotator cuff tear": {
+  "condition_name": "Rotator cuff tear",
+  "cond-name-fr": "",
+  "cond-name-eng": "Rotator cuff tear",
+  "icd10-id": "M75.10",
+  "symptoms": [
+   "E_V2_2970",
+   "E_V2_2971",
+   "E_V2_2972",
+   "E_V2_2973",
+   "E_V2_2974",
+   "E_V2_2975",
+   "E_V2_2976",
+   "E_V2_2977",
+   "E_V2_2978"
+  ],
+  "antecedents": [
+   "E_V2_2979",
+   "E_V2_2980",
+   "E_V2_2981"
+  ],
+  "severity": 3,
+  "system": "musculoskeletal",
+  "prevalence_tier": 1,
+  "v2_core": [
+   "E_V2_2970",
+   "E_V2_2971",
+   "E_V2_2972",
+   "E_V2_2973",
+   "E_V2_2974"
+  ]
+ },
+ "Adhesive capsulitis frozen shoulder": {
+  "condition_name": "Adhesive capsulitis frozen shoulder",
+  "cond-name-fr": "",
+  "cond-name-eng": "Adhesive capsulitis frozen shoulder",
+  "icd10-id": "M75.00",
+  "symptoms": [
+   "E_V2_2982",
+   "E_V2_2983",
+   "E_V2_2984",
+   "E_V2_2985",
+   "E_V2_2986",
+   "E_V2_2987",
+   "E_V2_2988",
+   "E_V2_2989",
+   "E_V2_2990"
+  ],
+  "antecedents": [
+   "E_V2_2991",
+   "E_V2_2992",
+   "E_V2_2993"
+  ],
+  "severity": 3,
+  "system": "musculoskeletal",
+  "prevalence_tier": 1,
+  "v2_core": [
+   "E_V2_2982",
+   "E_V2_2983",
+   "E_V2_2984",
+   "E_V2_2985",
+   "E_V2_2986"
+  ]
+ },
+ "Lateral epicondylitis tennis elbow": {
+  "condition_name": "Lateral epicondylitis tennis elbow",
+  "cond-name-fr": "",
+  "cond-name-eng": "Lateral epicondylitis tennis elbow",
+  "icd10-id": "M77.10",
+  "symptoms": [
+   "E_V2_2994",
+   "E_V2_2995",
+   "E_V2_2996",
+   "E_V2_2997",
+   "E_V2_2998",
+   "E_V2_2999",
+   "E_V2_3000",
+   "E_V2_3001",
+   "E_V2_3002"
+  ],
+  "antecedents": [
+   "E_V2_3003",
+   "E_V2_3004",
+   "E_V2_3005"
+  ],
+  "severity": 4,
+  "system": "musculoskeletal",
+  "prevalence_tier": 1,
+  "v2_core": [
+   "E_V2_2994",
+   "E_V2_2995",
+   "E_V2_2996",
+   "E_V2_2997",
+   "E_V2_2998"
+  ]
+ },
+ "De Quervain tenosynovitis": {
+  "condition_name": "De Quervain tenosynovitis",
+  "cond-name-fr": "",
+  "cond-name-eng": "De Quervain tenosynovitis",
+  "icd10-id": "M65.4",
+  "symptoms": [
+   "E_V2_3006",
+   "E_V2_3007",
+   "E_V2_3008",
+   "E_V2_3009",
+   "E_V2_3010",
+   "E_V2_3011",
+   "E_V2_3012",
+   "E_V2_3013",
+   "E_V2_3014"
+  ],
+  "antecedents": [
+   "E_V2_3015",
+   "E_V2_3016",
+   "E_V2_3017"
+  ],
+  "severity": 4,
+  "system": "musculoskeletal",
+  "prevalence_tier": 1,
+  "v2_core": [
+   "E_V2_3006",
+   "E_V2_3007",
+   "E_V2_3008",
+   "E_V2_3009",
+   "E_V2_3010"
+  ]
+ },
+ "Plantar fasciitis": {
+  "condition_name": "Plantar fasciitis",
+  "cond-name-fr": "",
+  "cond-name-eng": "Plantar fasciitis",
+  "icd10-id": "M72.2",
+  "symptoms": [
+   "E_V2_3018",
+   "E_V2_3019",
+   "E_V2_3020",
+   "E_V2_3021",
+   "E_V2_3022",
+   "E_V2_3023",
+   "E_V2_3024",
+   "E_V2_3025",
+   "E_V2_3026"
+  ],
+  "antecedents": [
+   "E_V2_1340",
+   "E_V2_3027",
+   "E_V2_3028"
+  ],
+  "severity": 4,
+  "system": "musculoskeletal",
+  "prevalence_tier": 1,
+  "v2_core": [
+   "E_V2_3018",
+   "E_V2_3019",
+   "E_V2_3020",
+   "E_V2_3021",
+   "E_V2_3022"
+  ]
+ },
+ "Patellar tendinopathy": {
+  "condition_name": "Patellar tendinopathy",
+  "cond-name-fr": "",
+  "cond-name-eng": "Patellar tendinopathy",
+  "icd10-id": "M76.50",
+  "symptoms": [
+   "E_V2_3029",
+   "E_V2_3030",
+   "E_V2_3031",
+   "E_V2_3032",
+   "E_V2_3033",
+   "E_V2_3034",
+   "E_V2_3035",
+   "E_V2_3036",
+   "E_V2_3037"
+  ],
+  "antecedents": [
+   "E_V2_3038",
+   "E_V2_3039",
+   "E_V2_3040"
+  ],
+  "severity": 4,
+  "system": "musculoskeletal",
+  "prevalence_tier": 1,
+  "v2_core": [
+   "E_V2_3029",
+   "E_V2_3030",
+   "E_V2_3031",
+   "E_V2_3032",
+   "E_V2_3033"
+  ]
+ },
+ "Meniscal tear knee": {
+  "condition_name": "Meniscal tear knee",
+  "cond-name-fr": "",
+  "cond-name-eng": "Meniscal tear knee",
+  "icd10-id": "M23.20",
+  "symptoms": [
+   "E_V2_3041",
+   "E_V2_3042",
+   "E_V2_3043",
+   "E_V2_3044",
+   "E_V2_3045",
+   "E_V2_3046",
+   "E_V2_3047",
+   "E_V2_3048",
+   "E_V2_3049"
+  ],
+  "antecedents": [
+   "E_V2_3050",
+   "E_V2_3051",
+   "E_V2_3052"
+  ],
+  "severity": 3,
+  "system": "musculoskeletal",
+  "prevalence_tier": 1,
+  "v2_core": [
+   "E_V2_3041",
+   "E_V2_3042",
+   "E_V2_3043",
+   "E_V2_3044",
+   "E_V2_3045"
+  ]
+ },
+ "Hip fracture elderly": {
+  "condition_name": "Hip fracture elderly",
+  "cond-name-fr": "",
+  "cond-name-eng": "Hip fracture elderly",
+  "icd10-id": "S72.009A",
+  "symptoms": [
+   "E_V2_3053",
+   "E_V2_3054",
+   "E_V2_3055",
+   "E_V2_3056",
+   "E_V2_3057",
+   "E_V2_3058",
+   "E_V2_3059",
+   "E_V2_3060",
+   "E_V2_3061"
+  ],
+  "antecedents": [
+   "E_V2_3062",
+   "E_V2_3063",
+   "E_V2_3064"
+  ],
+  "severity": 1,
+  "system": "musculoskeletal",
+  "prevalence_tier": 1,
+  "v2_core": [
+   "E_V2_3053",
+   "E_V2_3054",
+   "E_V2_3055",
+   "E_V2_3056",
+   "E_V2_3057"
+  ]
+ },
+ "Acute compartment syndrome": {
+  "condition_name": "Acute compartment syndrome",
+  "cond-name-fr": "",
+  "cond-name-eng": "Acute compartment syndrome",
+  "icd10-id": "T79.A21A",
+  "symptoms": [
+   "E_V2_3065",
+   "E_V2_3066",
+   "E_V2_3067",
+   "E_V2_3068",
+   "E_V2_3069",
+   "E_V2_3070",
+   "E_V2_3071",
+   "E_V2_3072",
+   "E_V2_3073"
+  ],
+  "antecedents": [
+   "E_V2_3074",
+   "E_V2_3075",
+   "E_V2_3076"
+  ],
+  "severity": 1,
+  "system": "musculoskeletal",
+  "prevalence_tier": 1,
+  "v2_core": [
+   "E_V2_3065",
+   "E_V2_3066",
+   "E_V2_3067",
+   "E_V2_3068",
+   "E_V2_3069"
+  ]
+ },
+ "Temporal arteritis giant cell": {
+  "condition_name": "Temporal arteritis giant cell",
+  "cond-name-fr": "",
+  "cond-name-eng": "Temporal arteritis giant cell",
+  "icd10-id": "M31.6",
+  "symptoms": [
+   "E_V2_3077",
+   "E_V2_3078",
+   "E_V2_3079",
+   "E_V2_3080",
+   "E_V2_3081",
+   "E_V2_3082",
+   "E_V2_3083",
+   "E_V2_3084",
+   "E_V2_3085"
+  ],
+  "antecedents": [
+   "E_V2_3086",
+   "E_V2_3087",
+   "E_V2_3088"
+  ],
+  "severity": 1,
+  "system": "musculoskeletal",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_3077",
+   "E_V2_3078",
+   "E_V2_3079",
+   "E_V2_3080",
+   "E_V2_3081"
+  ]
+ },
+ "Trochanteric bursitis hip": {
+  "condition_name": "Trochanteric bursitis hip",
+  "cond-name-fr": "",
+  "cond-name-eng": "Trochanteric bursitis hip",
+  "icd10-id": "M70.60",
+  "symptoms": [
+   "E_V2_3089",
+   "E_V2_3090",
+   "E_V2_3091",
+   "E_V2_3092",
+   "E_V2_3093",
+   "E_V2_3094",
+   "E_V2_3095",
+   "E_V2_3096",
+   "E_V2_3097"
+  ],
+  "antecedents": [
+   "E_V2_3098",
+   "E_V2_3099",
+   "E_V2_3100"
+  ],
+  "severity": 4,
+  "system": "musculoskeletal",
+  "prevalence_tier": 1,
+  "v2_core": [
+   "E_V2_3089",
+   "E_V2_3090",
+   "E_V2_3091",
+   "E_V2_3092",
+   "E_V2_3093"
+  ]
+ },
+ "Migraine with aura": {
+  "condition_name": "Migraine with aura",
+  "cond-name-fr": "",
+  "cond-name-eng": "Migraine with aura",
+  "icd10-id": "G43.4",
+  "symptoms": [
+   "E_V2_3101",
+   "E_V2_3102",
+   "E_V2_3103",
+   "E_V2_3104",
+   "E_V2_3105",
+   "E_V2_3106",
+   "E_V2_3107",
+   "E_V2_3108",
+   "E_V2_3109",
+   "E_V2_3110",
+   "E_V2_3111"
+  ],
+  "antecedents": [
+   "E_V2_2081",
+   "E_V2_3112",
+   "E_V2_3113"
+  ],
+  "severity": 4,
+  "system": "neurological",
+  "prevalence_tier": 1,
+  "v2_core": [
+   "E_V2_3101",
+   "E_V2_3102",
+   "E_V2_3103",
+   "E_V2_3104",
+   "E_V2_3105",
+   "E_V2_3106"
+  ]
+ },
+ "Chronic tension type headache": {
+  "condition_name": "Chronic tension type headache",
+  "cond-name-fr": "",
+  "cond-name-eng": "Chronic tension type headache",
+  "icd10-id": "G44.2",
+  "symptoms": [
+   "E_V2_3114",
+   "E_V2_3115",
+   "E_V2_3116",
+   "E_V2_3117",
+   "E_V2_3118",
+   "E_V2_3119",
+   "E_V2_3120",
+   "E_V2_3121",
+   "E_V2_3122",
+   "E_V2_3123",
+   "E_V2_3124"
+  ],
+  "antecedents": [
+   "E_V2_3125",
+   "E_V2_3126",
+   "E_V2_3127"
+  ],
+  "severity": 4,
+  "system": "neurological",
+  "prevalence_tier": 1,
+  "v2_core": [
+   "E_V2_3114",
+   "E_V2_3115",
+   "E_V2_3116",
+   "E_V2_3117",
+   "E_V2_3118",
+   "E_V2_3119"
+  ]
+ },
+ "Trigeminal neuralgia": {
+  "condition_name": "Trigeminal neuralgia",
+  "cond-name-fr": "",
+  "cond-name-eng": "Trigeminal neuralgia",
+  "icd10-id": "G50.0",
+  "symptoms": [
+   "E_V2_3128",
+   "E_V2_3129",
+   "E_V2_3130",
+   "E_V2_3131",
+   "E_V2_3132",
+   "E_V2_3133",
+   "E_V2_3134",
+   "E_V2_3135",
+   "E_V2_3136",
+   "E_V2_3137",
+   "E_V2_3138"
+  ],
+  "antecedents": [
+   "E_V2_1238",
+   "E_V2_3139"
+  ],
+  "severity": 3,
+  "system": "neurological",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_3128",
+   "E_V2_3129",
+   "E_V2_3130",
+   "E_V2_3131",
+   "E_V2_3132",
+   "E_V2_3133"
+  ]
+ },
+ "Normal pressure hydrocephalus": {
+  "condition_name": "Normal pressure hydrocephalus",
+  "cond-name-fr": "",
+  "cond-name-eng": "Normal pressure hydrocephalus",
+  "icd10-id": "G91.2",
+  "symptoms": [
+   "E_V2_3140",
+   "E_V2_3141",
+   "E_V2_3142",
+   "E_V2_3143",
+   "E_V2_3144",
+   "E_V2_3145",
+   "E_V2_3146",
+   "E_V2_3147",
+   "E_V2_3148",
+   "E_V2_3149",
+   "E_V2_3150"
+  ],
+  "antecedents": [
+   "E_V2_3151",
+   "E_V2_3152"
+  ],
+  "severity": 3,
+  "system": "neurological",
+  "prevalence_tier": 3,
+  "v2_core": [
+   "E_V2_3140",
+   "E_V2_3141",
+   "E_V2_3142",
+   "E_V2_3143",
+   "E_V2_3144",
+   "E_V2_3145"
+  ]
+ },
+ "Essential tremor": {
+  "condition_name": "Essential tremor",
+  "cond-name-fr": "",
+  "cond-name-eng": "Essential tremor",
+  "icd10-id": "G25.0",
+  "symptoms": [
+   "E_V2_3153",
+   "E_V2_3154",
+   "E_V2_3155",
+   "E_V2_3156",
+   "E_V2_3157",
+   "E_V2_3158",
+   "E_V2_3159",
+   "E_V2_3160",
+   "E_V2_3161",
+   "E_V2_3162",
+   "E_V2_3163"
+  ],
+  "antecedents": [
+   "E_V2_3164",
+   "E_V2_3165"
+  ],
+  "severity": 4,
+  "system": "neurological",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_3153",
+   "E_V2_3154",
+   "E_V2_3155",
+   "E_V2_3156",
+   "E_V2_3157",
+   "E_V2_3158"
+  ]
+ },
+ "Early Parkinson disease": {
+  "condition_name": "Early Parkinson disease",
+  "cond-name-fr": "",
+  "cond-name-eng": "Early Parkinson disease",
+  "icd10-id": "G20",
+  "symptoms": [
+   "E_V2_3166",
+   "E_V2_3167",
+   "E_V2_3168",
+   "E_V2_3169",
+   "E_V2_3170",
+   "E_V2_3171",
+   "E_V2_3172",
+   "E_V2_3173",
+   "E_V2_3174",
+   "E_V2_3175",
+   "E_V2_3176",
+   "E_V2_3177"
+  ],
+  "antecedents": [
+   "E_V2_1354",
+   "E_V2_3178",
+   "E_V2_3179"
+  ],
+  "severity": 3,
+  "system": "neurological",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_3166",
+   "E_V2_3167",
+   "E_V2_3168",
+   "E_V2_3169",
+   "E_V2_3170",
+   "E_V2_3171"
+  ]
+ },
+ "Huntington disease suspicion": {
+  "condition_name": "Huntington disease suspicion",
+  "cond-name-fr": "",
+  "cond-name-eng": "Huntington disease suspicion",
+  "icd10-id": "G10",
+  "symptoms": [
+   "E_V2_3180",
+   "E_V2_3181",
+   "E_V2_3182",
+   "E_V2_3183",
+   "E_V2_3184",
+   "E_V2_3185",
+   "E_V2_3186",
+   "E_V2_3187",
+   "E_V2_3188",
+   "E_V2_3189",
+   "E_V2_3190"
+  ],
+  "antecedents": [
+   "E_V2_3191",
+   "E_V2_3192",
+   "E_V2_3193"
+  ],
+  "severity": 2,
+  "system": "neurological",
+  "prevalence_tier": 3,
+  "v2_core": [
+   "E_V2_3180",
+   "E_V2_3181",
+   "E_V2_3182",
+   "E_V2_3183",
+   "E_V2_3184",
+   "E_V2_3185"
+  ]
+ },
+ "Multiple sclerosis first demyelinating episode": {
+  "condition_name": "Multiple sclerosis first demyelinating episode",
+  "cond-name-fr": "",
+  "cond-name-eng": "Multiple sclerosis first demyelinating episode",
+  "icd10-id": "G35",
+  "symptoms": [
+   "E_V2_1840",
+   "E_V2_3194",
+   "E_V2_3195",
+   "E_V2_3196",
+   "E_V2_3197",
+   "E_V2_3198",
+   "E_V2_3199",
+   "E_V2_3200",
+   "E_V2_3201",
+   "E_V2_3202",
+   "E_V2_3203"
+  ],
+  "antecedents": [
+   "E_V2_3204",
+   "E_V2_3205",
+   "E_V2_3206"
+  ],
+  "severity": 2,
+  "system": "neurological",
+  "prevalence_tier": 3,
+  "v2_core": [
+   "E_V2_3194",
+   "E_V2_3195",
+   "E_V2_3196",
+   "E_V2_3197",
+   "E_V2_3198",
+   "E_V2_3199"
+  ]
+ },
+ "Transient ischemic attack": {
+  "condition_name": "Transient ischemic attack",
+  "cond-name-fr": "",
+  "cond-name-eng": "Transient ischemic attack",
+  "icd10-id": "G45.9",
+  "symptoms": [
+   "E_V2_3207",
+   "E_V2_3208",
+   "E_V2_3209",
+   "E_V2_3210",
+   "E_V2_3211",
+   "E_V2_3212",
+   "E_V2_3213",
+   "E_V2_3214",
+   "E_V2_3215",
+   "E_V2_3216",
+   "E_V2_3217"
+  ],
+  "antecedents": [
+   "E_V2_2813",
+   "E_V2_3218",
+   "E_V2_3219",
+   "E_V2_3220"
+  ],
+  "severity": 1,
+  "system": "neurological",
+  "prevalence_tier": 1,
+  "v2_core": [
+   "E_V2_3207",
+   "E_V2_3208",
+   "E_V2_3209",
+   "E_V2_3210",
+   "E_V2_3211",
+   "E_V2_3212"
+  ]
+ },
+ "Middle cerebral artery ischemic stroke": {
+  "condition_name": "Middle cerebral artery ischemic stroke",
+  "cond-name-fr": "",
+  "cond-name-eng": "Middle cerebral artery ischemic stroke",
+  "icd10-id": "I63.3",
+  "symptoms": [
+   "E_V2_3221",
+   "E_V2_3222",
+   "E_V2_3223",
+   "E_V2_3224",
+   "E_V2_3225",
+   "E_V2_3226",
+   "E_V2_3227",
+   "E_V2_3228",
+   "E_V2_3229",
+   "E_V2_3230",
+   "E_V2_3231"
+  ],
+  "antecedents": [
+   "E_V2_3232",
+   "E_V2_3233",
+   "E_V2_3234"
+  ],
+  "severity": 1,
+  "system": "neurological",
+  "prevalence_tier": 1,
+  "v2_core": [
+   "E_V2_3221",
+   "E_V2_3222",
+   "E_V2_3223",
+   "E_V2_3224",
+   "E_V2_3225",
+   "E_V2_3226"
+  ]
+ },
+ "Hypertensive intracerebral hemorrhage": {
+  "condition_name": "Hypertensive intracerebral hemorrhage",
+  "cond-name-fr": "",
+  "cond-name-eng": "Hypertensive intracerebral hemorrhage",
+  "icd10-id": "I61.9",
+  "symptoms": [
+   "E_V2_3235",
+   "E_V2_3236",
+   "E_V2_3237",
+   "E_V2_3238",
+   "E_V2_3239",
+   "E_V2_3240",
+   "E_V2_3241",
+   "E_V2_3242",
+   "E_V2_3243",
+   "E_V2_3244",
+   "E_V2_3245"
+  ],
+  "antecedents": [
+   "E_V2_2240",
+   "E_V2_3246",
+   "E_V2_3247",
+   "E_V2_3248"
+  ],
+  "severity": 1,
+  "system": "neurological",
+  "prevalence_tier": 1,
+  "v2_core": [
+   "E_V2_3235",
+   "E_V2_3236",
+   "E_V2_3237",
+   "E_V2_3238",
+   "E_V2_3239",
+   "E_V2_3240"
+  ]
+ },
+ "Aneurysmal subarachnoid hemorrhage": {
+  "condition_name": "Aneurysmal subarachnoid hemorrhage",
+  "cond-name-fr": "",
+  "cond-name-eng": "Aneurysmal subarachnoid hemorrhage",
+  "icd10-id": "I60.9",
+  "symptoms": [
+   "E_V2_3249",
+   "E_V2_3250",
+   "E_V2_3251",
+   "E_V2_3252",
+   "E_V2_3253",
+   "E_V2_3254",
+   "E_V2_3255",
+   "E_V2_3256",
+   "E_V2_3257",
+   "E_V2_3258",
+   "E_V2_3259"
+  ],
+  "antecedents": [
+   "E_V2_1355",
+   "E_V2_3260",
+   "E_V2_3261",
+   "E_V2_3262"
+  ],
+  "severity": 1,
+  "system": "neurological",
+  "prevalence_tier": 1,
+  "v2_core": [
+   "E_V2_3249",
+   "E_V2_3250",
+   "E_V2_3251",
+   "E_V2_3252",
+   "E_V2_3253",
+   "E_V2_3254"
+  ]
+ },
+ "Cerebral venous sinus thrombosis": {
+  "condition_name": "Cerebral venous sinus thrombosis",
+  "cond-name-fr": "",
+  "cond-name-eng": "Cerebral venous sinus thrombosis",
+  "icd10-id": "I67.6",
+  "symptoms": [
+   "E_V2_3263",
+   "E_V2_3264",
+   "E_V2_3265",
+   "E_V2_3266",
+   "E_V2_3267",
+   "E_V2_3268",
+   "E_V2_3269",
+   "E_V2_3270",
+   "E_V2_3271",
+   "E_V2_3272",
+   "E_V2_3273"
+  ],
+  "antecedents": [
+   "E_V2_3274",
+   "E_V2_3275",
+   "E_V2_3276",
+   "E_V2_3277"
+  ],
+  "severity": 1,
+  "system": "neurological",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_3263",
+   "E_V2_3264",
+   "E_V2_3265",
+   "E_V2_3266",
+   "E_V2_3267",
+   "E_V2_3268"
+  ]
+ },
+ "Focal aware epilepsy": {
+  "condition_name": "Focal aware epilepsy",
+  "cond-name-fr": "",
+  "cond-name-eng": "Focal aware epilepsy",
+  "icd10-id": "G40.1",
+  "symptoms": [
+   "E_V2_3278",
+   "E_V2_3279",
+   "E_V2_3280",
+   "E_V2_3281",
+   "E_V2_3282",
+   "E_V2_3283",
+   "E_V2_3284",
+   "E_V2_3285",
+   "E_V2_3286",
+   "E_V2_3287",
+   "E_V2_3288"
+  ],
+  "antecedents": [
+   "E_V2_3289",
+   "E_V2_3290",
+   "E_V2_3291"
+  ],
+  "severity": 2,
+  "system": "neurological",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_3278",
+   "E_V2_3279",
+   "E_V2_3280",
+   "E_V2_3281",
+   "E_V2_3282",
+   "E_V2_3283"
+  ]
+ },
+ "Generalized tonic clonic epilepsy": {
+  "condition_name": "Generalized tonic clonic epilepsy",
+  "cond-name-fr": "",
+  "cond-name-eng": "Generalized tonic clonic epilepsy",
+  "icd10-id": "G40.3",
+  "symptoms": [
+   "E_V2_3292",
+   "E_V2_3293",
+   "E_V2_3294",
+   "E_V2_3295",
+   "E_V2_3296",
+   "E_V2_3297",
+   "E_V2_3298",
+   "E_V2_3299",
+   "E_V2_3300",
+   "E_V2_3301",
+   "E_V2_3302"
+  ],
+  "antecedents": [
+   "E_V2_3303",
+   "E_V2_3304",
+   "E_V2_3305"
+  ],
+  "severity": 2,
+  "system": "neurological",
+  "prevalence_tier": 1,
+  "v2_core": [
+   "E_V2_3292",
+   "E_V2_3293",
+   "E_V2_3294",
+   "E_V2_3295",
+   "E_V2_3296",
+   "E_V2_3297"
+  ]
+ },
+ "Status epilepticus": {
+  "condition_name": "Status epilepticus",
+  "cond-name-fr": "",
+  "cond-name-eng": "Status epilepticus",
+  "icd10-id": "G41.9",
+  "symptoms": [
+   "E_V2_3306",
+   "E_V2_3307",
+   "E_V2_3308",
+   "E_V2_3309",
+   "E_V2_3310",
+   "E_V2_3311",
+   "E_V2_3312",
+   "E_V2_3313",
+   "E_V2_3314",
+   "E_V2_3315",
+   "E_V2_3316"
+  ],
+  "antecedents": [
+   "E_V2_3317",
+   "E_V2_3318",
+   "E_V2_3319",
+   "E_V2_3320"
+  ],
+  "severity": 1,
+  "system": "neurological",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_3306",
+   "E_V2_3307",
+   "E_V2_3308",
+   "E_V2_3309",
+   "E_V2_3310",
+   "E_V2_3311"
+  ]
+ },
+ "Uremic metabolic encephalopathy": {
+  "condition_name": "Uremic metabolic encephalopathy",
+  "cond-name-fr": "",
+  "cond-name-eng": "Uremic metabolic encephalopathy",
+  "icd10-id": "G93.41",
+  "symptoms": [
+   "E_V2_2450",
+   "E_V2_3321",
+   "E_V2_3322",
+   "E_V2_3323",
+   "E_V2_3324",
+   "E_V2_3325",
+   "E_V2_3326",
+   "E_V2_3327",
+   "E_V2_3328",
+   "E_V2_3329",
+   "E_V2_3330"
+  ],
+  "antecedents": [
+   "E_V2_3331",
+   "E_V2_3332",
+   "E_V2_3333",
+   "E_V2_3334"
+  ],
+  "severity": 1,
+  "system": "neurological",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_3321",
+   "E_V2_3322",
+   "E_V2_3323",
+   "E_V2_3324",
+   "E_V2_3325",
+   "E_V2_3326"
+  ]
+ },
+ "Wernicke encephalopathy": {
+  "condition_name": "Wernicke encephalopathy",
+  "cond-name-fr": "",
+  "cond-name-eng": "Wernicke encephalopathy",
+  "icd10-id": "E51.2",
+  "symptoms": [
+   "E_V2_3335",
+   "E_V2_3336",
+   "E_V2_3337",
+   "E_V2_3338",
+   "E_V2_3339",
+   "E_V2_3340",
+   "E_V2_3341",
+   "E_V2_3342",
+   "E_V2_3343",
+   "E_V2_3344",
+   "E_V2_3345"
+  ],
+  "antecedents": [
+   "E_V2_3346",
+   "E_V2_3347",
+   "E_V2_3348",
+   "E_V2_3349"
+  ],
+  "severity": 1,
+  "system": "neurological",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_3335",
+   "E_V2_3336",
+   "E_V2_3337",
+   "E_V2_3338",
+   "E_V2_3339",
+   "E_V2_3340"
+  ]
+ },
+ "Diabetic distal peripheral neuropathy": {
+  "condition_name": "Diabetic distal peripheral neuropathy",
+  "cond-name-fr": "",
+  "cond-name-eng": "Diabetic distal peripheral neuropathy",
+  "icd10-id": "E11.42",
+  "symptoms": [
+   "E_V2_3350",
+   "E_V2_3351",
+   "E_V2_3352",
+   "E_V2_3353",
+   "E_V2_3354",
+   "E_V2_3355",
+   "E_V2_3356",
+   "E_V2_3357",
+   "E_V2_3358",
+   "E_V2_3359",
+   "E_V2_3360"
+  ],
+  "antecedents": [
+   "E_V2_3361",
+   "E_V2_3362",
+   "E_V2_3363",
+   "E_V2_3364"
+  ],
+  "severity": 4,
+  "system": "neurological",
+  "prevalence_tier": 1,
+  "v2_core": [
+   "E_V2_3350",
+   "E_V2_3351",
+   "E_V2_3352",
+   "E_V2_3353",
+   "E_V2_3354",
+   "E_V2_3355"
+  ]
+ },
+ "Cervical radiculopathy": {
+  "condition_name": "Cervical radiculopathy",
+  "cond-name-fr": "",
+  "cond-name-eng": "Cervical radiculopathy",
+  "icd10-id": "M54.12",
+  "symptoms": [
+   "E_V2_3365",
+   "E_V2_3366",
+   "E_V2_3367",
+   "E_V2_3368",
+   "E_V2_3369",
+   "E_V2_3370",
+   "E_V2_3371",
+   "E_V2_3372",
+   "E_V2_3373",
+   "E_V2_3374",
+   "E_V2_3375"
+  ],
+  "antecedents": [
+   "E_V2_3376",
+   "E_V2_3377",
+   "E_V2_3378",
+   "E_V2_3379"
+  ],
+  "severity": 3,
+  "system": "neurological",
+  "prevalence_tier": 1,
+  "v2_core": [
+   "E_V2_3365",
+   "E_V2_3366",
+   "E_V2_3367",
+   "E_V2_3368",
+   "E_V2_3369",
+   "E_V2_3370"
+  ]
+ },
+ "Idiopathic brachial plexus neuritis": {
+  "condition_name": "Idiopathic brachial plexus neuritis",
+  "cond-name-fr": "",
+  "cond-name-eng": "Idiopathic brachial plexus neuritis",
+  "icd10-id": "G54.0",
+  "symptoms": [
+   "E_V2_3380",
+   "E_V2_3381",
+   "E_V2_3382",
+   "E_V2_3383",
+   "E_V2_3384",
+   "E_V2_3385",
+   "E_V2_3386",
+   "E_V2_3387",
+   "E_V2_3388",
+   "E_V2_3389",
+   "E_V2_3390"
+  ],
+  "antecedents": [
+   "E_V2_3391",
+   "E_V2_3392",
+   "E_V2_3393",
+   "E_V2_3394"
+  ],
+  "severity": 3,
+  "system": "neurological",
+  "prevalence_tier": 3,
+  "v2_core": [
+   "E_V2_3380",
+   "E_V2_3381",
+   "E_V2_3382",
+   "E_V2_3383",
+   "E_V2_3384",
+   "E_V2_3385"
+  ]
+ },
+ "Bell palsy": {
+  "condition_name": "Bell palsy",
+  "cond-name-fr": "",
+  "cond-name-eng": "Bell palsy",
+  "icd10-id": "G51.0",
+  "symptoms": [
+   "E_V2_3395",
+   "E_V2_3396",
+   "E_V2_3397",
+   "E_V2_3398",
+   "E_V2_3399",
+   "E_V2_3400",
+   "E_V2_3401",
+   "E_V2_3402",
+   "E_V2_3403",
+   "E_V2_3404",
+   "E_V2_3405"
+  ],
+  "antecedents": [
+   "E_V2_2991",
+   "E_V2_3406",
+   "E_V2_3407"
+  ],
+  "severity": 3,
+  "system": "neurological",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_3395",
+   "E_V2_3396",
+   "E_V2_3397",
+   "E_V2_3398",
+   "E_V2_3399",
+   "E_V2_3400"
+  ]
+ },
+ "Restless legs syndrome": {
+  "condition_name": "Restless legs syndrome",
+  "cond-name-fr": "",
+  "cond-name-eng": "Restless legs syndrome",
+  "icd10-id": "G25.81",
+  "symptoms": [
+   "E_V2_3408",
+   "E_V2_3409",
+   "E_V2_3410",
+   "E_V2_3411",
+   "E_V2_3412",
+   "E_V2_3413",
+   "E_V2_3414",
+   "E_V2_3415",
+   "E_V2_3416",
+   "E_V2_3417",
+   "E_V2_3418"
+  ],
+  "antecedents": [
+   "E_V2_3419",
+   "E_V2_3420",
+   "E_V2_3421",
+   "E_V2_3422"
+  ],
+  "severity": 4,
+  "system": "neurological",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_3408",
+   "E_V2_3409",
+   "E_V2_3410",
+   "E_V2_3411",
+   "E_V2_3412",
+   "E_V2_3413"
+  ]
+ },
+ "Carpal tunnel syndrome": {
+  "condition_name": "Carpal tunnel syndrome",
+  "cond-name-fr": "",
+  "cond-name-eng": "Carpal tunnel syndrome",
+  "icd10-id": "G56.0",
+  "symptoms": [
+   "E_V2_3423",
+   "E_V2_3424",
+   "E_V2_3425",
+   "E_V2_3426",
+   "E_V2_3427",
+   "E_V2_3428",
+   "E_V2_3429",
+   "E_V2_3430",
+   "E_V2_3431",
+   "E_V2_3432",
+   "E_V2_3433"
+  ],
+  "antecedents": [
+   "E_V2_3434",
+   "E_V2_3435",
+   "E_V2_3436",
+   "E_V2_3437"
+  ],
+  "severity": 4,
+  "system": "neurological",
+  "prevalence_tier": 1,
+  "v2_core": [
+   "E_V2_3423",
+   "E_V2_3424",
+   "E_V2_3425",
+   "E_V2_3426",
+   "E_V2_3427",
+   "E_V2_3428"
+  ]
+ },
+ "Lumbosacral radiculopathy": {
+  "condition_name": "Lumbosacral radiculopathy",
+  "cond-name-fr": "",
+  "cond-name-eng": "Lumbosacral radiculopathy",
+  "icd10-id": "M54.16",
+  "symptoms": [
+   "E_V2_3438",
+   "E_V2_3439",
+   "E_V2_3440",
+   "E_V2_3441",
+   "E_V2_3442",
+   "E_V2_3443",
+   "E_V2_3444",
+   "E_V2_3445",
+   "E_V2_3446",
+   "E_V2_3447",
+   "E_V2_3448"
+  ],
+  "antecedents": [
+   "E_V2_3449",
+   "E_V2_3450",
+   "E_V2_3451",
+   "E_V2_3452"
+  ],
+  "severity": 3,
+  "system": "neurological",
+  "prevalence_tier": 1,
+  "v2_core": [
+   "E_V2_3438",
+   "E_V2_3439",
+   "E_V2_3440",
+   "E_V2_3441",
+   "E_V2_3442",
+   "E_V2_3443"
+  ]
+ },
+ "Postherpetic neuralgia": {
+  "condition_name": "Postherpetic neuralgia",
+  "cond-name-fr": "",
+  "cond-name-eng": "Postherpetic neuralgia",
+  "icd10-id": "B02.2",
+  "symptoms": [
+   "E_V2_3453",
+   "E_V2_3454",
+   "E_V2_3455",
+   "E_V2_3456",
+   "E_V2_3457",
+   "E_V2_3458",
+   "E_V2_3459",
+   "E_V2_3460",
+   "E_V2_3461",
+   "E_V2_3462",
+   "E_V2_3463"
+  ],
+  "antecedents": [
+   "E_V2_1105",
+   "E_V2_3464",
+   "E_V2_3465",
+   "E_V2_3466"
+  ],
+  "severity": 3,
+  "system": "neurological",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_3453",
+   "E_V2_3454",
+   "E_V2_3455",
+   "E_V2_3456",
+   "E_V2_3457",
+   "E_V2_3458"
+  ]
+ },
+ "Idiopathic intracranial hypertension": {
+  "condition_name": "Idiopathic intracranial hypertension",
+  "cond-name-fr": "",
+  "cond-name-eng": "Idiopathic intracranial hypertension",
+  "icd10-id": "G93.2",
+  "symptoms": [
+   "E_V2_3467",
+   "E_V2_3468",
+   "E_V2_3469",
+   "E_V2_3470",
+   "E_V2_3471",
+   "E_V2_3472",
+   "E_V2_3473",
+   "E_V2_3474",
+   "E_V2_3475",
+   "E_V2_3476",
+   "E_V2_3477"
+  ],
+  "antecedents": [
+   "E_V2_2295",
+   "E_V2_3478",
+   "E_V2_3479",
+   "E_V2_3480"
+  ],
+  "severity": 2,
+  "system": "neurological",
+  "prevalence_tier": 3,
+  "v2_core": [
+   "E_V2_3467",
+   "E_V2_3468",
+   "E_V2_3469",
+   "E_V2_3470",
+   "E_V2_3471",
+   "E_V2_3472"
+  ]
+ },
+ "Major depressive disorder moderate episode": {
+  "condition_name": "Major depressive disorder moderate episode",
+  "cond-name-fr": "",
+  "cond-name-eng": "Major depressive disorder moderate episode",
+  "icd10-id": "F32.1",
+  "symptoms": [
+   "E_V2_3481",
+   "E_V2_3482",
+   "E_V2_3483",
+   "E_V2_3484",
+   "E_V2_3485",
+   "E_V2_3486",
+   "E_V2_3487",
+   "E_V2_3488",
+   "E_V2_3489",
+   "E_V2_3490",
+   "E_V2_3491"
+  ],
+  "antecedents": [
+   "E_V2_3492",
+   "E_V2_3493",
+   "E_V2_3494",
+   "E_V2_3495"
+  ],
+  "severity": 3,
+  "system": "psychiatric",
+  "prevalence_tier": 1,
+  "v2_core": [
+   "E_V2_3481",
+   "E_V2_3482",
+   "E_V2_3483",
+   "E_V2_3484",
+   "E_V2_3485",
+   "E_V2_3486"
+  ]
+ },
+ "Generalized anxiety disorder": {
+  "condition_name": "Generalized anxiety disorder",
+  "cond-name-fr": "",
+  "cond-name-eng": "Generalized anxiety disorder",
+  "icd10-id": "F41.1",
+  "symptoms": [
+   "E_V2_3496",
+   "E_V2_3497",
+   "E_V2_3498",
+   "E_V2_3499",
+   "E_V2_3500",
+   "E_V2_3501",
+   "E_V2_3502",
+   "E_V2_3503",
+   "E_V2_3504",
+   "E_V2_3505",
+   "E_V2_3506"
+  ],
+  "antecedents": [
+   "E_V2_3507",
+   "E_V2_3508",
+   "E_V2_3509"
+  ],
+  "severity": 4,
+  "system": "psychiatric",
+  "prevalence_tier": 1,
+  "v2_core": [
+   "E_V2_3496",
+   "E_V2_3497",
+   "E_V2_3498",
+   "E_V2_3499",
+   "E_V2_3500",
+   "E_V2_3501"
+  ]
+ },
+ "Bipolar I depression current episode": {
+  "condition_name": "Bipolar I depression current episode",
+  "cond-name-fr": "",
+  "cond-name-eng": "Bipolar I depression current episode",
+  "icd10-id": "F31.4",
+  "symptoms": [
+   "E_V2_3510",
+   "E_V2_3511",
+   "E_V2_3512",
+   "E_V2_3513",
+   "E_V2_3514",
+   "E_V2_3515",
+   "E_V2_3516",
+   "E_V2_3517",
+   "E_V2_3518",
+   "E_V2_3519",
+   "E_V2_3520"
+  ],
+  "antecedents": [
+   "E_V2_3521",
+   "E_V2_3522",
+   "E_V2_3523",
+   "E_V2_3524"
+  ],
+  "severity": 2,
+  "system": "psychiatric",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_3510",
+   "E_V2_3511",
+   "E_V2_3512",
+   "E_V2_3513",
+   "E_V2_3514",
+   "E_V2_3515"
+  ]
+ },
+ "Schizophrenia first episode psychosis": {
+  "condition_name": "Schizophrenia first episode psychosis",
+  "cond-name-fr": "",
+  "cond-name-eng": "Schizophrenia first episode psychosis",
+  "icd10-id": "F20.9",
+  "symptoms": [
+   "E_V2_3525",
+   "E_V2_3526",
+   "E_V2_3527",
+   "E_V2_3528",
+   "E_V2_3529",
+   "E_V2_3530",
+   "E_V2_3531",
+   "E_V2_3532",
+   "E_V2_3533",
+   "E_V2_3534",
+   "E_V2_3535"
+  ],
+  "antecedents": [
+   "E_V2_3536",
+   "E_V2_3537",
+   "E_V2_3538",
+   "E_V2_3539"
+  ],
+  "severity": 2,
+  "system": "psychiatric",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_3525",
+   "E_V2_3526",
+   "E_V2_3527",
+   "E_V2_3528",
+   "E_V2_3529",
+   "E_V2_3530"
+  ]
+ },
+ "Alcohol withdrawal syndrome": {
+  "condition_name": "Alcohol withdrawal syndrome",
+  "cond-name-fr": "",
+  "cond-name-eng": "Alcohol withdrawal syndrome",
+  "icd10-id": "F10.3",
+  "symptoms": [
+   "E_V2_3540",
+   "E_V2_3541",
+   "E_V2_3542",
+   "E_V2_3543",
+   "E_V2_3544",
+   "E_V2_3545",
+   "E_V2_3546",
+   "E_V2_3547",
+   "E_V2_3548",
+   "E_V2_3549",
+   "E_V2_3550"
+  ],
+  "antecedents": [
+   "E_V2_3551",
+   "E_V2_3552",
+   "E_V2_3553",
+   "E_V2_3554"
+  ],
+  "severity": 1,
+  "system": "psychiatric",
+  "prevalence_tier": 1,
+  "v2_core": [
+   "E_V2_3540",
+   "E_V2_3541",
+   "E_V2_3542",
+   "E_V2_3543",
+   "E_V2_3544",
+   "E_V2_3545"
+  ]
+ },
+ "Opioid withdrawal syndrome": {
+  "condition_name": "Opioid withdrawal syndrome",
+  "cond-name-fr": "",
+  "cond-name-eng": "Opioid withdrawal syndrome",
+  "icd10-id": "F11.3",
+  "symptoms": [
+   "E_V2_3555",
+   "E_V2_3556",
+   "E_V2_3557",
+   "E_V2_3558",
+   "E_V2_3559",
+   "E_V2_3560",
+   "E_V2_3561",
+   "E_V2_3562",
+   "E_V2_3563",
+   "E_V2_3564",
+   "E_V2_3565"
+  ],
+  "antecedents": [
+   "E_V2_3566",
+   "E_V2_3567",
+   "E_V2_3568",
+   "E_V2_3569"
+  ],
+  "severity": 2,
+  "system": "psychiatric",
+  "prevalence_tier": 1,
+  "v2_core": [
+   "E_V2_3555",
+   "E_V2_3556",
+   "E_V2_3557",
+   "E_V2_3558",
+   "E_V2_3559",
+   "E_V2_3560"
+  ]
+ },
+ "Insomnia disorder chronic": {
+  "condition_name": "Insomnia disorder chronic",
+  "cond-name-fr": "",
+  "cond-name-eng": "Insomnia disorder chronic",
+  "icd10-id": "G47.00",
+  "symptoms": [
+   "E_V2_3570",
+   "E_V2_3571",
+   "E_V2_3572",
+   "E_V2_3573",
+   "E_V2_3574",
+   "E_V2_3575",
+   "E_V2_3576",
+   "E_V2_3577",
+   "E_V2_3578",
+   "E_V2_3579",
+   "E_V2_3580"
+  ],
+  "antecedents": [
+   "E_V2_3581",
+   "E_V2_3582",
+   "E_V2_3583",
+   "E_V2_3584"
+  ],
+  "severity": 4,
+  "system": "psychiatric",
+  "prevalence_tier": 1,
+  "v2_core": [
+   "E_V2_3570",
+   "E_V2_3571",
+   "E_V2_3572",
+   "E_V2_3573",
+   "E_V2_3574",
+   "E_V2_3575"
+  ]
+ },
+ "Adult attention deficit hyperactivity disorder": {
+  "condition_name": "Adult attention deficit hyperactivity disorder",
+  "cond-name-fr": "",
+  "cond-name-eng": "Adult attention deficit hyperactivity disorder",
+  "icd10-id": "F90.9",
+  "symptoms": [
+   "E_V2_3585",
+   "E_V2_3586",
+   "E_V2_3587",
+   "E_V2_3588",
+   "E_V2_3589",
+   "E_V2_3590",
+   "E_V2_3591",
+   "E_V2_3592",
+   "E_V2_3593",
+   "E_V2_3594",
+   "E_V2_3595"
+  ],
+  "antecedents": [
+   "E_V2_3596",
+   "E_V2_3597",
+   "E_V2_3598"
+  ],
+  "severity": 4,
+  "system": "psychiatric",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_3585",
+   "E_V2_3586",
+   "E_V2_3587",
+   "E_V2_3588",
+   "E_V2_3589",
+   "E_V2_3590"
+  ]
+ },
+ "Post traumatic stress disorder": {
+  "condition_name": "Post traumatic stress disorder",
+  "cond-name-fr": "",
+  "cond-name-eng": "Post traumatic stress disorder",
+  "icd10-id": "F43.10",
+  "symptoms": [
+   "E_V2_3599",
+   "E_V2_3600",
+   "E_V2_3601",
+   "E_V2_3602",
+   "E_V2_3603",
+   "E_V2_3604",
+   "E_V2_3605",
+   "E_V2_3606",
+   "E_V2_3607",
+   "E_V2_3608",
+   "E_V2_3609"
+  ],
+  "antecedents": [
+   "E_V2_3610",
+   "E_V2_3611",
+   "E_V2_3612"
+  ],
+  "severity": 3,
+  "system": "psychiatric",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_3599",
+   "E_V2_3600",
+   "E_V2_3601",
+   "E_V2_3602",
+   "E_V2_3603",
+   "E_V2_3604"
+  ]
+ },
+ "Anorexia nervosa restricting type": {
+  "condition_name": "Anorexia nervosa restricting type",
+  "cond-name-fr": "",
+  "cond-name-eng": "Anorexia nervosa restricting type",
+  "icd10-id": "F50.01",
+  "symptoms": [
+   "E_V2_3613",
+   "E_V2_3614",
+   "E_V2_3615",
+   "E_V2_3616",
+   "E_V2_3617",
+   "E_V2_3618",
+   "E_V2_3619",
+   "E_V2_3620",
+   "E_V2_3621",
+   "E_V2_3622",
+   "E_V2_3623"
+  ],
+  "antecedents": [
+   "E_V2_3624",
+   "E_V2_3625",
+   "E_V2_3626",
+   "E_V2_3627"
+  ],
+  "severity": 2,
+  "system": "psychiatric",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_3613",
+   "E_V2_3614",
+   "E_V2_3615",
+   "E_V2_3616",
+   "E_V2_3617",
+   "E_V2_3618"
+  ]
+ },
+ "Somatic symptom disorder": {
+  "condition_name": "Somatic symptom disorder",
+  "cond-name-fr": "",
+  "cond-name-eng": "Somatic symptom disorder",
+  "icd10-id": "F45.1",
+  "symptoms": [
+   "E_V2_3628",
+   "E_V2_3629",
+   "E_V2_3630",
+   "E_V2_3631",
+   "E_V2_3632",
+   "E_V2_3633",
+   "E_V2_3634",
+   "E_V2_3635",
+   "E_V2_3636",
+   "E_V2_3637",
+   "E_V2_3638"
+  ],
+  "antecedents": [
+   "E_V2_3639",
+   "E_V2_3640",
+   "E_V2_3641"
+  ],
+  "severity": 4,
+  "system": "psychiatric",
+  "prevalence_tier": 3,
+  "v2_core": [
+   "E_V2_3628",
+   "E_V2_3629",
+   "E_V2_3630",
+   "E_V2_3631",
+   "E_V2_3632",
+   "E_V2_3633"
+  ]
+ },
+ "Borderline personality disorder crisis presentation": {
+  "condition_name": "Borderline personality disorder crisis presentation",
+  "cond-name-fr": "",
+  "cond-name-eng": "Borderline personality disorder crisis presentation",
+  "icd10-id": "F60.3",
+  "symptoms": [
+   "E_V2_3642",
+   "E_V2_3643",
+   "E_V2_3644",
+   "E_V2_3645",
+   "E_V2_3646",
+   "E_V2_3647",
+   "E_V2_3648",
+   "E_V2_3649",
+   "E_V2_3650",
+   "E_V2_3651",
+   "E_V2_3652"
+  ],
+  "antecedents": [
+   "E_V2_3653",
+   "E_V2_3654",
+   "E_V2_3655",
+   "E_V2_3656"
+  ],
+  "severity": 2,
+  "system": "psychiatric",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_3642",
+   "E_V2_3643",
+   "E_V2_3644",
+   "E_V2_3645",
+   "E_V2_3646",
+   "E_V2_3647"
+  ]
+ },
+ "Urinary tract infection cystitis": {
+  "condition_name": "Urinary tract infection cystitis",
+  "cond-name-fr": "",
+  "cond-name-eng": "Urinary tract infection cystitis",
+  "icd10-id": "N30.0",
+  "symptoms": [
+   "E_V2_3657",
+   "E_V2_3658",
+   "E_V2_3659",
+   "E_V2_3660",
+   "E_V2_3661",
+   "E_V2_3662",
+   "E_V2_3663",
+   "E_V2_3664",
+   "E_V2_3665"
+  ],
+  "antecedents": [
+   "E_V2_3666",
+   "E_V2_3667"
+  ],
+  "severity": 3,
+  "system": "renal_urological",
+  "prevalence_tier": 1,
+  "v2_core": [
+   "E_V2_3657",
+   "E_V2_3658",
+   "E_V2_3659",
+   "E_V2_3660",
+   "E_V2_3661"
+  ]
+ },
+ "Acute pyelonephritis": {
+  "condition_name": "Acute pyelonephritis",
+  "cond-name-fr": "",
+  "cond-name-eng": "Acute pyelonephritis",
+  "icd10-id": "N10",
+  "symptoms": [
+   "E_V2_3668",
+   "E_V2_3669",
+   "E_V2_3670",
+   "E_V2_3671",
+   "E_V2_3672",
+   "E_V2_3673",
+   "E_V2_3674",
+   "E_V2_3675",
+   "E_V2_3676",
+   "E_V2_3677"
+  ],
+  "antecedents": [
+   "E_V2_3678",
+   "E_V2_3679",
+   "E_V2_3680"
+  ],
+  "severity": 2,
+  "system": "renal_urological",
+  "prevalence_tier": 1,
+  "v2_core": [
+   "E_V2_3668",
+   "E_V2_3669",
+   "E_V2_3670",
+   "E_V2_3671",
+   "E_V2_3672"
+  ]
+ },
+ "Kidney stone acute colic": {
+  "condition_name": "Kidney stone acute colic",
+  "cond-name-fr": "",
+  "cond-name-eng": "Kidney stone acute colic",
+  "icd10-id": "N20.0",
+  "symptoms": [
+   "E_V2_3681",
+   "E_V2_3682",
+   "E_V2_3683",
+   "E_V2_3684",
+   "E_V2_3685",
+   "E_V2_3686",
+   "E_V2_3687",
+   "E_V2_3688",
+   "E_V2_3689"
+  ],
+  "antecedents": [
+   "E_V2_3690",
+   "E_V2_3691",
+   "E_V2_3692"
+  ],
+  "severity": 2,
+  "system": "renal_urological",
+  "prevalence_tier": 1,
+  "v2_core": [
+   "E_V2_3681",
+   "E_V2_3682",
+   "E_V2_3683",
+   "E_V2_3684",
+   "E_V2_3685"
+  ]
+ },
+ "Chronic kidney disease stage 3-4": {
+  "condition_name": "Chronic kidney disease stage 3-4",
+  "cond-name-fr": "",
+  "cond-name-eng": "Chronic kidney disease stage 3-4",
+  "icd10-id": "N18.3",
+  "symptoms": [
+   "E_V2_2450",
+   "E_V2_3693",
+   "E_V2_3694",
+   "E_V2_3695",
+   "E_V2_3696",
+   "E_V2_3697",
+   "E_V2_3698",
+   "E_V2_3699",
+   "E_V2_3700"
+  ],
+  "antecedents": [
+   "E_V2_1285",
+   "E_V2_2152",
+   "E_V2_3701"
+  ],
+  "severity": 2,
+  "system": "renal_urological",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_2450",
+   "E_V2_3693",
+   "E_V2_3694",
+   "E_V2_3695",
+   "E_V2_3696"
+  ]
+ },
+ "Nephrotic syndrome": {
+  "condition_name": "Nephrotic syndrome",
+  "cond-name-fr": "",
+  "cond-name-eng": "Nephrotic syndrome",
+  "icd10-id": "N04.9",
+  "symptoms": [
+   "E_V2_3702",
+   "E_V2_3703",
+   "E_V2_3704",
+   "E_V2_3705",
+   "E_V2_3706",
+   "E_V2_3707",
+   "E_V2_3708",
+   "E_V2_3709",
+   "E_V2_3710"
+  ],
+  "antecedents": [
+   "E_V2_3711",
+   "E_V2_3712",
+   "E_V2_3713"
+  ],
+  "severity": 2,
+  "system": "renal_urological",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_3702",
+   "E_V2_3703",
+   "E_V2_3704",
+   "E_V2_3705",
+   "E_V2_3706"
+  ]
+ },
+ "IgA nephropathy nephritic syndrome": {
+  "condition_name": "IgA nephropathy nephritic syndrome",
+  "cond-name-fr": "",
+  "cond-name-eng": "IgA nephropathy nephritic syndrome",
+  "icd10-id": "N02.8",
+  "symptoms": [
+   "E_V2_3714",
+   "E_V2_3715",
+   "E_V2_3716",
+   "E_V2_3717",
+   "E_V2_3718",
+   "E_V2_3719",
+   "E_V2_3720",
+   "E_V2_3721",
+   "E_V2_3722"
+  ],
+  "antecedents": [
+   "E_V2_3723",
+   "E_V2_3724",
+   "E_V2_3725"
+  ],
+  "severity": 2,
+  "system": "renal_urological",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_3714",
+   "E_V2_3715",
+   "E_V2_3716",
+   "E_V2_3717",
+   "E_V2_3718"
+  ]
+ },
+ "Benign prostatic hyperplasia LUTS": {
+  "condition_name": "Benign prostatic hyperplasia LUTS",
+  "cond-name-fr": "",
+  "cond-name-eng": "Benign prostatic hyperplasia LUTS",
+  "icd10-id": "N40.1",
+  "symptoms": [
+   "E_V2_3726",
+   "E_V2_3727",
+   "E_V2_3728",
+   "E_V2_3729",
+   "E_V2_3730",
+   "E_V2_3731",
+   "E_V2_3732",
+   "E_V2_3733",
+   "E_V2_3734"
+  ],
+  "antecedents": [
+   "E_V2_2320",
+   "E_V2_3735"
+  ],
+  "severity": 3,
+  "system": "renal_urological",
+  "prevalence_tier": 1,
+  "v2_core": [
+   "E_V2_3726",
+   "E_V2_3727",
+   "E_V2_3728",
+   "E_V2_3729",
+   "E_V2_3730"
+  ]
+ },
+ "Acute bacterial prostatitis": {
+  "condition_name": "Acute bacterial prostatitis",
+  "cond-name-fr": "",
+  "cond-name-eng": "Acute bacterial prostatitis",
+  "icd10-id": "N41.0",
+  "symptoms": [
+   "E_V2_3736",
+   "E_V2_3737",
+   "E_V2_3738",
+   "E_V2_3739",
+   "E_V2_3740",
+   "E_V2_3741",
+   "E_V2_3742",
+   "E_V2_3743",
+   "E_V2_3744"
+  ],
+  "antecedents": [
+   "E_V2_3745",
+   "E_V2_3746",
+   "E_V2_3747"
+  ],
+  "severity": 2,
+  "system": "renal_urological",
+  "prevalence_tier": 1,
+  "v2_core": [
+   "E_V2_3736",
+   "E_V2_3737",
+   "E_V2_3738",
+   "E_V2_3739",
+   "E_V2_3740"
+  ]
+ },
+ "Epididymitis orchitis": {
+  "condition_name": "Epididymitis orchitis",
+  "cond-name-fr": "",
+  "cond-name-eng": "Epididymitis orchitis",
+  "icd10-id": "N45.9",
+  "symptoms": [
+   "E_V2_3748",
+   "E_V2_3749",
+   "E_V2_3750",
+   "E_V2_3751",
+   "E_V2_3752",
+   "E_V2_3753",
+   "E_V2_3754",
+   "E_V2_3755",
+   "E_V2_3756"
+  ],
+  "antecedents": [
+   "E_V2_3757",
+   "E_V2_3758",
+   "E_V2_3759"
+  ],
+  "severity": 2,
+  "system": "renal_urological",
+  "prevalence_tier": 1,
+  "v2_core": [
+   "E_V2_3748",
+   "E_V2_3749",
+   "E_V2_3750",
+   "E_V2_3751",
+   "E_V2_3752"
+  ]
+ },
+ "Interstitial cystitis": {
+  "condition_name": "Interstitial cystitis",
+  "cond-name-fr": "",
+  "cond-name-eng": "Interstitial cystitis",
+  "icd10-id": "N30.1",
+  "symptoms": [
+   "E_V2_3760",
+   "E_V2_3761",
+   "E_V2_3762",
+   "E_V2_3763",
+   "E_V2_3764",
+   "E_V2_3765",
+   "E_V2_3766",
+   "E_V2_3767",
+   "E_V2_3768"
+  ],
+  "antecedents": [
+   "E_V2_3769",
+   "E_V2_3770",
+   "E_V2_3771"
+  ],
+  "severity": 3,
+  "system": "renal_urological",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_3760",
+   "E_V2_3761",
+   "E_V2_3762",
+   "E_V2_3763",
+   "E_V2_3764"
+  ]
+ },
+ "Overactive bladder": {
+  "condition_name": "Overactive bladder",
+  "cond-name-fr": "",
+  "cond-name-eng": "Overactive bladder",
+  "icd10-id": "N32.81",
+  "symptoms": [
+   "E_V2_3772",
+   "E_V2_3773",
+   "E_V2_3774",
+   "E_V2_3775",
+   "E_V2_3776",
+   "E_V2_3777",
+   "E_V2_3778",
+   "E_V2_3779",
+   "E_V2_3780"
+  ],
+  "antecedents": [
+   "E_V2_3781",
+   "E_V2_3782",
+   "E_V2_3783"
+  ],
+  "severity": 4,
+  "system": "renal_urological",
+  "prevalence_tier": 1,
+  "v2_core": [
+   "E_V2_3772",
+   "E_V2_3773",
+   "E_V2_3774",
+   "E_V2_3775",
+   "E_V2_3776"
+  ]
+ },
+ "Acute urinary retention": {
+  "condition_name": "Acute urinary retention",
+  "cond-name-fr": "",
+  "cond-name-eng": "Acute urinary retention",
+  "icd10-id": "R33.8",
+  "symptoms": [
+   "E_V2_3784",
+   "E_V2_3785",
+   "E_V2_3786",
+   "E_V2_3787",
+   "E_V2_3788",
+   "E_V2_3789",
+   "E_V2_3790",
+   "E_V2_3791",
+   "E_V2_3792"
+  ],
+  "antecedents": [
+   "E_V2_3793",
+   "E_V2_3794",
+   "E_V2_3795"
+  ],
+  "severity": 2,
+  "system": "renal_urological",
+  "prevalence_tier": 1,
+  "v2_core": [
+   "E_V2_3784",
+   "E_V2_3785",
+   "E_V2_3786",
+   "E_V2_3787",
+   "E_V2_3788"
+  ]
+ },
+ "Adult nocturnal enuresis": {
+  "condition_name": "Adult nocturnal enuresis",
+  "cond-name-fr": "",
+  "cond-name-eng": "Adult nocturnal enuresis",
+  "icd10-id": "N39.44",
+  "symptoms": [
+   "E_V2_3796",
+   "E_V2_3797",
+   "E_V2_3798",
+   "E_V2_3799",
+   "E_V2_3800",
+   "E_V2_3801",
+   "E_V2_3802",
+   "E_V2_3803",
+   "E_V2_3804"
+  ],
+  "antecedents": [
+   "E_V2_3805",
+   "E_V2_3806",
+   "E_V2_3807"
+  ],
+  "severity": 4,
+  "system": "renal_urological",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_3796",
+   "E_V2_3797",
+   "E_V2_3798",
+   "E_V2_3799",
+   "E_V2_3800"
+  ]
+ },
+ "Polycystic kidney disease adult": {
+  "condition_name": "Polycystic kidney disease adult",
+  "cond-name-fr": "",
+  "cond-name-eng": "Polycystic kidney disease adult",
+  "icd10-id": "Q61.2",
+  "symptoms": [
+   "E_V2_3808",
+   "E_V2_3809",
+   "E_V2_3810",
+   "E_V2_3811",
+   "E_V2_3812",
+   "E_V2_3813",
+   "E_V2_3814",
+   "E_V2_3815",
+   "E_V2_3816"
+  ],
+  "antecedents": [
+   "E_V2_3817",
+   "E_V2_3818",
+   "E_V2_3819"
+  ],
+  "severity": 2,
+  "system": "renal_urological",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_3808",
+   "E_V2_3809",
+   "E_V2_3810",
+   "E_V2_3811",
+   "E_V2_3812"
+  ]
+ },
+ "Early renal cell carcinoma": {
+  "condition_name": "Early renal cell carcinoma",
+  "cond-name-fr": "",
+  "cond-name-eng": "Early renal cell carcinoma",
+  "icd10-id": "C64.9",
+  "symptoms": [
+   "E_V2_3820",
+   "E_V2_3821",
+   "E_V2_3822",
+   "E_V2_3823",
+   "E_V2_3824",
+   "E_V2_3825",
+   "E_V2_3826",
+   "E_V2_3827",
+   "E_V2_3828"
+  ],
+  "antecedents": [
+   "E_V2_3829",
+   "E_V2_3830",
+   "E_V2_3831"
+  ],
+  "severity": 1,
+  "system": "renal_urological",
+  "prevalence_tier": 3,
+  "v2_core": [
+   "E_V2_3820",
+   "E_V2_3821",
+   "E_V2_3822",
+   "E_V2_3823",
+   "E_V2_3824"
+  ]
+ },
+ "Testicular torsion": {
+  "condition_name": "Testicular torsion",
+  "cond-name-fr": "",
+  "cond-name-eng": "Testicular torsion",
+  "icd10-id": "N44.00",
+  "symptoms": [
+   "E_V2_3832",
+   "E_V2_3833",
+   "E_V2_3834",
+   "E_V2_3835",
+   "E_V2_3836",
+   "E_V2_3837",
+   "E_V2_3838",
+   "E_V2_3839",
+   "E_V2_3840"
+  ],
+  "antecedents": [
+   "E_V2_3841",
+   "E_V2_3842",
+   "E_V2_3843"
+  ],
+  "severity": 1,
+  "system": "renal_urological",
+  "prevalence_tier": 1,
+  "v2_core": [
+   "E_V2_3832",
+   "E_V2_3833",
+   "E_V2_3834",
+   "E_V2_3835",
+   "E_V2_3836"
+  ]
+ },
+ "Phimosis paraphimosis": {
+  "condition_name": "Phimosis paraphimosis",
+  "cond-name-fr": "",
+  "cond-name-eng": "Phimosis paraphimosis",
+  "icd10-id": "N47.1",
+  "symptoms": [
+   "E_V2_3844",
+   "E_V2_3845",
+   "E_V2_3846",
+   "E_V2_3847",
+   "E_V2_3848",
+   "E_V2_3849",
+   "E_V2_3850",
+   "E_V2_3851",
+   "E_V2_3852"
+  ],
+  "antecedents": [
+   "E_V2_3853",
+   "E_V2_3854",
+   "E_V2_3855"
+  ],
+  "severity": 3,
+  "system": "renal_urological",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_3844",
+   "E_V2_3845",
+   "E_V2_3846",
+   "E_V2_3847",
+   "E_V2_3848"
+  ]
+ },
+ "Urethral syndrome": {
+  "condition_name": "Urethral syndrome",
+  "cond-name-fr": "",
+  "cond-name-eng": "Urethral syndrome",
+  "icd10-id": "N34.2",
+  "symptoms": [
+   "E_V2_3856",
+   "E_V2_3857",
+   "E_V2_3858",
+   "E_V2_3859",
+   "E_V2_3860",
+   "E_V2_3861",
+   "E_V2_3862",
+   "E_V2_3863",
+   "E_V2_3864"
+  ],
+  "antecedents": [
+   "E_V2_2166",
+   "E_V2_3865",
+   "E_V2_3866"
+  ],
+  "severity": 4,
+  "system": "renal_urological",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_3856",
+   "E_V2_3857",
+   "E_V2_3858",
+   "E_V2_3859",
+   "E_V2_3860"
+  ]
+ },
+ "Adult vesicoureteral reflux": {
+  "condition_name": "Adult vesicoureteral reflux",
+  "cond-name-fr": "",
+  "cond-name-eng": "Adult vesicoureteral reflux",
+  "icd10-id": "N13.70",
+  "symptoms": [
+   "E_V2_3867",
+   "E_V2_3868",
+   "E_V2_3869",
+   "E_V2_3870",
+   "E_V2_3871",
+   "E_V2_3872",
+   "E_V2_3873",
+   "E_V2_3874",
+   "E_V2_3875"
+  ],
+  "antecedents": [
+   "E_V2_3876",
+   "E_V2_3877",
+   "E_V2_3878"
+  ],
+  "severity": 3,
+  "system": "renal_urological",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_3867",
+   "E_V2_3868",
+   "E_V2_3869",
+   "E_V2_3870",
+   "E_V2_3871"
+  ]
+ },
+ "Atypical hemolytic uremic syndrome": {
+  "condition_name": "Atypical hemolytic uremic syndrome",
+  "cond-name-fr": "",
+  "cond-name-eng": "Atypical hemolytic uremic syndrome",
+  "icd10-id": "D59.3",
+  "symptoms": [
+   "E_V2_3879",
+   "E_V2_3880",
+   "E_V2_3881",
+   "E_V2_3882",
+   "E_V2_3883",
+   "E_V2_3884",
+   "E_V2_3885",
+   "E_V2_3886",
+   "E_V2_3887"
+  ],
+  "antecedents": [
+   "E_V2_3888",
+   "E_V2_3889",
+   "E_V2_3890"
+  ],
+  "severity": 1,
+  "system": "renal_urological",
+  "prevalence_tier": 3,
+  "v2_core": [
+   "E_V2_3879",
+   "E_V2_3880",
+   "E_V2_3881",
+   "E_V2_3882",
+   "E_V2_3883"
+  ]
+ },
+ "Neurogenic bladder": {
+  "condition_name": "Neurogenic bladder",
+  "cond-name-fr": "",
+  "cond-name-eng": "Neurogenic bladder",
+  "icd10-id": "N31.9",
+  "symptoms": [
+   "E_V2_3891",
+   "E_V2_3892",
+   "E_V2_3893",
+   "E_V2_3894",
+   "E_V2_3895",
+   "E_V2_3896",
+   "E_V2_3897",
+   "E_V2_3898",
+   "E_V2_3899"
+  ],
+  "antecedents": [
+   "E_V2_3900",
+   "E_V2_3901",
+   "E_V2_3902"
+  ],
+  "severity": 3,
+  "system": "renal_urological",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_3891",
+   "E_V2_3892",
+   "E_V2_3893",
+   "E_V2_3894",
+   "E_V2_3895"
+  ]
+ },
+ "Early bladder cancer": {
+  "condition_name": "Early bladder cancer",
+  "cond-name-fr": "",
+  "cond-name-eng": "Early bladder cancer",
+  "icd10-id": "C67.9",
+  "symptoms": [
+   "E_V2_3903",
+   "E_V2_3904",
+   "E_V2_3905",
+   "E_V2_3906",
+   "E_V2_3907",
+   "E_V2_3908",
+   "E_V2_3909",
+   "E_V2_3910",
+   "E_V2_3911"
+  ],
+  "antecedents": [
+   "E_V2_3912",
+   "E_V2_3913",
+   "E_V2_3914"
+  ],
+  "severity": 1,
+  "system": "renal_urological",
+  "prevalence_tier": 3,
+  "v2_core": [
+   "E_V2_3903",
+   "E_V2_3904",
+   "E_V2_3905",
+   "E_V2_3906",
+   "E_V2_3907"
+  ]
+ },
+ "Pleural effusion": {
+  "condition_name": "Pleural effusion",
+  "cond-name-fr": "",
+  "cond-name-eng": "Pleural effusion",
+  "icd10-id": "J90",
+  "symptoms": [
+   "E_V2_3915",
+   "E_V2_3916",
+   "E_V2_3917",
+   "E_V2_3918",
+   "E_V2_3919"
+  ],
+  "antecedents": [
+   "E_V2_1335",
+   "E_V2_2184",
+   "E_V2_3920",
+   "E_V2_3921"
+  ],
+  "severity": 3,
+  "system": "respiratory",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_3915",
+   "E_V2_3916"
+  ]
+ },
+ "Pneumothorax secondary": {
+  "condition_name": "Pneumothorax secondary",
+  "cond-name-fr": "",
+  "cond-name-eng": "Pneumothorax secondary",
+  "icd10-id": "J93.1",
+  "symptoms": [
+   "E_V2_3917",
+   "E_V2_3922",
+   "E_V2_3923"
+  ],
+  "antecedents": [
+   "E_V2_1360",
+   "E_V2_3924",
+   "E_V2_3925"
+  ],
+  "severity": 2,
+  "system": "respiratory",
+  "prevalence_tier": 3,
+  "v2_core": [
+   "E_V2_3922"
+  ]
+ },
+ "Tension pneumothorax": {
+  "condition_name": "Tension pneumothorax",
+  "cond-name-fr": "",
+  "cond-name-eng": "Tension pneumothorax",
+  "icd10-id": "J93.0",
+  "symptoms": [
+   "E_V2_3926",
+   "E_V2_3927",
+   "E_V2_3928",
+   "E_V2_3929"
+  ],
+  "antecedents": [
+   "E_V2_3930",
+   "E_V2_3931"
+  ],
+  "severity": 1,
+  "system": "respiratory",
+  "prevalence_tier": 3,
+  "v2_core": [
+   "E_V2_3926"
+  ]
+ },
+ "Lung abscess": {
+  "condition_name": "Lung abscess",
+  "cond-name-fr": "",
+  "cond-name-eng": "Lung abscess",
+  "icd10-id": "J85.2",
+  "symptoms": [
+   "E_V2_1298",
+   "E_V2_3932",
+   "E_V2_3933",
+   "E_V2_3934"
+  ],
+  "antecedents": [
+   "E_V2_3935",
+   "E_V2_3936",
+   "E_V2_3937"
+  ],
+  "severity": 2,
+  "system": "respiratory",
+  "prevalence_tier": 3,
+  "v2_core": [
+   "E_V2_3932"
+  ]
+ },
+ "Interstitial lung disease": {
+  "condition_name": "Interstitial lung disease",
+  "cond-name-fr": "",
+  "cond-name-eng": "Interstitial lung disease",
+  "icd10-id": "J84.10",
+  "symptoms": [
+   "E_V2_1295",
+   "E_V2_3934",
+   "E_V2_3938",
+   "E_V2_3939"
+  ],
+  "antecedents": [
+   "E_V2_1327",
+   "E_V2_3940",
+   "E_V2_3941",
+   "E_V2_3942"
+  ],
+  "severity": 3,
+  "system": "respiratory",
+  "prevalence_tier": 3,
+  "v2_core": [
+   "E_V2_3938"
+  ]
+ },
+ "Occupational asthma": {
+  "condition_name": "Occupational asthma",
+  "cond-name-fr": "",
+  "cond-name-eng": "Occupational asthma",
+  "icd10-id": "J69.9",
+  "symptoms": [
+   "E_V2_3943",
+   "E_V2_3944",
+   "E_V2_3945"
+  ],
+  "antecedents": [
+   "E_V2_3946",
+   "E_V2_3947"
+  ],
+  "severity": 3,
+  "system": "respiratory",
+  "prevalence_tier": 3,
+  "v2_core": [
+   "E_V2_3943"
+  ]
+ },
+ "Cystic fibrosis exacerbation": {
+  "condition_name": "Cystic fibrosis exacerbation",
+  "cond-name-fr": "",
+  "cond-name-eng": "Cystic fibrosis exacerbation",
+  "icd10-id": "E84.0",
+  "symptoms": [
+   "E_V2_1298",
+   "E_V2_2090",
+   "E_V2_3948",
+   "E_V2_3949"
+  ],
+  "antecedents": [
+   "E_V2_3950",
+   "E_V2_3951"
+  ],
+  "severity": 2,
+  "system": "respiratory",
+  "prevalence_tier": 3,
+  "v2_core": [
+   "E_V2_3948"
+  ]
+ },
+ "Bronchiectasis flare": {
+  "condition_name": "Bronchiectasis flare",
+  "cond-name-fr": "",
+  "cond-name-eng": "Bronchiectasis flare",
+  "icd10-id": "J47",
+  "symptoms": [
+   "E_V2_3952",
+   "E_V2_3953",
+   "E_V2_3954",
+   "E_V2_3955",
+   "E_V2_3956"
+  ],
+  "antecedents": [
+   "E_V2_3957",
+   "E_V2_3958",
+   "E_V2_3959"
+  ],
+  "severity": 3,
+  "system": "respiratory",
+  "prevalence_tier": 3,
+  "v2_core": [
+   "E_V2_3952"
+  ]
+ },
+ "Obstructive sleep apnea": {
+  "condition_name": "Obstructive sleep apnea",
+  "cond-name-fr": "",
+  "cond-name-eng": "Obstructive sleep apnea",
+  "icd10-id": "G47.33",
+  "symptoms": [
+   "E_V2_3960",
+   "E_V2_3961",
+   "E_V2_3962",
+   "E_V2_3963",
+   "E_V2_3964"
+  ],
+  "antecedents": [
+   "E_V2_1271",
+   "E_V2_1354",
+   "E_V2_3965",
+   "E_V2_3966"
+  ],
+  "severity": 3,
+  "system": "respiratory",
+  "prevalence_tier": 1,
+  "v2_core": [
+   "E_V2_3960"
+  ]
+ },
+ "Hyperventilation syndrome": {
+  "condition_name": "Hyperventilation syndrome",
+  "cond-name-fr": "",
+  "cond-name-eng": "Hyperventilation syndrome",
+  "icd10-id": "F45.33",
+  "symptoms": [
+   "E_V2_1289",
+   "E_V2_1310",
+   "E_V2_3967",
+   "E_V2_3968"
+  ],
+  "antecedents": [
+   "E_V2_3969",
+   "E_V2_3970"
+  ],
+  "severity": 4,
+  "system": "respiratory",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_3967"
+  ]
+ },
+ "Aspiration pneumonia": {
+  "condition_name": "Aspiration pneumonia",
+  "cond-name-fr": "",
+  "cond-name-eng": "Aspiration pneumonia",
+  "icd10-id": "J69.0",
+  "symptoms": [
+   "E_V2_1358",
+   "E_V2_3971",
+   "E_V2_3972",
+   "E_V2_3973"
+  ],
+  "antecedents": [
+   "E_V2_3974",
+   "E_V2_3975",
+   "E_V2_3976",
+   "E_V2_3977"
+  ],
+  "severity": 2,
+  "system": "respiratory",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_3971"
+  ]
+ },
+ "Allergic rhinitis": {
+  "condition_name": "Allergic rhinitis",
+  "cond-name-fr": "",
+  "cond-name-eng": "Allergic rhinitis",
+  "icd10-id": "J30.9",
+  "symptoms": [
+   "E_V2_3978",
+   "E_V2_3979",
+   "E_V2_3980",
+   "E_V2_3981"
+  ],
+  "antecedents": [
+   "E_V2_3982",
+   "E_V2_3983",
+   "E_V2_3984"
+  ],
+  "severity": 4,
+  "system": "respiratory",
+  "prevalence_tier": 1,
+  "v2_core": [
+   "E_V2_3978"
+  ]
+ },
+ "Nasal polyps": {
+  "condition_name": "Nasal polyps",
+  "cond-name-fr": "",
+  "cond-name-eng": "Nasal polyps",
+  "icd10-id": "J33.9",
+  "symptoms": [
+   "E_V2_3985",
+   "E_V2_3986",
+   "E_V2_3987",
+   "E_V2_3988"
+  ],
+  "antecedents": [
+   "E_V2_3989",
+   "E_V2_3990",
+   "E_V2_3991"
+  ],
+  "severity": 4,
+  "system": "respiratory",
+  "prevalence_tier": 2,
+  "v2_core": [
+   "E_V2_3985"
+  ]
+ },
+ "Vocal cord dysfunction": {
+  "condition_name": "Vocal cord dysfunction",
+  "cond-name-fr": "",
+  "cond-name-eng": "Vocal cord dysfunction",
+  "icd10-id": "F44.9",
+  "symptoms": [
+   "E_V2_3992",
+   "E_V2_3993",
+   "E_V2_3994",
+   "E_V2_3995"
+  ],
+  "antecedents": [
+   "E_V2_3996",
+   "E_V2_3997",
+   "E_V2_3998"
+  ],
+  "severity": 3,
+  "system": "respiratory",
+  "prevalence_tier": 3,
+  "v2_core": [
+   "E_V2_3992"
+  ]
+ },
+ "Coccidioidomycosis": {
+  "condition_name": "Coccidioidomycosis",
+  "cond-name-fr": "",
+  "cond-name-eng": "Coccidioidomycosis",
+  "icd10-id": "B38.9",
+  "symptoms": [
+   "E_V2_1275",
+   "E_V2_3999",
+   "E_V2_4000",
+   "E_V2_4001"
+  ],
+  "antecedents": [
+   "E_V2_4002",
+   "E_V2_4003"
+  ],
+  "severity": 3,
+  "system": "respiratory",
+  "prevalence_tier": 3,
+  "v2_core": [
+   "E_V2_3999"
+  ]
+ }
+}

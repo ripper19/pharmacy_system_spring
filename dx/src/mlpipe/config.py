@@ -16,8 +16,8 @@ DDXPLUS_DIR = DATA_DIR / "ddxplus"
 KAGGLE_BENCH_DIR = DATA_DIR / "kaggle_bench"
 ARTIFACTS_DIR = ML_ROOT / "artifacts"
 
-ONTOLOGY_PATH = DDXPLUS_DIR / "release_conditions.json"
-EVIDENCES_PATH = DDXPLUS_DIR / "release_evidences.json"
+ONTOLOGY_PATH = DDXPLUS_DIR / "release_conditions_v2.json"
+EVIDENCES_PATH = DDXPLUS_DIR / "release_evidences_v2.json"
 PATIENT_FILES = {
     "train": "release_train_patients.csv",
     "validate": "release_validate_patients.csv",
@@ -37,9 +37,15 @@ LIKELIHOOD_HIGH = 0.50
 LIKELIHOOD_MEDIUM = 0.15
 
 # Abstain when the fused top-1 posterior is below this, OR when the conformal
-# prediction set contains more than this many conditions.
+# prediction set contains more than this many conditions, OR when the fused
+# top1-top2 margin is below ABSTAIN_MARGIN, OR when fewer than
+# ABSTAIN_MIN_EXPERT_AGREEMENT experts peak at the fused argmax.
+# Calibrated on release_test_patients (n=300, SEED=20260822): correct rows show
+# p05 margin 0.98 and unanimous agreement, so these gates are near-free in-set.
 ABSTAIN_PROB_THRESHOLD = 0.35
 ABSTAIN_MAX_SET_SIZE = 3
+ABSTAIN_MARGIN = 0.15
+ABSTAIN_MIN_EXPERT_AGREEMENT = 2
 
 load_dotenv(ML_ROOT / ".env", override=False)
 

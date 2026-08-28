@@ -27,28 +27,28 @@ _PREFIXES = (
 )
 
 
-def _trigger_token(question_en: str) -> str | None:
+def _significant_tokens(text: str) -> list[str]:
+    return [t for t in _WORD_RE.findall(text.lower()) if t not in _STOP]
+
+
+def _trigger_tokens(question_en: str) -> list[str]:
     q = question_en.lower().rstrip("?").strip()
     for prefix in _PREFIXES:
         if q.startswith(prefix):
             q = q[len(prefix):]
             break
-    token: str | None = None
-    for candidate in _WORD_RE.findall(q):
-        if candidate not in _STOP:
-            token = str(candidate)
-            break
-    return token
+    return _significant_tokens(q)[:2]
 
 
 def build_trigger_table(ontology: Any) -> dict[str, str]:
+    """code -> up to two significant tokens (space-joined AND-trigger)."""
     table: dict[str, str] = {}
     for code, entry in ontology.evidences.items():
         if entry.is_antecedent:
             continue
-        trigger = _trigger_token(entry.question)
-        if trigger:
-            table[code] = trigger
+        tokens = _trigger_tokens(entry.question)
+        if tokens:
+            table[code] = " ".join(tokens)
     return table
 
 
@@ -56,7 +56,14 @@ def extract_evidences(text: str, ontology: Any) -> tuple[str, ...]:
     text = strip_markers(text)
     words = set(_WORD_RE.findall(text.lower()))
     triggers = build_trigger_table(ontology)
-    fired = [code for code, trig in triggers.items() if trig in words]
+    # AND-semantics: fire only when every trigger token appears somewhere
+    # in the transcript, which disambiguates shared leads like "vomiting"
+    # vs "vomiting blood".
+    fired = [
+        code
+        for code, trig in triggers.items()
+        if all(tok in words for tok in trig.split())
+    ]
     return tuple(sorted(fired))
 
 

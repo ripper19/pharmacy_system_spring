@@ -119,8 +119,16 @@ def build_app(ctx: TurnContext | None = None) -> FastAPI:
     return app
 
 
-def load_context(include_e3: bool = True) -> TurnContext | None:
-    """Load trained artifacts from ARTIFACTS_DIR; None when unavailable."""
+def load_context(include_e3: bool | None = None) -> TurnContext | None:
+    """Load trained artifacts from ARTIFACTS_DIR; None when unavailable.
+
+    include_e3 defaults to the INCLUDE_E3 env var ("true" enables the BERT
+    expert; the deploy plan must provide torch+transformers in that case).
+    """
+    if include_e3 is None:
+        from mlpipe.config import env
+
+        include_e3 = env("INCLUDE_E3", "false").lower() == "true"
     try:
         import joblib  # type: ignore[import-untyped]
         import lightgbm as lgb
@@ -220,6 +228,9 @@ def load_context(include_e3: bool = True) -> TurnContext | None:
             batch_scorer=batch_scorer,
         )
     except Exception:
+        import traceback
+
+        traceback.print_exc()
         return None
 
 

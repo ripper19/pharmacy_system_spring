@@ -14,9 +14,11 @@ RUN pip install --no-cache-dir -r requirements-deploy.txt
 
 COPY pyproject.toml ./
 COPY src ./src
-# frozen DDXPlus ontology (tiny, static) needed by load_ontology()
+# frozen ontology (tiny, static) needed by load_ontology()
 COPY data/ddxplus/release_conditions.json /app/data/ddxplus/release_conditions.json
 COPY data/ddxplus/release_evidences.json /app/data/ddxplus/release_evidences.json
+COPY data/ddxplus/release_conditions_v2.json /app/data/ddxplus/release_conditions_v2.json
+COPY data/ddxplus/release_evidences_v2.json /app/data/ddxplus/release_evidences_v2.json
 RUN pip install --no-cache-dir -e .
 
 COPY scripts/fetch_artifacts.py ./scripts/fetch_artifacts.py

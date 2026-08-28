@@ -8,7 +8,9 @@ from typing import Any
 import numpy as np
 
 from mlpipe.config import (
+    ABSTAIN_MARGIN,
     ABSTAIN_MAX_SET_SIZE,
+    ABSTAIN_MIN_EXPERT_AGREEMENT,
     ABSTAIN_PROB_THRESHOLD,
     LIKELIHOOD_HIGH,
     LIKELIHOOD_MEDIUM,
@@ -40,16 +42,6 @@ def _likelihood(p: float) -> Likelihood:
     return Likelihood.LOW
 
 
-def _fuse(
-    experts: list[ExpertFn],
-    evidences: tuple[str, ...],
-    age: int | None,
-    sex: str | None,
-) -> np.ndarray:
-    probas = [np.asarray(fn(evidences, age, sex), dtype=np.float64) for fn in experts]
-    return np.mean(probas, axis=0)
-
-
 def run_turn(transcript: list[ChatMessage], ctx: TurnContext) -> ConsultationResult:
     user_msgs = [m.content for m in transcript if m.role == "user"]
     assistant_msgs = [m.content for m in transcript if m.role == "assistant"]
@@ -60,23 +52,37 @@ def run_turn(transcript: list[ChatMessage], ctx: TurnContext) -> ConsultationRes
     # stateless continuity: frontend echoes prior questions (with markers)
     asked = parse_asked(assistant_msgs) | parse_asked(user_msgs)
 
-    fused = _fuse(ctx.experts, evidences, None, None)
+    probas = [
+        np.asarray(fn(evidences, None, None), dtype=np.float64) for fn in ctx.experts
+    ]
+    fused = np.mean(probas, axis=0) if probas else np.array([])
     ranked = sorted(range(len(fused)), key=lambda i: (-fused[i], i))
     top1 = float(fused[ranked[0]])
+    top2 = float(fused[ranked[1]]) if len(ranked) > 1 else 0.0
+    margin = top1 - top2
+    agreement = sum(
+        1 for p in probas if len(p) and int(np.argmax(p)) == ranked[0]
+    )
     set_members = [
         c for c in range(len(fused))
         if (1.0 - fused[c]) <= ctx.thresholds.get(c, ctx.thresholds.get(-1, 0.9))
-    ] or [ranked[0]]
+    ]
 
     question: str | None = None
     if not urgent:
         pick = select_question(fused, ctx.ask_table, ctx.questions, asked)
         question = f"{pick[1]} [code:{pick[0]}]" if pick else None
 
-    confident = top1 >= ABSTAIN_PROB_THRESHOLD and len(set_members) <= ABSTAIN_MAX_SET_SIZE
+    confident = (
+        bool(evidences)
+        and top1 >= ABSTAIN_PROB_THRESHOLD
+        and len(set_members) <= ABSTAIN_MAX_SET_SIZE
+        and margin >= ABSTAIN_MARGIN
+        and agreement >= min(ABSTAIN_MIN_EXPERT_AGREEMENT, len(probas))
+    )
     if urgent:
         status = TurnStatus.DIFFERENTIAL
-    elif confident and evidences:
+    elif confident:
         status = TurnStatus.DIFFERENTIAL
     elif question is not None:
         status = TurnStatus.NEED_INFO
@@ -103,10 +109,28 @@ def run_turn(transcript: list[ChatMessage], ctx: TurnContext) -> ConsultationRes
                 )
             )
     elif status == TurnStatus.ABSTAIN:
-        reasons = [
-            f"top condition confidence {top1:.2f} below threshold {ABSTAIN_PROB_THRESHOLD}",
-            f"plausible set spans {len(set_members)} conditions; findings too overlapping",
-        ]
+        if not evidences:
+            reasons.append("no known findings matched the transcript")
+        else:
+            reasons.append(
+                f"top condition confidence {top1:.2f} "
+                f"{'below' if top1 < ABSTAIN_PROB_THRESHOLD else 'above'} "
+                f"threshold {ABSTAIN_PROB_THRESHOLD}"
+            )
+        if len(set_members) > ABSTAIN_MAX_SET_SIZE:
+            reasons.append(
+                f"plausible set spans {len(set_members)} conditions; findings too overlapping"
+            )
+        if not set_members:
+            reasons.append("no condition cleared the conformal threshold")
+        if margin < ABSTAIN_MARGIN:
+            reasons.append(
+                f"top-2 margin {margin:.2f} below {ABSTAIN_MARGIN}; ranking unstable"
+            )
+        if agreement < ABSTAIN_MIN_EXPERT_AGREEMENT:
+            reasons.append(
+                f"only {agreement}/{len(probas)} experts support the leading condition"
+            )
 
     return ConsultationResult(
         status=status,
