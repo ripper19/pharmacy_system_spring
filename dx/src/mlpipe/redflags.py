@@ -19,10 +19,31 @@ _PATTERNS: tuple[tuple[str, str], ...] = (
     (r"(coughing|vomiting|throwing) up blood|haemoptysis", "vomiting blood"),
     (r"blood in (stool|urine)", "blood in stool/urine"),
     (
-        r"(worst|severe) headache of (my|his|her|their) life|thunderclap headache",
+        r"(worst|severe) headache of (my|his|her|their) life"
+        r"|worst (headache |pain )?of (my |his |her |their )?life"
+        r"|thunderclap headache",
         "sudden severe headache",
     ),
-    (r"stiff(neck| neck).{0,40}fever|fever.{0,40}stiff neck", "neck stiffness with fever"),
+    (
+        r"(stiff neck|neck stiff(ness)?|rigid neck).{0,40}(fever|febrile)"
+        r"|(fever|febrile).{0,40}(stiff neck|neck stiff(ness)?|rigid neck)",
+        "neck stiffness with fever",
+    ),
+    (r"stiff neck|neck stiff(ness)?|rigid neck", "neck stiffness"),
+    (
+        r"photo(phobia|phobic)|sensitiv(e|ity) to light|intoleran(t|ce) to light"
+        r"|light hurts",
+        "photophobia",
+    ),
+    (
+        r"drool(ing|s)?|stridor|unable to swallow|cannot swallow|can'?t swallow",
+        "airway compromise signs",
+    ),
+    (
+        r"(flank|side|back) pain.{0,60}(fever|febrile)"
+        r"|(fever|febrile).{0,60}(flank|side|back) pain",
+        "flank pain with fever",
+    ),
     (r"passed out|fainted|unconscious|syncope", "fainting/unconsciousness"),
     (r"confus(ed|ion)|disorient", "confusion"),
     (r"seizure|convulsion", "seizure"),

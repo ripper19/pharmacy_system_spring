@@ -15,7 +15,7 @@ from mlpipe.config import (
     LIKELIHOOD_HIGH,
     LIKELIHOOD_MEDIUM,
 )
-from mlpipe.extractor import extract_evidences, parse_asked
+from mlpipe.extractor import extract_evidences, parse_age_sex, parse_asked
 from mlpipe.policy import select_question
 from mlpipe.redflags import detect_red_flags
 from mlpipe.schemas import ChatMessage, ConsultationResult, Differential, Likelihood, TurnStatus
@@ -48,12 +48,14 @@ def run_turn(transcript: list[ChatMessage], ctx: TurnContext) -> ConsultationRes
     last_user = user_msgs[-1] if user_msgs else ""
 
     flags, urgent = detect_red_flags(last_user + " " + " ".join(user_msgs[:-1]))
-    evidences = extract_evidences(" ".join(user_msgs), ctx.ontology)
+    narrative = " ".join(user_msgs)
+    evidences = extract_evidences(narrative, ctx.ontology)
+    age, sex = parse_age_sex(narrative)
     # stateless continuity: frontend echoes prior questions (with markers)
     asked = parse_asked(assistant_msgs) | parse_asked(user_msgs)
 
     probas = [
-        np.asarray(fn(evidences, None, None), dtype=np.float64) for fn in ctx.experts
+        np.asarray(fn(evidences, age, sex), dtype=np.float64) for fn in ctx.experts
     ]
     fused = np.mean(probas, axis=0) if probas else np.array([])
     ranked = sorted(range(len(fused)), key=lambda i: (-fused[i], i))
