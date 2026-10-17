@@ -22,6 +22,9 @@ from mlpipe.schemas import ChatMessage, ConsultationResult, Differential, Likeli
 
 ExpertFn = Callable[[tuple[str, ...], int | None, str | None], np.ndarray]
 
+_AGE_SEX_CODE = "@age_sex"
+_AGE_SEX_QUESTION = "How old is the patient (in years), and what is their sex?"
+
 
 @dataclass
 class TurnContext:
@@ -73,7 +76,14 @@ def run_turn(transcript: list[ChatMessage], ctx: TurnContext) -> ConsultationRes
     question: str | None = None
     if not urgent:
         pick = select_question(fused, ctx.ask_table, ctx.questions, asked)
-        question = f"{pick[1]} [code:{pick[0]}]" if pick else None
+        if (
+            (age is None or sex is None)
+            and _AGE_SEX_CODE not in asked
+            and pick is not None
+        ):
+            question = f"{_AGE_SEX_QUESTION} [code:{_AGE_SEX_CODE}]"
+        else:
+            question = f"{pick[1]} [code:{pick[0]}]" if pick else None
 
     confident = (
         bool(evidences)

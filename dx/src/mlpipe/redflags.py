@@ -1,11 +1,17 @@
 """Deterministic red-flag detection. Rules only — never model output.
 
-Known limitation: negations ("denies chest pain") still fire — errs on the
-safe side by design; clinicians review all outputs.
+P1 (2026-10-17): negation-aware — a match preceded (within ~30 chars) by a
+negation cue ("no difficulty breathing", "denies chest pain") does not fire;
+any non-negated occurrence still fires. Ambiguous or mixed phrasing errs on
+the safe side.
 """
 from __future__ import annotations
 
 import re
+
+_NEG_CUE_RE = re.compile(
+    r"\b(?:no|not|never|without|denies|denied|deny|negative|lacks?)\b[^.!?]*$"
+)
 
 _PATTERNS: tuple[tuple[str, str], ...] = (
     (r"crushing chest (pain|pressure)", "crushing chest pain"),
@@ -52,10 +58,17 @@ _PATTERNS: tuple[tuple[str, str], ...] = (
 )
 
 
+def _positive_match(pattern: str, lowered: str) -> bool:
+    for m in re.finditer(pattern, lowered):
+        if not _NEG_CUE_RE.search(lowered, max(0, m.start() - 30), m.start()):
+            return True
+    return False
+
+
 def detect_red_flags(text: str) -> tuple[list[str], bool]:
     lowered = text.lower()
     flags: list[str] = []
     for pattern, label in _PATTERNS:
-        if re.search(pattern, lowered) and label not in flags:
+        if _positive_match(pattern, lowered) and label not in flags:
             flags.append(label)
     return flags, bool(flags)

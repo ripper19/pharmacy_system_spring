@@ -7,6 +7,12 @@ P0 (2026-10-17): negation guard — a trigger token only fires from an
 occurrence whose preceding 3 words contain no negation cue ("no cough",
 "denies fever", "without cough" are suppressed). Age/sex parser for the
 orchestrator (models previously received None, None unconditionally).
+
+P1 (2026-10-17): lay-synonym layer — phrase rewrites map lay narrative
+("burning pain on urination", "photophobia") onto ontology question
+vocabulary ("burning when urinating", "light sensitivity"), plus a token
+fold collapsing morphological variants (urination/urinate/pee ->
+urinating). Rewrites preserve preceding negation cues.
 """
 from __future__ import annotations
 
@@ -40,6 +46,43 @@ _AGE_RE = re.compile(
 )
 _FEMALE_RE = re.compile(r"\b(woman|girl|female|she|her)\b")
 _MALE_RE = re.compile(r"\b(man|boy|male|he|his|him)\b")
+_PHRASE_SYNONYMS: tuple[tuple[re.Pattern[str], str], ...] = (
+    (
+        re.compile(
+            r"\b(?:burning|pain|painful|stinging|stings|burns|smarting)\s+"
+            r"(?:\w+\s+)?(?:when|while|on|during)\s+"
+            r"(?:urinat\w+|peeing|passing urine|passing water)\b"
+        ),
+        "burning when urinating",
+    ),
+    (
+        re.compile(
+            r"\bburning\s+(?:pain\s+)?(?:on|with|during)\s+"
+            r"(?:urination|urinating|peeing)\b"
+        ),
+        "burning when urinating",
+    ),
+    (re.compile(r"\bphotophobi(?:a|c)\b"), "light sensitivity"),
+    (re.compile(r"\bsensitiv(?:e|ity) to light\b"), "light sensitivity"),
+    (re.compile(r"\blight hurts\b"), "light sensitivity"),
+    (re.compile(r"\bpassing (?:urine|water|pee)\b"), "urinating"),
+)
+_TOKEN_FOLD = {
+    "urination": "urinating", "urinate": "urinating", "urinates": "urinating",
+    "urinated": "urinating", "urine": "urinating", "pee": "urinating",
+    "peeing": "urinating", "peed": "urinating",
+    "sensitive": "sensitivity",
+}
+
+
+def _normalize_text(text: str) -> str:
+    for pattern, replacement in _PHRASE_SYNONYMS:
+        text = pattern.sub(replacement, text)
+    return text
+
+
+def _fold(token: str) -> str:
+    return _TOKEN_FOLD.get(token, token)
 
 
 def _significant_tokens(text: str) -> list[str]:
@@ -77,8 +120,8 @@ def _has_positive_occurrence(ordered: list[str], token: str) -> bool:
 
 
 def extract_evidences(text: str, ontology: Any) -> tuple[str, ...]:
-    text = strip_markers(text)
-    ordered = _WORD_RE.findall(text.lower())
+    text = strip_markers(_normalize_text(text))
+    ordered = [_fold(w) for w in _WORD_RE.findall(text.lower())]
     triggers = build_trigger_table(ontology)
     # AND-semantics: fire only when every trigger token appears somewhere
     # in the transcript, which disambiguates shared leads like "vomiting"
@@ -86,7 +129,10 @@ def extract_evidences(text: str, ontology: Any) -> tuple[str, ...]:
     fired = [
         code
         for code, trig in triggers.items()
-        if all(_has_positive_occurrence(ordered, tok) for tok in trig.split())
+        if all(
+            _has_positive_occurrence(ordered, _fold(tok))
+            for tok in trig.split()
+        )
     ]
     return tuple(sorted(fired))
 
