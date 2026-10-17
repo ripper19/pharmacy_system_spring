@@ -13,6 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -88,8 +89,12 @@ public class DiagnosisService {
         );
 
         try {
+            SimpleClientHttpRequestFactory requestFactory = new SimpleClientHttpRequestFactory();
+            requestFactory.setConnectTimeout(5_000);
+            requestFactory.setReadTimeout(60_000);
             RestClient client = RestClient.builder()
                     .baseUrl(aiProperties.getBaseUrl())
+                    .requestFactory(requestFactory)
                     .build();
 
             JsonNode root = client.post()
