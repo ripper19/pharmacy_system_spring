@@ -124,10 +124,12 @@ public class StaffService {
                 Staff staff = mapToEntity(cleanStaff);
                 staff.setRole(requestedRole);
 
-                staff.setPassword(passwordEncoder.encode("Password123"));
+                String initialPassword = UUID.randomUUID().toString();
+                staff.setPassword(passwordEncoder.encode(initialPassword));
 
                 Staff saved = staffRepo.save(staff);
             logger.info("Staff created {}with ID {}", saved.getName(), saved.getId());
+            logger.info("Initial password issued for {}: {}", saved.getEmail(), initialPassword);
 
         }catch (DuplicateStaffCreation e) {
             assert newStaff != null;
@@ -206,26 +208,6 @@ public class StaffService {
         logger.info("User {} updated", existingUser.getName());
         staffRepo.save(existingUser);
         return existingUser;
-    }
-
-    @PostConstruct
-    public void createDefaultSp() {
-        if (staffRepo.countByRole(Role.SUPERADMIN) == 0) {
-            Staff root = new Staff();
-            root.setName("root");
-            root.setEmail("root@example.com");
-            root.setPhoneNo("0700000000");
-            root.setRole(Role.SUPERADMIN);
-            root.setPassword(passwordEncoder.encode("password123"));
-            logger.info("Default Superuser created.Advise Client to change superuser");
-            staffRepo.save(root);
-        }
-        if(staffRepo.countByRole(Role.SUPERADMIN) > 1){
-            throw new RuntimeException("Delete the extra Superadmin or contact developer");
-        }
-        if (staffRepo.countByRole(Role.ADMIN) > 5){
-            throw new RuntimeException("Please deescalate some admin. Admins are too many");
-        }
     }
 
     @Cacheable(value = "staff", key = "'all'")
